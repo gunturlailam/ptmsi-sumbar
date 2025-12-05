@@ -14,3 +14,20 @@ Stack trace:
 #11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(133): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
 #12 C:\laragon\www\ptmsi-sumbar\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
 #13 {main}
+CRITICAL - 2025-12-05 12:48:38 --> ParseError: syntax error, unexpected token "<", expecting end of file
+[Method: GET, Route: profil]
+in APPPATH\Views\layouts\footer.php on line 2.
+ 1 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\View\View.php(475): CodeIgniter\View\View->render('layouts/footer', null, true)
+ 3 APPPATH\Views\profil.php(26): CodeIgniter\View\View->include('layouts/footer')
+ 4 SYSTEMPATH\View\View.php(226): include('C:\\laragon\\www\\ptmsi-sumbar\\app\\Views\\profil.php')
+ 5 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('profil', [], true)
+ 7 APPPATH\Controllers\Profil.php(9): view('profil')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Profil->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Profil))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
