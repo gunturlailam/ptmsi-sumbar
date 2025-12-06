@@ -33,3 +33,4 @@ $routes->get('galeri/event/(:num)', 'Galeri::event/$1');
 $routes->get('dokumen', 'Dokumen::index');
 $routes->get('dokumen/download/(:num)', 'Dokumen::download/$1');
 $routes->get('dokumen/search', 'Dokumen::search');
+$routes->get('ranking', 'RankingStatistik::index');

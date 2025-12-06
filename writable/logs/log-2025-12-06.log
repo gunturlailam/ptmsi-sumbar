@@ -2125,3 +2125,42 @@ ORDER BY `total_unduhan` DESC
 13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
 14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
 15 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-06 23:14:53 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "ranking_statistik.php"
+[Method: GET, Route: ranking]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(214): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('ranking_statistik.php')
+ 2 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('ranking_statistik', [], true)
+ 3 APPPATH\Controllers\RankingStatistik.php(27): view('ranking_statistik', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\RankingStatistik->index()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RankingStatistik))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+10 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-06 23:44:01 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "beranda.php"
+[Method: GET, Route: /]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(214): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('beranda.php')
+ 2 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('beranda', [], true)
+ 3 APPPATH\Controllers\Beranda.php(50): view('beranda', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Beranda->index()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Beranda))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+10 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-06 23:44:04 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "beranda.php"
+[Method: GET, Route: /]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(214): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('beranda.php')
+ 2 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('beranda', [], true)
+ 3 APPPATH\Controllers\Beranda.php(50): view('beranda', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Beranda->index()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Beranda))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+10 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')

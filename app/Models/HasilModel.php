@@ -32,4 +32,14 @@ class HasilModel extends Model
             ->join('user user_pelapor', 'user_pelapor.id_user = hasil.id_pelapor', 'left')
             ->findAll();
     }
+
+    public function getRekapMedali()
+    {
+        return $this->select('atlet.id_klub, COUNT(hasil.id_hasil) as total_medali')
+            ->join('pertandingan', 'pertandingan.id_pertandingan = hasil.id_pertandingan')
+            ->join('atlet', 'atlet.id_atlet = hasil.id_pemenang_atlet')
+            ->groupBy('atlet.id_klub')
+            ->orderBy('total_medali', 'DESC')
+            ->findAll();
+    }
 }

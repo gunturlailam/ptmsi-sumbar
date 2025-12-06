@@ -30,4 +30,14 @@ class PertandinganModel extends Model
             ->join('user user2', 'user2.id_user = atlet2.id_user', 'left')
             ->findAll();
     }
+
+    public function getStatistikPertandingan()
+    {
+        return $this->select('pertandingan.*, e.judul as event, a1.id_user as atlet1, a2.id_user as atlet2')
+            ->join('event e', 'e.id_event = pertandingan.id_event')
+            ->join('atlet a1', 'a1.id_atlet = pertandingan.id_atlet1')
+            ->join('atlet a2', 'a2.id_atlet = pertandingan.id_atlet2')
+            ->orderBy('pertandingan.jadwal', 'DESC')
+            ->findAll();
+    }
 }
