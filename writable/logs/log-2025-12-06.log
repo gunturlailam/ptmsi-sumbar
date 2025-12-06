@@ -749,3 +749,1379 @@ Stack trace:
 #11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(133): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
 #12 C:\laragon\www\ptmsi-sumbar\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
 #13 {main}
+ERROR - 2025-12-06 06:09:05 --> mysqli_sql_exception: Unknown column 'user.nama' in 'field list' in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `dokumen...', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `dokumen...')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `dokumen...')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `dokumen...', Array, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\ptmsi-sumbar\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\ptmsi-sumbar\app\Models\DokumenModel.php(28): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\ptmsi-sumbar\app\Controllers\Dokumen.php(26): App\Models\DokumenModel->getAllDokumen()
+#8 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\Dokumen->index()
+#9 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dokumen))
+#10 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+CRITICAL - 2025-12-06 06:09:05 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'user.nama' in 'field list'
+[Method: GET, Route: dokumen]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`
+FROM `dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+ORDER BY `dokumen`.`diunggah_pada` DESC', [], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\DokumenModel.php(28): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\Dokumen.php(26): App\Models\DokumenModel->getAllDokumen()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Dokumen->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dokumen))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-06 06:09:05 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'user.nama' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`
+FROM `dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+ORDER BY `dokumen`.`diunggah_pada` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`
+FROM `dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+ORDER BY `dokumen`.`diunggah_pada` DESC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`
+FROM `dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+ORDER BY `dokumen`.`diunggah_pada` DESC', [], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Models\DokumenModel.php(28): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH\Controllers\Dokumen.php(26): App\Models\DokumenModel->getAllDokumen()
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Dokumen->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dokumen))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-06 06:09:05 --> [Caused by] mysqli_sql_exception: Unknown column 'user.nama' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`
+FROM `dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+ORDER BY `dokumen`.`diunggah_pada` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`
+FROM `dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+ORDER BY `dokumen`.`diunggah_pada` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`
+FROM `dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+ORDER BY `dokumen`.`diunggah_pada` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`
+FROM `dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+ORDER BY `dokumen`.`diunggah_pada` DESC', [], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\DokumenModel.php(28): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Dokumen.php(26): App\Models\DokumenModel->getAllDokumen()
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Dokumen->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dokumen))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+ERROR - 2025-12-06 06:10:21 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '.`nama_lengkap_pengunggah`
+FROM `dokumen`
+LEFT JOIN `user` ON `user`.`id_user` =' at line 1 in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `dokumen...', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `dokumen...')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `dokumen...')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `dokumen...', Array, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\ptmsi-sumbar\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\ptmsi-sumbar\app\Models\DokumenModel.php(28): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\ptmsi-sumbar\app\Controllers\Dokumen.php(26): App\Models\DokumenModel->getAllDokumen()
+#8 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\Dokumen->index()
+#9 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dokumen))
+#10 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+CRITICAL - 2025-12-06 06:10:21 --> CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '.`nama_lengkap_pengunggah`
+FROM `dokumen`
+LEFT JOIN `user` ON `user`.`id_user` =' at line 1
+[Method: GET, Route: dokumen]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `dokumen`.*, `user`.`nama_lengkap` `as`.`nama_lengkap_pengunggah`
+FROM `dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+ORDER BY `dokumen`.`diunggah_pada` DESC', [], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\DokumenModel.php(28): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\Dokumen.php(26): App\Models\DokumenModel->getAllDokumen()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Dokumen->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dokumen))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-06 06:10:21 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '.`nama_lengkap_pengunggah`
+FROM `dokumen`
+LEFT JOIN `user` ON `user`.`id_user` =' at line 1
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `dokumen`.*, `user`.`nama_lengkap` `as`.`nama_lengkap_pengunggah`
+FROM `dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+ORDER BY `dokumen`.`diunggah_pada` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `dokumen`.*, `user`.`nama_lengkap` `as`.`nama_lengkap_pengunggah`
+FROM `dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+ORDER BY `dokumen`.`diunggah_pada` DESC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `dokumen`.*, `user`.`nama_lengkap` `as`.`nama_lengkap_pengunggah`
+FROM `dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+ORDER BY `dokumen`.`diunggah_pada` DESC', [], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Models\DokumenModel.php(28): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH\Controllers\Dokumen.php(26): App\Models\DokumenModel->getAllDokumen()
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Dokumen->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dokumen))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-06 06:10:21 --> [Caused by] mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '.`nama_lengkap_pengunggah`
+FROM `dokumen`
+LEFT JOIN `user` ON `user`.`id_user` =' at line 1
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `dokumen`.*, `user`.`nama_lengkap` `as`.`nama_lengkap_pengunggah`
+FROM `dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+ORDER BY `dokumen`.`diunggah_pada` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `dokumen`.*, `user`.`nama_lengkap` `as`.`nama_lengkap_pengunggah`
+FROM `dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+ORDER BY `dokumen`.`diunggah_pada` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `dokumen`.*, `user`.`nama_lengkap` `as`.`nama_lengkap_pengunggah`
+FROM `dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+ORDER BY `dokumen`.`diunggah_pada` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `dokumen`.*, `user`.`nama_lengkap` `as`.`nama_lengkap_pengunggah`
+FROM `dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+ORDER BY `dokumen`.`diunggah_pada` DESC', [], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\DokumenModel.php(28): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Dokumen.php(26): App\Models\DokumenModel->getAllDokumen()
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Dokumen->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dokumen))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+ERROR - 2025-12-06 06:11:21 --> mysqli_sql_exception: Unknown column 'user.nama' in 'field list' in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `dokumen...', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `dokumen...')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `dokumen...')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `dokumen...', Array, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\ptmsi-sumbar\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\ptmsi-sumbar\app\Models\UnduhanDokumenModel.php(49): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\ptmsi-sumbar\app\Controllers\Dokumen.php(32): App\Models\UnduhanDokumenModel->getPopularDokumen(5)
+#8 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\Dokumen->index()
+#9 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dokumen))
+#10 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+CRITICAL - 2025-12-06 06:11:21 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'user.nama' in 'field list'
+[Method: GET, Route: dokumen]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`, COUNT(unduhan_dokumen.id_unduhan) as total_unduhan
+FROM `unduhan_dokumen`
+JOIN `dokumen` ON `dokumen`.`id_dokumen` = `unduhan_dokumen`.`id_dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+GROUP BY `unduhan_dokumen`.`id_dokumen`
+ORDER BY `total_unduhan` DESC
+ LIMIT 5', [], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\UnduhanDokumenModel.php(49): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\Dokumen.php(32): App\Models\UnduhanDokumenModel->getPopularDokumen(5)
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Dokumen->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dokumen))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-06 06:11:21 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'user.nama' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`, COUNT(unduhan_dokumen.id_unduhan) as total_unduhan
+FROM `unduhan_dokumen`
+JOIN `dokumen` ON `dokumen`.`id_dokumen` = `unduhan_dokumen`.`id_dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+GROUP BY `unduhan_dokumen`.`id_dokumen`
+ORDER BY `total_unduhan` DESC
+ LIMIT 5')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`, COUNT(unduhan_dokumen.id_unduhan) as total_unduhan
+FROM `unduhan_dokumen`
+JOIN `dokumen` ON `dokumen`.`id_dokumen` = `unduhan_dokumen`.`id_dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+GROUP BY `unduhan_dokumen`.`id_dokumen`
+ORDER BY `total_unduhan` DESC
+ LIMIT 5')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`, COUNT(unduhan_dokumen.id_unduhan) as total_unduhan
+FROM `unduhan_dokumen`
+JOIN `dokumen` ON `dokumen`.`id_dokumen` = `unduhan_dokumen`.`id_dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+GROUP BY `unduhan_dokumen`.`id_dokumen`
+ORDER BY `total_unduhan` DESC
+ LIMIT 5', [], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Models\UnduhanDokumenModel.php(49): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH\Controllers\Dokumen.php(32): App\Models\UnduhanDokumenModel->getPopularDokumen(5)
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Dokumen->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dokumen))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-06 06:11:21 --> [Caused by] mysqli_sql_exception: Unknown column 'user.nama' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`, COUNT(unduhan_dokumen.id_unduhan) as total_unduhan
+FROM `unduhan_dokumen`
+JOIN `dokumen` ON `dokumen`.`id_dokumen` = `unduhan_dokumen`.`id_dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+GROUP BY `unduhan_dokumen`.`id_dokumen`
+ORDER BY `total_unduhan` DESC
+ LIMIT 5', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`, COUNT(unduhan_dokumen.id_unduhan) as total_unduhan
+FROM `unduhan_dokumen`
+JOIN `dokumen` ON `dokumen`.`id_dokumen` = `unduhan_dokumen`.`id_dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+GROUP BY `unduhan_dokumen`.`id_dokumen`
+ORDER BY `total_unduhan` DESC
+ LIMIT 5')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`, COUNT(unduhan_dokumen.id_unduhan) as total_unduhan
+FROM `unduhan_dokumen`
+JOIN `dokumen` ON `dokumen`.`id_dokumen` = `unduhan_dokumen`.`id_dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+GROUP BY `unduhan_dokumen`.`id_dokumen`
+ORDER BY `total_unduhan` DESC
+ LIMIT 5')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`, COUNT(unduhan_dokumen.id_unduhan) as total_unduhan
+FROM `unduhan_dokumen`
+JOIN `dokumen` ON `dokumen`.`id_dokumen` = `unduhan_dokumen`.`id_dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+GROUP BY `unduhan_dokumen`.`id_dokumen`
+ORDER BY `total_unduhan` DESC
+ LIMIT 5', [], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\UnduhanDokumenModel.php(49): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Dokumen.php(32): App\Models\UnduhanDokumenModel->getPopularDokumen(5)
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Dokumen->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dokumen))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+ERROR - 2025-12-06 06:12:00 --> mysqli_sql_exception: Unknown column 'user.nama' in 'field list' in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `dokumen...', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `dokumen...')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `dokumen...')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `dokumen...', Array, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\ptmsi-sumbar\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\ptmsi-sumbar\app\Models\UnduhanDokumenModel.php(49): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\ptmsi-sumbar\app\Controllers\Dokumen.php(32): App\Models\UnduhanDokumenModel->getPopularDokumen(5)
+#8 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\Dokumen->index()
+#9 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dokumen))
+#10 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+CRITICAL - 2025-12-06 06:12:00 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'user.nama' in 'field list'
+[Method: GET, Route: dokumen]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`, COUNT(unduhan_dokumen.id_unduhan) as total_unduhan
+FROM `unduhan_dokumen`
+JOIN `dokumen` ON `dokumen`.`id_dokumen` = `unduhan_dokumen`.`id_dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+GROUP BY `unduhan_dokumen`.`id_dokumen`
+ORDER BY `total_unduhan` DESC
+ LIMIT 5', [], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\UnduhanDokumenModel.php(49): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\Dokumen.php(32): App\Models\UnduhanDokumenModel->getPopularDokumen(5)
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Dokumen->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dokumen))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-06 06:12:00 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'user.nama' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`, COUNT(unduhan_dokumen.id_unduhan) as total_unduhan
+FROM `unduhan_dokumen`
+JOIN `dokumen` ON `dokumen`.`id_dokumen` = `unduhan_dokumen`.`id_dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+GROUP BY `unduhan_dokumen`.`id_dokumen`
+ORDER BY `total_unduhan` DESC
+ LIMIT 5')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`, COUNT(unduhan_dokumen.id_unduhan) as total_unduhan
+FROM `unduhan_dokumen`
+JOIN `dokumen` ON `dokumen`.`id_dokumen` = `unduhan_dokumen`.`id_dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+GROUP BY `unduhan_dokumen`.`id_dokumen`
+ORDER BY `total_unduhan` DESC
+ LIMIT 5')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`, COUNT(unduhan_dokumen.id_unduhan) as total_unduhan
+FROM `unduhan_dokumen`
+JOIN `dokumen` ON `dokumen`.`id_dokumen` = `unduhan_dokumen`.`id_dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+GROUP BY `unduhan_dokumen`.`id_dokumen`
+ORDER BY `total_unduhan` DESC
+ LIMIT 5', [], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Models\UnduhanDokumenModel.php(49): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH\Controllers\Dokumen.php(32): App\Models\UnduhanDokumenModel->getPopularDokumen(5)
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Dokumen->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dokumen))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-06 06:12:00 --> [Caused by] mysqli_sql_exception: Unknown column 'user.nama' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`, COUNT(unduhan_dokumen.id_unduhan) as total_unduhan
+FROM `unduhan_dokumen`
+JOIN `dokumen` ON `dokumen`.`id_dokumen` = `unduhan_dokumen`.`id_dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+GROUP BY `unduhan_dokumen`.`id_dokumen`
+ORDER BY `total_unduhan` DESC
+ LIMIT 5', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`, COUNT(unduhan_dokumen.id_unduhan) as total_unduhan
+FROM `unduhan_dokumen`
+JOIN `dokumen` ON `dokumen`.`id_dokumen` = `unduhan_dokumen`.`id_dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+GROUP BY `unduhan_dokumen`.`id_dokumen`
+ORDER BY `total_unduhan` DESC
+ LIMIT 5')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`, COUNT(unduhan_dokumen.id_unduhan) as total_unduhan
+FROM `unduhan_dokumen`
+JOIN `dokumen` ON `dokumen`.`id_dokumen` = `unduhan_dokumen`.`id_dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+GROUP BY `unduhan_dokumen`.`id_dokumen`
+ORDER BY `total_unduhan` DESC
+ LIMIT 5')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`, COUNT(unduhan_dokumen.id_unduhan) as total_unduhan
+FROM `unduhan_dokumen`
+JOIN `dokumen` ON `dokumen`.`id_dokumen` = `unduhan_dokumen`.`id_dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+GROUP BY `unduhan_dokumen`.`id_dokumen`
+ORDER BY `total_unduhan` DESC
+ LIMIT 5', [], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\UnduhanDokumenModel.php(49): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Dokumen.php(32): App\Models\UnduhanDokumenModel->getPopularDokumen(5)
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Dokumen->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dokumen))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+ERROR - 2025-12-06 06:12:50 --> mysqli_sql_exception: Unknown column 'user.nama' in 'field list' in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `dokumen...', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `dokumen...')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `dokumen...')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `dokumen...', Array, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\ptmsi-sumbar\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\ptmsi-sumbar\app\Models\UnduhanDokumenModel.php(49): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\ptmsi-sumbar\app\Controllers\Dokumen.php(32): App\Models\UnduhanDokumenModel->getPopularDokumen(5)
+#8 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\Dokumen->index()
+#9 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dokumen))
+#10 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+CRITICAL - 2025-12-06 06:12:50 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'user.nama' in 'field list'
+[Method: GET, Route: dokumen]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`, COUNT(unduhan_dokumen.id_unduhan) as total_unduhan
+FROM `unduhan_dokumen`
+JOIN `dokumen` ON `dokumen`.`id_dokumen` = `unduhan_dokumen`.`id_dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+GROUP BY `unduhan_dokumen`.`id_dokumen`
+ORDER BY `total_unduhan` DESC
+ LIMIT 5', [], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\UnduhanDokumenModel.php(49): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\Dokumen.php(32): App\Models\UnduhanDokumenModel->getPopularDokumen(5)
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Dokumen->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dokumen))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-06 06:12:50 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'user.nama' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`, COUNT(unduhan_dokumen.id_unduhan) as total_unduhan
+FROM `unduhan_dokumen`
+JOIN `dokumen` ON `dokumen`.`id_dokumen` = `unduhan_dokumen`.`id_dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+GROUP BY `unduhan_dokumen`.`id_dokumen`
+ORDER BY `total_unduhan` DESC
+ LIMIT 5')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`, COUNT(unduhan_dokumen.id_unduhan) as total_unduhan
+FROM `unduhan_dokumen`
+JOIN `dokumen` ON `dokumen`.`id_dokumen` = `unduhan_dokumen`.`id_dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+GROUP BY `unduhan_dokumen`.`id_dokumen`
+ORDER BY `total_unduhan` DESC
+ LIMIT 5')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`, COUNT(unduhan_dokumen.id_unduhan) as total_unduhan
+FROM `unduhan_dokumen`
+JOIN `dokumen` ON `dokumen`.`id_dokumen` = `unduhan_dokumen`.`id_dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+GROUP BY `unduhan_dokumen`.`id_dokumen`
+ORDER BY `total_unduhan` DESC
+ LIMIT 5', [], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Models\UnduhanDokumenModel.php(49): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH\Controllers\Dokumen.php(32): App\Models\UnduhanDokumenModel->getPopularDokumen(5)
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Dokumen->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dokumen))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-06 06:12:50 --> [Caused by] mysqli_sql_exception: Unknown column 'user.nama' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`, COUNT(unduhan_dokumen.id_unduhan) as total_unduhan
+FROM `unduhan_dokumen`
+JOIN `dokumen` ON `dokumen`.`id_dokumen` = `unduhan_dokumen`.`id_dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+GROUP BY `unduhan_dokumen`.`id_dokumen`
+ORDER BY `total_unduhan` DESC
+ LIMIT 5', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`, COUNT(unduhan_dokumen.id_unduhan) as total_unduhan
+FROM `unduhan_dokumen`
+JOIN `dokumen` ON `dokumen`.`id_dokumen` = `unduhan_dokumen`.`id_dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+GROUP BY `unduhan_dokumen`.`id_dokumen`
+ORDER BY `total_unduhan` DESC
+ LIMIT 5')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`, COUNT(unduhan_dokumen.id_unduhan) as total_unduhan
+FROM `unduhan_dokumen`
+JOIN `dokumen` ON `dokumen`.`id_dokumen` = `unduhan_dokumen`.`id_dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+GROUP BY `unduhan_dokumen`.`id_dokumen`
+ORDER BY `total_unduhan` DESC
+ LIMIT 5')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`, COUNT(unduhan_dokumen.id_unduhan) as total_unduhan
+FROM `unduhan_dokumen`
+JOIN `dokumen` ON `dokumen`.`id_dokumen` = `unduhan_dokumen`.`id_dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+GROUP BY `unduhan_dokumen`.`id_dokumen`
+ORDER BY `total_unduhan` DESC
+ LIMIT 5', [], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\UnduhanDokumenModel.php(49): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Dokumen.php(32): App\Models\UnduhanDokumenModel->getPopularDokumen(5)
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Dokumen->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dokumen))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+ERROR - 2025-12-06 06:13:41 --> mysqli_sql_exception: Cannot add or update a child row: a foreign key constraint fails (`ptmsi_sumbar`.`dokumen`, CONSTRAINT `dokumen_id_pengunggah_foreign` FOREIGN KEY (`id_pengunggah`) REFERENCES `user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE) in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('INSERT INTO `do...', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `do...')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `do...')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1841): CodeIgniter\Database\BaseConnection->query('INSERT INTO `do...', NULL, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(2230): CodeIgniter\Database\BaseBuilder->batchExecute('_insertBatch', 100)
+#5 C:\laragon\www\ptmsi-sumbar\app\Database\Seeds\DokumenSeeder.php(129): CodeIgniter\Database\BaseBuilder->insertBatch(Array)
+#6 C:\laragon\www\ptmsi-sumbar\system\Database\Seeder.php(149): App\Database\Seeds\DokumenSeeder->run()
+#7 C:\laragon\www\ptmsi-sumbar\system\Commands\Database\Seed.php(79): CodeIgniter\Database\Seeder->call('App\\Database\\Se...')
+#8 C:\laragon\www\ptmsi-sumbar\system\CLI\Commands.php(74): CodeIgniter\Commands\Database\Seed->run(Array)
+#9 C:\laragon\www\ptmsi-sumbar\system\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('db:seed', Array)
+#10 C:\laragon\www\ptmsi-sumbar\system\Boot.php(388): CodeIgniter\CLI\Console->run()
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(133): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
+#12 C:\laragon\www\ptmsi-sumbar\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
+#13 {main}
+ERROR - 2025-12-06 06:15:14 --> mysqli_sql_exception: Unknown column 'user.nama' in 'field list' in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `dokumen...', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `dokumen...')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `dokumen...')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `dokumen...', Array, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\ptmsi-sumbar\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\ptmsi-sumbar\app\Models\DokumenModel.php(28): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\ptmsi-sumbar\app\Controllers\Dokumen.php(26): App\Models\DokumenModel->getAllDokumen()
+#8 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\Dokumen->index()
+#9 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dokumen))
+#10 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+CRITICAL - 2025-12-06 06:15:14 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'user.nama' in 'field list'
+[Method: GET, Route: dokumen]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`
+FROM `dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+ORDER BY `dokumen`.`diunggah_pada` DESC', [], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\DokumenModel.php(28): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\Dokumen.php(26): App\Models\DokumenModel->getAllDokumen()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Dokumen->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dokumen))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-06 06:15:14 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'user.nama' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`
+FROM `dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+ORDER BY `dokumen`.`diunggah_pada` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`
+FROM `dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+ORDER BY `dokumen`.`diunggah_pada` DESC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`
+FROM `dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+ORDER BY `dokumen`.`diunggah_pada` DESC', [], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Models\DokumenModel.php(28): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH\Controllers\Dokumen.php(26): App\Models\DokumenModel->getAllDokumen()
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Dokumen->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dokumen))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-06 06:15:14 --> [Caused by] mysqli_sql_exception: Unknown column 'user.nama' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`
+FROM `dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+ORDER BY `dokumen`.`diunggah_pada` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`
+FROM `dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+ORDER BY `dokumen`.`diunggah_pada` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`
+FROM `dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+ORDER BY `dokumen`.`diunggah_pada` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`
+FROM `dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+ORDER BY `dokumen`.`diunggah_pada` DESC', [], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\DokumenModel.php(28): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Dokumen.php(26): App\Models\DokumenModel->getAllDokumen()
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Dokumen->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dokumen))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+ERROR - 2025-12-06 06:17:20 --> mysqli_sql_exception: Unknown column 'user.nama' in 'field list' in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `dokumen...', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `dokumen...')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `dokumen...')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `dokumen...', Array, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\ptmsi-sumbar\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\ptmsi-sumbar\app\Models\UnduhanDokumenModel.php(49): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\ptmsi-sumbar\app\Controllers\Dokumen.php(32): App\Models\UnduhanDokumenModel->getPopularDokumen(5)
+#8 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\Dokumen->index()
+#9 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dokumen))
+#10 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+CRITICAL - 2025-12-06 06:17:20 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'user.nama' in 'field list'
+[Method: GET, Route: dokumen]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`, COUNT(unduhan_dokumen.id_unduhan) as total_unduhan
+FROM `unduhan_dokumen`
+JOIN `dokumen` ON `dokumen`.`id_dokumen` = `unduhan_dokumen`.`id_dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+GROUP BY `unduhan_dokumen`.`id_dokumen`
+ORDER BY `total_unduhan` DESC
+ LIMIT 5', [], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\UnduhanDokumenModel.php(49): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\Dokumen.php(32): App\Models\UnduhanDokumenModel->getPopularDokumen(5)
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Dokumen->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dokumen))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-06 06:17:20 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'user.nama' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`, COUNT(unduhan_dokumen.id_unduhan) as total_unduhan
+FROM `unduhan_dokumen`
+JOIN `dokumen` ON `dokumen`.`id_dokumen` = `unduhan_dokumen`.`id_dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+GROUP BY `unduhan_dokumen`.`id_dokumen`
+ORDER BY `total_unduhan` DESC
+ LIMIT 5')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`, COUNT(unduhan_dokumen.id_unduhan) as total_unduhan
+FROM `unduhan_dokumen`
+JOIN `dokumen` ON `dokumen`.`id_dokumen` = `unduhan_dokumen`.`id_dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+GROUP BY `unduhan_dokumen`.`id_dokumen`
+ORDER BY `total_unduhan` DESC
+ LIMIT 5')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`, COUNT(unduhan_dokumen.id_unduhan) as total_unduhan
+FROM `unduhan_dokumen`
+JOIN `dokumen` ON `dokumen`.`id_dokumen` = `unduhan_dokumen`.`id_dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+GROUP BY `unduhan_dokumen`.`id_dokumen`
+ORDER BY `total_unduhan` DESC
+ LIMIT 5', [], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Models\UnduhanDokumenModel.php(49): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH\Controllers\Dokumen.php(32): App\Models\UnduhanDokumenModel->getPopularDokumen(5)
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Dokumen->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dokumen))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-06 06:17:20 --> [Caused by] mysqli_sql_exception: Unknown column 'user.nama' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`, COUNT(unduhan_dokumen.id_unduhan) as total_unduhan
+FROM `unduhan_dokumen`
+JOIN `dokumen` ON `dokumen`.`id_dokumen` = `unduhan_dokumen`.`id_dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+GROUP BY `unduhan_dokumen`.`id_dokumen`
+ORDER BY `total_unduhan` DESC
+ LIMIT 5', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`, COUNT(unduhan_dokumen.id_unduhan) as total_unduhan
+FROM `unduhan_dokumen`
+JOIN `dokumen` ON `dokumen`.`id_dokumen` = `unduhan_dokumen`.`id_dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+GROUP BY `unduhan_dokumen`.`id_dokumen`
+ORDER BY `total_unduhan` DESC
+ LIMIT 5')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`, COUNT(unduhan_dokumen.id_unduhan) as total_unduhan
+FROM `unduhan_dokumen`
+JOIN `dokumen` ON `dokumen`.`id_dokumen` = `unduhan_dokumen`.`id_dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+GROUP BY `unduhan_dokumen`.`id_dokumen`
+ORDER BY `total_unduhan` DESC
+ LIMIT 5')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`, COUNT(unduhan_dokumen.id_unduhan) as total_unduhan
+FROM `unduhan_dokumen`
+JOIN `dokumen` ON `dokumen`.`id_dokumen` = `unduhan_dokumen`.`id_dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+GROUP BY `unduhan_dokumen`.`id_dokumen`
+ORDER BY `total_unduhan` DESC
+ LIMIT 5', [], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\UnduhanDokumenModel.php(49): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Dokumen.php(32): App\Models\UnduhanDokumenModel->getPopularDokumen(5)
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Dokumen->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dokumen))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+ERROR - 2025-12-06 06:17:38 --> mysqli_sql_exception: Unknown column 'user.nama' in 'field list' in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `dokumen...', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `dokumen...')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `dokumen...')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `dokumen...', Array, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\ptmsi-sumbar\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\ptmsi-sumbar\app\Models\UnduhanDokumenModel.php(49): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\ptmsi-sumbar\app\Controllers\Dokumen.php(32): App\Models\UnduhanDokumenModel->getPopularDokumen(5)
+#8 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\Dokumen->index()
+#9 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dokumen))
+#10 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+CRITICAL - 2025-12-06 06:17:38 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'user.nama' in 'field list'
+[Method: GET, Route: dokumen]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`, COUNT(unduhan_dokumen.id_unduhan) as total_unduhan
+FROM `unduhan_dokumen`
+JOIN `dokumen` ON `dokumen`.`id_dokumen` = `unduhan_dokumen`.`id_dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+GROUP BY `unduhan_dokumen`.`id_dokumen`
+ORDER BY `total_unduhan` DESC
+ LIMIT 5', [], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\UnduhanDokumenModel.php(49): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\Dokumen.php(32): App\Models\UnduhanDokumenModel->getPopularDokumen(5)
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Dokumen->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dokumen))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-06 06:17:38 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'user.nama' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`, COUNT(unduhan_dokumen.id_unduhan) as total_unduhan
+FROM `unduhan_dokumen`
+JOIN `dokumen` ON `dokumen`.`id_dokumen` = `unduhan_dokumen`.`id_dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+GROUP BY `unduhan_dokumen`.`id_dokumen`
+ORDER BY `total_unduhan` DESC
+ LIMIT 5')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`, COUNT(unduhan_dokumen.id_unduhan) as total_unduhan
+FROM `unduhan_dokumen`
+JOIN `dokumen` ON `dokumen`.`id_dokumen` = `unduhan_dokumen`.`id_dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+GROUP BY `unduhan_dokumen`.`id_dokumen`
+ORDER BY `total_unduhan` DESC
+ LIMIT 5')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`, COUNT(unduhan_dokumen.id_unduhan) as total_unduhan
+FROM `unduhan_dokumen`
+JOIN `dokumen` ON `dokumen`.`id_dokumen` = `unduhan_dokumen`.`id_dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+GROUP BY `unduhan_dokumen`.`id_dokumen`
+ORDER BY `total_unduhan` DESC
+ LIMIT 5', [], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Models\UnduhanDokumenModel.php(49): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH\Controllers\Dokumen.php(32): App\Models\UnduhanDokumenModel->getPopularDokumen(5)
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Dokumen->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dokumen))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-06 06:17:38 --> [Caused by] mysqli_sql_exception: Unknown column 'user.nama' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`, COUNT(unduhan_dokumen.id_unduhan) as total_unduhan
+FROM `unduhan_dokumen`
+JOIN `dokumen` ON `dokumen`.`id_dokumen` = `unduhan_dokumen`.`id_dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+GROUP BY `unduhan_dokumen`.`id_dokumen`
+ORDER BY `total_unduhan` DESC
+ LIMIT 5', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`, COUNT(unduhan_dokumen.id_unduhan) as total_unduhan
+FROM `unduhan_dokumen`
+JOIN `dokumen` ON `dokumen`.`id_dokumen` = `unduhan_dokumen`.`id_dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+GROUP BY `unduhan_dokumen`.`id_dokumen`
+ORDER BY `total_unduhan` DESC
+ LIMIT 5')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`, COUNT(unduhan_dokumen.id_unduhan) as total_unduhan
+FROM `unduhan_dokumen`
+JOIN `dokumen` ON `dokumen`.`id_dokumen` = `unduhan_dokumen`.`id_dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+GROUP BY `unduhan_dokumen`.`id_dokumen`
+ORDER BY `total_unduhan` DESC
+ LIMIT 5')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`, COUNT(unduhan_dokumen.id_unduhan) as total_unduhan
+FROM `unduhan_dokumen`
+JOIN `dokumen` ON `dokumen`.`id_dokumen` = `unduhan_dokumen`.`id_dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+GROUP BY `unduhan_dokumen`.`id_dokumen`
+ORDER BY `total_unduhan` DESC
+ LIMIT 5', [], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\UnduhanDokumenModel.php(49): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Dokumen.php(32): App\Models\UnduhanDokumenModel->getPopularDokumen(5)
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Dokumen->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dokumen))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+ERROR - 2025-12-06 06:18:25 --> mysqli_sql_exception: Unknown column 'user.nama' in 'field list' in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `dokumen...', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `dokumen...')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `dokumen...')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `dokumen...', Array, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\ptmsi-sumbar\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\ptmsi-sumbar\app\Models\UnduhanDokumenModel.php(49): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\ptmsi-sumbar\app\Controllers\Dokumen.php(32): App\Models\UnduhanDokumenModel->getPopularDokumen(5)
+#8 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\Dokumen->index()
+#9 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dokumen))
+#10 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+CRITICAL - 2025-12-06 06:18:25 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'user.nama' in 'field list'
+[Method: GET, Route: dokumen]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`, COUNT(unduhan_dokumen.id_unduhan) as total_unduhan
+FROM `unduhan_dokumen`
+JOIN `dokumen` ON `dokumen`.`id_dokumen` = `unduhan_dokumen`.`id_dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+GROUP BY `unduhan_dokumen`.`id_dokumen`
+ORDER BY `total_unduhan` DESC
+ LIMIT 5', [], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\UnduhanDokumenModel.php(49): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\Dokumen.php(32): App\Models\UnduhanDokumenModel->getPopularDokumen(5)
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Dokumen->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dokumen))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-06 06:18:25 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'user.nama' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`, COUNT(unduhan_dokumen.id_unduhan) as total_unduhan
+FROM `unduhan_dokumen`
+JOIN `dokumen` ON `dokumen`.`id_dokumen` = `unduhan_dokumen`.`id_dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+GROUP BY `unduhan_dokumen`.`id_dokumen`
+ORDER BY `total_unduhan` DESC
+ LIMIT 5')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`, COUNT(unduhan_dokumen.id_unduhan) as total_unduhan
+FROM `unduhan_dokumen`
+JOIN `dokumen` ON `dokumen`.`id_dokumen` = `unduhan_dokumen`.`id_dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+GROUP BY `unduhan_dokumen`.`id_dokumen`
+ORDER BY `total_unduhan` DESC
+ LIMIT 5')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`, COUNT(unduhan_dokumen.id_unduhan) as total_unduhan
+FROM `unduhan_dokumen`
+JOIN `dokumen` ON `dokumen`.`id_dokumen` = `unduhan_dokumen`.`id_dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+GROUP BY `unduhan_dokumen`.`id_dokumen`
+ORDER BY `total_unduhan` DESC
+ LIMIT 5', [], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Models\UnduhanDokumenModel.php(49): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH\Controllers\Dokumen.php(32): App\Models\UnduhanDokumenModel->getPopularDokumen(5)
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Dokumen->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dokumen))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-06 06:18:25 --> [Caused by] mysqli_sql_exception: Unknown column 'user.nama' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`, COUNT(unduhan_dokumen.id_unduhan) as total_unduhan
+FROM `unduhan_dokumen`
+JOIN `dokumen` ON `dokumen`.`id_dokumen` = `unduhan_dokumen`.`id_dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+GROUP BY `unduhan_dokumen`.`id_dokumen`
+ORDER BY `total_unduhan` DESC
+ LIMIT 5', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`, COUNT(unduhan_dokumen.id_unduhan) as total_unduhan
+FROM `unduhan_dokumen`
+JOIN `dokumen` ON `dokumen`.`id_dokumen` = `unduhan_dokumen`.`id_dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+GROUP BY `unduhan_dokumen`.`id_dokumen`
+ORDER BY `total_unduhan` DESC
+ LIMIT 5')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`, COUNT(unduhan_dokumen.id_unduhan) as total_unduhan
+FROM `unduhan_dokumen`
+JOIN `dokumen` ON `dokumen`.`id_dokumen` = `unduhan_dokumen`.`id_dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+GROUP BY `unduhan_dokumen`.`id_dokumen`
+ORDER BY `total_unduhan` DESC
+ LIMIT 5')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`, COUNT(unduhan_dokumen.id_unduhan) as total_unduhan
+FROM `unduhan_dokumen`
+JOIN `dokumen` ON `dokumen`.`id_dokumen` = `unduhan_dokumen`.`id_dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+GROUP BY `unduhan_dokumen`.`id_dokumen`
+ORDER BY `total_unduhan` DESC
+ LIMIT 5', [], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\UnduhanDokumenModel.php(49): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Dokumen.php(32): App\Models\UnduhanDokumenModel->getPopularDokumen(5)
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Dokumen->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dokumen))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+ERROR - 2025-12-06 06:18:58 --> mysqli_sql_exception: Unknown column 'user.nama' in 'field list' in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `dokumen...', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `dokumen...')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `dokumen...')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `dokumen...', Array, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\ptmsi-sumbar\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\ptmsi-sumbar\app\Models\UnduhanDokumenModel.php(49): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\ptmsi-sumbar\app\Controllers\Dokumen.php(32): App\Models\UnduhanDokumenModel->getPopularDokumen(5)
+#8 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\Dokumen->index()
+#9 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dokumen))
+#10 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+CRITICAL - 2025-12-06 06:18:58 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'user.nama' in 'field list'
+[Method: GET, Route: dokumen]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`, COUNT(unduhan_dokumen.id_unduhan) as total_unduhan
+FROM `unduhan_dokumen`
+JOIN `dokumen` ON `dokumen`.`id_dokumen` = `unduhan_dokumen`.`id_dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+GROUP BY `unduhan_dokumen`.`id_dokumen`
+ORDER BY `total_unduhan` DESC
+ LIMIT 5', [], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\UnduhanDokumenModel.php(49): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\Dokumen.php(32): App\Models\UnduhanDokumenModel->getPopularDokumen(5)
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Dokumen->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dokumen))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-06 06:18:58 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'user.nama' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`, COUNT(unduhan_dokumen.id_unduhan) as total_unduhan
+FROM `unduhan_dokumen`
+JOIN `dokumen` ON `dokumen`.`id_dokumen` = `unduhan_dokumen`.`id_dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+GROUP BY `unduhan_dokumen`.`id_dokumen`
+ORDER BY `total_unduhan` DESC
+ LIMIT 5')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`, COUNT(unduhan_dokumen.id_unduhan) as total_unduhan
+FROM `unduhan_dokumen`
+JOIN `dokumen` ON `dokumen`.`id_dokumen` = `unduhan_dokumen`.`id_dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+GROUP BY `unduhan_dokumen`.`id_dokumen`
+ORDER BY `total_unduhan` DESC
+ LIMIT 5')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`, COUNT(unduhan_dokumen.id_unduhan) as total_unduhan
+FROM `unduhan_dokumen`
+JOIN `dokumen` ON `dokumen`.`id_dokumen` = `unduhan_dokumen`.`id_dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+GROUP BY `unduhan_dokumen`.`id_dokumen`
+ORDER BY `total_unduhan` DESC
+ LIMIT 5', [], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Models\UnduhanDokumenModel.php(49): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH\Controllers\Dokumen.php(32): App\Models\UnduhanDokumenModel->getPopularDokumen(5)
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Dokumen->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dokumen))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-06 06:18:58 --> [Caused by] mysqli_sql_exception: Unknown column 'user.nama' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`, COUNT(unduhan_dokumen.id_unduhan) as total_unduhan
+FROM `unduhan_dokumen`
+JOIN `dokumen` ON `dokumen`.`id_dokumen` = `unduhan_dokumen`.`id_dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+GROUP BY `unduhan_dokumen`.`id_dokumen`
+ORDER BY `total_unduhan` DESC
+ LIMIT 5', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`, COUNT(unduhan_dokumen.id_unduhan) as total_unduhan
+FROM `unduhan_dokumen`
+JOIN `dokumen` ON `dokumen`.`id_dokumen` = `unduhan_dokumen`.`id_dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+GROUP BY `unduhan_dokumen`.`id_dokumen`
+ORDER BY `total_unduhan` DESC
+ LIMIT 5')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`, COUNT(unduhan_dokumen.id_unduhan) as total_unduhan
+FROM `unduhan_dokumen`
+JOIN `dokumen` ON `dokumen`.`id_dokumen` = `unduhan_dokumen`.`id_dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+GROUP BY `unduhan_dokumen`.`id_dokumen`
+ORDER BY `total_unduhan` DESC
+ LIMIT 5')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`, COUNT(unduhan_dokumen.id_unduhan) as total_unduhan
+FROM `unduhan_dokumen`
+JOIN `dokumen` ON `dokumen`.`id_dokumen` = `unduhan_dokumen`.`id_dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+GROUP BY `unduhan_dokumen`.`id_dokumen`
+ORDER BY `total_unduhan` DESC
+ LIMIT 5', [], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\UnduhanDokumenModel.php(49): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Dokumen.php(32): App\Models\UnduhanDokumenModel->getPopularDokumen(5)
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Dokumen->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dokumen))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+ERROR - 2025-12-06 06:19:20 --> mysqli_sql_exception: Unknown column 'user.nama' in 'field list' in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `dokumen...', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `dokumen...')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `dokumen...')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `dokumen...', Array, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\ptmsi-sumbar\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\ptmsi-sumbar\app\Models\UnduhanDokumenModel.php(49): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\ptmsi-sumbar\app\Controllers\Dokumen.php(32): App\Models\UnduhanDokumenModel->getPopularDokumen(5)
+#8 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\Dokumen->index()
+#9 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dokumen))
+#10 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+CRITICAL - 2025-12-06 06:19:20 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'user.nama' in 'field list'
+[Method: GET, Route: dokumen]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`, COUNT(unduhan_dokumen.id_unduhan) as total_unduhan
+FROM `unduhan_dokumen`
+JOIN `dokumen` ON `dokumen`.`id_dokumen` = `unduhan_dokumen`.`id_dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+GROUP BY `unduhan_dokumen`.`id_dokumen`
+ORDER BY `total_unduhan` DESC
+ LIMIT 5', [], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\UnduhanDokumenModel.php(49): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\Dokumen.php(32): App\Models\UnduhanDokumenModel->getPopularDokumen(5)
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Dokumen->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dokumen))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-06 06:19:20 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'user.nama' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`, COUNT(unduhan_dokumen.id_unduhan) as total_unduhan
+FROM `unduhan_dokumen`
+JOIN `dokumen` ON `dokumen`.`id_dokumen` = `unduhan_dokumen`.`id_dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+GROUP BY `unduhan_dokumen`.`id_dokumen`
+ORDER BY `total_unduhan` DESC
+ LIMIT 5')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`, COUNT(unduhan_dokumen.id_unduhan) as total_unduhan
+FROM `unduhan_dokumen`
+JOIN `dokumen` ON `dokumen`.`id_dokumen` = `unduhan_dokumen`.`id_dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+GROUP BY `unduhan_dokumen`.`id_dokumen`
+ORDER BY `total_unduhan` DESC
+ LIMIT 5')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`, COUNT(unduhan_dokumen.id_unduhan) as total_unduhan
+FROM `unduhan_dokumen`
+JOIN `dokumen` ON `dokumen`.`id_dokumen` = `unduhan_dokumen`.`id_dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+GROUP BY `unduhan_dokumen`.`id_dokumen`
+ORDER BY `total_unduhan` DESC
+ LIMIT 5', [], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Models\UnduhanDokumenModel.php(49): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH\Controllers\Dokumen.php(32): App\Models\UnduhanDokumenModel->getPopularDokumen(5)
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Dokumen->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dokumen))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-06 06:19:20 --> [Caused by] mysqli_sql_exception: Unknown column 'user.nama' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`, COUNT(unduhan_dokumen.id_unduhan) as total_unduhan
+FROM `unduhan_dokumen`
+JOIN `dokumen` ON `dokumen`.`id_dokumen` = `unduhan_dokumen`.`id_dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+GROUP BY `unduhan_dokumen`.`id_dokumen`
+ORDER BY `total_unduhan` DESC
+ LIMIT 5', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`, COUNT(unduhan_dokumen.id_unduhan) as total_unduhan
+FROM `unduhan_dokumen`
+JOIN `dokumen` ON `dokumen`.`id_dokumen` = `unduhan_dokumen`.`id_dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+GROUP BY `unduhan_dokumen`.`id_dokumen`
+ORDER BY `total_unduhan` DESC
+ LIMIT 5')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`, COUNT(unduhan_dokumen.id_unduhan) as total_unduhan
+FROM `unduhan_dokumen`
+JOIN `dokumen` ON `dokumen`.`id_dokumen` = `unduhan_dokumen`.`id_dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+GROUP BY `unduhan_dokumen`.`id_dokumen`
+ORDER BY `total_unduhan` DESC
+ LIMIT 5')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`, COUNT(unduhan_dokumen.id_unduhan) as total_unduhan
+FROM `unduhan_dokumen`
+JOIN `dokumen` ON `dokumen`.`id_dokumen` = `unduhan_dokumen`.`id_dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+GROUP BY `unduhan_dokumen`.`id_dokumen`
+ORDER BY `total_unduhan` DESC
+ LIMIT 5', [], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\UnduhanDokumenModel.php(49): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Dokumen.php(32): App\Models\UnduhanDokumenModel->getPopularDokumen(5)
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Dokumen->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dokumen))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+ERROR - 2025-12-06 09:58:12 --> Error connecting to the database: mysqli_sql_exception: No connection could be made because the target machine actively refused it in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:201
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(201): mysqli->real_connect('localhost', 'root', Object(SensitiveParameterValue), 'ptmsi_sumbar', 3306, '', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(419): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(614): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `event`....', Array, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\ptmsi-sumbar\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\ptmsi-sumbar\app\Models\EventModel.php(37): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\ptmsi-sumbar\app\Controllers\Beranda.php(33): App\Models\EventModel->getEventWithDetails()
+#8 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\Beranda->index()
+#9 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Beranda))
+#10 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: No connection could be made because the target machine actively refused it in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:246
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(419): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(614): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `event`....', Array, false)
+#3 C:\laragon\www\ptmsi-sumbar\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\laragon\www\ptmsi-sumbar\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#5 C:\laragon\www\ptmsi-sumbar\app\Models\EventModel.php(37): CodeIgniter\BaseModel->findAll()
+#6 C:\laragon\www\ptmsi-sumbar\app\Controllers\Beranda.php(33): App\Models\EventModel->getEventWithDetails()
+#7 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\Beranda->index()
+#8 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Beranda))
+#9 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#14 {main}
+CRITICAL - 2025-12-06 09:58:12 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: No connection could be made because the target machine actively refused it
+[Method: GET, Route: /]
+in SYSTEMPATH\Database\BaseConnection.php on line 465.
+ 1 SYSTEMPATH\Database\BaseConnection.php(614): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `event`.*, `turnamen`.`nama` as `nama_turnamen`, `turnamen`.`tingkat`, `turnamen`.`tahun_musim`, `klub`.`nama` as `nama_klub_penyelenggara`
+FROM `event`
+JOIN `turnamen` ON `turnamen`.`id_turnamen` = `event`.`id_turnamen`
+JOIN `klub` ON `klub`.`id_klub` = `event`.`id_klub_penyelenggara`', [], false)
+ 3 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH\Models\EventModel.php(37): CodeIgniter\BaseModel->findAll()
+ 6 APPPATH\Controllers\Beranda.php(33): App\Models\EventModel->getEventWithDetails()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Beranda->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Beranda))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+ERROR - 2025-12-06 23:06:40 --> mysqli_sql_exception: Unknown column 'user.nama' in 'field list' in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `dokumen...', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `dokumen...')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `dokumen...')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `dokumen...', Array, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\ptmsi-sumbar\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\ptmsi-sumbar\app\Models\UnduhanDokumenModel.php(49): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\ptmsi-sumbar\app\Controllers\Dokumen.php(32): App\Models\UnduhanDokumenModel->getPopularDokumen(5)
+#8 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\Dokumen->index()
+#9 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dokumen))
+#10 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+CRITICAL - 2025-12-06 23:06:40 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'user.nama' in 'field list'
+[Method: GET, Route: dokumen]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`, COUNT(unduhan_dokumen.id_unduhan) as total_unduhan
+FROM `unduhan_dokumen`
+JOIN `dokumen` ON `dokumen`.`id_dokumen` = `unduhan_dokumen`.`id_dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+GROUP BY `unduhan_dokumen`.`id_dokumen`
+ORDER BY `total_unduhan` DESC
+ LIMIT 5', [], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\UnduhanDokumenModel.php(49): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\Dokumen.php(32): App\Models\UnduhanDokumenModel->getPopularDokumen(5)
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Dokumen->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dokumen))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-06 23:06:40 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'user.nama' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`, COUNT(unduhan_dokumen.id_unduhan) as total_unduhan
+FROM `unduhan_dokumen`
+JOIN `dokumen` ON `dokumen`.`id_dokumen` = `unduhan_dokumen`.`id_dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+GROUP BY `unduhan_dokumen`.`id_dokumen`
+ORDER BY `total_unduhan` DESC
+ LIMIT 5')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`, COUNT(unduhan_dokumen.id_unduhan) as total_unduhan
+FROM `unduhan_dokumen`
+JOIN `dokumen` ON `dokumen`.`id_dokumen` = `unduhan_dokumen`.`id_dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+GROUP BY `unduhan_dokumen`.`id_dokumen`
+ORDER BY `total_unduhan` DESC
+ LIMIT 5')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`, COUNT(unduhan_dokumen.id_unduhan) as total_unduhan
+FROM `unduhan_dokumen`
+JOIN `dokumen` ON `dokumen`.`id_dokumen` = `unduhan_dokumen`.`id_dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+GROUP BY `unduhan_dokumen`.`id_dokumen`
+ORDER BY `total_unduhan` DESC
+ LIMIT 5', [], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Models\UnduhanDokumenModel.php(49): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH\Controllers\Dokumen.php(32): App\Models\UnduhanDokumenModel->getPopularDokumen(5)
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Dokumen->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dokumen))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-06 23:06:40 --> [Caused by] mysqli_sql_exception: Unknown column 'user.nama' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`, COUNT(unduhan_dokumen.id_unduhan) as total_unduhan
+FROM `unduhan_dokumen`
+JOIN `dokumen` ON `dokumen`.`id_dokumen` = `unduhan_dokumen`.`id_dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+GROUP BY `unduhan_dokumen`.`id_dokumen`
+ORDER BY `total_unduhan` DESC
+ LIMIT 5', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`, COUNT(unduhan_dokumen.id_unduhan) as total_unduhan
+FROM `unduhan_dokumen`
+JOIN `dokumen` ON `dokumen`.`id_dokumen` = `unduhan_dokumen`.`id_dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+GROUP BY `unduhan_dokumen`.`id_dokumen`
+ORDER BY `total_unduhan` DESC
+ LIMIT 5')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`, COUNT(unduhan_dokumen.id_unduhan) as total_unduhan
+FROM `unduhan_dokumen`
+JOIN `dokumen` ON `dokumen`.`id_dokumen` = `unduhan_dokumen`.`id_dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+GROUP BY `unduhan_dokumen`.`id_dokumen`
+ORDER BY `total_unduhan` DESC
+ LIMIT 5')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `dokumen`.*, `user`.`nama` as `nama_pengunggah`, COUNT(unduhan_dokumen.id_unduhan) as total_unduhan
+FROM `unduhan_dokumen`
+JOIN `dokumen` ON `dokumen`.`id_dokumen` = `unduhan_dokumen`.`id_dokumen`
+LEFT JOIN `user` ON `user`.`id_user` = `dokumen`.`id_pengunggah`
+GROUP BY `unduhan_dokumen`.`id_dokumen`
+ORDER BY `total_unduhan` DESC
+ LIMIT 5', [], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\UnduhanDokumenModel.php(49): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Dokumen.php(32): App\Models\UnduhanDokumenModel->getPopularDokumen(5)
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Dokumen->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dokumen))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')

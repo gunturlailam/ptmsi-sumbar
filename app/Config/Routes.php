@@ -30,3 +30,6 @@ $routes->get('galeri', 'Galeri::index');
 $routes->get('galeri/foto', 'Galeri::foto');
 $routes->get('galeri/video', 'Galeri::video');
 $routes->get('galeri/event/(:num)', 'Galeri::event/$1');
+$routes->get('dokumen', 'Dokumen::index');
+$routes->get('dokumen/download/(:num)', 'Dokumen::download/$1');
+$routes->get('dokumen/search', 'Dokumen::search');
