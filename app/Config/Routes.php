@@ -26,3 +26,7 @@ $routes->get('berita', 'Berita::index');
 $routes->get('berita/kategori/(:segment)', 'Berita::kategori/$1');
 $routes->get('berita/search', 'Berita::search');
 $routes->get('berita/(:segment)', 'Berita::detail/$1');
+$routes->get('galeri', 'Galeri::index');
+$routes->get('galeri/foto', 'Galeri::foto');
+$routes->get('galeri/video', 'Galeri::video');
+$routes->get('galeri/event/(:num)', 'Galeri::event/$1');

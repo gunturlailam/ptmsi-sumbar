@@ -733,3 +733,19 @@ Stack trace:
 #11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(133): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
 #12 C:\laragon\www\ptmsi-sumbar\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
 #13 {main}
+ERROR - 2025-12-06 06:02:39 --> mysqli_sql_exception: Cannot add or update a child row: a foreign key constraint fails (`ptmsi_sumbar`.`galeri`, CONSTRAINT `galeri_id_event_foreign` FOREIGN KEY (`id_event`) REFERENCES `event` (`id_event`) ON DELETE CASCADE ON UPDATE SET NULL) in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('INSERT INTO `ga...', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `ga...')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `ga...')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1841): CodeIgniter\Database\BaseConnection->query('INSERT INTO `ga...', NULL, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(2230): CodeIgniter\Database\BaseBuilder->batchExecute('_insertBatch', 100)
+#5 C:\laragon\www\ptmsi-sumbar\app\Database\Seeds\GaleriSeeder.php(90): CodeIgniter\Database\BaseBuilder->insertBatch(Array)
+#6 C:\laragon\www\ptmsi-sumbar\system\Database\Seeder.php(149): App\Database\Seeds\GaleriSeeder->run()
+#7 C:\laragon\www\ptmsi-sumbar\system\Commands\Database\Seed.php(79): CodeIgniter\Database\Seeder->call('App\\Database\\Se...')
+#8 C:\laragon\www\ptmsi-sumbar\system\CLI\Commands.php(74): CodeIgniter\Commands\Database\Seed->run(Array)
+#9 C:\laragon\www\ptmsi-sumbar\system\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('db:seed', Array)
+#10 C:\laragon\www\ptmsi-sumbar\system\Boot.php(388): CodeIgniter\CLI\Console->run()
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(133): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
+#12 C:\laragon\www\ptmsi-sumbar\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
+#13 {main}
