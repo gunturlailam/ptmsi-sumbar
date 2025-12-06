@@ -8,178 +8,133 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <style>
-    body {
-        background: #E8F2FF;
-        min-height: 100vh;
-        font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
-    }
+        body {
+            background: #E8F2FF;
+            min-height: 100vh;
+            font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+        }
 
-    .navbar {
-        background: rgba(255, 255, 255, 0.98) !important;
-        box-shadow: 0 2px 12px rgba(30, 144, 255, 0.12);
-        border-radius: 0 0 18px 18px;
-        padding-top: 0.5rem;
-        padding-bottom: 0.5rem;
-    }
+        .navbar-ptmsi {
+            background: linear-gradient(90deg, #003366 60%, #1E90FF 100%);
+            box-shadow: 0 2px 16px rgba(30, 144, 255, 0.08);
+        }
 
-    .navbar-brand {
-        font-weight: bold;
-        color: #003366 !important;
-        letter-spacing: 1px;
-        font-size: 1.3rem;
-        transition: color 0.2s;
-    }
+        .navbar-ptmsi .navbar-brand {
+            font-weight: bold;
+            color: #fff !important;
+            letter-spacing: 1px;
+            font-size: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-    .navbar-brand:hover {
-        color: #1E90FF !important;
-    }
+        .navbar-ptmsi .navbar-brand img {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: #fff;
+            border: 2px solid #fff;
+        }
 
-    .navbar-nav .nav-link {
-        color: #003366 !important;
-        font-weight: 500;
-        margin-right: 4px;
-        border-radius: 16px;
-        transition: background 0.2s, color 0.2s, transform 0.2s;
-        padding: 8px 16px;
-        font-size: 0.98rem;
-    }
+        .navbar-ptmsi .nav-link {
+            color: #E8F2FF !important;
+            font-weight: 500;
+            margin-right: 6px;
+            border-radius: 20px;
+            transition: background 0.2s, color 0.2s;
+            padding: 8px 18px !important;
+        }
 
-    .navbar-nav .nav-link.active,
-    .navbar-nav .nav-link:hover {
-        background: linear-gradient(90deg, #1E90FF 60%, #003366 100%);
-        color: #fff !important;
-        box-shadow: 0 2px 8px rgba(30, 144, 255, 0.2);
-        transform: translateY(-2px);
-    }
+        .navbar-ptmsi .nav-link.active,
+        .navbar-ptmsi .nav-link:hover {
+            background: #1E90FF !important;
+            color: #fff !important;
+        }
 
-    .navbar-toggler {
-        border: 2px solid #003366;
-        border-radius: 8px;
-    }
+        .navbar-ptmsi .dropdown-menu {
+            border-radius: 14px;
+            min-width: 220px;
+            box-shadow: 0 4px 24px rgba(30, 144, 255, 0.13);
+        }
 
-    .navbar-toggler:focus {
-        box-shadow: 0 0 0 0.2rem rgba(30, 144, 255, 0.25);
-    }
+        .navbar-ptmsi .dropdown-item {
+            color: #003366;
+            font-weight: 500;
+            border-radius: 10px;
+            transition: background 0.2s;
+        }
 
-    .navbar-toggler-icon {
-        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280, 51, 102, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-    }
+        .navbar-ptmsi .dropdown-item:hover {
+            background: #E8F2FF;
+            color: #1E90FF;
+        }
 
-    .navbar .logo {
-        width: 36px;
-        height: 36px;
-        margin-right: 10px;
-        border-radius: 50%;
-        border: 2px solid #1E90FF;
-        background: #fff;
-        object-fit: cover;
-        box-shadow: 0 2px 8px rgba(30, 144, 255, 0.2);
-    }
-
-    .dropdown-menu {
-        border-radius: 12px;
-        border: 1px solid #E8F2FF;
-        box-shadow: 0 4px 16px rgba(30, 144, 255, 0.15);
-        margin-top: 8px;
-    }
-
-    .dropdown-item {
-        color: #003366;
-        padding: 10px 16px;
-        transition: background 0.2s, color 0.2s;
-    }
-
-    .dropdown-item:hover {
-        background: linear-gradient(90deg, #1E90FF 60%, #003366 100%);
-        color: #fff;
-    }
-
-    .dropdown-item.active {
-        background: linear-gradient(90deg, #1E90FF 60%, #003366 100%);
-        color: #fff;
-    }
+        @media (max-width: 991px) {
+            .navbar-ptmsi .nav-link {
+                margin-bottom: 6px;
+            }
+        }
     </style>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg sticky-top">
-        <div class="container-fluid px-3">
-            <a class="navbar-brand d-flex align-items-center" href="<?= base_url('/') ?>">
-                <img src="<?= base_url('assets/img/gambar-ptmsi.png') ?>" alt="PTMSI" class="logo">
+    <nav class="navbar navbar-expand-lg navbar-ptmsi sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="<?= base_url('/') ?>">
+                <img src="<?= base_url('assets/img/gambar-ptmsi.png') ?>" alt="Logo PTMSI">
                 PTMSI Sumbar
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
-                aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+            <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarPTMSI"
+                aria-controls="navbarPTMSI" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
             </button>
-            <div class="collapse navbar-collapse" id="mainNavbar">
+            <div class="collapse navbar-collapse" id="navbarPTMSI">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link <?= (uri_string() == '' || uri_string() == 'beranda') ? 'active' : '' ?>"
-                            href="<?= base_url('/') ?>">
+                        <a class="nav-link<?= url_is('/') ? ' active' : '' ?>" href="<?= base_url('/') ?>">
                             <i class="bi bi-house-door"></i> Beranda
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link <?= uri_string() == 'profil' ? 'active' : '' ?>"
-                            href="<?= base_url('profil') ?>">
-                            <i class="bi bi-info-circle"></i> Profil
+                        <a class="nav-link<?= url_is('profil*') ? ' active' : '' ?>" href="<?= base_url('profil') ?>">
+                            <i class="bi bi-person-badge"></i> Profil
                         </a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle <?= (strpos(uri_string(), 'event') !== false || strpos(uri_string(), 'atlet-pelatih') !== false || strpos(uri_string(), 'berita') !== false || strpos(uri_string(), 'galeri') !== false || strpos(uri_string(), 'dokumen') !== false || strpos(uri_string(), 'ranking') !== false || strpos(uri_string(), 'kontak') !== false) ? 'active' : '' ?>"
-                            href="#" id="menuDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="bi bi-list"></i> Menu
+                        <a class="nav-link dropdown-toggle<?= (
+                                                                url_is('atlet-pelatih*') ||
+                                                                url_is('kejuaraan-event*') || url_is('event*') ||
+                                                                url_is('pembinaan*') ||
+                                                                url_is('klub-pengurus*') ||
+                                                                url_is('berita*') ||
+                                                                url_is('galeri*') ||
+                                                                url_is('dokumen*') ||
+                                                                url_is('ranking*') ||
+                                                                url_is('layanan*') ||
+                                                                url_is('kontak*')
+                                                            ) ? ' active' : '' ?>" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Menu Lainnya
                         </a>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="menuDropdown">
-                            <li>
-                                <a class="dropdown-item <?= strpos(uri_string(), 'atlet-pelatih') !== false ? 'active' : '' ?>"
-                                    href="<?= base_url('atlet-pelatih') ?>">
-                                    <i class="bi bi-people"></i> Atlet & Pelatih
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item <?= strpos(uri_string(), 'event') !== false ? 'active' : '' ?>"
-                                    href="<?= base_url('event') ?>">
-                                    <i class="bi bi-trophy"></i> Kejuaraan & Event
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item <?= strpos(uri_string(), 'berita') !== false ? 'active' : '' ?>"
-                                    href="<?= base_url('berita') ?>">
-                                    <i class="bi bi-newspaper"></i> Berita
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item <?= strpos(uri_string(), 'galeri') !== false ? 'active' : '' ?>"
-                                    href="<?= base_url('galeri') ?>">
-                                    <i class="bi bi-images"></i> Galeri
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item <?= strpos(uri_string(), 'dokumen') !== false ? 'active' : '' ?>"
-                                    href="<?= base_url('dokumen') ?>">
-                                    <i class="bi bi-file-earmark-text"></i> Dokumen & Regulasi
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item <?= strpos(uri_string(), 'ranking') !== false ? 'active' : '' ?>"
-                                    href="<?= base_url('ranking') ?>">
-                                    <i class="bi bi-bar-chart"></i> Ranking & Statistik
-                                </a>
-                            </li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li>
-                                <a class="dropdown-item <?= strpos(uri_string(), 'kontak') !== false ? 'active' : '' ?>"
-                                    href="<?= base_url('kontak') ?>">
-                                    <i class="bi bi-envelope"></i> Hubungi Kami
-                                </a>
-                            </li>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="<?= base_url('atlet-pelatih') ?>"><i class="bi bi-people"></i> Atlet & Pelatih</a></li>
+                            <li><a class="dropdown-item" href="<?= base_url('event') ?>"><i class="bi bi-trophy"></i> Kejuaraan & Event</a></li>
+                            <li><a class="dropdown-item" href="<?= base_url('pembinaan') ?>"><i class="bi bi-mortarboard"></i> Program Pembinaan</a></li>
+                            <li><a class="dropdown-item" href="<?= base_url('klub-pengurus') ?>"><i class="bi bi-diagram-3"></i> Klub & Pengurus</a></li>
+                            <li><a class="dropdown-item" href="<?= base_url('berita') ?>"><i class="bi bi-newspaper"></i> Berita</a></li>
+                            <li><a class="dropdown-item" href="<?= base_url('galeri') ?>"><i class="bi bi-images"></i> Galeri</a></li>
+                            <li><a class="dropdown-item" href="<?= base_url('dokumen') ?>"><i class="bi bi-file-earmark-text"></i> Dokumen & Regulasi</a></li>
+                            <li><a class="dropdown-item" href="<?= base_url('ranking') ?>"><i class="bi bi-bar-chart"></i> Ranking & Statistik</a></li>
+                            <li><a class="dropdown-item" href="<?= base_url('layanan') ?>"><i class="bi bi-globe"></i> Layanan Online</a></li>
+                            <li><a class="dropdown-item" href="<?= base_url('kontak') ?>"><i class="bi bi-envelope"></i> Hubungi Kami</a></li>
                         </ul>
                     </li>
                 </ul>
+                <div class="d-flex ms-lg-4 mt-3 mt-lg-0">
+                    <a href="<?= base_url('login') ?>" class="btn btn-primary px-4 py-2 fw-bold" style="border-radius: 22px; background: #1E90FF; color: #fff;">
+                        <i class="bi bi-box-arrow-in-right"></i> Login
+                    </a>
+                </div>
             </div>
         </div>
     </nav>

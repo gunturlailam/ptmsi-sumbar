@@ -42,6 +42,9 @@ class Beranda extends BaseController
             'organisasi' => $this->getOrganisasi(),
             'ofisial' => $this->getOfisial(),
             'sertifikasi' => $this->getSertifikasi(),
+            'pertandinganTerdekat' => $this->getPertandinganTerdekat(),
+            'pengumuman' => $this->getPengumuman(),
+            'kegiatanTerbaru' => $this->getKegiatanTerbaru(),
         ];
 
         return view('beranda', $data);
@@ -153,6 +156,60 @@ class Beranda extends BaseController
                 ->join('pelatih', 'pelatih.id_pelatih = sertifikasi.id_pelatih', 'left')
                 ->join('user', 'user.id_user = pelatih.id_user', 'left')
                 ->limit(10)
+                ->get()
+                ->getResultArray();
+        } catch (\Exception $e) {
+            return [];
+        }
+    }
+
+    private function getPertandinganTerdekat()
+    {
+        try {
+            return $this->db->table('pertandingan')
+                ->select('pertandingan.*, event.judul as nama_event, event.tanggal_mulai, event.tanggal_selesai,
+                         user1.nama_lengkap as nama_atlet1, user2.nama_lengkap as nama_atlet2')
+                ->join('event', 'event.id_event = pertandingan.id_event', 'left')
+                ->join('atlet atlet1', 'atlet1.id_atlet = pertandingan.id_atlet1', 'left')
+                ->join('user user1', 'user1.id_user = atlet1.id_user', 'left')
+                ->join('atlet atlet2', 'atlet2.id_atlet = pertandingan.id_atlet2', 'left')
+                ->join('user user2', 'user2.id_user = atlet2.id_user', 'left')
+                ->where('pertandingan.jadwal >=', date('Y-m-d H:i:s'))
+                ->orderBy('pertandingan.jadwal', 'ASC')
+                ->limit(5)
+                ->get()
+                ->getResultArray();
+        } catch (\Exception $e) {
+            return [];
+        }
+    }
+
+    private function getPengumuman()
+    {
+        try {
+            // Ambil dari berita dengan kategori pengumuman atau berita terbaru
+            return $this->db->table('berita')
+                ->select('berita.*, user.nama_lengkap as nama_penulis')
+                ->join('user', 'user.id_user = berita.id_penulis', 'left')
+                ->where('berita.status', 'published')
+                ->orderBy('berita.tanggal_publikasi', 'DESC')
+                ->limit(5)
+                ->get()
+                ->getResultArray();
+        } catch (\Exception $e) {
+            return [];
+        }
+    }
+
+    private function getKegiatanTerbaru()
+    {
+        try {
+            // Ambil dari galeri kegiatan terbaru
+            return $this->db->table('galeri')
+                ->select('galeri.*, event.judul as nama_event')
+                ->join('event', 'event.id_event = galeri.id_event', 'left')
+                ->orderBy('galeri.diunggah_pada', 'DESC')
+                ->limit(6)
                 ->get()
                 ->getResultArray();
         } catch (\Exception $e) {

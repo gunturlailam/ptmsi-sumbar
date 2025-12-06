@@ -1,0 +1,735 @@
+CRITICAL - 2025-12-06 03:14:41 --> ParseError: syntax error, unexpected token "<", expecting end of file
+[Method: GET, Route: /]
+in APPPATH\Views\layouts\header.php on line 2.
+ 1 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\View\View.php(475): CodeIgniter\View\View->render('layouts/header', null, true)
+ 3 APPPATH\Views\beranda.php(840): CodeIgniter\View\View->include('layouts/header')
+ 4 SYSTEMPATH\View\View.php(226): include('C:\\laragon\\www\\ptmsi-sumbar\\app\\Views\\beranda.php')
+ 5 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('beranda', [], true)
+ 7 APPPATH\Controllers\Beranda.php(50): view('beranda', [...])
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Beranda->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Beranda))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+ERROR - 2025-12-06 05:35:11 --> mysqli_sql_exception: Table 'ptmsi_sumbar.pengurus' doesn't exist in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `penguru...', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `penguru...')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `penguru...')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `penguru...', Array, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\ptmsi-sumbar\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\ptmsi-sumbar\app\Models\PengurusModel.php(31): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\ptmsi-sumbar\app\Controllers\KlubPengurus.php(31): App\Models\PengurusModel->getPengurusWithOrganisasi()
+#8 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\KlubPengurus->index()
+#9 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\KlubPengurus))
+#10 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+CRITICAL - 2025-12-06 05:35:11 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'ptmsi_sumbar.pengurus' doesn't exist
+[Method: GET, Route: klub-pengurus]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `pengurus`.*, `organisasi`.`nama_organisasi`
+FROM `pengurus`
+LEFT JOIN `organisasi` ON `organisasi`.`id_organisasi` = `pengurus`.`id_organisasi`
+ORDER BY `pengurus`.`jabatan` ASC', [], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\PengurusModel.php(31): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\KlubPengurus.php(31): App\Models\PengurusModel->getPengurusWithOrganisasi()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\KlubPengurus->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\KlubPengurus))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-06 05:35:11 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'ptmsi_sumbar.pengurus' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `pengurus`.*, `organisasi`.`nama_organisasi`
+FROM `pengurus`
+LEFT JOIN `organisasi` ON `organisasi`.`id_organisasi` = `pengurus`.`id_organisasi`
+ORDER BY `pengurus`.`jabatan` ASC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `pengurus`.*, `organisasi`.`nama_organisasi`
+FROM `pengurus`
+LEFT JOIN `organisasi` ON `organisasi`.`id_organisasi` = `pengurus`.`id_organisasi`
+ORDER BY `pengurus`.`jabatan` ASC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `pengurus`.*, `organisasi`.`nama_organisasi`
+FROM `pengurus`
+LEFT JOIN `organisasi` ON `organisasi`.`id_organisasi` = `pengurus`.`id_organisasi`
+ORDER BY `pengurus`.`jabatan` ASC', [], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Models\PengurusModel.php(31): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH\Controllers\KlubPengurus.php(31): App\Models\PengurusModel->getPengurusWithOrganisasi()
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\KlubPengurus->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\KlubPengurus))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-06 05:35:11 --> [Caused by] mysqli_sql_exception: Table 'ptmsi_sumbar.pengurus' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `pengurus`.*, `organisasi`.`nama_organisasi`
+FROM `pengurus`
+LEFT JOIN `organisasi` ON `organisasi`.`id_organisasi` = `pengurus`.`id_organisasi`
+ORDER BY `pengurus`.`jabatan` ASC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `pengurus`.*, `organisasi`.`nama_organisasi`
+FROM `pengurus`
+LEFT JOIN `organisasi` ON `organisasi`.`id_organisasi` = `pengurus`.`id_organisasi`
+ORDER BY `pengurus`.`jabatan` ASC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `pengurus`.*, `organisasi`.`nama_organisasi`
+FROM `pengurus`
+LEFT JOIN `organisasi` ON `organisasi`.`id_organisasi` = `pengurus`.`id_organisasi`
+ORDER BY `pengurus`.`jabatan` ASC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `pengurus`.*, `organisasi`.`nama_organisasi`
+FROM `pengurus`
+LEFT JOIN `organisasi` ON `organisasi`.`id_organisasi` = `pengurus`.`id_organisasi`
+ORDER BY `pengurus`.`jabatan` ASC', [], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\PengurusModel.php(31): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\KlubPengurus.php(31): App\Models\PengurusModel->getPengurusWithOrganisasi()
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\KlubPengurus->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\KlubPengurus))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+ERROR - 2025-12-06 05:36:58 --> mysqli_sql_exception: Cannot add or update a child row: a foreign key constraint fails (`ptmsi_sumbar`.`pengurus`, CONSTRAINT `pengurus_id_organisasi_foreign` FOREIGN KEY (`id_organisasi`) REFERENCES `organisasi` (`id_organisasi`) ON DELETE CASCADE ON UPDATE SET NULL) in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('INSERT INTO `pe...', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `pe...')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `pe...')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1841): CodeIgniter\Database\BaseConnection->query('INSERT INTO `pe...', NULL, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(2230): CodeIgniter\Database\BaseBuilder->batchExecute('_insertBatch', 100)
+#5 C:\laragon\www\ptmsi-sumbar\app\Database\Seeds\PengurusSeeder.php(95): CodeIgniter\Database\BaseBuilder->insertBatch(Array)
+#6 C:\laragon\www\ptmsi-sumbar\system\Database\Seeder.php(149): App\Database\Seeds\PengurusSeeder->run()
+#7 C:\laragon\www\ptmsi-sumbar\system\Commands\Database\Seed.php(79): CodeIgniter\Database\Seeder->call('App\\Database\\Se...')
+#8 C:\laragon\www\ptmsi-sumbar\system\CLI\Commands.php(74): CodeIgniter\Commands\Database\Seed->run(Array)
+#9 C:\laragon\www\ptmsi-sumbar\system\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('db:seed', Array)
+#10 C:\laragon\www\ptmsi-sumbar\system\Boot.php(388): CodeIgniter\CLI\Console->run()
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(133): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
+#12 C:\laragon\www\ptmsi-sumbar\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
+#13 {main}
+ERROR - 2025-12-06 05:48:46 --> mysqli_sql_exception: Unknown column 'kategori' in 'where clause' in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\ptmsi-sumbar\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\ptmsi-sumbar\app\Models\BeritaModel.php(44): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\ptmsi-sumbar\app\Controllers\Berita.php(27): App\Models\BeritaModel->getBeritaByKategori('kejuaraan')
+#8 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\Berita->index()
+#9 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Berita))
+#10 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+CRITICAL - 2025-12-06 05:48:46 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'kategori' in 'where clause'
+[Method: GET, Route: berita]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `berita`
+WHERE `kategori` = :kategori:
+AND `status` = :status:
+ORDER BY `tanggal_publikasi` DESC', [...], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\BeritaModel.php(44): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\Berita.php(27): App\Models\BeritaModel->getBeritaByKategori('kejuaraan')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Berita->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Berita))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-06 05:48:46 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'kategori' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `berita`
+WHERE `kategori` = \'kejuaraan\'
+AND `status` = \'published\'
+ORDER BY `tanggal_publikasi` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `berita`
+WHERE `kategori` = \'kejuaraan\'
+AND `status` = \'published\'
+ORDER BY `tanggal_publikasi` DESC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `berita`
+WHERE `kategori` = :kategori:
+AND `status` = :status:
+ORDER BY `tanggal_publikasi` DESC', [...], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Models\BeritaModel.php(44): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH\Controllers\Berita.php(27): App\Models\BeritaModel->getBeritaByKategori('kejuaraan')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Berita->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Berita))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-06 05:48:46 --> [Caused by] mysqli_sql_exception: Unknown column 'kategori' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT *
+FROM `berita`
+WHERE `kategori` = \'kejuaraan\'
+AND `status` = \'published\'
+ORDER BY `tanggal_publikasi` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `berita`
+WHERE `kategori` = \'kejuaraan\'
+AND `status` = \'published\'
+ORDER BY `tanggal_publikasi` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `berita`
+WHERE `kategori` = \'kejuaraan\'
+AND `status` = \'published\'
+ORDER BY `tanggal_publikasi` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `berita`
+WHERE `kategori` = :kategori:
+AND `status` = :status:
+ORDER BY `tanggal_publikasi` DESC', [...], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\BeritaModel.php(44): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Berita.php(27): App\Models\BeritaModel->getBeritaByKategori('kejuaraan')
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Berita->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Berita))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+ERROR - 2025-12-06 05:49:04 --> mysqli_sql_exception: Unknown column 'kategori' in 'where clause' in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\ptmsi-sumbar\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\ptmsi-sumbar\app\Models\BeritaModel.php(44): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\ptmsi-sumbar\app\Controllers\Berita.php(27): App\Models\BeritaModel->getBeritaByKategori('kejuaraan')
+#8 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\Berita->index()
+#9 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Berita))
+#10 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+CRITICAL - 2025-12-06 05:49:04 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'kategori' in 'where clause'
+[Method: GET, Route: berita]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `berita`
+WHERE `kategori` = :kategori:
+AND `status` = :status:
+ORDER BY `tanggal_publikasi` DESC', [...], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\BeritaModel.php(44): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\Berita.php(27): App\Models\BeritaModel->getBeritaByKategori('kejuaraan')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Berita->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Berita))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-06 05:49:04 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'kategori' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `berita`
+WHERE `kategori` = \'kejuaraan\'
+AND `status` = \'published\'
+ORDER BY `tanggal_publikasi` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `berita`
+WHERE `kategori` = \'kejuaraan\'
+AND `status` = \'published\'
+ORDER BY `tanggal_publikasi` DESC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `berita`
+WHERE `kategori` = :kategori:
+AND `status` = :status:
+ORDER BY `tanggal_publikasi` DESC', [...], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Models\BeritaModel.php(44): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH\Controllers\Berita.php(27): App\Models\BeritaModel->getBeritaByKategori('kejuaraan')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Berita->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Berita))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-06 05:49:04 --> [Caused by] mysqli_sql_exception: Unknown column 'kategori' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT *
+FROM `berita`
+WHERE `kategori` = \'kejuaraan\'
+AND `status` = \'published\'
+ORDER BY `tanggal_publikasi` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `berita`
+WHERE `kategori` = \'kejuaraan\'
+AND `status` = \'published\'
+ORDER BY `tanggal_publikasi` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `berita`
+WHERE `kategori` = \'kejuaraan\'
+AND `status` = \'published\'
+ORDER BY `tanggal_publikasi` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `berita`
+WHERE `kategori` = :kategori:
+AND `status` = :status:
+ORDER BY `tanggal_publikasi` DESC', [...], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\BeritaModel.php(44): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Berita.php(27): App\Models\BeritaModel->getBeritaByKategori('kejuaraan')
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Berita->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Berita))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+ERROR - 2025-12-06 05:49:36 --> mysqli_sql_exception: Unknown column 'kategori' in 'where clause' in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\ptmsi-sumbar\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\ptmsi-sumbar\app\Models\BeritaModel.php(44): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\ptmsi-sumbar\app\Controllers\Berita.php(27): App\Models\BeritaModel->getBeritaByKategori('kejuaraan')
+#8 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\Berita->index()
+#9 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Berita))
+#10 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+CRITICAL - 2025-12-06 05:49:36 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'kategori' in 'where clause'
+[Method: GET, Route: berita]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `berita`
+WHERE `kategori` = :kategori:
+AND `status` = :status:
+ORDER BY `tanggal_publikasi` DESC', [...], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\BeritaModel.php(44): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\Berita.php(27): App\Models\BeritaModel->getBeritaByKategori('kejuaraan')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Berita->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Berita))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-06 05:49:36 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'kategori' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `berita`
+WHERE `kategori` = \'kejuaraan\'
+AND `status` = \'published\'
+ORDER BY `tanggal_publikasi` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `berita`
+WHERE `kategori` = \'kejuaraan\'
+AND `status` = \'published\'
+ORDER BY `tanggal_publikasi` DESC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `berita`
+WHERE `kategori` = :kategori:
+AND `status` = :status:
+ORDER BY `tanggal_publikasi` DESC', [...], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Models\BeritaModel.php(44): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH\Controllers\Berita.php(27): App\Models\BeritaModel->getBeritaByKategori('kejuaraan')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Berita->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Berita))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-06 05:49:36 --> [Caused by] mysqli_sql_exception: Unknown column 'kategori' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT *
+FROM `berita`
+WHERE `kategori` = \'kejuaraan\'
+AND `status` = \'published\'
+ORDER BY `tanggal_publikasi` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `berita`
+WHERE `kategori` = \'kejuaraan\'
+AND `status` = \'published\'
+ORDER BY `tanggal_publikasi` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `berita`
+WHERE `kategori` = \'kejuaraan\'
+AND `status` = \'published\'
+ORDER BY `tanggal_publikasi` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `berita`
+WHERE `kategori` = :kategori:
+AND `status` = :status:
+ORDER BY `tanggal_publikasi` DESC', [...], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\BeritaModel.php(44): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Berita.php(27): App\Models\BeritaModel->getBeritaByKategori('kejuaraan')
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Berita->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Berita))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+ERROR - 2025-12-06 05:50:28 --> mysqli_sql_exception: Unknown column 'user.nama' in 'field list' in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `berita`...', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `berita`...')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `berita`...')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `berita`...', Array, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\ptmsi-sumbar\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\ptmsi-sumbar\app\Models\BeritaModel.php(30): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\ptmsi-sumbar\app\Controllers\Berita.php(26): App\Models\BeritaModel->getPublishedBerita()
+#8 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\Berita->index()
+#9 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Berita))
+#10 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+CRITICAL - 2025-12-06 05:50:28 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'user.nama' in 'field list'
+[Method: GET, Route: berita]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `berita`.*, `user`.`nama` as `nama_penulis`
+FROM `berita`
+LEFT JOIN `user` ON `user`.`id_user` = `berita`.`id_penulis`
+WHERE `berita`.`status` = :berita.status:
+ORDER BY `berita`.`tanggal_publikasi` DESC', [...], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\BeritaModel.php(30): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\Berita.php(26): App\Models\BeritaModel->getPublishedBerita()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Berita->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Berita))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-06 05:50:28 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'user.nama' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `berita`.*, `user`.`nama` as `nama_penulis`
+FROM `berita`
+LEFT JOIN `user` ON `user`.`id_user` = `berita`.`id_penulis`
+WHERE `berita`.`status` = \'published\'
+ORDER BY `berita`.`tanggal_publikasi` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `berita`.*, `user`.`nama` as `nama_penulis`
+FROM `berita`
+LEFT JOIN `user` ON `user`.`id_user` = `berita`.`id_penulis`
+WHERE `berita`.`status` = \'published\'
+ORDER BY `berita`.`tanggal_publikasi` DESC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `berita`.*, `user`.`nama` as `nama_penulis`
+FROM `berita`
+LEFT JOIN `user` ON `user`.`id_user` = `berita`.`id_penulis`
+WHERE `berita`.`status` = :berita.status:
+ORDER BY `berita`.`tanggal_publikasi` DESC', [...], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Models\BeritaModel.php(30): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH\Controllers\Berita.php(26): App\Models\BeritaModel->getPublishedBerita()
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Berita->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Berita))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-06 05:50:28 --> [Caused by] mysqli_sql_exception: Unknown column 'user.nama' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `berita`.*, `user`.`nama` as `nama_penulis`
+FROM `berita`
+LEFT JOIN `user` ON `user`.`id_user` = `berita`.`id_penulis`
+WHERE `berita`.`status` = \'published\'
+ORDER BY `berita`.`tanggal_publikasi` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `berita`.*, `user`.`nama` as `nama_penulis`
+FROM `berita`
+LEFT JOIN `user` ON `user`.`id_user` = `berita`.`id_penulis`
+WHERE `berita`.`status` = \'published\'
+ORDER BY `berita`.`tanggal_publikasi` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `berita`.*, `user`.`nama` as `nama_penulis`
+FROM `berita`
+LEFT JOIN `user` ON `user`.`id_user` = `berita`.`id_penulis`
+WHERE `berita`.`status` = \'published\'
+ORDER BY `berita`.`tanggal_publikasi` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `berita`.*, `user`.`nama` as `nama_penulis`
+FROM `berita`
+LEFT JOIN `user` ON `user`.`id_user` = `berita`.`id_penulis`
+WHERE `berita`.`status` = :berita.status:
+ORDER BY `berita`.`tanggal_publikasi` DESC', [...], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\BeritaModel.php(30): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Berita.php(26): App\Models\BeritaModel->getPublishedBerita()
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Berita->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Berita))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+ERROR - 2025-12-06 05:53:19 --> mysqli_sql_exception: Unknown column 'user.nama' in 'field list' in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `berita`...', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `berita`...')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `berita`...')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `berita`...', Array, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\ptmsi-sumbar\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\ptmsi-sumbar\app\Models\BeritaModel.php(43): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\ptmsi-sumbar\app\Controllers\Berita.php(27): App\Models\BeritaModel->getBeritaByKategori('kejuaraan')
+#8 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\Berita->index()
+#9 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Berita))
+#10 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+CRITICAL - 2025-12-06 05:53:19 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'user.nama' in 'field list'
+[Method: GET, Route: berita]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `berita`.*, `user`.`nama` as `nama_penulis`
+FROM `berita`
+LEFT JOIN `user` ON `user`.`id_user` = `berita`.`id_penulis`
+WHERE `berita`.`status` = :berita.status:
+ORDER BY `berita`.`tanggal_publikasi` DESC', [...], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\BeritaModel.php(43): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\Berita.php(27): App\Models\BeritaModel->getBeritaByKategori('kejuaraan')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Berita->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Berita))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-06 05:53:19 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'user.nama' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `berita`.*, `user`.`nama` as `nama_penulis`
+FROM `berita`
+LEFT JOIN `user` ON `user`.`id_user` = `berita`.`id_penulis`
+WHERE `berita`.`status` = \'published\'
+ORDER BY `berita`.`tanggal_publikasi` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `berita`.*, `user`.`nama` as `nama_penulis`
+FROM `berita`
+LEFT JOIN `user` ON `user`.`id_user` = `berita`.`id_penulis`
+WHERE `berita`.`status` = \'published\'
+ORDER BY `berita`.`tanggal_publikasi` DESC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `berita`.*, `user`.`nama` as `nama_penulis`
+FROM `berita`
+LEFT JOIN `user` ON `user`.`id_user` = `berita`.`id_penulis`
+WHERE `berita`.`status` = :berita.status:
+ORDER BY `berita`.`tanggal_publikasi` DESC', [...], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Models\BeritaModel.php(43): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH\Controllers\Berita.php(27): App\Models\BeritaModel->getBeritaByKategori('kejuaraan')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Berita->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Berita))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-06 05:53:19 --> [Caused by] mysqli_sql_exception: Unknown column 'user.nama' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `berita`.*, `user`.`nama` as `nama_penulis`
+FROM `berita`
+LEFT JOIN `user` ON `user`.`id_user` = `berita`.`id_penulis`
+WHERE `berita`.`status` = \'published\'
+ORDER BY `berita`.`tanggal_publikasi` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `berita`.*, `user`.`nama` as `nama_penulis`
+FROM `berita`
+LEFT JOIN `user` ON `user`.`id_user` = `berita`.`id_penulis`
+WHERE `berita`.`status` = \'published\'
+ORDER BY `berita`.`tanggal_publikasi` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `berita`.*, `user`.`nama` as `nama_penulis`
+FROM `berita`
+LEFT JOIN `user` ON `user`.`id_user` = `berita`.`id_penulis`
+WHERE `berita`.`status` = \'published\'
+ORDER BY `berita`.`tanggal_publikasi` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `berita`.*, `user`.`nama` as `nama_penulis`
+FROM `berita`
+LEFT JOIN `user` ON `user`.`id_user` = `berita`.`id_penulis`
+WHERE `berita`.`status` = :berita.status:
+ORDER BY `berita`.`tanggal_publikasi` DESC', [...], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\BeritaModel.php(43): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Berita.php(27): App\Models\BeritaModel->getBeritaByKategori('kejuaraan')
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Berita->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Berita))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+ERROR - 2025-12-06 05:54:26 --> mysqli_sql_exception: Unknown column 'user.nama_lengkapas' in 'field list' in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `berita`...', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `berita`...')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `berita`...')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `berita`...', Array, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\ptmsi-sumbar\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\ptmsi-sumbar\app\Models\BeritaModel.php(81): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\ptmsi-sumbar\app\Controllers\Berita.php(31): App\Models\BeritaModel->getPopularBerita(5)
+#8 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\Berita->index()
+#9 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Berita))
+#10 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+CRITICAL - 2025-12-06 05:54:26 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'user.nama_lengkapas' in 'field list'
+[Method: GET, Route: berita]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `berita`.*, `user`.`nama_lengkapas` `nama_penulis`
+FROM `berita`
+LEFT JOIN `user` ON `user`.`id_user` = `berita`.`id_penulis`
+WHERE `berita`.`status` = :berita.status:
+ORDER BY `berita`.`tanggal_publikasi` DESC
+ LIMIT 5', [...], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\BeritaModel.php(81): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\Berita.php(31): App\Models\BeritaModel->getPopularBerita(5)
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Berita->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Berita))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-06 05:54:26 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'user.nama_lengkapas' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `berita`.*, `user`.`nama_lengkapas` `nama_penulis`
+FROM `berita`
+LEFT JOIN `user` ON `user`.`id_user` = `berita`.`id_penulis`
+WHERE `berita`.`status` = \'published\'
+ORDER BY `berita`.`tanggal_publikasi` DESC
+ LIMIT 5')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `berita`.*, `user`.`nama_lengkapas` `nama_penulis`
+FROM `berita`
+LEFT JOIN `user` ON `user`.`id_user` = `berita`.`id_penulis`
+WHERE `berita`.`status` = \'published\'
+ORDER BY `berita`.`tanggal_publikasi` DESC
+ LIMIT 5')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `berita`.*, `user`.`nama_lengkapas` `nama_penulis`
+FROM `berita`
+LEFT JOIN `user` ON `user`.`id_user` = `berita`.`id_penulis`
+WHERE `berita`.`status` = :berita.status:
+ORDER BY `berita`.`tanggal_publikasi` DESC
+ LIMIT 5', [...], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Models\BeritaModel.php(81): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH\Controllers\Berita.php(31): App\Models\BeritaModel->getPopularBerita(5)
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Berita->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Berita))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-06 05:54:26 --> [Caused by] mysqli_sql_exception: Unknown column 'user.nama_lengkapas' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `berita`.*, `user`.`nama_lengkapas` `nama_penulis`
+FROM `berita`
+LEFT JOIN `user` ON `user`.`id_user` = `berita`.`id_penulis`
+WHERE `berita`.`status` = \'published\'
+ORDER BY `berita`.`tanggal_publikasi` DESC
+ LIMIT 5', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `berita`.*, `user`.`nama_lengkapas` `nama_penulis`
+FROM `berita`
+LEFT JOIN `user` ON `user`.`id_user` = `berita`.`id_penulis`
+WHERE `berita`.`status` = \'published\'
+ORDER BY `berita`.`tanggal_publikasi` DESC
+ LIMIT 5')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `berita`.*, `user`.`nama_lengkapas` `nama_penulis`
+FROM `berita`
+LEFT JOIN `user` ON `user`.`id_user` = `berita`.`id_penulis`
+WHERE `berita`.`status` = \'published\'
+ORDER BY `berita`.`tanggal_publikasi` DESC
+ LIMIT 5')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `berita`.*, `user`.`nama_lengkapas` `nama_penulis`
+FROM `berita`
+LEFT JOIN `user` ON `user`.`id_user` = `berita`.`id_penulis`
+WHERE `berita`.`status` = :berita.status:
+ORDER BY `berita`.`tanggal_publikasi` DESC
+ LIMIT 5', [...], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\BeritaModel.php(81): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Berita.php(31): App\Models\BeritaModel->getPopularBerita(5)
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Berita->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Berita))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+ERROR - 2025-12-06 05:56:21 --> mysqli_sql_exception: Cannot add or update a child row: a foreign key constraint fails (`ptmsi_sumbar`.`berita`, CONSTRAINT `berita_id_penulis_foreign` FOREIGN KEY (`id_penulis`) REFERENCES `user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE) in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('INSERT INTO `be...', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `be...')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `be...')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1841): CodeIgniter\Database\BaseConnection->query('INSERT INTO `be...', NULL, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(2230): CodeIgniter\Database\BaseBuilder->batchExecute('_insertBatch', 100)
+#5 C:\laragon\www\ptmsi-sumbar\app\Database\Seeds\BeritaSeeder.php(56): CodeIgniter\Database\BaseBuilder->insertBatch(Array)
+#6 C:\laragon\www\ptmsi-sumbar\system\Database\Seeder.php(149): App\Database\Seeds\BeritaSeeder->run()
+#7 C:\laragon\www\ptmsi-sumbar\system\Commands\Database\Seed.php(79): CodeIgniter\Database\Seeder->call('App\\Database\\Se...')
+#8 C:\laragon\www\ptmsi-sumbar\system\CLI\Commands.php(74): CodeIgniter\Commands\Database\Seed->run(Array)
+#9 C:\laragon\www\ptmsi-sumbar\system\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('db:seed', Array)
+#10 C:\laragon\www\ptmsi-sumbar\system\Boot.php(388): CodeIgniter\CLI\Console->run()
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(133): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
+#12 C:\laragon\www\ptmsi-sumbar\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
+#13 {main}
