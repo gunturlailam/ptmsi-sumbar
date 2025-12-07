@@ -108,29 +108,29 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle<?= (
                                                             url_is('atlet-pelatih*') ||
-                                                            url_is('kejuaraan-event*') || url_is('event*') ||
+                                                            url_is('event*') ||
                                                             url_is('pembinaan*') ||
-                                                            url_is('klub*') ||
+                                                            url_is('klub-pengurus*') ||
                                                             url_is('berita*') ||
                                                             url_is('galeri*') ||
                                                             url_is('dokumen*') ||
                                                             url_is('ranking*') ||
-                                                            url_is('layanan*') ||
-                                                            url_is('kontak*')
+                                                            url_is('layanan-online*') ||
+                                                            url_is('hubungi-kami*')
                                                         ) ? ' active' : '' ?>" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Menu Lainnya
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="<?= base_url('atlet-pelatih') ?>"><i class="bi bi-people"></i> Atlet & Pelatih</a></li>
-                        <li><a class="dropdown-item" href="<?= base_url('kejuaraan-event') ?>"><i class="bi bi-trophy"></i> Kejuaraan & Event</a></li>
+                        <li><a class="dropdown-item" href="<?= base_url('event') ?>"><i class="bi bi-trophy"></i> Kejuaraan & Event</a></li>
                         <li><a class="dropdown-item" href="<?= base_url('pembinaan') ?>"><i class="bi bi-mortarboard"></i> Program Pembinaan</a></li>
-                        <li><a class="dropdown-item" href="<?= base_url('klub') ?>"><i class="bi bi-diagram-3"></i> Klub & Pengurus</a></li>
+                        <li><a class="dropdown-item" href="<?= base_url('klub-pengurus') ?>"><i class="bi bi-diagram-3"></i> Klub & Pengurus</a></li>
                         <li><a class="dropdown-item" href="<?= base_url('berita') ?>"><i class="bi bi-newspaper"></i> Berita</a></li>
                         <li><a class="dropdown-item" href="<?= base_url('galeri') ?>"><i class="bi bi-images"></i> Galeri</a></li>
                         <li><a class="dropdown-item" href="<?= base_url('dokumen') ?>"><i class="bi bi-file-earmark-text"></i> Dokumen & Regulasi</a></li>
                         <li><a class="dropdown-item" href="<?= base_url('ranking') ?>"><i class="bi bi-bar-chart"></i> Ranking & Statistik</a></li>
-                        <li><a class="dropdown-item" href="<?= base_url('layanan') ?>"><i class="bi bi-globe"></i> Layanan Online</a></li>
-                        <li><a class="dropdown-item" href="<?= base_url('kontak') ?>"><i class="bi bi-envelope"></i> Hubungi Kami</a></li>
+                        <li><a class="dropdown-item" href="<?= base_url('layanan-online') ?>"><i class="bi bi-globe"></i> Layanan Online</a></li>
+                        <li><a class="dropdown-item" href="<?= base_url('hubungi-kami') ?>"><i class="bi bi-envelope"></i> Hubungi Kami</a></li>
                     </ul>
                 </li>
             </ul>

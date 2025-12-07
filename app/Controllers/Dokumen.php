@@ -32,7 +32,7 @@ class Dokumen extends BaseController
             'popular' => $this->unduhanModel->getPopularDokumen(5)
         ];
 
-        return view('dokumen/index', $data);
+        return view('dokumen', $data);
     }
 
     /**

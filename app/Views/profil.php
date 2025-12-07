@@ -2,18 +2,63 @@
 <?= $this->include('layouts/header') ?>
 
 <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
     body {
-        background: #E8F2FF;
+        background: linear-gradient(135deg, #E8F2FF 0%, #F0F8FF 100%);
+        font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+        overflow-x: hidden;
+    }
+
+    @keyframes pulse {
+
+        0%,
+        100% {
+            opacity: 0.5;
+        }
+
+        50% {
+            opacity: 0.8;
+        }
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
 
     .hero-profil {
-        background: linear-gradient(135deg, #003366 0%, #1E90FF 100%);
+        background: linear-gradient(135deg, #003366 0%, #1E90FF 50%, #00BFFF 100%);
         position: relative;
-        min-height: 400px;
+        min-height: 450px;
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 80px 20px 120px 20px;
+        padding: 100px 20px 140px 20px;
+        overflow: hidden;
+    }
+
+    .hero-profil::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(circle at 30% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+            radial-gradient(circle at 70% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+        animation: pulse 8s ease-in-out infinite;
     }
 
     .hero-content {
@@ -26,21 +71,23 @@
     }
 
     .hero-content h1 {
-        font-size: 2.5rem;
-        font-weight: 800;
+        font-size: 3rem;
+        font-weight: 900;
         letter-spacing: 1px;
-        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         text-transform: uppercase;
         margin-bottom: 24px;
-        line-height: 1.3;
+        line-height: 1.2;
+        animation: fadeInUp 0.8s ease-out;
     }
 
     .hero-content p {
-        font-size: 1.2rem;
-        margin-bottom: 36px;
+        font-size: 1.3rem;
+        margin-bottom: 40px;
         font-weight: 400;
         opacity: 0.95;
         line-height: 1.6;
+        animation: fadeInUp 1s ease-out;
     }
 
     /* Sub Menu Navigation */

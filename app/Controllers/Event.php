@@ -37,7 +37,7 @@ class Event extends BaseController
             'turnamen' => $turnamen
         ];
 
-        return view('event/index', $data);
+        return view('event', $data);
     }
 
     public function detail($id_event)

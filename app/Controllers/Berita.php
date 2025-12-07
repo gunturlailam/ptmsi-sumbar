@@ -31,7 +31,7 @@ class Berita extends BaseController
             'popular' => $this->beritaModel->getPopularBerita(5)
         ];
 
-        return view('berita/index', $data);
+        return view('berita', $data);
     }
 
     /**

@@ -22,7 +22,7 @@ class Pembinaan extends BaseController
     public function index()
     {
         // Ambil semua sertifikasi dengan detail
-        $sertifikasi = $this->sertifikasiModel->getSertifikasiWithDetails();
+        $sertifikasi = $this->sertifikasiModel->getSertifikasiWithPelatih();
 
         // Ambil semua pelatih untuk statistik
         $pelatih = $this->db->table('pelatih')
@@ -56,7 +56,7 @@ class Pembinaan extends BaseController
             'sertifikasiAktif' => $sertifikasiAktif
         ];
 
-        return view('pembinaan/index', $data);
+        return view('pembinaan', $data);
     }
 
     public function detail($id_sertifikasi)

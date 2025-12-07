@@ -1,0 +1,474 @@
+ERROR - 2025-12-07 14:48:22 --> mysqli_sql_exception: Cannot add or update a child row: a foreign key constraint fails (`ptmsi_sumbar`.`ranking`, CONSTRAINT `ranking_id_atlet_foreign` FOREIGN KEY (`id_atlet`) REFERENCES `atlet` (`id_atlet`) ON DELETE CASCADE ON UPDATE CASCADE) in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('INSERT INTO `ra...', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `ra...')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `ra...')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1841): CodeIgniter\Database\BaseConnection->query('INSERT INTO `ra...', NULL, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(2230): CodeIgniter\Database\BaseBuilder->batchExecute('_insertBatch', 100)
+#5 C:\laragon\www\ptmsi-sumbar\app\Database\Seeds\RankingSeeder.php(89): CodeIgniter\Database\BaseBuilder->insertBatch(Array)
+#6 C:\laragon\www\ptmsi-sumbar\system\Database\Seeder.php(149): App\Database\Seeds\RankingSeeder->run()
+#7 C:\laragon\www\ptmsi-sumbar\system\Commands\Database\Seed.php(79): CodeIgniter\Database\Seeder->call('App\\Database\\Se...')
+#8 C:\laragon\www\ptmsi-sumbar\system\CLI\Commands.php(74): CodeIgniter\Commands\Database\Seed->run(Array)
+#9 C:\laragon\www\ptmsi-sumbar\system\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('db:seed', Array)
+#10 C:\laragon\www\ptmsi-sumbar\system\Boot.php(388): CodeIgniter\CLI\Console->run()
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(133): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
+#12 C:\laragon\www\ptmsi-sumbar\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
+#13 {main}
+ERROR - 2025-12-07 14:50:43 --> mysqli_sql_exception: Unknown column 'atlet.nama_lengkap' in 'field list' in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `ranking...', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `ranking...')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `ranking...')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `ranking...', Array, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\ptmsi-sumbar\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\ptmsi-sumbar\app\Models\RankingModel.php(29): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\ptmsi-sumbar\app\Controllers\RankingStatistik.php(28): App\Models\RankingModel->getRankingWithAtlet()
+#8 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\RankingStatistik->index()
+#9 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RankingStatistik))
+#10 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+CRITICAL - 2025-12-07 14:50:43 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'atlet.nama_lengkap' in 'field list'
+[Method: GET, Route: ranking]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `ranking`.*, `atlet`.`nama_lengkap`, `atlet`.`jenis_kelamin`, `klub`.`nama` as `nama_klub`
+FROM `ranking`
+JOIN `atlet` ON `atlet`.`id_atlet` = `ranking`.`id_atlet`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`
+ORDER BY `ranking`.`posisi` ASC', [], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\RankingModel.php(29): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\RankingStatistik.php(28): App\Models\RankingModel->getRankingWithAtlet()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\RankingStatistik->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RankingStatistik))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-07 14:50:43 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'atlet.nama_lengkap' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `ranking`.*, `atlet`.`nama_lengkap`, `atlet`.`jenis_kelamin`, `klub`.`nama` as `nama_klub`
+FROM `ranking`
+JOIN `atlet` ON `atlet`.`id_atlet` = `ranking`.`id_atlet`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`
+ORDER BY `ranking`.`posisi` ASC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `ranking`.*, `atlet`.`nama_lengkap`, `atlet`.`jenis_kelamin`, `klub`.`nama` as `nama_klub`
+FROM `ranking`
+JOIN `atlet` ON `atlet`.`id_atlet` = `ranking`.`id_atlet`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`
+ORDER BY `ranking`.`posisi` ASC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `ranking`.*, `atlet`.`nama_lengkap`, `atlet`.`jenis_kelamin`, `klub`.`nama` as `nama_klub`
+FROM `ranking`
+JOIN `atlet` ON `atlet`.`id_atlet` = `ranking`.`id_atlet`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`
+ORDER BY `ranking`.`posisi` ASC', [], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Models\RankingModel.php(29): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH\Controllers\RankingStatistik.php(28): App\Models\RankingModel->getRankingWithAtlet()
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\RankingStatistik->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RankingStatistik))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-07 14:50:43 --> [Caused by] mysqli_sql_exception: Unknown column 'atlet.nama_lengkap' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `ranking`.*, `atlet`.`nama_lengkap`, `atlet`.`jenis_kelamin`, `klub`.`nama` as `nama_klub`
+FROM `ranking`
+JOIN `atlet` ON `atlet`.`id_atlet` = `ranking`.`id_atlet`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`
+ORDER BY `ranking`.`posisi` ASC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `ranking`.*, `atlet`.`nama_lengkap`, `atlet`.`jenis_kelamin`, `klub`.`nama` as `nama_klub`
+FROM `ranking`
+JOIN `atlet` ON `atlet`.`id_atlet` = `ranking`.`id_atlet`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`
+ORDER BY `ranking`.`posisi` ASC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `ranking`.*, `atlet`.`nama_lengkap`, `atlet`.`jenis_kelamin`, `klub`.`nama` as `nama_klub`
+FROM `ranking`
+JOIN `atlet` ON `atlet`.`id_atlet` = `ranking`.`id_atlet`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`
+ORDER BY `ranking`.`posisi` ASC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `ranking`.*, `atlet`.`nama_lengkap`, `atlet`.`jenis_kelamin`, `klub`.`nama` as `nama_klub`
+FROM `ranking`
+JOIN `atlet` ON `atlet`.`id_atlet` = `ranking`.`id_atlet`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`
+ORDER BY `ranking`.`posisi` ASC', [], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\RankingModel.php(29): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\RankingStatistik.php(28): App\Models\RankingModel->getRankingWithAtlet()
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\RankingStatistik->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RankingStatistik))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+ERROR - 2025-12-07 14:54:43 --> mysqli_sql_exception: Unknown column 'event.nama_event' in 'field list' in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `event`....', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `event`....')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `event`....')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `event`....', Array, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\ptmsi-sumbar\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\ptmsi-sumbar\app\Models\PertandinganModel.php(72): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\ptmsi-sumbar\app\Controllers\RankingStatistik.php(37): App\Models\PertandinganModel->getStatistikPertandingan()
+#8 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\RankingStatistik->index()
+#9 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RankingStatistik))
+#10 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+CRITICAL - 2025-12-07 14:54:43 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'event.nama_event' in 'field list'
+[Method: GET, Route: ranking]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `event`.`nama_event`, COUNT(pertandingan.id_pertandingan) as total_pertandingan, `event`.`tanggal_mulai`, `event`.`tanggal_selesai`
+FROM `pertandingan`
+JOIN `event` ON `event`.`id_event` = `pertandingan`.`id_event`
+GROUP BY `pertandingan`.`id_event`
+ORDER BY `event`.`tanggal_mulai` DESC', [], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\PertandinganModel.php(72): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\RankingStatistik.php(37): App\Models\PertandinganModel->getStatistikPertandingan()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\RankingStatistik->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RankingStatistik))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-07 14:54:43 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'event.nama_event' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `event`.`nama_event`, COUNT(pertandingan.id_pertandingan) as total_pertandingan, `event`.`tanggal_mulai`, `event`.`tanggal_selesai`
+FROM `pertandingan`
+JOIN `event` ON `event`.`id_event` = `pertandingan`.`id_event`
+GROUP BY `pertandingan`.`id_event`
+ORDER BY `event`.`tanggal_mulai` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `event`.`nama_event`, COUNT(pertandingan.id_pertandingan) as total_pertandingan, `event`.`tanggal_mulai`, `event`.`tanggal_selesai`
+FROM `pertandingan`
+JOIN `event` ON `event`.`id_event` = `pertandingan`.`id_event`
+GROUP BY `pertandingan`.`id_event`
+ORDER BY `event`.`tanggal_mulai` DESC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `event`.`nama_event`, COUNT(pertandingan.id_pertandingan) as total_pertandingan, `event`.`tanggal_mulai`, `event`.`tanggal_selesai`
+FROM `pertandingan`
+JOIN `event` ON `event`.`id_event` = `pertandingan`.`id_event`
+GROUP BY `pertandingan`.`id_event`
+ORDER BY `event`.`tanggal_mulai` DESC', [], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Models\PertandinganModel.php(72): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH\Controllers\RankingStatistik.php(37): App\Models\PertandinganModel->getStatistikPertandingan()
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\RankingStatistik->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RankingStatistik))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-07 14:54:43 --> [Caused by] mysqli_sql_exception: Unknown column 'event.nama_event' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `event`.`nama_event`, COUNT(pertandingan.id_pertandingan) as total_pertandingan, `event`.`tanggal_mulai`, `event`.`tanggal_selesai`
+FROM `pertandingan`
+JOIN `event` ON `event`.`id_event` = `pertandingan`.`id_event`
+GROUP BY `pertandingan`.`id_event`
+ORDER BY `event`.`tanggal_mulai` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `event`.`nama_event`, COUNT(pertandingan.id_pertandingan) as total_pertandingan, `event`.`tanggal_mulai`, `event`.`tanggal_selesai`
+FROM `pertandingan`
+JOIN `event` ON `event`.`id_event` = `pertandingan`.`id_event`
+GROUP BY `pertandingan`.`id_event`
+ORDER BY `event`.`tanggal_mulai` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `event`.`nama_event`, COUNT(pertandingan.id_pertandingan) as total_pertandingan, `event`.`tanggal_mulai`, `event`.`tanggal_selesai`
+FROM `pertandingan`
+JOIN `event` ON `event`.`id_event` = `pertandingan`.`id_event`
+GROUP BY `pertandingan`.`id_event`
+ORDER BY `event`.`tanggal_mulai` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `event`.`nama_event`, COUNT(pertandingan.id_pertandingan) as total_pertandingan, `event`.`tanggal_mulai`, `event`.`tanggal_selesai`
+FROM `pertandingan`
+JOIN `event` ON `event`.`id_event` = `pertandingan`.`id_event`
+GROUP BY `pertandingan`.`id_event`
+ORDER BY `event`.`tanggal_mulai` DESC', [], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\PertandinganModel.php(72): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\RankingStatistik.php(37): App\Models\PertandinganModel->getStatistikPertandingan()
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\RankingStatistik->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RankingStatistik))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+ERROR - 2025-12-07 14:54:48 --> mysqli_sql_exception: Unknown column 'event.nama_event' in 'field list' in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `event`....', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `event`....')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `event`....')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `event`....', Array, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\ptmsi-sumbar\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\ptmsi-sumbar\app\Models\PertandinganModel.php(72): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\ptmsi-sumbar\app\Controllers\RankingStatistik.php(37): App\Models\PertandinganModel->getStatistikPertandingan()
+#8 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\RankingStatistik->index()
+#9 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RankingStatistik))
+#10 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+CRITICAL - 2025-12-07 14:54:48 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'event.nama_event' in 'field list'
+[Method: GET, Route: ranking]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `event`.`nama_event`, COUNT(pertandingan.id_pertandingan) as total_pertandingan, `event`.`tanggal_mulai`, `event`.`tanggal_selesai`
+FROM `pertandingan`
+JOIN `event` ON `event`.`id_event` = `pertandingan`.`id_event`
+GROUP BY `pertandingan`.`id_event`
+ORDER BY `event`.`tanggal_mulai` DESC', [], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\PertandinganModel.php(72): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\RankingStatistik.php(37): App\Models\PertandinganModel->getStatistikPertandingan()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\RankingStatistik->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RankingStatistik))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-07 14:54:48 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'event.nama_event' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `event`.`nama_event`, COUNT(pertandingan.id_pertandingan) as total_pertandingan, `event`.`tanggal_mulai`, `event`.`tanggal_selesai`
+FROM `pertandingan`
+JOIN `event` ON `event`.`id_event` = `pertandingan`.`id_event`
+GROUP BY `pertandingan`.`id_event`
+ORDER BY `event`.`tanggal_mulai` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `event`.`nama_event`, COUNT(pertandingan.id_pertandingan) as total_pertandingan, `event`.`tanggal_mulai`, `event`.`tanggal_selesai`
+FROM `pertandingan`
+JOIN `event` ON `event`.`id_event` = `pertandingan`.`id_event`
+GROUP BY `pertandingan`.`id_event`
+ORDER BY `event`.`tanggal_mulai` DESC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `event`.`nama_event`, COUNT(pertandingan.id_pertandingan) as total_pertandingan, `event`.`tanggal_mulai`, `event`.`tanggal_selesai`
+FROM `pertandingan`
+JOIN `event` ON `event`.`id_event` = `pertandingan`.`id_event`
+GROUP BY `pertandingan`.`id_event`
+ORDER BY `event`.`tanggal_mulai` DESC', [], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Models\PertandinganModel.php(72): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH\Controllers\RankingStatistik.php(37): App\Models\PertandinganModel->getStatistikPertandingan()
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\RankingStatistik->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RankingStatistik))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-07 14:54:48 --> [Caused by] mysqli_sql_exception: Unknown column 'event.nama_event' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `event`.`nama_event`, COUNT(pertandingan.id_pertandingan) as total_pertandingan, `event`.`tanggal_mulai`, `event`.`tanggal_selesai`
+FROM `pertandingan`
+JOIN `event` ON `event`.`id_event` = `pertandingan`.`id_event`
+GROUP BY `pertandingan`.`id_event`
+ORDER BY `event`.`tanggal_mulai` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `event`.`nama_event`, COUNT(pertandingan.id_pertandingan) as total_pertandingan, `event`.`tanggal_mulai`, `event`.`tanggal_selesai`
+FROM `pertandingan`
+JOIN `event` ON `event`.`id_event` = `pertandingan`.`id_event`
+GROUP BY `pertandingan`.`id_event`
+ORDER BY `event`.`tanggal_mulai` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `event`.`nama_event`, COUNT(pertandingan.id_pertandingan) as total_pertandingan, `event`.`tanggal_mulai`, `event`.`tanggal_selesai`
+FROM `pertandingan`
+JOIN `event` ON `event`.`id_event` = `pertandingan`.`id_event`
+GROUP BY `pertandingan`.`id_event`
+ORDER BY `event`.`tanggal_mulai` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `event`.`nama_event`, COUNT(pertandingan.id_pertandingan) as total_pertandingan, `event`.`tanggal_mulai`, `event`.`tanggal_selesai`
+FROM `pertandingan`
+JOIN `event` ON `event`.`id_event` = `pertandingan`.`id_event`
+GROUP BY `pertandingan`.`id_event`
+ORDER BY `event`.`tanggal_mulai` DESC', [], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\PertandinganModel.php(72): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\RankingStatistik.php(37): App\Models\PertandinganModel->getStatistikPertandingan()
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\RankingStatistik->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RankingStatistik))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+ERROR - 2025-12-07 14:57:49 --> mysqli_sql_exception: Unknown column 'event.nama_event' in 'field list' in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `event`....', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `event`....')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `event`....')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `event`....', Array, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\ptmsi-sumbar\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\ptmsi-sumbar\app\Models\PertandinganModel.php(72): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\ptmsi-sumbar\app\Controllers\RankingStatistik.php(37): App\Models\PertandinganModel->getStatistikPertandingan()
+#8 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\RankingStatistik->index()
+#9 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RankingStatistik))
+#10 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+CRITICAL - 2025-12-07 14:57:49 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'event.nama_event' in 'field list'
+[Method: GET, Route: ranking]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `event`.`nama_event`, COUNT(pertandingan.id_pertandingan) as total_pertandingan, `event`.`tanggal_mulai`, `event`.`tanggal_selesai`
+FROM `pertandingan`
+JOIN `event` ON `event`.`id_event` = `pertandingan`.`id_event`
+GROUP BY `pertandingan`.`id_event`
+ORDER BY `event`.`tanggal_mulai` DESC', [], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\PertandinganModel.php(72): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\RankingStatistik.php(37): App\Models\PertandinganModel->getStatistikPertandingan()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\RankingStatistik->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RankingStatistik))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-07 14:57:49 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'event.nama_event' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `event`.`nama_event`, COUNT(pertandingan.id_pertandingan) as total_pertandingan, `event`.`tanggal_mulai`, `event`.`tanggal_selesai`
+FROM `pertandingan`
+JOIN `event` ON `event`.`id_event` = `pertandingan`.`id_event`
+GROUP BY `pertandingan`.`id_event`
+ORDER BY `event`.`tanggal_mulai` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `event`.`nama_event`, COUNT(pertandingan.id_pertandingan) as total_pertandingan, `event`.`tanggal_mulai`, `event`.`tanggal_selesai`
+FROM `pertandingan`
+JOIN `event` ON `event`.`id_event` = `pertandingan`.`id_event`
+GROUP BY `pertandingan`.`id_event`
+ORDER BY `event`.`tanggal_mulai` DESC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `event`.`nama_event`, COUNT(pertandingan.id_pertandingan) as total_pertandingan, `event`.`tanggal_mulai`, `event`.`tanggal_selesai`
+FROM `pertandingan`
+JOIN `event` ON `event`.`id_event` = `pertandingan`.`id_event`
+GROUP BY `pertandingan`.`id_event`
+ORDER BY `event`.`tanggal_mulai` DESC', [], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Models\PertandinganModel.php(72): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH\Controllers\RankingStatistik.php(37): App\Models\PertandinganModel->getStatistikPertandingan()
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\RankingStatistik->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RankingStatistik))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-07 14:57:49 --> [Caused by] mysqli_sql_exception: Unknown column 'event.nama_event' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `event`.`nama_event`, COUNT(pertandingan.id_pertandingan) as total_pertandingan, `event`.`tanggal_mulai`, `event`.`tanggal_selesai`
+FROM `pertandingan`
+JOIN `event` ON `event`.`id_event` = `pertandingan`.`id_event`
+GROUP BY `pertandingan`.`id_event`
+ORDER BY `event`.`tanggal_mulai` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `event`.`nama_event`, COUNT(pertandingan.id_pertandingan) as total_pertandingan, `event`.`tanggal_mulai`, `event`.`tanggal_selesai`
+FROM `pertandingan`
+JOIN `event` ON `event`.`id_event` = `pertandingan`.`id_event`
+GROUP BY `pertandingan`.`id_event`
+ORDER BY `event`.`tanggal_mulai` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `event`.`nama_event`, COUNT(pertandingan.id_pertandingan) as total_pertandingan, `event`.`tanggal_mulai`, `event`.`tanggal_selesai`
+FROM `pertandingan`
+JOIN `event` ON `event`.`id_event` = `pertandingan`.`id_event`
+GROUP BY `pertandingan`.`id_event`
+ORDER BY `event`.`tanggal_mulai` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `event`.`nama_event`, COUNT(pertandingan.id_pertandingan) as total_pertandingan, `event`.`tanggal_mulai`, `event`.`tanggal_selesai`
+FROM `pertandingan`
+JOIN `event` ON `event`.`id_event` = `pertandingan`.`id_event`
+GROUP BY `pertandingan`.`id_event`
+ORDER BY `event`.`tanggal_mulai` DESC', [], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\PertandinganModel.php(72): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\RankingStatistik.php(37): App\Models\PertandinganModel->getStatistikPertandingan()
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\RankingStatistik->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RankingStatistik))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+DEBUG - 2025-12-07 15:14:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-07 15:15:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-07 15:20:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-07 15:20:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-07 15:35:26 --> mysqli_sql_exception: Cannot add or update a child row: a foreign key constraint fails (`ptmsi_sumbar`.`ranking`, CONSTRAINT `ranking_id_atlet_foreign` FOREIGN KEY (`id_atlet`) REFERENCES `atlet` (`id_atlet`) ON DELETE CASCADE ON UPDATE CASCADE) in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('INSERT INTO `ra...', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `ra...')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `ra...')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1841): CodeIgniter\Database\BaseConnection->query('INSERT INTO `ra...', NULL, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(2230): CodeIgniter\Database\BaseBuilder->batchExecute('_insertBatch', 100)
+#5 C:\laragon\www\ptmsi-sumbar\app\Database\Seeds\RankingSeeder.php(106): CodeIgniter\Database\BaseBuilder->insertBatch(Array)
+#6 C:\laragon\www\ptmsi-sumbar\system\Database\Seeder.php(149): App\Database\Seeds\RankingSeeder->run()
+#7 C:\laragon\www\ptmsi-sumbar\system\Commands\Database\Seed.php(79): CodeIgniter\Database\Seeder->call('App\\Database\\Se...')
+#8 C:\laragon\www\ptmsi-sumbar\system\CLI\Commands.php(74): CodeIgniter\Commands\Database\Seed->run(Array)
+#9 C:\laragon\www\ptmsi-sumbar\system\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('db:seed', Array)
+#10 C:\laragon\www\ptmsi-sumbar\system\Boot.php(388): CodeIgniter\CLI\Console->run()
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(133): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
+#12 C:\laragon\www\ptmsi-sumbar\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
+#13 {main}
+ERROR - 2025-12-07 15:36:46 --> mysqli_sql_exception: Cannot add or update a child row: a foreign key constraint fails (`ptmsi_sumbar`.`berita`, CONSTRAINT `berita_id_penulis_foreign` FOREIGN KEY (`id_penulis`) REFERENCES `user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE) in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('INSERT INTO `be...', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `be...')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `be...')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1841): CodeIgniter\Database\BaseConnection->query('INSERT INTO `be...', NULL, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(2230): CodeIgniter\Database\BaseBuilder->batchExecute('_insertBatch', 100)
+#5 C:\laragon\www\ptmsi-sumbar\app\Database\Seeds\BeritaSeeder.php(56): CodeIgniter\Database\BaseBuilder->insertBatch(Array)
+#6 C:\laragon\www\ptmsi-sumbar\system\Database\Seeder.php(149): App\Database\Seeds\BeritaSeeder->run()
+#7 C:\laragon\www\ptmsi-sumbar\system\Commands\Database\Seed.php(79): CodeIgniter\Database\Seeder->call('App\\Database\\Se...')
+#8 C:\laragon\www\ptmsi-sumbar\system\CLI\Commands.php(74): CodeIgniter\Commands\Database\Seed->run(Array)
+#9 C:\laragon\www\ptmsi-sumbar\system\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('db:seed', Array)
+#10 C:\laragon\www\ptmsi-sumbar\system\Boot.php(388): CodeIgniter\CLI\Console->run()
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(133): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
+#12 C:\laragon\www\ptmsi-sumbar\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
+#13 {main}
+ERROR - 2025-12-07 15:37:03 --> mysqli_sql_exception: Cannot add or update a child row: a foreign key constraint fails (`ptmsi_sumbar`.`dokumen`, CONSTRAINT `dokumen_id_pengunggah_foreign` FOREIGN KEY (`id_pengunggah`) REFERENCES `user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE) in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('INSERT INTO `do...', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `do...')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `do...')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1841): CodeIgniter\Database\BaseConnection->query('INSERT INTO `do...', NULL, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(2230): CodeIgniter\Database\BaseBuilder->batchExecute('_insertBatch', 100)
+#5 C:\laragon\www\ptmsi-sumbar\app\Database\Seeds\DokumenSeeder.php(129): CodeIgniter\Database\BaseBuilder->insertBatch(Array)
+#6 C:\laragon\www\ptmsi-sumbar\system\Database\Seeder.php(149): App\Database\Seeds\DokumenSeeder->run()
+#7 C:\laragon\www\ptmsi-sumbar\system\Commands\Database\Seed.php(79): CodeIgniter\Database\Seeder->call('App\\Database\\Se...')
+#8 C:\laragon\www\ptmsi-sumbar\system\CLI\Commands.php(74): CodeIgniter\Commands\Database\Seed->run(Array)
+#9 C:\laragon\www\ptmsi-sumbar\system\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('db:seed', Array)
+#10 C:\laragon\www\ptmsi-sumbar\system\Boot.php(388): CodeIgniter\CLI\Console->run()
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(133): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
+#12 C:\laragon\www\ptmsi-sumbar\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
+#13 {main}
+DEBUG - 2025-12-07 15:39:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-07 15:44:29 --> CodeIgniter\Exceptions\BadMethodCallException: Call to undefined method App\Models\SertifikasiModel::getSertifikasiWithDetails
+[Method: GET, Route: pembinaan]
+in SYSTEMPATH\Model.php on line 927.
+ 1 APPPATH\Controllers\Pembinaan.php(25): CodeIgniter\Model->__call('getSertifikasiWithDetails', [])
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Pembinaan->index()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pembinaan))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+DEBUG - 2025-12-07 16:06:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-07 16:08:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

@@ -71,7 +71,7 @@ class KlubPengurus extends BaseController
             'wasit' => $wasit
         ];
 
-        return view('klub_pengurus/index', $data);
+        return view('klub_pengurus', $data);
     }
 
     /**

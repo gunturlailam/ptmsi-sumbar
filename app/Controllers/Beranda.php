@@ -47,7 +47,7 @@ class Beranda extends BaseController
             'kegiatanTerbaru' => $this->getKegiatanTerbaru(),
         ];
 
-        return view('beranda/index.php', $data);
+        return view('beranda', $data);
     }
 
     private function getRanking()

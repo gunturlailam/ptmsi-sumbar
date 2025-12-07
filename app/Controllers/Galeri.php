@@ -27,7 +27,7 @@ class Galeri extends BaseController
             'totalVideo' => $this->galeriModel->getTotalByJenis('video')
         ];
 
-        return view('galeri/index', $data);
+        return view('galeri', $data);
     }
 
     /**

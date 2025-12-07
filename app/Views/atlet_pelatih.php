@@ -2,55 +2,137 @@
 <?= $this->include('layouts/header') ?>
 
 <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
     body {
-        background: #E8F2FF;
+        background: linear-gradient(135deg, #E8F2FF 0%, #F0F8FF 100%);
         font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+        overflow-x: hidden;
+    }
+
+    @keyframes pulse {
+
+        0%,
+        100% {
+            opacity: 0.5;
+        }
+
+        50% {
+            opacity: 0.8;
+        }
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes bounce {
+
+        0%,
+        100% {
+            transform: translateY(0);
+        }
+
+        50% {
+            transform: translateY(-5px);
+        }
     }
 
     .atlet-pelatih-section {
-        background: #E8F2FF;
+        background: transparent;
         min-height: 100vh;
-        padding: 48px 0 32px 0;
+        padding: 0;
     }
 
     .page-header {
-        background: linear-gradient(135deg, #003366 0%, #1E90FF 100%);
+        background: linear-gradient(135deg, #003366 0%, #1E90FF 50%, #00BFFF 100%);
         color: #fff;
-        padding: 48px 0;
-        margin-bottom: 40px;
-        border-radius: 0 0 30px 30px;
-        box-shadow: 0 4px 20px rgba(30, 144, 255, 0.2);
+        padding: 60px 0;
+        margin-bottom: 50px;
+        border-radius: 0 0 50px 50px;
+        box-shadow: 0 15px 50px rgba(30, 144, 255, 0.25);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .page-header::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(circle at 30% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+            radial-gradient(circle at 70% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+        animation: pulse 8s ease-in-out infinite;
     }
 
     .page-header h1 {
-        font-weight: bold;
-        font-size: 2.5rem;
-        margin-bottom: 12px;
+        font-weight: 900;
+        font-size: 2.8rem;
+        margin-bottom: 15px;
         text-align: center;
+        text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        position: relative;
+        z-index: 1;
+        animation: fadeInUp 0.8s ease-out;
     }
 
     .page-header p {
         text-align: center;
-        font-size: 1.1rem;
+        font-size: 1.2rem;
         opacity: 0.95;
+        position: relative;
+        z-index: 1;
+        animation: fadeInUp 1s ease-out;
     }
 
     /* Sub Menu Navigation */
     .submenu-nav {
         background: #fff;
-        border-radius: 20px;
-        box-shadow: 0 4px 20px rgba(30, 144, 255, 0.1);
-        padding: 24px;
-        margin-bottom: 32px;
+        border-radius: 30px;
+        box-shadow: 0 10px 40px rgba(30, 144, 255, 0.15);
+        padding: 30px;
+        margin-bottom: 40px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .submenu-nav::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        right: -50%;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle, rgba(30, 144, 255, 0.05) 0%, transparent 70%);
     }
 
     .submenu-nav h4 {
         color: #003366;
-        font-weight: bold;
-        margin-bottom: 20px;
+        font-weight: 900;
+        margin-bottom: 25px;
         display: flex;
         align-items: center;
-        gap: 10px;
+        gap: 12px;
+        position: relative;
+        z-index: 1;
+    }
+
+    .submenu-nav h4 i {
+        animation: bounce 2s ease-in-out infinite;
     }
 
     .submenu-grid {

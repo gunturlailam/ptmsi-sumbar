@@ -19,13 +19,36 @@ class PendaftaranEventModel extends Model
     ];
     protected $useTimestamps = false;
 
-    // Join dengan event dan atlet/klub
+    /**
+     * Get all pendaftaran with details
+     */
     public function getPendaftaranWithDetails()
     {
-        return $this->select('pendaftaran_event.*, event.judul as nama_event, atlet.id_atlet, klub.nama as nama_klub')
+        return $this->select('pendaftaran_event.*, 
+                event.judul as nama_event,
+                klub.nama as nama_klub,
+                user.nama_lengkap as nama_atlet')
             ->join('event', 'event.id_event = pendaftaran_event.id_event')
-            ->join('atlet', 'atlet.id_atlet = pendaftaran_event.id_atlet', 'left')
             ->join('klub', 'klub.id_klub = pendaftaran_event.id_klub', 'left')
+            ->join('atlet', 'atlet.id_atlet = pendaftaran_event.id_atlet', 'left')
+            ->join('user', 'user.id_user = atlet.id_user', 'left')
+            ->orderBy('pendaftaran_event.tanggal_daftar', 'DESC')
+            ->findAll();
+    }
+
+    /**
+     * Get pendaftaran by event
+     */
+    public function getPendaftaranByEvent($idEvent)
+    {
+        return $this->select('pendaftaran_event.*, 
+                klub.nama as nama_klub,
+                user.nama_lengkap as nama_atlet')
+            ->join('klub', 'klub.id_klub = pendaftaran_event.id_klub', 'left')
+            ->join('atlet', 'atlet.id_atlet = pendaftaran_event.id_atlet', 'left')
+            ->join('user', 'user.id_user = atlet.id_user', 'left')
+            ->where('pendaftaran_event.id_event', $idEvent)
+            ->orderBy('pendaftaran_event.tanggal_daftar', 'DESC')
             ->findAll();
     }
 }
