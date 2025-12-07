@@ -43,3 +43,17 @@ $routes->post('layanan-online/submit-sk-klub', 'LayananOnline::submitPendaftaran
 $routes->post('layanan-online/submit-sertifikasi', 'LayananOnline::submitSertifikasi');
 $routes->get('hubungi-kami', 'HubungiKami::index');
 $routes->post('hubungi-kami/submit', 'HubungiKami::submitPesan');
+
+// Auth Routes
+$routes->get('auth/login', 'Auth::login');
+$routes->post('auth/login', 'Auth::attemptLogin');
+$routes->get('auth/register', 'Auth::register');
+$routes->post('auth/register', 'Auth::attemptRegister');
+$routes->get('auth/logout', 'Auth::logout');
+$routes->get('auth/forgot-password', 'Auth::forgotPassword');
+$routes->post('auth/forgot-password', 'Auth::sendResetLink');
+
+// Shorthand routes for convenience
+$routes->get('login', 'Auth::login');
+$routes->get('register', 'Auth::register');
+$routes->get('logout', 'Auth::logout');
