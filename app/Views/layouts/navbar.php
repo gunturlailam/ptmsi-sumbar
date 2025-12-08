@@ -73,6 +73,27 @@
         color: #fff;
     }
 
+    .navbar-ptmsi .dropdown-item-text {
+        color: #6c757d !important;
+        font-size: 0.875rem;
+        padding: 0.25rem 1rem;
+    }
+
+    .navbar-ptmsi .dropdown-header {
+        color: #003366 !important;
+        font-weight: 600;
+        font-size: 0.875rem;
+    }
+
+    .navbar-ptmsi .text-danger {
+        color: #dc3545 !important;
+    }
+
+    .navbar-ptmsi .text-danger:hover {
+        background: #f8d7da !important;
+        color: #721c24 !important;
+    }
+
     @media (max-width: 991px) {
         .navbar-ptmsi .nav-link {
             margin-bottom: 6px;
@@ -135,9 +156,38 @@
                 </li>
             </ul>
             <div class="d-flex ms-lg-4 mt-3 mt-lg-0">
-                <a href="<?= base_url('login') ?>" class="btn btn-login">
-                    <i class="bi bi-box-arrow-in-right"></i> Login
-                </a>
+                <?php if (session()->get('logged_in')): ?>
+                    <div class="dropdown">
+                        <button class="btn btn-login dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-person-circle"></i> <?= esc(session()->get('nama_lengkap')) ?>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                            <li>
+                                <h6 class="dropdown-header">Selamat datang!</h6>
+                            </li>
+                            <li><span class="dropdown-item-text"><small><i class="bi bi-person"></i> <?= esc(session()->get('nama_lengkap')) ?></small></span></li>
+                            <li><span class="dropdown-item-text"><small><i class="bi bi-envelope"></i> <?= esc(session()->get('email')) ?></small></span></li>
+                            <li><span class="dropdown-item-text"><small><i class="bi bi-shield"></i> <?= ucfirst(esc(session()->get('role'))) ?></small></span></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <?php if (session()->get('role') === 'admin'): ?>
+                                <li><a class="dropdown-item" href="<?= base_url('admin/dashboard') ?>"><i class="bi bi-speedometer2"></i> Dashboard Admin</a></li>
+                            <?php else: ?>
+                                <li><a class="dropdown-item" href="<?= base_url('user/dashboard') ?>"><i class="bi bi-speedometer2"></i> Dashboard Saya</a></li>
+                            <?php endif; ?>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="<?= base_url('user/profile') ?>"><i class="bi bi-person"></i> Profil Saya</a></li>
+                            <li><a class="dropdown-item text-danger" href="<?= base_url('logout') ?>"><i class="bi bi-box-arrow-right"></i> Logout</a></li>
+                        </ul>
+                    </div>
+                <?php else: ?>
+                    <a href="<?= base_url('login') ?>" class="btn btn-login">
+                        <i class="bi bi-box-arrow-in-right"></i> Login
+                    </a>
+                <?php endif; ?>
             </div>
         </div>
     </div>

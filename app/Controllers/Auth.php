@@ -14,13 +14,36 @@ class Auth extends BaseController
         helper(['form', 'url']);
     }
 
+    /**
+     * Generate UUID v4
+     */
+    private function generateUUID()
+    {
+        return sprintf(
+            '%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
+            mt_rand(0, 0xffff),
+            mt_rand(0, 0xffff),
+            mt_rand(0, 0xffff),
+            mt_rand(0, 0x0fff) | 0x4000,
+            mt_rand(0, 0x3fff) | 0x8000,
+            mt_rand(0, 0xffff),
+            mt_rand(0, 0xffff),
+            mt_rand(0, 0xffff)
+        );
+    }
+
     public function login()
     {
+        // Debug info
+        log_message('info', 'Login method called');
+
         // If already logged in, redirect to dashboard
         if (session()->get('logged_in')) {
+            log_message('info', 'User already logged in, redirecting');
             return redirect()->to('/');
         }
 
+        log_message('info', 'Showing login view');
         return view('auth/login');
     }
 
@@ -42,15 +65,23 @@ class Auth extends BaseController
         $remember = $this->request->getPost('remember');
 
         // Check if user exists by username or email
-        $user = $this->userModel
-            ->where('username', $username)
-            ->orWhere('email', $username)
-            ->first();
+        $user = $this->userModel->getUserByUsernameOrEmail($username);
 
         if (!$user) {
             return redirect()->back()
                 ->withInput()
                 ->with('error', 'Username atau email tidak ditemukan');
+        }
+
+        // Normalize field names for compatibility
+        if (isset($user['id_user']) && !isset($user['id'])) {
+            $user['id'] = $user['id_user'];
+        }
+        if (isset($user['password_hash']) && !isset($user['password'])) {
+            $user['password'] = $user['password_hash'];
+        }
+        if (isset($user['peran']) && !isset($user['role'])) {
+            $user['role'] = $user['peran'];
         }
 
         // Verify password
@@ -60,8 +91,8 @@ class Auth extends BaseController
                 ->with('error', 'Password salah');
         }
 
-        // Check if user is active
-        if ($user['status'] !== 'aktif') {
+        // Check if user is active (skip if status field doesn't exist)
+        if (isset($user['status']) && $user['status'] !== 'aktif') {
             return redirect()->back()
                 ->withInput()
                 ->with('error', 'Akun Anda belum aktif atau telah dinonaktifkan');
@@ -87,12 +118,19 @@ class Auth extends BaseController
             setcookie('remember_token', $token, time() + (86400 * 30), '/');
         }
 
-        // Update last login
+        // Update diperbarui_pada (last activity)
         $this->userModel->update($user['id'], [
-            'last_login' => date('Y-m-d H:i:s')
+            'diperbarui_pada' => date('Y-m-d H:i:s')
         ]);
 
-        return redirect()->to('/')
+        // Redirect based on role
+        if ($user['role'] === 'admin') {
+            $redirectUrl = 'admin/dashboard';
+        } else {
+            $redirectUrl = 'user/dashboard';
+        }
+
+        return redirect()->to($redirectUrl)
             ->with('success', 'Selamat datang, ' . $user['nama_lengkap'] . '!');
     }
 
@@ -113,6 +151,7 @@ class Auth extends BaseController
             'username' => 'required|min_length[3]|max_length[50]|is_unique[user.username]',
             'email' => 'required|valid_email|is_unique[user.email]',
             'no_hp' => 'required|min_length[10]|max_length[15]',
+            'peran' => 'required|in_list[atlet,pelatih,ofisial]',
             'password' => 'required|min_length[8]',
             'password_confirm' => 'required|matches[password]',
             'terms' => 'required'
@@ -129,6 +168,10 @@ class Auth extends BaseController
             'password_confirm' => [
                 'matches' => 'Konfirmasi password tidak cocok'
             ],
+            'peran' => [
+                'required' => 'Silakan pilih peran Anda',
+                'in_list' => 'Peran yang dipilih tidak valid'
+            ],
             'terms' => [
                 'required' => 'Anda harus menyetujui syarat dan ketentuan'
             ]
@@ -142,14 +185,15 @@ class Auth extends BaseController
 
         // Prepare data
         $data = [
+            'id_user' => $this->generateUUID(),
             'nama_lengkap' => $this->request->getPost('nama_lengkap'),
             'username' => $this->request->getPost('username'),
             'email' => $this->request->getPost('email'),
-            'no_hp' => $this->request->getPost('no_hp'),
-            'password' => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT),
-            'role' => 'user', // Default role
-            'status' => 'aktif', // Auto activate, or set to 'pending' for manual activation
-            'created_at' => date('Y-m-d H:i:s')
+            'nohp' => $this->request->getPost('no_hp'),
+            'password_hash' => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT),
+            'peran' => $this->request->getPost('peran'),
+            'dibuat_pada' => date('Y-m-d H:i:s'),
+            'diperbarui_pada' => date('Y-m-d H:i:s')
         ];
 
         // Insert user

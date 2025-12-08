@@ -8,73 +8,64 @@ class OrganisasiModel extends Model
 {
     protected $table = 'organisasi';
     protected $primaryKey = 'id_organisasi';
+    protected $useAutoIncrement = false;
+    protected $returnType = 'array';
+    protected $useSoftDeletes = false;
+    protected $protectFields = true;
     protected $allowedFields = [
+        'id_organisasi',
         'nama_organisasi',
         'jenis',
         'id_induk_organisasi',
         'alamat',
         'nohp'
     ];
+
     protected $useTimestamps = false;
+    protected $dateFormat = 'datetime';
+    protected $createdField = 'dibuat_pada';
+    protected $updatedField = 'diperbarui_pada';
 
-    /**
-     * Get all organisasi
-     */
-    public function getAllOrganisasi()
-    {
-        return $this->orderBy('nama_organisasi', 'ASC')->findAll();
-    }
+    protected $validationRules = [
+        'nama_organisasi' => 'required|min_length[3]|max_length[100]',
+        'jenis' => 'required|in_list[provinsi,kabupaten]',
+        'alamat' => 'permit_empty|min_length[10]'
+    ];
 
-    /**
-     * Get organisasi by jenis
-     */
+    protected $validationMessages = [
+        'nama_organisasi' => [
+            'required' => 'Nama organisasi harus diisi',
+            'min_length' => 'Nama organisasi minimal 3 karakter',
+            'max_length' => 'Nama organisasi maksimal 100 karakter'
+        ],
+        'jenis' => [
+            'required' => 'Jenis organisasi harus dipilih',
+            'in_list' => 'Jenis organisasi tidak valid'
+        ],
+        'alamat' => [
+            'min_length' => 'Alamat minimal 10 karakter'
+        ]
+    ];
+
     public function getOrganisasiByJenis($jenis)
     {
-        return $this->where('jenis', $jenis)
-            ->orderBy('nama_organisasi', 'ASC')
-            ->findAll();
+        return $this->where('jenis', $jenis)->findAll();
     }
 
-    /**
-     * Get organisasi provinsi
-     */
     public function getOrganisasiProvinsi()
     {
         return $this->where('jenis', 'provinsi')->findAll();
     }
 
-    /**
-     * Get organisasi kabupaten
-     */
     public function getOrganisasiKabupaten()
     {
         return $this->where('jenis', 'kabupaten')->findAll();
     }
 
-    /**
-     * Get organisasi with induk
-     */
     public function getOrganisasiWithInduk()
     {
         return $this->select('organisasi.*, induk.nama_organisasi as nama_induk')
             ->join('organisasi as induk', 'induk.id_organisasi = organisasi.id_induk_organisasi', 'left')
-            ->orderBy('organisasi.nama_organisasi', 'ASC')
             ->findAll();
-    }
-
-    /**
-     * Get organisasi by ID
-     */
-    public function getOrganisasiById($idOrganisasi)
-    {
-        return $this->find($idOrganisasi);
-    }
-
-    /**
-     * Get total organisasi
-     */
-    public function getTotalOrganisasi()
-    {
-        return $this->countAll();
     }
 }

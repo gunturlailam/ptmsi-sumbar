@@ -8,7 +8,12 @@ class KlubModel extends Model
 {
     protected $table = 'klub';
     protected $primaryKey = 'id_klub';
+    protected $useAutoIncrement = false;
+    protected $returnType = 'array';
+    protected $useSoftDeletes = false;
+    protected $protectFields = true;
     protected $allowedFields = [
+        'id_klub',
         'id_organisasi',
         'nama',
         'alamat',
@@ -17,67 +22,57 @@ class KlubModel extends Model
         'tanggal_berdiri',
         'status'
     ];
-    protected $useTimestamps = false;
 
-    /**
-     * Get all klub with organisasi info
-     */
+    protected $useTimestamps = false;
+    protected $dateFormat = 'datetime';
+    protected $createdField = 'dibuat_pada';
+    protected $updatedField = 'diperbarui_pada';
+
+    protected $validationRules = [
+        'nama' => 'required|min_length[3]|max_length[100]',
+        'alamat' => 'permit_empty|min_length[10]',
+        'penanggung_jawab' => 'permit_empty|min_length[3]',
+        'telepon' => 'permit_empty|min_length[10]',
+        'tanggal_berdiri' => 'permit_empty|valid_date'
+    ];
+
+    protected $validationMessages = [
+        'nama' => [
+            'required' => 'Nama klub harus diisi',
+            'min_length' => 'Nama klub minimal 3 karakter',
+            'max_length' => 'Nama klub maksimal 100 karakter'
+        ],
+        'alamat' => [
+            'min_length' => 'Alamat minimal 10 karakter'
+        ],
+        'penanggung_jawab' => [
+            'min_length' => 'Penanggung jawab minimal 3 karakter'
+        ],
+        'telepon' => [
+            'min_length' => 'Telepon minimal 10 karakter'
+        ],
+        'tanggal_berdiri' => [
+            'valid_date' => 'Format tanggal tidak valid'
+        ]
+    ];
+
     public function getKlubWithOrganisasi()
     {
         return $this->select('klub.*, organisasi.nama_organisasi')
             ->join('organisasi', 'organisasi.id_organisasi = klub.id_organisasi', 'left')
-            ->orderBy('klub.nama', 'ASC')
             ->findAll();
     }
 
-    /**
-     * Get klub by organisasi
-     */
-    public function getKlubByOrganisasi($idOrganisasi)
+    public function getKlubById($id)
     {
         return $this->select('klub.*, organisasi.nama_organisasi')
             ->join('organisasi', 'organisasi.id_organisasi = klub.id_organisasi', 'left')
-            ->where('klub.id_organisasi', $idOrganisasi)
-            ->orderBy('klub.nama', 'ASC')
-            ->findAll();
-    }
-
-    /**
-     * Get klub by ID with organisasi info
-     */
-    public function getKlubById($idKlub)
-    {
-        return $this->select('klub.*, organisasi.nama_organisasi')
-            ->join('organisasi', 'organisasi.id_organisasi = klub.id_organisasi', 'left')
-            ->where('klub.id_klub', $idKlub)
+            ->where('klub.id_klub', $id)
             ->first();
     }
 
-    /**
-     * Search klub by name
-     */
-    public function searchKlub($keyword)
+    public function getKlubByOrganisasi($organisasiId)
     {
-        return $this->select('klub.*, organisasi.nama_organisasi')
-            ->join('organisasi', 'organisasi.id_organisasi = klub.id_organisasi', 'left')
-            ->like('klub.nama', $keyword)
-            ->orderBy('klub.nama', 'ASC')
-            ->findAll();
-    }
-
-    /**
-     * Get total klub
-     */
-    public function getTotalKlub()
-    {
-        return $this->countAll();
-    }
-
-    /**
-     * Get klub aktif
-     */
-    public function getKlubAktif()
-    {
-        return $this->where('status', 'aktif')->countAllResults();
+        return $this->where('id_organisasi', $organisasiId)->findAll();
     }
 }

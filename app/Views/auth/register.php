@@ -473,6 +473,22 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="peran">Daftar Sebagai</label>
+                    <div style="position: relative;">
+                        <i class="bi bi-person-badge-fill input-icon"></i>
+                        <select id="peran" name="peran" class="form-control-modern" required>
+                            <option value="">Pilih peran Anda</option>
+                            <option value="atlet" <?= old('peran') === 'atlet' ? 'selected' : '' ?>>Atlet - Peserta kompetisi tenis meja</option>
+                            <option value="pelatih" <?= old('peran') === 'pelatih' ? 'selected' : '' ?>>Pelatih - Pembina dan pelatih atlet</option>
+                            <option value="ofisial" <?= old('peran') === 'ofisial' ? 'selected' : '' ?>>Ofisial - Wasit dan juri pertandingan</option>
+                        </select>
+                    </div>
+                    <small class="text-muted mt-2 d-block">
+                        <i class="bi bi-info-circle"></i> Pilih peran sesuai dengan aktivitas Anda di PTMSI Sumbar
+                    </small>
+                </div>
+
+                <div class="form-group">
                     <label for="password">Password</label>
                     <div style="position: relative;">
                         <i class="bi bi-lock-fill input-icon"></i>

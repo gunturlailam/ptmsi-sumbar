@@ -7,40 +7,37 @@ use CodeIgniter\Model;
 class UserModel extends Model
 {
     protected $table = 'user';
-    protected $primaryKey = 'id';
-    protected $useAutoIncrement = true;
+    protected $primaryKey = 'id_user';
+    protected $useAutoIncrement = false; // Using UUID
     protected $returnType = 'array';
     protected $useSoftDeletes = false;
     protected $protectFields = true;
     protected $allowedFields = [
+        'id_user',
         'username',
         'email',
-        'password',
+        'password_hash',
         'nama_lengkap',
-        'no_hp',
-        'role',
-        'status',
-        'foto',
-        'last_login',
-        'created_at',
-        'updated_at'
+        'nohp',
+        'peran',
+        'dibuat_pada',
+        'diperbarui_pada'
     ];
 
     // Dates
     protected $useTimestamps = false;
     protected $dateFormat = 'datetime';
-    protected $createdField = 'created_at';
-    protected $updatedField = 'updated_at';
+    protected $createdField = 'dibuat_pada';
+    protected $updatedField = 'diperbarui_pada';
     protected $deletedField = 'deleted_at';
 
     // Validation
     protected $validationRules = [
-        'username' => 'required|min_length[3]|max_length[50]|is_unique[user.username,id,{id}]',
-        'email' => 'required|valid_email|is_unique[user.email,id,{id}]',
-        'password' => 'required|min_length[8]',
+        'username' => 'required|min_length[3]|max_length[50]|is_unique[user.username,id_user,{id_user}]',
+        'email' => 'required|valid_email|is_unique[user.email,id_user,{id_user}]',
+        'password_hash' => 'permit_empty|min_length[8]',
         'nama_lengkap' => 'required|min_length[3]|max_length[100]',
-        'role' => 'required|in_list[admin,user,atlet,pelatih,pengurus]',
-        'status' => 'required|in_list[aktif,nonaktif,pending]'
+        'peran' => 'permit_empty|in_list[admin,user,atlet,pelatih,pengurus]'
     ];
 
     protected $validationMessages = [
@@ -55,8 +52,7 @@ class UserModel extends Model
             'valid_email' => 'Email tidak valid',
             'is_unique' => 'Email sudah terdaftar'
         ],
-        'password' => [
-            'required' => 'Password harus diisi',
+        'password_hash' => [
             'min_length' => 'Password minimal 8 karakter'
         ],
         'nama_lengkap' => [
@@ -64,13 +60,8 @@ class UserModel extends Model
             'min_length' => 'Nama lengkap minimal 3 karakter',
             'max_length' => 'Nama lengkap maksimal 100 karakter'
         ],
-        'role' => [
-            'required' => 'Role harus diisi',
+        'peran' => [
             'in_list' => 'Role tidak valid'
-        ],
-        'status' => [
-            'required' => 'Status harus diisi',
-            'in_list' => 'Status tidak valid'
         ]
     ];
 
@@ -87,12 +78,24 @@ class UserModel extends Model
      */
     protected function hashPassword(array $data)
     {
+        // Handle 'password' field
         if (isset($data['data']['password'])) {
             // Only hash if password is not already hashed
             if (strlen($data['data']['password']) < 60) {
                 $data['data']['password'] = password_hash($data['data']['password'], PASSWORD_DEFAULT);
+                // Also set password_hash for compatibility
+                $data['data']['password_hash'] = $data['data']['password'];
             }
         }
+
+        // Handle 'password_hash' field
+        if (isset($data['data']['password_hash'])) {
+            // Only hash if password is not already hashed
+            if (strlen($data['data']['password_hash']) < 60) {
+                $data['data']['password_hash'] = password_hash($data['data']['password_hash'], PASSWORD_DEFAULT);
+            }
+        }
+
         return $data;
     }
 
@@ -101,35 +104,40 @@ class UserModel extends Model
      */
     public function getUserByUsernameOrEmail($identifier)
     {
-        return $this->where('username', $identifier)
+        $user = $this->where('username', $identifier)
             ->orWhere('email', $identifier)
             ->first();
+
+        // Normalize field names for compatibility
+        if ($user) {
+            if (isset($user['password_hash']) && !isset($user['password'])) {
+                $user['password'] = $user['password_hash'];
+            }
+            if (isset($user['peran']) && !isset($user['role'])) {
+                $user['role'] = $user['peran'];
+            }
+            if (isset($user['nohp']) && !isset($user['no_hp'])) {
+                $user['no_hp'] = $user['nohp'];
+            }
+        }
+
+        return $user;
     }
 
     /**
-     * Get active users
+     * Get all users
      */
-    public function getActiveUsers()
+    public function getAllUsers()
     {
-        return $this->where('status', 'aktif')->findAll();
+        return $this->findAll();
     }
 
     /**
-     * Get users by role
+     * Get users by role (peran)
      */
     public function getUsersByRole($role)
     {
-        return $this->where('role', $role)->findAll();
-    }
-
-    /**
-     * Update last login
-     */
-    public function updateLastLogin($userId)
-    {
-        return $this->update($userId, [
-            'last_login' => date('Y-m-d H:i:s')
-        ]);
+        return $this->where('peran', $role)->findAll();
     }
 
     /**
@@ -139,7 +147,7 @@ class UserModel extends Model
     {
         $builder = $this->where('username', $username);
         if ($excludeId) {
-            $builder->where('id !=', $excludeId);
+            $builder->where('id_user !=', $excludeId);
         }
         return $builder->countAllResults() > 0;
     }
@@ -151,7 +159,7 @@ class UserModel extends Model
     {
         $builder = $this->where('email', $email);
         if ($excludeId) {
-            $builder->where('id !=', $excludeId);
+            $builder->where('id_user !=', $excludeId);
         }
         return $builder->countAllResults() > 0;
     }

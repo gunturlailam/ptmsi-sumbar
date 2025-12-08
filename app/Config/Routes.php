@@ -57,3 +57,117 @@ $routes->post('auth/forgot-password', 'Auth::sendResetLink');
 $routes->get('login', 'Auth::login');
 $routes->get('register', 'Auth::register');
 $routes->get('logout', 'Auth::logout');
+
+// User Dashboard Routes (Protected)
+$routes->group('user', ['namespace' => 'App\Controllers\User'], function ($routes) {
+    $routes->get('dashboard', 'Dashboard::index');
+    $routes->get('profile', 'Dashboard::profile');
+    $routes->post('profile/update', 'Dashboard::updateProfile');
+});
+
+
+
+// Admin Routes (Protected)
+$routes->group('admin', ['namespace' => 'App\Controllers\Admin'], function ($routes) {
+    $routes->get('/', 'Dashboard::index');
+    $routes->get('dashboard', 'Dashboard::index');
+
+    // Berita
+    $routes->get('berita', 'Berita::index');
+    $routes->get('berita/create', 'Berita::create');
+    $routes->post('berita/store', 'Berita::store');
+    $routes->get('berita/edit/(:num)', 'Berita::edit/$1');
+    $routes->post('berita/update/(:num)', 'Berita::update/$1');
+    $routes->get('berita/delete/(:num)', 'Berita::delete/$1');
+
+    // Event
+    $routes->get('event', 'Event::index');
+    $routes->get('event/create', 'Event::create');
+    $routes->post('event/store', 'Event::store');
+    $routes->get('event/edit/(:num)', 'Event::edit/$1');
+    $routes->post('event/update/(:num)', 'Event::update/$1');
+    $routes->get('event/delete/(:num)', 'Event::delete/$1');
+
+    // Atlet
+    $routes->get('atlet', 'Atlet::index');
+    $routes->get('atlet/get/(:segment)', 'Atlet::get/$1');
+    $routes->get('atlet/create', 'Atlet::create');
+    $routes->post('atlet/store', 'Atlet::store');
+    $routes->get('atlet/edit/(:segment)', 'Atlet::edit/$1');
+    $routes->post('atlet/update/(:segment)', 'Atlet::update/$1');
+    $routes->post('atlet/delete/(:segment)', 'Atlet::delete/$1');
+
+    // Pelatih
+    $routes->get('pelatih', 'Pelatih::index');
+    $routes->get('pelatih/get/(:segment)', 'Pelatih::get/$1');
+    $routes->get('pelatih/create', 'Pelatih::create');
+    $routes->post('pelatih/store', 'Pelatih::store');
+    $routes->get('pelatih/edit/(:segment)', 'Pelatih::edit/$1');
+    $routes->post('pelatih/update/(:segment)', 'Pelatih::update/$1');
+    $routes->post('pelatih/delete/(:segment)', 'Pelatih::delete/$1');
+
+    // Klub
+    $routes->get('klub', 'Klub::index');
+    $routes->get('klub/get/(:num)', 'Klub::get/$1');
+    $routes->get('klub/create', 'Klub::create');
+    $routes->post('klub/store', 'Klub::store');
+    $routes->get('klub/edit/(:num)', 'Klub::edit/$1');
+    $routes->post('klub/update/(:num)', 'Klub::update/$1');
+    $routes->post('klub/delete/(:num)', 'Klub::delete/$1');
+
+    // Pengurus
+    $routes->get('pengurus', 'Pengurus::index');
+    $routes->get('pengurus/get/(:num)', 'Pengurus::get/$1');
+    $routes->get('pengurus/create', 'Pengurus::create');
+    $routes->post('pengurus/store', 'Pengurus::store');
+    $routes->get('pengurus/edit/(:num)', 'Pengurus::edit/$1');
+    $routes->post('pengurus/update/(:num)', 'Pengurus::update/$1');
+    $routes->post('pengurus/delete/(:num)', 'Pengurus::delete/$1');
+
+    // Galeri
+    $routes->get('galeri', 'Galeri::index');
+    $routes->get('galeri/create', 'Galeri::create');
+    $routes->post('galeri/store', 'Galeri::store');
+    $routes->get('galeri/delete/(:num)', 'Galeri::delete/$1');
+
+    // Dokumen
+    $routes->get('dokumen', 'Dokumen::index');
+    $routes->get('dokumen/create', 'Dokumen::create');
+    $routes->post('dokumen/store', 'Dokumen::store');
+    $routes->get('dokumen/edit/(:num)', 'Dokumen::edit/$1');
+    $routes->post('dokumen/update/(:num)', 'Dokumen::update/$1');
+    $routes->get('dokumen/delete/(:num)', 'Dokumen::delete/$1');
+
+    // Pendaftaran
+    $routes->get('pendaftaran/atlet', 'Pendaftaran::atlet');
+    $routes->get('pendaftaran/klub', 'Pendaftaran::klub');
+    $routes->get('pendaftaran/event', 'Pendaftaran::event');
+    $routes->post('pendaftaran/approve/(:num)', 'Pendaftaran::approve/$1');
+    $routes->post('pendaftaran/reject/(:num)', 'Pendaftaran::reject/$1');
+
+    // Sertifikasi
+    $routes->get('sertifikasi', 'Sertifikasi::index');
+    $routes->post('sertifikasi/approve/(:num)', 'Sertifikasi::approve/$1');
+    $routes->post('sertifikasi/reject/(:num)', 'Sertifikasi::reject/$1');
+
+    // Pesan Kontak
+    $routes->get('pesan', 'Pesan::index');
+    $routes->get('pesan/view/(:num)', 'Pesan::view/$1');
+    $routes->get('pesan/delete/(:num)', 'Pesan::delete/$1');
+
+    // Users
+    $routes->get('users', 'Users::index');
+    $routes->get('users/create', 'Users::create');
+    $routes->post('users/store', 'Users::store');
+    $routes->get('users/edit/(:num)', 'Users::edit/$1');
+    $routes->post('users/update/(:num)', 'Users::update/$1');
+    $routes->get('users/delete/(:num)', 'Users::delete/$1');
+
+    // Settings
+    $routes->get('settings', 'Settings::index');
+    $routes->post('settings/update', 'Settings::update');
+
+    // Profile
+    $routes->get('profile', 'Profile::index');
+    $routes->post('profile/update', 'Profile::update');
+});

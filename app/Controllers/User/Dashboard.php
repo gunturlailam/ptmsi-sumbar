@@ -1,0 +1,148 @@
+<?php
+
+namespace App\Controllers\User;
+
+use App\Controllers\BaseController;
+use App\Models\UserModel;
+use App\Models\AtletModel;
+use App\Models\PelatihModel;
+use App\Models\OfisialModel;
+
+class Dashboard extends BaseController
+{
+    protected $userModel;
+    protected $atletModel;
+    protected $pelatihModel;
+    protected $ofisialModel;
+
+    public function __construct()
+    {
+        if (!session()->get('logged_in')) {
+            redirect()->to('auth/login')->send();
+            exit;
+        }
+
+        $this->userModel = new UserModel();
+        $this->atletModel = new AtletModel();
+        $this->pelatihModel = new PelatihModel();
+        $this->ofisialModel = new OfisialModel();
+    }
+
+    public function index()
+    {
+        $userId = session()->get('user_id');
+        $userRole = session()->get('role');
+
+        // Get user data
+        $user = $this->userModel->find($userId);
+
+        $data = [
+            'title' => 'Dashboard Saya',
+            'user' => $user,
+            'role' => $userRole
+        ];
+
+        // Add role-specific data
+        switch ($userRole) {
+            case 'atlet':
+                $data['atlet_data'] = $this->getAtletData($userId);
+                break;
+            case 'pelatih':
+                $data['pelatih_data'] = $this->getPelatihData($userId);
+                break;
+            case 'ofisial':
+                $data['ofisial_data'] = $this->getOfisialData($userId);
+                break;
+        }
+
+        return view('user/dashboard', $data);
+    }
+
+    private function getAtletData($userId)
+    {
+        // Get athlete-specific data
+        $atlet = $this->atletModel->where('id_user', $userId)->first();
+
+        return [
+            'profile' => $atlet,
+            'competitions' => [], // Add competition data later
+            'achievements' => [], // Add achievement data later
+            'ranking' => null // Add ranking data later
+        ];
+    }
+
+    private function getPelatihData($userId)
+    {
+        // Get coach-specific data
+        $pelatih = $this->pelatihModel->where('id_user', $userId)->first();
+
+        return [
+            'profile' => $pelatih,
+            'athletes' => [], // Add athletes under this coach
+            'certifications' => [], // Add certification data
+            'schedule' => [] // Add training schedule
+        ];
+    }
+
+    private function getOfisialData($userId)
+    {
+        // Get official-specific data
+        $ofisial = $this->ofisialModel->where('id_user', $userId)->first();
+
+        return [
+            'profile' => $ofisial,
+            'events' => [], // Add events they're officiating
+            'licenses' => [], // Add license data
+            'assignments' => [] // Add assignment data
+        ];
+    }
+
+    public function profile()
+    {
+        $userId = session()->get('user_id');
+        $user = $this->userModel->find($userId);
+
+        $data = [
+            'title' => 'Profil Saya',
+            'user' => $user
+        ];
+
+        return view('user/profile', $data);
+    }
+
+    public function updateProfile()
+    {
+        $userId = session()->get('user_id');
+
+        $rules = [
+            'nama_lengkap' => 'required|min_length[3]|max_length[100]',
+            'email' => "required|valid_email|is_unique[user.email,id_user,{$userId}]",
+            'nohp' => 'required|min_length[10]|max_length[15]'
+        ];
+
+        if (!$this->validate($rules)) {
+            return redirect()->back()
+                ->withInput()
+                ->with('error', implode('<br>', $this->validator->getErrors()));
+        }
+
+        $data = [
+            'nama_lengkap' => $this->request->getPost('nama_lengkap'),
+            'email' => $this->request->getPost('email'),
+            'nohp' => $this->request->getPost('nohp'),
+            'diperbarui_pada' => date('Y-m-d H:i:s')
+        ];
+
+        if ($this->userModel->update($userId, $data)) {
+            // Update session data
+            session()->set([
+                'nama_lengkap' => $data['nama_lengkap'],
+                'email' => $data['email']
+            ]);
+
+            return redirect()->back()->with('success', 'Profil berhasil diperbarui');
+        }
+
+        return redirect()->back()->with('error', 'Gagal memperbarui profil');
+    }
+}

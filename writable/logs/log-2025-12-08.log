@@ -1,0 +1,1960 @@
+ERROR - 2025-12-08 01:50:02 --> Error connecting to the database: mysqli_sql_exception: No connection could be made because the target machine actively refused it in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:201
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(201): mysqli->real_connect('localhost', 'root', Object(SensitiveParameterValue), 'ptmsi_sumbar', 3306, '', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(419): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(614): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `event`....', Array, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\ptmsi-sumbar\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\ptmsi-sumbar\app\Models\EventModel.php(37): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\ptmsi-sumbar\app\Controllers\Beranda.php(33): App\Models\EventModel->getEventWithDetails()
+#8 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\Beranda->index()
+#9 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Beranda))
+#10 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: No connection could be made because the target machine actively refused it in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:246
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(419): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(614): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `event`....', Array, false)
+#3 C:\laragon\www\ptmsi-sumbar\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\laragon\www\ptmsi-sumbar\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#5 C:\laragon\www\ptmsi-sumbar\app\Models\EventModel.php(37): CodeIgniter\BaseModel->findAll()
+#6 C:\laragon\www\ptmsi-sumbar\app\Controllers\Beranda.php(33): App\Models\EventModel->getEventWithDetails()
+#7 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\Beranda->index()
+#8 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Beranda))
+#9 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#14 {main}
+CRITICAL - 2025-12-08 01:50:02 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: No connection could be made because the target machine actively refused it
+[Method: GET, Route: /]
+in SYSTEMPATH\Database\BaseConnection.php on line 465.
+ 1 SYSTEMPATH\Database\BaseConnection.php(614): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `event`.*, `turnamen`.`nama` as `nama_turnamen`, `turnamen`.`tingkat`, `turnamen`.`tahun_musim`, `klub`.`nama` as `nama_klub_penyelenggara`
+FROM `event`
+JOIN `turnamen` ON `turnamen`.`id_turnamen` = `event`.`id_turnamen`
+JOIN `klub` ON `klub`.`id_klub` = `event`.`id_klub_penyelenggara`', [], false)
+ 3 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH\Models\EventModel.php(37): CodeIgniter\BaseModel->findAll()
+ 6 APPPATH\Controllers\Beranda.php(33): App\Models\EventModel->getEventWithDetails()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Beranda->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Beranda))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+ERROR - 2025-12-08 01:50:28 --> Error connecting to the database: mysqli_sql_exception: No connection could be made because the target machine actively refused it in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:201
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(201): mysqli->real_connect('localhost', 'root', Object(SensitiveParameterValue), 'ptmsi_sumbar', 3306, '', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(419): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(614): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `event`....', Array, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\ptmsi-sumbar\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\ptmsi-sumbar\app\Models\EventModel.php(37): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\ptmsi-sumbar\app\Controllers\Beranda.php(33): App\Models\EventModel->getEventWithDetails()
+#8 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\Beranda->index()
+#9 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Beranda))
+#10 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: No connection could be made because the target machine actively refused it in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:246
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(419): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(614): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `event`....', Array, false)
+#3 C:\laragon\www\ptmsi-sumbar\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\laragon\www\ptmsi-sumbar\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#5 C:\laragon\www\ptmsi-sumbar\app\Models\EventModel.php(37): CodeIgniter\BaseModel->findAll()
+#6 C:\laragon\www\ptmsi-sumbar\app\Controllers\Beranda.php(33): App\Models\EventModel->getEventWithDetails()
+#7 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\Beranda->index()
+#8 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Beranda))
+#9 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#14 {main}
+CRITICAL - 2025-12-08 01:50:28 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: No connection could be made because the target machine actively refused it
+[Method: GET, Route: /]
+in SYSTEMPATH\Database\BaseConnection.php on line 465.
+ 1 SYSTEMPATH\Database\BaseConnection.php(614): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `event`.*, `turnamen`.`nama` as `nama_turnamen`, `turnamen`.`tingkat`, `turnamen`.`tahun_musim`, `klub`.`nama` as `nama_klub_penyelenggara`
+FROM `event`
+JOIN `turnamen` ON `turnamen`.`id_turnamen` = `event`.`id_turnamen`
+JOIN `klub` ON `klub`.`id_klub` = `event`.`id_klub_penyelenggara`', [], false)
+ 3 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH\Models\EventModel.php(37): CodeIgniter\BaseModel->findAll()
+ 6 APPPATH\Controllers\Beranda.php(33): App\Models\EventModel->getEventWithDetails()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Beranda->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Beranda))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+DEBUG - 2025-12-08 01:52:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 01:52:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 01:52:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 01:53:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 02:07:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 02:07:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 02:08:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 02:08:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 02:08:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-08 02:08:37 --> ErrorException: Undefined array key "gambar"
+[Method: GET, Route: admin/berita]
+in APPPATH\Views\admin\berita\index.php on line 62.
+ 1 APPPATH\Views\admin\berita\index.php(62): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "gambar"', 'C:\\laragon\\www\\ptmsi-sumbar\\app\\Views\\admin\\berita\\index.php', 62)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\laragon\\www\\ptmsi-sumbar\\app\\Views\\admin\\berita\\index.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('admin/berita/index', [], true)
+ 5 APPPATH\Controllers\Admin\Berita.php(35): view('admin/berita/index', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\Berita->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Berita))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+DEBUG - 2025-12-08 02:08:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 02:08:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-08 02:08:46 --> ErrorException: Undefined array key "gambar"
+[Method: GET, Route: admin/berita]
+in APPPATH\Views\admin\berita\index.php on line 62.
+ 1 APPPATH\Views\admin\berita\index.php(62): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "gambar"', 'C:\\laragon\\www\\ptmsi-sumbar\\app\\Views\\admin\\berita\\index.php', 62)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\laragon\\www\\ptmsi-sumbar\\app\\Views\\admin\\berita\\index.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('admin/berita/index', [], true)
+ 5 APPPATH\Controllers\Admin\Berita.php(35): view('admin/berita/index', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\Berita->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Berita))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+DEBUG - 2025-12-08 02:08:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 02:09:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-08 02:09:04 --> mysqli_sql_exception: Unknown column 'klub.nama_klub' in 'field list' in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `atlet`....', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `atlet`....')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `atlet`....')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `atlet`....', Array, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\ptmsi-sumbar\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\ptmsi-sumbar\app\Models\AtletModel.php(70): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\ptmsi-sumbar\app\Controllers\Admin\Atlet.php(32): App\Models\AtletModel->getAtletWithUser()
+#8 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\Admin\Atlet->index()
+#9 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Atlet))
+#10 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+CRITICAL - 2025-12-08 02:09:04 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'klub.nama_klub' in 'field list'
+[Method: GET, Route: admin/atlet]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`', [], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\AtletModel.php(70): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\Admin\Atlet.php(32): App\Models\AtletModel->getAtletWithUser()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\Atlet->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Atlet))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-08 02:09:04 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'klub.nama_klub' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`', [], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Models\AtletModel.php(70): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH\Controllers\Admin\Atlet.php(32): App\Models\AtletModel->getAtletWithUser()
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\Atlet->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Atlet))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-08 02:09:04 --> [Caused by] mysqli_sql_exception: Unknown column 'klub.nama_klub' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`', [], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\AtletModel.php(70): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Admin\Atlet.php(32): App\Models\AtletModel->getAtletWithUser()
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\Atlet->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Atlet))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+DEBUG - 2025-12-08 02:12:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-08 02:12:22 --> mysqli_sql_exception: Unknown column 'klub.nama_klub' in 'field list' in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `atlet`....', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `atlet`....')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `atlet`....')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `atlet`....', Array, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\ptmsi-sumbar\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\ptmsi-sumbar\app\Models\AtletModel.php(70): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\ptmsi-sumbar\app\Controllers\Admin\Atlet.php(32): App\Models\AtletModel->getAtletWithUser()
+#8 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\Admin\Atlet->index()
+#9 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Atlet))
+#10 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+CRITICAL - 2025-12-08 02:12:22 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'klub.nama_klub' in 'field list'
+[Method: GET, Route: admin/atlet]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`', [], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\AtletModel.php(70): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\Admin\Atlet.php(32): App\Models\AtletModel->getAtletWithUser()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\Atlet->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Atlet))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-08 02:12:22 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'klub.nama_klub' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`', [], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Models\AtletModel.php(70): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH\Controllers\Admin\Atlet.php(32): App\Models\AtletModel->getAtletWithUser()
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\Atlet->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Atlet))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-08 02:12:22 --> [Caused by] mysqli_sql_exception: Unknown column 'klub.nama_klub' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`', [], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\AtletModel.php(70): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Admin\Atlet.php(32): App\Models\AtletModel->getAtletWithUser()
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\Atlet->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Atlet))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+DEBUG - 2025-12-08 02:12:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-08 02:12:26 --> mysqli_sql_exception: Unknown column 'klub.nama_klub' in 'field list' in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `atlet`....', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `atlet`....')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `atlet`....')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `atlet`....', Array, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\ptmsi-sumbar\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\ptmsi-sumbar\app\Models\AtletModel.php(70): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\ptmsi-sumbar\app\Controllers\Admin\Atlet.php(32): App\Models\AtletModel->getAtletWithUser()
+#8 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\Admin\Atlet->index()
+#9 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Atlet))
+#10 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+CRITICAL - 2025-12-08 02:12:26 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'klub.nama_klub' in 'field list'
+[Method: GET, Route: admin/atlet]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`', [], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\AtletModel.php(70): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\Admin\Atlet.php(32): App\Models\AtletModel->getAtletWithUser()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\Atlet->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Atlet))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-08 02:12:26 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'klub.nama_klub' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`', [], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Models\AtletModel.php(70): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH\Controllers\Admin\Atlet.php(32): App\Models\AtletModel->getAtletWithUser()
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\Atlet->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Atlet))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-08 02:12:26 --> [Caused by] mysqli_sql_exception: Unknown column 'klub.nama_klub' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`', [], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\AtletModel.php(70): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Admin\Atlet.php(32): App\Models\AtletModel->getAtletWithUser()
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\Atlet->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Atlet))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+DEBUG - 2025-12-08 02:12:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 02:12:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 02:13:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 02:13:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 02:15:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 02:15:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 02:17:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 02:17:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 02:18:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 02:18:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-08 02:18:33 --> mysqli_sql_exception: Unknown column 'klub.nama_klub' in 'field list' in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `atlet`....', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `atlet`....')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `atlet`....')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `atlet`....', Array, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\ptmsi-sumbar\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\ptmsi-sumbar\app\Models\AtletModel.php(70): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\ptmsi-sumbar\app\Controllers\Admin\Atlet.php(32): App\Models\AtletModel->getAtletWithUser()
+#8 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\Admin\Atlet->index()
+#9 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Atlet))
+#10 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+CRITICAL - 2025-12-08 02:18:33 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'klub.nama_klub' in 'field list'
+[Method: GET, Route: admin/atlet]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`', [], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\AtletModel.php(70): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\Admin\Atlet.php(32): App\Models\AtletModel->getAtletWithUser()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\Atlet->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Atlet))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-08 02:18:33 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'klub.nama_klub' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`', [], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Models\AtletModel.php(70): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH\Controllers\Admin\Atlet.php(32): App\Models\AtletModel->getAtletWithUser()
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\Atlet->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Atlet))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-08 02:18:33 --> [Caused by] mysqli_sql_exception: Unknown column 'klub.nama_klub' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`', [], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\AtletModel.php(70): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Admin\Atlet.php(32): App\Models\AtletModel->getAtletWithUser()
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\Atlet->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Atlet))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+DEBUG - 2025-12-08 02:18:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-08 02:18:58 --> mysqli_sql_exception: Unknown column 'klub.nama_klub' in 'field list' in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `atlet`....', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `atlet`....')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `atlet`....')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `atlet`....', Array, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\ptmsi-sumbar\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\ptmsi-sumbar\app\Models\AtletModel.php(70): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\ptmsi-sumbar\app\Controllers\Admin\Atlet.php(32): App\Models\AtletModel->getAtletWithUser()
+#8 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\Admin\Atlet->index()
+#9 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Atlet))
+#10 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+CRITICAL - 2025-12-08 02:18:58 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'klub.nama_klub' in 'field list'
+[Method: GET, Route: admin/atlet]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`', [], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\AtletModel.php(70): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\Admin\Atlet.php(32): App\Models\AtletModel->getAtletWithUser()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\Atlet->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Atlet))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-08 02:18:58 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'klub.nama_klub' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`', [], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Models\AtletModel.php(70): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH\Controllers\Admin\Atlet.php(32): App\Models\AtletModel->getAtletWithUser()
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\Atlet->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Atlet))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-08 02:18:58 --> [Caused by] mysqli_sql_exception: Unknown column 'klub.nama_klub' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`', [], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\AtletModel.php(70): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Admin\Atlet.php(32): App\Models\AtletModel->getAtletWithUser()
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\Atlet->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Atlet))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+DEBUG - 2025-12-08 02:19:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-08 02:20:01 --> mysqli_sql_exception: Unknown column 'klub.nama_klub' in 'field list' in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `atlet`....', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `atlet`....')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `atlet`....')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `atlet`....', Array, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\ptmsi-sumbar\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\ptmsi-sumbar\app\Models\AtletModel.php(70): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\ptmsi-sumbar\app\Controllers\Admin\Atlet.php(32): App\Models\AtletModel->getAtletWithUser()
+#8 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\Admin\Atlet->index()
+#9 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Atlet))
+#10 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+CRITICAL - 2025-12-08 02:20:01 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'klub.nama_klub' in 'field list'
+[Method: GET, Route: admin/atlet]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub` as `nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`', [], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\AtletModel.php(70): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\Admin\Atlet.php(32): App\Models\AtletModel->getAtletWithUser()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\Atlet->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Atlet))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-08 02:20:01 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'klub.nama_klub' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub` as `nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub` as `nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub` as `nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`', [], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Models\AtletModel.php(70): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH\Controllers\Admin\Atlet.php(32): App\Models\AtletModel->getAtletWithUser()
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\Atlet->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Atlet))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-08 02:20:01 --> [Caused by] mysqli_sql_exception: Unknown column 'klub.nama_klub' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub` as `nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub` as `nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub` as `nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub` as `nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`', [], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\AtletModel.php(70): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Admin\Atlet.php(32): App\Models\AtletModel->getAtletWithUser()
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\Atlet->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Atlet))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+DEBUG - 2025-12-08 02:20:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-08 02:20:06 --> mysqli_sql_exception: Unknown column 'klub.nama_klub' in 'field list' in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `atlet`....', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `atlet`....')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `atlet`....')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `atlet`....', Array, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\ptmsi-sumbar\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\ptmsi-sumbar\app\Models\AtletModel.php(70): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\ptmsi-sumbar\app\Controllers\Admin\Atlet.php(32): App\Models\AtletModel->getAtletWithUser()
+#8 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\Admin\Atlet->index()
+#9 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Atlet))
+#10 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+CRITICAL - 2025-12-08 02:20:06 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'klub.nama_klub' in 'field list'
+[Method: GET, Route: admin/atlet]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub` as `nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`', [], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\AtletModel.php(70): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\Admin\Atlet.php(32): App\Models\AtletModel->getAtletWithUser()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\Atlet->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Atlet))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-08 02:20:06 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'klub.nama_klub' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub` as `nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub` as `nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub` as `nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`', [], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Models\AtletModel.php(70): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH\Controllers\Admin\Atlet.php(32): App\Models\AtletModel->getAtletWithUser()
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\Atlet->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Atlet))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-08 02:20:06 --> [Caused by] mysqli_sql_exception: Unknown column 'klub.nama_klub' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub` as `nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub` as `nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub` as `nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub` as `nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`', [], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\AtletModel.php(70): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Admin\Atlet.php(32): App\Models\AtletModel->getAtletWithUser()
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\Atlet->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Atlet))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+DEBUG - 2025-12-08 02:20:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 02:20:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-12-08 02:20:22 --> Login method called
+DEBUG - 2025-12-08 02:20:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-12-08 02:20:22 --> Showing login view
+DEBUG - 2025-12-08 02:20:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 02:20:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 02:20:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-08 02:20:55 --> mysqli_sql_exception: Unknown column 'klub.nama_klub' in 'field list' in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `atlet`....', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `atlet`....')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `atlet`....')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `atlet`....', Array, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\ptmsi-sumbar\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\ptmsi-sumbar\app\Models\AtletModel.php(70): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\ptmsi-sumbar\app\Controllers\Admin\Atlet.php(32): App\Models\AtletModel->getAtletWithUser()
+#8 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\Admin\Atlet->index()
+#9 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Atlet))
+#10 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+CRITICAL - 2025-12-08 02:20:55 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'klub.nama_klub' in 'field list'
+[Method: GET, Route: admin/atlet]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub` as `nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`', [], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\AtletModel.php(70): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\Admin\Atlet.php(32): App\Models\AtletModel->getAtletWithUser()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\Atlet->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Atlet))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-08 02:20:55 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'klub.nama_klub' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub` as `nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub` as `nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub` as `nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`', [], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Models\AtletModel.php(70): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH\Controllers\Admin\Atlet.php(32): App\Models\AtletModel->getAtletWithUser()
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\Atlet->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Atlet))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-08 02:20:55 --> [Caused by] mysqli_sql_exception: Unknown column 'klub.nama_klub' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub` as `nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub` as `nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub` as `nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub` as `nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`', [], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\AtletModel.php(70): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Admin\Atlet.php(32): App\Models\AtletModel->getAtletWithUser()
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\Atlet->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Atlet))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+DEBUG - 2025-12-08 02:22:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-08 02:22:02 --> mysqli_sql_exception: Unknown column 'klub.nama_klub' in 'field list' in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `atlet`....', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `atlet`....')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `atlet`....')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `atlet`....', Array, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\ptmsi-sumbar\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\ptmsi-sumbar\app\Models\AtletModel.php(70): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\ptmsi-sumbar\app\Controllers\Admin\Atlet.php(32): App\Models\AtletModel->getAtletWithUser()
+#8 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\Admin\Atlet->index()
+#9 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Atlet))
+#10 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+CRITICAL - 2025-12-08 02:22:02 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'klub.nama_klub' in 'field list'
+[Method: GET, Route: admin/atlet]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`', [], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\AtletModel.php(70): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\Admin\Atlet.php(32): App\Models\AtletModel->getAtletWithUser()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\Atlet->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Atlet))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-08 02:22:02 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'klub.nama_klub' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`', [], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Models\AtletModel.php(70): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH\Controllers\Admin\Atlet.php(32): App\Models\AtletModel->getAtletWithUser()
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\Atlet->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Atlet))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-08 02:22:02 --> [Caused by] mysqli_sql_exception: Unknown column 'klub.nama_klub' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`', [], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\AtletModel.php(70): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Admin\Atlet.php(32): App\Models\AtletModel->getAtletWithUser()
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\Atlet->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Atlet))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+DEBUG - 2025-12-08 02:22:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-08 02:22:18 --> mysqli_sql_exception: Unknown column 'klub.nama_klub' in 'field list' in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `atlet`....', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `atlet`....')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `atlet`....')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `atlet`....', Array, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\ptmsi-sumbar\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\ptmsi-sumbar\app\Models\AtletModel.php(70): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\ptmsi-sumbar\app\Controllers\Admin\Atlet.php(32): App\Models\AtletModel->getAtletWithUser()
+#8 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\Admin\Atlet->index()
+#9 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Atlet))
+#10 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+CRITICAL - 2025-12-08 02:22:18 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'klub.nama_klub' in 'field list'
+[Method: GET, Route: admin/atlet]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`', [], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\AtletModel.php(70): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\Admin\Atlet.php(32): App\Models\AtletModel->getAtletWithUser()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\Atlet->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Atlet))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-08 02:22:18 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'klub.nama_klub' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`', [], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Models\AtletModel.php(70): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH\Controllers\Admin\Atlet.php(32): App\Models\AtletModel->getAtletWithUser()
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\Atlet->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Atlet))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-08 02:22:18 --> [Caused by] mysqli_sql_exception: Unknown column 'klub.nama_klub' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `atlet`.*, `user`.`nama_lengkap`, `user`.`email`, `klub`.`nama_klub`
+FROM `atlet`
+LEFT JOIN `user` ON `user`.`id_user` = `atlet`.`id_user`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`', [], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\AtletModel.php(70): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Admin\Atlet.php(32): App\Models\AtletModel->getAtletWithUser()
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\Atlet->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Atlet))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+DEBUG - 2025-12-08 02:22:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-08 02:22:55 --> ErrorException: Undefined array key "foto_profil"
+[Method: GET, Route: admin/atlet]
+in APPPATH\Views\admin\atlet.php on line 60.
+ 1 APPPATH\Views\admin\atlet.php(60): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "foto_profil"', 'C:\\laragon\\www\\ptmsi-sumbar\\app\\Views\\admin\\atlet.php', 60)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\laragon\\www\\ptmsi-sumbar\\app\\Views\\admin\\atlet.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('admin/atlet', [], true)
+ 5 APPPATH\Controllers\Admin\Atlet.php(35): view('admin/atlet', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\Atlet->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Atlet))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+DEBUG - 2025-12-08 02:23:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-08 02:23:15 --> ErrorException: Undefined array key "foto_profil"
+[Method: GET, Route: admin/atlet]
+in APPPATH\Views\admin\atlet.php on line 60.
+ 1 APPPATH\Views\admin\atlet.php(60): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "foto_profil"', 'C:\\laragon\\www\\ptmsi-sumbar\\app\\Views\\admin\\atlet.php', 60)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\laragon\\www\\ptmsi-sumbar\\app\\Views\\admin\\atlet.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('admin/atlet', [], true)
+ 5 APPPATH\Controllers\Admin\Atlet.php(35): view('admin/atlet', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\Atlet->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Atlet))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+DEBUG - 2025-12-08 02:23:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-08 02:23:35 --> ErrorException: Undefined array key "foto_profil"
+[Method: GET, Route: admin/atlet]
+in APPPATH\Views\admin\atlet.php on line 60.
+ 1 APPPATH\Views\admin\atlet.php(60): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "foto_profil"', 'C:\\laragon\\www\\ptmsi-sumbar\\app\\Views\\admin\\atlet.php', 60)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\laragon\\www\\ptmsi-sumbar\\app\\Views\\admin\\atlet.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('admin/atlet', [], true)
+ 5 APPPATH\Controllers\Admin\Atlet.php(35): view('admin/atlet', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\Atlet->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Atlet))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+DEBUG - 2025-12-08 02:24:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-08 02:24:35 --> ErrorException: Undefined array key "foto_profil"
+[Method: GET, Route: admin/atlet]
+in APPPATH\Views\admin\atlet.php on line 60.
+ 1 APPPATH\Views\admin\atlet.php(60): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "foto_profil"', 'C:\\laragon\\www\\ptmsi-sumbar\\app\\Views\\admin\\atlet.php', 60)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\laragon\\www\\ptmsi-sumbar\\app\\Views\\admin\\atlet.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('admin/atlet', [], true)
+ 5 APPPATH\Controllers\Admin\Atlet.php(35): view('admin/atlet', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\Atlet->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Atlet))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+DEBUG - 2025-12-08 02:25:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 02:25:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-08 02:25:57 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "admin/atlet_form.php"
+[Method: GET, Route: admin/atlet/create]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(214): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('admin/atlet_form.php')
+ 2 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('admin/atlet_form', [], true)
+ 3 APPPATH\Controllers\Admin\Atlet.php(46): view('admin/atlet_form', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\Atlet->create()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Atlet))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+10 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+DEBUG - 2025-12-08 02:26:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 02:26:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 02:26:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 02:26:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-08 02:26:25 --> ErrorException: Undefined array key "nama_klub"
+[Method: GET, Route: admin/klub]
+in APPPATH\Views\admin\klub.php on line 74.
+ 1 APPPATH\Views\admin\klub.php(74): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "nama_klub"', 'C:\\laragon\\www\\ptmsi-sumbar\\app\\Views\\admin\\klub.php', 74)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\laragon\\www\\ptmsi-sumbar\\app\\Views\\admin\\klub.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('admin/klub', [], true)
+ 5 APPPATH\Controllers\Admin\Klub.php(32): view('admin/klub', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\Klub->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Klub))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+DEBUG - 2025-12-08 02:26:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-08 02:26:57 --> ErrorException: Undefined array key "nama_klub"
+[Method: GET, Route: admin/klub]
+in APPPATH\Views\admin\klub.php on line 74.
+ 1 APPPATH\Views\admin\klub.php(74): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "nama_klub"', 'C:\\laragon\\www\\ptmsi-sumbar\\app\\Views\\admin\\klub.php', 74)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\laragon\\www\\ptmsi-sumbar\\app\\Views\\admin\\klub.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('admin/klub', [], true)
+ 5 APPPATH\Controllers\Admin\Klub.php(32): view('admin/klub', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\Klub->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Klub))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+DEBUG - 2025-12-08 02:27:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-08 02:27:05 --> ErrorException: Undefined array key "nama_klub"
+[Method: GET, Route: admin/klub]
+in APPPATH\Views\admin\klub.php on line 74.
+ 1 APPPATH\Views\admin\klub.php(74): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "nama_klub"', 'C:\\laragon\\www\\ptmsi-sumbar\\app\\Views\\admin\\klub.php', 74)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\laragon\\www\\ptmsi-sumbar\\app\\Views\\admin\\klub.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('admin/klub', [], true)
+ 5 APPPATH\Controllers\Admin\Klub.php(32): view('admin/klub', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\Klub->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Klub))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+DEBUG - 2025-12-08 02:27:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 02:27:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 02:27:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-08 02:28:02 --> ErrorException: Undefined array key "gambar"
+[Method: GET, Route: admin/berita]
+in APPPATH\Views\admin\berita\index.php on line 62.
+ 1 APPPATH\Views\admin\berita\index.php(62): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "gambar"', 'C:\\laragon\\www\\ptmsi-sumbar\\app\\Views\\admin\\berita\\index.php', 62)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\laragon\\www\\ptmsi-sumbar\\app\\Views\\admin\\berita\\index.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('admin/berita/index', [], true)
+ 5 APPPATH\Controllers\Admin\Berita.php(35): view('admin/berita/index', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\Berita->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Berita))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+DEBUG - 2025-12-08 02:28:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 02:28:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-08 02:28:45 --> mysqli_sql_exception: Duplicate entry '550e8400-e29b-41d4-a716-446655440001' for key 'PRIMARY' in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('INSERT INTO `us...', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `us...')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `us...')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1841): CodeIgniter\Database\BaseConnection->query('INSERT INTO `us...', NULL, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(2230): CodeIgniter\Database\BaseBuilder->batchExecute('_insertBatch', 100)
+#5 C:\laragon\www\ptmsi-sumbar\app\Database\Seeds\MasterSeeder.php(127): CodeIgniter\Database\BaseBuilder->insertBatch(Array)
+#6 C:\laragon\www\ptmsi-sumbar\system\Database\Seeder.php(149): App\Database\Seeds\MasterSeeder->run()
+#7 C:\laragon\www\ptmsi-sumbar\app\Database\Seeds\DatabaseSeeder.php(17): CodeIgniter\Database\Seeder->call('App\\Database\\Se...')
+#8 C:\laragon\www\ptmsi-sumbar\system\Database\Seeder.php(149): App\Database\Seeds\DatabaseSeeder->run()
+#9 C:\laragon\www\ptmsi-sumbar\system\Commands\Database\Seed.php(79): CodeIgniter\Database\Seeder->call('App\\Database\\Se...')
+#10 C:\laragon\www\ptmsi-sumbar\system\CLI\Commands.php(74): CodeIgniter\Commands\Database\Seed->run(Array)
+#11 C:\laragon\www\ptmsi-sumbar\system\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('db:seed', Array)
+#12 C:\laragon\www\ptmsi-sumbar\system\Boot.php(388): CodeIgniter\CLI\Console->run()
+#13 C:\laragon\www\ptmsi-sumbar\system\Boot.php(133): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
+#14 C:\laragon\www\ptmsi-sumbar\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
+#15 {main}
+INFO - 2025-12-08 02:28:55 --> Login method called
+DEBUG - 2025-12-08 02:28:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-12-08 02:28:55 --> User already logged in, redirecting
+INFO - 2025-12-08 02:29:00 --> Login method called
+DEBUG - 2025-12-08 02:29:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-12-08 02:29:00 --> User already logged in, redirecting
+DEBUG - 2025-12-08 02:29:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 02:29:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-08 02:29:30 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "admin/atlet_form.php"
+[Method: GET, Route: admin/atlet/create]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(214): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('admin/atlet_form.php')
+ 2 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('admin/atlet_form', [], true)
+ 3 APPPATH\Controllers\Admin\Atlet.php(46): view('admin/atlet_form', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\Atlet->create()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Atlet))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+10 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+DEBUG - 2025-12-08 02:29:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 02:30:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 02:31:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 02:32:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 02:33:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-08 02:33:09 --> ErrorException: Undefined array key "nama_klub"
+[Method: GET, Route: admin/atlet]
+in APPPATH\Views\admin\atlet.php on line 162.
+ 1 APPPATH\Views\admin\atlet.php(162): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "nama_klub"', 'C:\\laragon\\www\\ptmsi-sumbar\\app\\Views\\admin\\atlet.php', 162)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\laragon\\www\\ptmsi-sumbar\\app\\Views\\admin\\atlet.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('admin/atlet', [], true)
+ 5 APPPATH\Controllers\Admin\Atlet.php(37): view('admin/atlet', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\Atlet->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Atlet))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+DEBUG - 2025-12-08 02:33:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-08 02:33:30 --> ErrorException: Undefined array key "nama_klub"
+[Method: GET, Route: admin/atlet]
+in APPPATH\Views\admin\atlet.php on line 162.
+ 1 APPPATH\Views\admin\atlet.php(162): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "nama_klub"', 'C:\\laragon\\www\\ptmsi-sumbar\\app\\Views\\admin\\atlet.php', 162)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\laragon\\www\\ptmsi-sumbar\\app\\Views\\admin\\atlet.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('admin/atlet', [], true)
+ 5 APPPATH\Controllers\Admin\Atlet.php(37): view('admin/atlet', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\Atlet->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Atlet))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+DEBUG - 2025-12-08 02:33:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 02:33:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 02:34:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-08 02:34:18 --> ErrorException: Undefined array key "nama_klub"
+[Method: GET, Route: admin/atlet]
+in APPPATH\Views\admin\atlet.php on line 162.
+ 1 APPPATH\Views\admin\atlet.php(162): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "nama_klub"', 'C:\\laragon\\www\\ptmsi-sumbar\\app\\Views\\admin\\atlet.php', 162)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\laragon\\www\\ptmsi-sumbar\\app\\Views\\admin\\atlet.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('admin/atlet', [], true)
+ 5 APPPATH\Controllers\Admin\Atlet.php(37): view('admin/atlet', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\Atlet->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Atlet))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-08 02:34:50 --> CodeIgniter\Exceptions\BadMethodCallException: Call to undefined method App\Models\OrganisasiModel::getOrganisasiProvinsi
+[Method: GET, Route: profil]
+in SYSTEMPATH\Model.php on line 927.
+ 1 APPPATH\Controllers\Profil.php(25): CodeIgniter\Model->__call('getOrganisasiProvinsi', [])
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Profil->index()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Profil))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-08 02:35:31 --> CodeIgniter\Exceptions\BadMethodCallException: Call to undefined method App\Models\OrganisasiModel::getOrganisasiProvinsi
+[Method: GET, Route: profil]
+in SYSTEMPATH\Model.php on line 927.
+ 1 APPPATH\Controllers\Profil.php(25): CodeIgniter\Model->__call('getOrganisasiProvinsi', [])
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Profil->index()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Profil))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+DEBUG - 2025-12-08 02:35:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-08 02:35:40 --> ErrorException: Undefined array key "nama_klub"
+[Method: GET, Route: admin/atlet]
+in APPPATH\Views\admin\atlet.php on line 162.
+ 1 APPPATH\Views\admin\atlet.php(162): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "nama_klub"', 'C:\\laragon\\www\\ptmsi-sumbar\\app\\Views\\admin\\atlet.php', 162)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\laragon\\www\\ptmsi-sumbar\\app\\Views\\admin\\atlet.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('admin/atlet', [], true)
+ 5 APPPATH\Controllers\Admin\Atlet.php(37): view('admin/atlet', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\Atlet->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Atlet))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+DEBUG - 2025-12-08 02:36:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-08 02:36:46 --> ErrorException: Undefined array key "nama_klub"
+[Method: GET, Route: admin/atlet]
+in APPPATH\Views\admin\atlet.php on line 162.
+ 1 APPPATH\Views\admin\atlet.php(162): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "nama_klub"', 'C:\\laragon\\www\\ptmsi-sumbar\\app\\Views\\admin\\atlet.php', 162)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\laragon\\www\\ptmsi-sumbar\\app\\Views\\admin\\atlet.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('admin/atlet', [], true)
+ 5 APPPATH\Controllers\Admin\Atlet.php(37): view('admin/atlet', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\Atlet->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Atlet))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+DEBUG - 2025-12-08 02:44:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-08 02:44:20 --> ErrorException: Undefined array key "nama_klub"
+[Method: GET, Route: admin/atlet]
+in APPPATH\Views\admin\atlet.php on line 162.
+ 1 APPPATH\Views\admin\atlet.php(162): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "nama_klub"', 'C:\\laragon\\www\\ptmsi-sumbar\\app\\Views\\admin\\atlet.php', 162)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\laragon\\www\\ptmsi-sumbar\\app\\Views\\admin\\atlet.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('admin/atlet', [], true)
+ 5 APPPATH\Controllers\Admin\Atlet.php(37): view('admin/atlet', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\Atlet->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Atlet))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+DEBUG - 2025-12-08 02:44:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-08 02:45:35 --> CodeIgniter\Exceptions\BadMethodCallException: Call to undefined method App\Models\OrganisasiModel::getOrganisasiProvinsi
+[Method: GET, Route: profil]
+in SYSTEMPATH\Model.php on line 927.
+ 1 APPPATH\Controllers\Profil.php(25): CodeIgniter\Model->__call('getOrganisasiProvinsi', [])
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Profil->index()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Profil))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+ERROR - 2025-12-08 02:46:58 --> mysqli_sql_exception: Unknown column 'tingkat' in 'where clause' in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\ptmsi-sumbar\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\ptmsi-sumbar\app\Models\OrganisasiModel.php(80): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\ptmsi-sumbar\app\Controllers\Profil.php(25): App\Models\OrganisasiModel->getOrganisasiProvinsi()
+#8 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\Profil->index()
+#9 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Profil))
+#10 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+CRITICAL - 2025-12-08 02:46:58 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'tingkat' in 'where clause'
+[Method: GET, Route: profil]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `organisasi`
+WHERE `tingkat` = :tingkat:', [...], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\OrganisasiModel.php(80): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\Profil.php(25): App\Models\OrganisasiModel->getOrganisasiProvinsi()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Profil->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Profil))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-08 02:46:58 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'tingkat' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `organisasi`
+WHERE `tingkat` = \'Provinsi\'')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `organisasi`
+WHERE `tingkat` = \'Provinsi\'')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `organisasi`
+WHERE `tingkat` = :tingkat:', [...], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Models\OrganisasiModel.php(80): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH\Controllers\Profil.php(25): App\Models\OrganisasiModel->getOrganisasiProvinsi()
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Profil->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Profil))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-08 02:46:58 --> [Caused by] mysqli_sql_exception: Unknown column 'tingkat' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT *
+FROM `organisasi`
+WHERE `tingkat` = \'Provinsi\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `organisasi`
+WHERE `tingkat` = \'Provinsi\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `organisasi`
+WHERE `tingkat` = \'Provinsi\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `organisasi`
+WHERE `tingkat` = :tingkat:', [...], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\OrganisasiModel.php(80): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Profil.php(25): App\Models\OrganisasiModel->getOrganisasiProvinsi()
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Profil->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Profil))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+ERROR - 2025-12-08 02:48:07 --> mysqli_sql_exception: Unknown column 'tingkat' in 'where clause' in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\ptmsi-sumbar\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\ptmsi-sumbar\app\Models\OrganisasiModel.php(57): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\ptmsi-sumbar\app\Controllers\Profil.php(25): App\Models\OrganisasiModel->getOrganisasiProvinsi()
+#8 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\Profil->index()
+#9 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Profil))
+#10 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+CRITICAL - 2025-12-08 02:48:07 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'tingkat' in 'where clause'
+[Method: GET, Route: profil]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `organisasi`
+WHERE `tingkat` = :tingkat:', [...], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\OrganisasiModel.php(57): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\Profil.php(25): App\Models\OrganisasiModel->getOrganisasiProvinsi()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Profil->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Profil))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-08 02:48:07 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'tingkat' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `organisasi`
+WHERE `tingkat` = \'Provinsi\'')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `organisasi`
+WHERE `tingkat` = \'Provinsi\'')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `organisasi`
+WHERE `tingkat` = :tingkat:', [...], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Models\OrganisasiModel.php(57): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH\Controllers\Profil.php(25): App\Models\OrganisasiModel->getOrganisasiProvinsi()
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Profil->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Profil))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-08 02:48:07 --> [Caused by] mysqli_sql_exception: Unknown column 'tingkat' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT *
+FROM `organisasi`
+WHERE `tingkat` = \'Provinsi\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `organisasi`
+WHERE `tingkat` = \'Provinsi\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `organisasi`
+WHERE `tingkat` = \'Provinsi\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `organisasi`
+WHERE `tingkat` = :tingkat:', [...], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\OrganisasiModel.php(57): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Profil.php(25): App\Models\OrganisasiModel->getOrganisasiProvinsi()
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Profil->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Profil))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+DEBUG - 2025-12-08 02:49:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:04:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:04:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:04:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-08 03:04:42 --> ErrorException: Undefined array key "nama_klub"
+[Method: GET, Route: admin/atlet]
+in APPPATH\Views\admin\atlet.php on line 162.
+ 1 APPPATH\Views\admin\atlet.php(162): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "nama_klub"', 'C:\\laragon\\www\\ptmsi-sumbar\\app\\Views\\admin\\atlet.php', 162)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\laragon\\www\\ptmsi-sumbar\\app\\Views\\admin\\atlet.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('admin/atlet', [], true)
+ 5 APPPATH\Controllers\Admin\Atlet.php(37): view('admin/atlet', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\Atlet->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Atlet))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+DEBUG - 2025-12-08 03:05:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:05:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:07:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-08 03:07:21 --> ErrorException: Undefined array key "nama_klub"
+[Method: GET, Route: admin/atlet]
+in APPPATH\Views\admin\atlet.php on line 162.
+ 1 APPPATH\Views\admin\atlet.php(162): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "nama_klub"', 'C:\\laragon\\www\\ptmsi-sumbar\\app\\Views\\admin\\atlet.php', 162)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\laragon\\www\\ptmsi-sumbar\\app\\Views\\admin\\atlet.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('admin/atlet', [], true)
+ 5 APPPATH\Controllers\Admin\Atlet.php(37): view('admin/atlet', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\Atlet->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Atlet))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+DEBUG - 2025-12-08 03:08:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:08:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-08 03:08:29 --> ErrorException: Undefined array key "nama_klub"
+[Method: GET, Route: admin/klub]
+in APPPATH\Views\admin\klub.php on line 74.
+ 1 APPPATH\Views\admin\klub.php(74): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "nama_klub"', 'C:\\laragon\\www\\ptmsi-sumbar\\app\\Views\\admin\\klub.php', 74)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\laragon\\www\\ptmsi-sumbar\\app\\Views\\admin\\klub.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('admin/klub', [], true)
+ 5 APPPATH\Controllers\Admin\Klub.php(32): view('admin/klub', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\Klub->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Klub))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+DEBUG - 2025-12-08 03:08:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-08 03:08:58 --> ErrorException: Undefined array key "kota"
+[Method: GET, Route: admin/klub]
+in APPPATH\Views\admin\klub.php on line 90.
+ 1 APPPATH\Views\admin\klub.php(90): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "kota"', 'C:\\laragon\\www\\ptmsi-sumbar\\app\\Views\\admin\\klub.php', 90)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\laragon\\www\\ptmsi-sumbar\\app\\Views\\admin\\klub.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('admin/klub', [], true)
+ 5 APPPATH\Controllers\Admin\Klub.php(32): view('admin/klub', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\Klub->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Klub))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+DEBUG - 2025-12-08 03:09:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-08 03:09:03 --> ErrorException: Undefined array key "kota"
+[Method: GET, Route: admin/klub]
+in APPPATH\Views\admin\klub.php on line 90.
+ 1 APPPATH\Views\admin\klub.php(90): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "kota"', 'C:\\laragon\\www\\ptmsi-sumbar\\app\\Views\\admin\\klub.php', 90)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\laragon\\www\\ptmsi-sumbar\\app\\Views\\admin\\klub.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('admin/klub', [], true)
+ 5 APPPATH\Controllers\Admin\Klub.php(32): view('admin/klub', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\Klub->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Klub))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+DEBUG - 2025-12-08 03:09:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-08 03:09:20 --> ErrorException: Undefined array key "kota"
+[Method: GET, Route: admin/klub]
+in APPPATH\Views\admin\klub.php on line 90.
+ 1 APPPATH\Views\admin\klub.php(90): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "kota"', 'C:\\laragon\\www\\ptmsi-sumbar\\app\\Views\\admin\\klub.php', 90)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\laragon\\www\\ptmsi-sumbar\\app\\Views\\admin\\klub.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('admin/klub', [], true)
+ 5 APPPATH\Controllers\Admin\Klub.php(32): view('admin/klub', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\Klub->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Klub))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+DEBUG - 2025-12-08 03:09:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-08 03:09:31 --> ErrorException: Undefined array key "kota"
+[Method: GET, Route: admin/klub]
+in APPPATH\Views\admin\klub.php on line 90.
+ 1 APPPATH\Views\admin\klub.php(90): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "kota"', 'C:\\laragon\\www\\ptmsi-sumbar\\app\\Views\\admin\\klub.php', 90)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\laragon\\www\\ptmsi-sumbar\\app\\Views\\admin\\klub.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('admin/klub', [], true)
+ 5 APPPATH\Controllers\Admin\Klub.php(32): view('admin/klub', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\Klub->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Klub))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+DEBUG - 2025-12-08 03:09:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:10:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:10:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:10:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:10:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:10:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:10:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:11:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:11:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-08 03:11:08 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "admin/pelatih_form.php"
+[Method: GET, Route: admin/pelatih/create]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(214): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('admin/pelatih_form.php')
+ 2 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('admin/pelatih_form', [], true)
+ 3 APPPATH\Controllers\Admin\Pelatih.php(46): view('admin/pelatih_form', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\Pelatih->create()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Pelatih))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+10 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+DEBUG - 2025-12-08 03:11:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:11:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-08 03:11:31 --> ErrorException: Undefined array key "kota"
+[Method: GET, Route: admin/klub]
+in APPPATH\Views\admin\klub.php on line 90.
+ 1 APPPATH\Views\admin\klub.php(90): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "kota"', 'C:\\laragon\\www\\ptmsi-sumbar\\app\\Views\\admin\\klub.php', 90)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\laragon\\www\\ptmsi-sumbar\\app\\Views\\admin\\klub.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('admin/klub', [], true)
+ 5 APPPATH\Controllers\Admin\Klub.php(32): view('admin/klub', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\Klub->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Klub))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+DEBUG - 2025-12-08 03:11:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:13:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:13:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:13:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-12-08 03:13:33 --> Login method called
+DEBUG - 2025-12-08 03:13:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-12-08 03:13:33 --> Showing login view
+DEBUG - 2025-12-08 03:13:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:13:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:13:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:14:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:14:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-08 03:14:34 --> ErrorException: Undefined array key "gambar"
+[Method: GET, Route: admin/berita]
+in APPPATH\Views\admin\berita\index.php on line 62.
+ 1 APPPATH\Views\admin\berita\index.php(62): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "gambar"', 'C:\\laragon\\www\\ptmsi-sumbar\\app\\Views\\admin\\berita\\index.php', 62)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\laragon\\www\\ptmsi-sumbar\\app\\Views\\admin\\berita\\index.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('admin/berita/index', [], true)
+ 5 APPPATH\Controllers\Admin\Berita.php(35): view('admin/berita/index', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\Berita->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Berita))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+DEBUG - 2025-12-08 03:14:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:15:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:15:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:16:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:16:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:18:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:18:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:18:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:18:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:19:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:19:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:19:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-08 03:19:25 --> ErrorException: Undefined array key "kota"
+[Method: GET, Route: admin/klub]
+in APPPATH\Views\admin\klub.php on line 90.
+ 1 APPPATH\Views\admin\klub.php(90): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "kota"', 'C:\\laragon\\www\\ptmsi-sumbar\\app\\Views\\admin\\klub.php', 90)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\laragon\\www\\ptmsi-sumbar\\app\\Views\\admin\\klub.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('admin/klub', [], true)
+ 5 APPPATH\Controllers\Admin\Klub.php(32): view('admin/klub', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\Klub->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Klub))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+DEBUG - 2025-12-08 03:21:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:21:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-08 03:21:15 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "admin/klub_form.php"
+[Method: GET, Route: admin/klub/create]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(214): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('admin/klub_form.php')
+ 2 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('admin/klub_form', [], true)
+ 3 APPPATH\Controllers\Admin\Klub.php(43): view('admin/klub_form', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\Klub->create()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Klub))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+10 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+DEBUG - 2025-12-08 03:21:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:22:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:22:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-08 03:23:39 --> ParseError: syntax error, unexpected token "=>"
+[Method: GET, Route: admin/klub]
+in APPPATH\Controllers\Admin\Klub.php on line 181.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(295): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\laragon\\www\\ptmsi-sumbar\\app\\Controllers\\Admin\\Klub.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(271): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\Admin\\Klub')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\Admin\\Klub')
+ 4 SYSTEMPATH\CodeIgniter.php(885): class_exists('\\App\\Controllers\\Admin\\Klub', true)
+ 5 SYSTEMPATH\CodeIgniter.php(494): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+10 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-08 03:23:41 --> ParseError: syntax error, unexpected token "=>"
+[Method: GET, Route: admin/klub]
+in APPPATH\Controllers\Admin\Klub.php on line 181.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(295): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\laragon\\www\\ptmsi-sumbar\\app\\Controllers\\Admin\\Klub.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(271): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\Admin\\Klub')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\Admin\\Klub')
+ 4 SYSTEMPATH\CodeIgniter.php(885): class_exists('\\App\\Controllers\\Admin\\Klub', true)
+ 5 SYSTEMPATH\CodeIgniter.php(494): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+10 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-08 03:23:42 --> ParseError: syntax error, unexpected token "=>"
+[Method: GET, Route: admin/klub]
+in APPPATH\Controllers\Admin\Klub.php on line 181.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(295): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\laragon\\www\\ptmsi-sumbar\\app\\Controllers\\Admin\\Klub.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(271): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\Admin\\Klub')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\Admin\\Klub')
+ 4 SYSTEMPATH\CodeIgniter.php(885): class_exists('\\App\\Controllers\\Admin\\Klub', true)
+ 5 SYSTEMPATH\CodeIgniter.php(494): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+10 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-08 03:23:47 --> ParseError: syntax error, unexpected token "=>"
+[Method: GET, Route: admin/klub]
+in APPPATH\Controllers\Admin\Klub.php on line 181.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(295): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\laragon\\www\\ptmsi-sumbar\\app\\Controllers\\Admin\\Klub.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(271): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\Admin\\Klub')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\Admin\\Klub')
+ 4 SYSTEMPATH\CodeIgniter.php(885): class_exists('\\App\\Controllers\\Admin\\Klub', true)
+ 5 SYSTEMPATH\CodeIgniter.php(494): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+10 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+DEBUG - 2025-12-08 03:24:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:24:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:24:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:25:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:25:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:26:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:26:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-12-08 03:26:11 --> Login method called
+DEBUG - 2025-12-08 03:26:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-12-08 03:26:11 --> Showing login view
+DEBUG - 2025-12-08 03:26:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-12-08 03:26:24 --> Login method called
+DEBUG - 2025-12-08 03:26:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-12-08 03:26:24 --> Showing login view
+DEBUG - 2025-12-08 03:27:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-12-08 03:27:33 --> Login method called
+DEBUG - 2025-12-08 03:27:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-12-08 03:27:33 --> Showing login view
+DEBUG - 2025-12-08 03:28:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:28:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-12-08 03:28:29 --> Login method called
+DEBUG - 2025-12-08 03:28:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-12-08 03:28:29 --> User already logged in, redirecting
+INFO - 2025-12-08 03:28:33 --> Login method called
+DEBUG - 2025-12-08 03:28:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-12-08 03:28:33 --> User already logged in, redirecting
+INFO - 2025-12-08 03:28:43 --> Login method called
+DEBUG - 2025-12-08 03:28:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-12-08 03:28:43 --> User already logged in, redirecting
+DEBUG - 2025-12-08 03:28:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-12-08 03:28:57 --> Login method called
+DEBUG - 2025-12-08 03:28:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-12-08 03:28:57 --> User already logged in, redirecting
+INFO - 2025-12-08 03:29:34 --> Login method called
+DEBUG - 2025-12-08 03:29:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-12-08 03:29:34 --> User already logged in, redirecting
+DEBUG - 2025-12-08 03:30:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-12-08 03:31:20 --> Login method called
+DEBUG - 2025-12-08 03:31:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-12-08 03:31:20 --> User already logged in, redirecting
+DEBUG - 2025-12-08 03:31:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:31:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:33:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:33:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:34:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:34:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-12-08 03:34:04 --> Login method called
+DEBUG - 2025-12-08 03:34:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-12-08 03:34:04 --> Showing login view
+DEBUG - 2025-12-08 03:34:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:34:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:34:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:34:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:36:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-12-08 03:37:02 --> Login method called
+DEBUG - 2025-12-08 03:37:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-12-08 03:37:02 --> Showing login view
+DEBUG - 2025-12-08 03:37:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:37:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-12-08 03:37:49 --> Login method called
+DEBUG - 2025-12-08 03:37:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-12-08 03:37:49 --> Showing login view
+DEBUG - 2025-12-08 03:38:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:38:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:38:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:38:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:38:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-12-08 03:38:49 --> Login method called
+DEBUG - 2025-12-08 03:38:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-12-08 03:38:49 --> User already logged in, redirecting
+DEBUG - 2025-12-08 03:38:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:38:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:39:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:41:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:41:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:42:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:42:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:42:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:43:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:44:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-12-08 03:44:19 --> Login method called
+DEBUG - 2025-12-08 03:44:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-12-08 03:44:19 --> Showing login view
+DEBUG - 2025-12-08 03:44:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:44:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:44:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:45:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:45:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:47:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:48:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:48:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:48:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:48:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:49:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:49:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:49:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:49:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:49:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:50:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:50:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:51:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:51:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:52:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:52:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:52:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:52:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:53:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:53:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:54:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-08 03:54:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
