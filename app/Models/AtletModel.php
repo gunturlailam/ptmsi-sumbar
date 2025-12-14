@@ -13,65 +13,66 @@ class AtletModel extends Model
     protected $useSoftDeletes = false;
     protected $protectFields = true;
     protected $allowedFields = [
-        'id_atlet',
         'id_user',
         'id_klub',
-        'nomor_lisensi',
+        'nama_lengkap',
         'tanggal_lahir',
         'tempat_lahir',
         'jenis_kelamin',
+        'kategori_usia',
+        'alamat',
+        'no_hp',
         'tinggi_badan',
         'berat_badan',
-        'alamat',
-        'foto_profil',
+        'foto',
+        'riwayat_prestasi',
+        'ranking_provinsi',
+        'status',
+        'tanggal_bergabung',
+        'alasan_nonaktif',
+        'tanggal_nonaktif',
         'dibuat_pada',
         'diperbarui_pada'
     ];
 
-    protected $useTimestamps = false;
+    protected $useTimestamps = true;
     protected $dateFormat = 'datetime';
     protected $createdField = 'dibuat_pada';
     protected $updatedField = 'diperbarui_pada';
 
     protected $validationRules = [
         'id_user' => 'required',
-        'nomor_lisensi' => 'permit_empty|is_unique[atlet.nomor_lisensi,id_atlet,{id_atlet}]',
-        'tanggal_lahir' => 'required|valid_date',
-        'tempat_lahir' => 'required|min_length[3]',
-        'jenis_kelamin' => 'required|in_list[L,P]'
+        'id_klub' => 'required|integer',
+        'jenis_kelamin' => 'permit_empty|in_list[L,P]',
+        'kategori_usia' => 'permit_empty|in_list[U-12,U-15,U-18,Senior]'
     ];
 
     protected $validationMessages = [
         'id_user' => [
             'required' => 'User harus dipilih'
         ],
-        'nomor_lisensi' => [
-            'is_unique' => 'Nomor lisensi sudah digunakan'
-        ],
-        'tanggal_lahir' => [
-            'required' => 'Tanggal lahir harus diisi',
-            'valid_date' => 'Format tanggal tidak valid'
-        ],
-        'tempat_lahir' => [
-            'required' => 'Tempat lahir harus diisi',
-            'min_length' => 'Tempat lahir minimal 3 karakter'
+        'id_klub' => [
+            'required' => 'Klub harus dipilih',
+            'integer' => 'ID klub harus berupa angka'
         ],
         'jenis_kelamin' => [
-            'required' => 'Jenis kelamin harus dipilih',
-            'in_list' => 'Jenis kelamin tidak valid'
+            'in_list' => 'Jenis kelamin tidak valid (L/P)'
+        ],
+        'kategori_usia' => [
+            'in_list' => 'Kategori usia tidak valid'
         ]
     ];
 
     public function getAtletWithUser()
     {
-        return $this->select('atlet.*, user.nama_lengkap, user.email, NULL as foto_profil, NULL as nomor_lisensi, NULL as tempat_lahir, NULL as tinggi_badan, NULL as berat_badan, NULL as alamat')
+        return $this->select('atlet.*, user.nama_lengkap, user.email')
             ->join('user', 'user.id_user = atlet.id_user', 'left')
             ->findAll();
     }
 
     public function getAtletById($id)
     {
-        return $this->select('atlet.*, user.nama_lengkap, user.email, NULL as foto_profil, NULL as nomor_lisensi, NULL as tempat_lahir, NULL as tinggi_badan, NULL as berat_badan, NULL as alamat')
+        return $this->select('atlet.*, user.nama_lengkap, user.email')
             ->join('user', 'user.id_user = atlet.id_user', 'left')
             ->where('atlet.id_atlet', $id)
             ->first();

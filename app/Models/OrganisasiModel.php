@@ -68,4 +68,9 @@ class OrganisasiModel extends Model
             ->join('organisasi as induk', 'induk.id_organisasi = organisasi.id_induk_organisasi', 'left')
             ->findAll();
     }
+
+    public function getAllOrganisasi()
+    {
+        return $this->findAll();
+    }
 }

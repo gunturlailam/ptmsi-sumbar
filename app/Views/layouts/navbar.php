@@ -2,58 +2,76 @@
     .navbar-ptmsi {
         background: linear-gradient(90deg, #003366 60%, #1E90FF 100%) !important;
         box-shadow: 0 2px 16px rgba(30, 144, 255, 0.08);
-        padding-top: 0.5rem;
-        padding-bottom: 0.5rem;
+        padding-top: 0.7rem;
+        padding-bottom: 0.7rem;
+        border-bottom: 3px solid #E8F2FF;
+        font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
     }
 
     .navbar-ptmsi .navbar-brand {
-        font-weight: bold;
+        font-weight: 900;
         color: #fff !important;
-        letter-spacing: 1px;
-        font-size: 1.25rem;
+        letter-spacing: 1.5px;
+        font-size: 1.35rem;
         display: flex;
         align-items: center;
-        gap: 10px;
+        gap: 12px;
+        text-shadow: 0 2px 8px rgba(30, 144, 255, 0.10);
     }
 
     .navbar-ptmsi .navbar-brand img {
-        width: 38px;
-        height: 38px;
+        width: 44px;
+        height: 44px;
         border-radius: 50%;
         background: #fff;
         border: 2px solid #fff;
+        box-shadow: 0 2px 8px rgba(30, 144, 255, 0.10);
     }
 
     .navbar-ptmsi .nav-link {
         color: #fff !important;
-        font-weight: 500;
-        margin-right: 6px;
-        border-radius: 20px;
-        transition: background 0.2s, color 0.2s;
-        padding: 8px 18px !important;
+        font-weight: 600;
+        margin-right: 8px;
+        border-radius: 22px;
+        transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+        padding: 10px 22px !important;
+        font-size: 1.05rem;
+        letter-spacing: 0.5px;
+        display: flex;
+        align-items: center;
+        gap: 7px;
     }
 
     .navbar-ptmsi .nav-link.active,
     .navbar-ptmsi .nav-link:hover {
-        background: #1E90FF !important;
+        background: linear-gradient(90deg, #1E90FF 60%, #36a2ff 100%) !important;
         color: #fff !important;
+        box-shadow: 0 4px 16px rgba(30, 144, 255, 0.10);
+        text-shadow: 0 2px 8px rgba(30, 144, 255, 0.10);
     }
 
     .navbar-ptmsi .dropdown-menu {
-        border-radius: 14px;
-        min-width: 200px;
-        box-shadow: 0 4px 24px rgba(30, 144, 255, 0.13);
+        border-radius: 16px;
+        min-width: 220px;
+        box-shadow: 0 8px 32px rgba(30, 144, 255, 0.13);
+        border: none;
+        margin-top: 8px;
     }
 
     .navbar-ptmsi .dropdown-item {
         color: #003366;
         font-weight: 500;
-        border-radius: 10px;
-        transition: background 0.2s;
+        border-radius: 12px;
+        transition: background 0.2s, color 0.2s;
+        padding: 10px 18px;
+        font-size: 1.01rem;
+        display: flex;
+        align-items: center;
+        gap: 7px;
     }
 
     .navbar-ptmsi .dropdown-item:hover {
-        background: #E8F2FF;
+        background: linear-gradient(90deg, #E8F2FF 60%, #b3e0ff 100%);
         color: #1E90FF;
     }
 
@@ -61,16 +79,20 @@
         border-radius: 22px;
         background: linear-gradient(90deg, #1E90FF 60%, #36a2ff 100%);
         color: #fff;
-        font-weight: bold;
-        padding: 8px 32px;
+        font-weight: 700;
+        padding: 10px 32px;
         box-shadow: 0 2px 8px rgba(30, 144, 255, 0.10);
         border: none;
-        transition: background 0.2s, color 0.2s;
+        transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+        font-size: 1.05rem;
+        letter-spacing: 0.5px;
+        border-radius: 24px;
     }
 
     .navbar-ptmsi .btn-login:hover {
         background: #1565c0;
         color: #fff;
+        box-shadow: 0 4px 16px rgba(30, 144, 255, 0.13);
     }
 
     .navbar-ptmsi .dropdown-item-text {
@@ -97,11 +119,14 @@
     @media (max-width: 991px) {
         .navbar-ptmsi .nav-link {
             margin-bottom: 6px;
+            padding: 10px 16px !important;
+            font-size: 1rem;
         }
 
         .navbar-ptmsi .btn-login {
             width: 100%;
             margin-top: 10px;
+            padding: 10px 0;
         }
     }
 </style>
@@ -151,6 +176,10 @@
                         <li><a class="dropdown-item" href="<?= base_url('dokumen') ?>"><i class="bi bi-file-earmark-text"></i> Dokumen & Regulasi</a></li>
                         <li><a class="dropdown-item" href="<?= base_url('ranking') ?>"><i class="bi bi-bar-chart"></i> Ranking & Statistik</a></li>
                         <li><a class="dropdown-item" href="<?= base_url('layanan-online') ?>"><i class="bi bi-globe"></i> Layanan Online</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="<?= base_url('registration/klub-register') ?>"><i class="bi bi-building-add"></i> Daftar Klub</a></li>
                         <li><a class="dropdown-item" href="<?= base_url('hubungi-kami') ?>"><i class="bi bi-envelope"></i> Hubungi Kami</a></li>
                     </ul>
                 </li>

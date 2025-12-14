@@ -1,577 +1,314 @@
-<?php $title = isset($title) ? $title : 'Klub & Pengurus - PTMSI Sumbar'; ?>
-<?= $this->include('layouts/header') ?>
+<!DOCTYPE html>
+<html lang="id">
 
-<style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-
-    body {
-        background: linear-gradient(135deg, #E8F2FF 0%, #F0F8FF 100%);
-        font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
-        overflow-x: hidden;
-    }
-
-    @keyframes pulse {
-
-        0%,
-        100% {
-            opacity: 0.5;
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Klub & Pengurus - PTMSI Sumbar</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="<?= base_url('assets/css/ptmsi-style.css') ?>">
+    <style>
+        .nav-menu-card {
+            background: linear-gradient(135deg, #fff 0%, #E8F2FF 100%);
+            border-radius: 20px;
+            padding: 30px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: block;
+            border: 2px solid #E8F2FF;
+            transition: all 0.4s ease;
+            height: 100%;
         }
 
-        50% {
-            opacity: 0.8;
-        }
-    }
-
-    @keyframes fadeInUp {
-        from {
-            opacity: 0;
-            transform: translateY(30px);
+        .nav-menu-card:hover {
+            background: linear-gradient(135deg, #1E90FF 0%, #003366 100%);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(30, 144, 255, 0.3);
+            border-color: #1E90FF;
         }
 
-        to {
-            opacity: 1;
-            transform: translateY(0);
+        .nav-menu-card .nav-icon-wrapper {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #1E90FF, #00BFFF);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            transition: all 0.4s ease;
         }
-    }
 
-    @keyframes bounce {
-
-        0%,
-        100% {
-            transform: translateY(0);
+        .nav-menu-card:hover .nav-icon-wrapper {
+            background: #fff;
+            transform: scale(1.1) rotate(5deg);
         }
 
-        50% {
-            transform: translateY(-5px);
-        }
-    }
-
-    .klub-section {
-        background: transparent;
-        min-height: 100vh;
-        padding: 0;
-    }
-
-    .page-header {
-        background: linear-gradient(135deg, #003366 0%, #1E90FF 50%, #00BFFF 100%);
-        color: #fff;
-        padding: 60px 0;
-        margin-bottom: 50px;
-        border-radius: 0 0 50px 50px;
-        box-shadow: 0 15px 50px rgba(30, 144, 255, 0.25);
-        position: relative;
-        overflow: hidden;
-    }
-
-    .page-header::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: radial-gradient(circle at 30% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-            radial-gradient(circle at 70% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
-        animation: pulse 8s ease-in-out infinite;
-    }
-
-    .page-header h1 {
-        font-weight: 900;
-        font-size: 2.8rem;
-        margin-bottom: 15px;
-        text-align: center;
-        text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-        position: relative;
-        z-index: 1;
-        animation: fadeInUp 0.8s ease-out;
-    }
-
-    .page-header p {
-        text-align: center;
-        font-size: 1.2rem;
-        opacity: 0.95;
-        position: relative;
-        z-index: 1;
-        animation: fadeInUp 1s ease-out;
-    }
-
-    .submenu-nav {
-        background: #fff;
-        border-radius: 30px;
-        box-shadow: 0 10px 40px rgba(30, 144, 255, 0.15);
-        padding: 30px;
-        margin-bottom: 40px;
-        position: relative;
-        overflow: hidden;
-    }
-
-    .submenu-nav::before {
-        content: '';
-        position: absolute;
-        top: -50%;
-        right: -50%;
-        width: 100%;
-        height: 100%;
-        background: radial-gradient(circle, rgba(30, 144, 255, 0.05) 0%, transparent 70%);
-    }
-
-    .submenu-nav h4 {
-        color: #003366;
-        font-weight: 900;
-        margin-bottom: 25px;
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        position: relative;
-        z-index: 1;
-    }
-
-    .submenu-nav h4 i {
-        animation: bounce 2s ease-in-out infinite;
-    }
-
-    .submenu-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 16px;
-    }
-
-    .submenu-item {
-        background: linear-gradient(135deg, #E8F2FF 0%, #fff 100%);
-        border-radius: 12px;
-        padding: 16px 20px;
-        text-decoration: none;
-        color: #003366;
-        border: 2px solid transparent;
-        transition: all 0.3s;
-        display: flex;
-        align-items: center;
-        gap: 12px;
-    }
-
-    .submenu-item:hover {
-        background: linear-gradient(135deg, #1E90FF 0%, #003366 100%);
-        color: #fff;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 16px rgba(30, 144, 255, 0.3);
-        border-color: #1E90FF;
-    }
-
-    .submenu-item i {
-        font-size: 1.5rem;
-    }
-
-    .submenu-item span {
-        font-weight: 600;
-    }
-
-    .section-card {
-        background: #fff;
-        border-radius: 20px;
-        box-shadow: 0 4px 24px rgba(30, 144, 255, 0.1);
-        padding: 32px;
-        margin-bottom: 32px;
-    }
-
-    .section-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 24px;
-        padding-bottom: 16px;
-        border-bottom: 3px solid #E8F2FF;
-    }
-
-    .section-header h3 {
-        color: #003366;
-        font-weight: bold;
-        font-size: 1.8rem;
-        margin: 0;
-        display: flex;
-        align-items: center;
-        gap: 12px;
-    }
-
-    .kl ub-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-        gap: 24px;
-    }
-
-    .klub-card {
-        background: linear-gradient(135deg, #E8F2FF 0%, #fff 100%);
-        border-radius: 16px;
-        padding: 24px;
-        border-left: 5px solid #1E90FF;
-        transition: all 0.3s;
-    }
-
-    .klub-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 8px 24px rgba(30, 144, 255, 0.2);
-    }
-
-    .klub-header {
-        display: flex;
-        align-items: start;
-        gap: 16px;
-        margin-bottom: 16px;
-        padding-bottom: 16px;
-        border-bottom: 2px solid #E8F2FF;
-    }
-
-    .klub-icon {
-        background: linear-gradient(135deg, #1E90FF 0%, #003366 100%);
-        color: #fff;
-        width: 60px;
-        height: 60px;
-        border-radius: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.8rem;
-        flex-shrink: 0;
-    }
-
-    .klub-title {
-        flex: 1;
-    }
-
-    .klub-title h4 {
-        color: #003366;
-        font-weight: bold;
-        font-size: 1.2rem;
-        margin-bottom: 4px;
-    }
-
-    .klub-badge {
-        background: #E8F2FF;
-        color: #1E90FF;
-        padding: 4px 12px;
-        border-radius: 12px;
-        font-size: 0.85rem;
-        font-weight: 600;
-    }
-
-    .klub-info {
-        margin-bottom: 8px;
-        font-size: 0.95rem;
-        color: #666;
-    }
-
-    .klub-info i {
-        color: #1E90FF;
-        margin-right: 8px;
-        width: 20px;
-    }
-
-    .kontak-card {
-        background: #F8F9FA;
-        border-radius: 12px;
-        padding: 20px;
-        border-left: 4px solid #1E90FF;
-        margin-bottom: 16px;
-        transition: all 0.3s;
-    }
-
-    .kontak-card:hover {
-        background: #E8F2FF;
-        transform: translateX(4px);
-        box-shadow: 0 2px 12px rgba(30, 144, 255, 0.1);
-    }
-
-    .kontak-header {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        margin-bottom: 12px;
-    }
-
-    .kontak-icon {
-        background: linear-gradient(135deg, #1E90FF 0%, #003366 100%);
-        color: #fff;
-        width: 48px;
-        height: 48px;
-        border-radius: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.3rem;
-    }
-
-    .kontak-title {
-        color: #003366;
-        font-weight: bold;
-        font-size: 1.1rem;
-    }
-
-    .kontak-info {
-        font-size: 0.95rem;
-        color: #666;
-        margin-bottom: 6px;
-    }
-
-    .kontak-info i {
-        color: #1E90FF;
-        margin-right: 8px;
-    }
-
-    .syarat-list {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-    }
-
-    .syarat-item {
-        background: #F8F9FA;
-        border-radius: 10px;
-        padding: 16px;
-        display: flex;
-        align-items: start;
-        gap: 12px;
-        transition: all 0.3s;
-    }
-
-    .syarat-item:hover {
-        background: #E8F2FF;
-        transform: translateX(4px);
-    }
-
-    .syarat-number {
-        background: linear-gradient(135deg, #1E90FF 0%, #003366 100%);
-        color: #fff;
-        width: 36px;
-        height: 36px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: bold;
-        flex-shrink: 0;
-    }
-
-    .syarat-content {
-        flex: 1;
-        color: #555;
-        line-height: 1.6;
-    }
-
-    .wasit-table {
-        width: 100%;
-        border-collapse: separate;
-        border-spacing: 0;
-        overflow: hidden;
-    }
-
-    .wasit-table thead {
-        background: linear-gradient(135deg, #003366 0%, #1E90FF 100%);
-        color: #fff;
-    }
-
-    .wasit-table thead th {
-        padding: 16px 12px;
-        text-align: left;
-        font-weight: 600;
-        font-size: 0.95rem;
-    }
-
-    .wasit-table thead th:first-child {
-        border-radius: 12px 0 0 0;
-    }
-
-    .wasit-table thead th:last-child {
-        border-radius: 0 12px 0 0;
-    }
-
-    .wasit-table tbody tr {
-        background: #fff;
-        transition: all 0.3s;
-        border-bottom: 1px solid #f0f0f0;
-    }
-
-    .wasit-table tbody tr:hover {
-        background: #F8F9FA;
-        transform: scale(1.01);
-    }
-
-    .wasit-table tbody td {
-        padding: 14px 12px;
-        vertical-align: middle;
-        color: #333;
-    }
-
-    .avatar-cell {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-    }
-
-    .avatar-cell img {
-        width: 48px;
-        height: 48px;
-        border-radius: 50%;
-        object-fit: cover;
-        border: 2px solid #1E90FF;
-        background: #fff;
-    }
-
-    .avatar-cell .name-info {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .avatar-cell .name {
-        font-weight: 600;
-        color: #003366;
-    }
-
-    .avatar-cell .sub-info {
-        font-size: 0.85rem;
-        color: #666;
-    }
-
-    .badge-lisensi {
-        display: inline-block;
-        padding: 4px 12px;
-        border-radius: 12px;
-        font-size: 0.85rem;
-        font-weight: 600;
-        background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
-        color: #fff;
-    }
-
-    .empt y-state {
-        text-align: center;
-        padding: 60px 20px;
-        color: #666;
-    }
-
-    .empty-state i {
-        font-size: 4rem;
-        color: #ccc;
-        margin-bottom: 20px;
-    }
-
-    .filter-group {
-        display: flex;
-        gap: 12px;
-        flex-wrap: wrap;
-        align-items: center;
-    }
-
-    .filter-group select,
-    .filter-group input {
-        padding: 8px 16px;
-        border: 2px solid #E8F2FF;
-        border-radius: 8px;
-        font-size: 0.95rem;
-        transition: border-color 0.3s;
-    }
-
-    .filter-group select:focus,
-    .filter-group input:focus {
-        outline: none;
-        border-color: #1E90FF;
-    }
-
-    @media (max-width: 991px) {
-        .page-header h1 {
+        .nav-menu-card .nav-icon-wrapper i {
             font-size: 2rem;
+            color: #fff;
+            transition: all 0.4s ease;
         }
 
-        .submenu-grid {
-            grid-template-columns: 1fr;
+        .nav-menu-card:hover .nav-icon-wrapper i {
+            color: #1E90FF;
         }
 
-        .section-header {
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 16px;
+        .nav-menu-card h6 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #003366;
+            margin-bottom: 8px;
+            transition: all 0.4s ease;
         }
 
-        .filter-group {
-            width: 100%;
-        }
-    }
-
-    @media (max-width: 767px) {
-        .page-header h1 {
-            font-size: 1.5rem;
+        .nav-menu-card:hover h6 {
+            color: #fff;
         }
 
-        .section-card {
-            padding: 20px 16px;
+        .nav-menu-card p {
+            font-size: 0.85rem;
+            color: #666;
+            margin: 0;
+            transition: all 0.4s ease;
         }
 
-        .klub-grid {
-            grid-template-columns: 1fr;
+        .nav-menu-card:hover p {
+            color: rgba(255, 255, 255, 0.9);
         }
-    }
-</style>
-<section
-    class="klub-section">
-    <!-- Page Header -->
-    <div class="page-header">
+
+        .klub-card {
+            background: #fff;
+            border-radius: 25px;
+            padding: 25px;
+            border: 2px solid #E8F2FF;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .klub-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 6px;
+            height: 100%;
+            background: linear-gradient(180deg, #1E90FF 0%, #00BFFF 100%);
+        }
+
+        .klub-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 50px rgba(30, 144, 255, 0.25);
+            border-color: #1E90FF;
+        }
+
+        .klub-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #E8F2FF;
+        }
+
+        .klub-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 18px;
+            background: linear-gradient(135deg, #1E90FF, #00BFFF);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 8px 25px rgba(30, 144, 255, 0.3);
+        }
+
+        .klub-icon i {
+            font-size: 2rem;
+            color: #fff;
+        }
+
+        .klub-title h4 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #003366;
+            margin-bottom: 5px;
+        }
+
+        .klub-badge {
+            background: linear-gradient(135deg, #E8F2FF, #fff);
+            color: #1E90FF;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid #1E90FF;
+        }
+
+        .klub-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+            color: #555;
+        }
+
+        .klub-info i {
+            color: #1E90FF;
+            margin-right: 10px;
+            font-size: 1.1rem;
+            width: 20px;
+        }
+
+        .syarat-card {
+            background: linear-gradient(135deg, #F8F9FA 0%, #E8F2FF 100%);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border: 2px solid #E8F2FF;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: start;
+            gap: 15px;
+        }
+
+        .syarat-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 8px 30px rgba(30, 144, 255, 0.15);
+            border-color: #1E90FF;
+        }
+
+        .syarat-number {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #1E90FF, #00BFFF);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            font-weight: 900;
+            flex-shrink: 0;
+            box-shadow: 0 4px 15px rgba(30, 144, 255, 0.3);
+        }
+
+        .filter-section {
+            background: #fff;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(30, 144, 255, 0.1);
+        }
+
+        .filter-section select,
+        .filter-section input {
+            border: 2px solid #E8F2FF;
+            border-radius: 15px;
+            padding: 12px 18px;
+            transition: all 0.3s;
+        }
+
+        .filter-section select:focus,
+        .filter-section input:focus {
+            border-color: #1E90FF;
+            box-shadow: 0 0 0 4px rgba(30, 144, 255, 0.1);
+            outline: none;
+        }
+    </style>
+</head>
+
+<body>
+    <?= $this->include('layouts/navbar') ?>
+
+    <!-- Hero Section -->
+    <div class="hero-modern">
         <div class="container">
-            <h1><i class="bi bi-building"></i> Klub & Pengurus PTMSI Sumbar</h1>
-            <p>Informasi lengkap klub, kontak, syarat pendirian, dan database wasit</p>
+            <div class="hero-content text-center">
+                <h1 class="hero-title">
+                    <i class="bi bi-building-fill"></i> Klub & Pengurus PTMSI Sumbar
+                </h1>
+                <p class="hero-subtitle">Informasi lengkap klub, kontak, syarat pendirian, dan database wasit</p>
+            </div>
         </div>
     </div>
 
     <div class="container">
         <!-- Sub Menu Navigation -->
-        <div class="submenu-nav">
-            <h4><i class="bi bi-list-ul"></i> Menu Navigasi</h4>
-            <div class="submenu-grid">
-                <a href="#daftar-klub" class="submenu-item">
-                    <i class="bi bi-building-fill"></i>
-                    <span>Daftar Klub Tenis Meja</span>
+        <div class="row g-3 mb-5">
+            <div class="col-md-3 col-6">
+                <a href="#daftar-klub" class="nav-menu-card">
+                    <div class="nav-icon-wrapper">
+                        <i class="bi bi-building-fill"></i>
+                    </div>
+                    <h6>Daftar Klub</h6>
+                    <p>Klub tenis meja</p>
                 </a>
-                <a href="#kontak-klub" class="submenu-item">
-                    <i class="bi bi-telephone-fill"></i>
-                    <span>Kontak Klub</span>
+            </div>
+            <div class="col-md-3 col-6">
+                <a href="#kontak-klub" class="nav-menu-card">
+                    <div class="nav-icon-wrapper">
+                        <i class="bi bi-telephone-fill"></i>
+                    </div>
+                    <h6>Kontak Klub</h6>
+                    <p>Informasi kontak</p>
                 </a>
-                <a href="#syarat-pendirian" class="submenu-item">
-                    <i class="bi bi-clipboard-check-fill"></i>
-                    <span>Syarat Pendirian Klub Baru</span>
+            </div>
+            <div class="col-md-3 col-6">
+                <a href="#syarat-pendirian" class="nav-menu-card">
+                    <div class="nav-icon-wrapper">
+                        <i class="bi bi-clipboard-check-fill"></i>
+                    </div>
+                    <h6>Syarat Pendirian</h6>
+                    <p>Klub baru</p>
                 </a>
-                <a href="#database-wasit" class="submenu-item">
-                    <i class="bi bi-flag-fill"></i>
-                    <span>Database Wasit & Ofisial</span>
+            </div>
+            <div class="col-md-3 col-6">
+                <a href="#database-wasit" class="nav-menu-card">
+                    <div class="nav-icon-wrapper">
+                        <i class="bi bi-flag-fill"></i>
+                    </div>
+                    <h6>Database Wasit</h6>
+                    <p>Wasit & ofisial</p>
                 </a>
             </div>
         </div>
 
-        <!-- Daftar Klub Tenis Meja se-Sumatera Barat -->
-        <div id="daftar-klub" class="section-card">
-            <div class="section-header">
-                <h3><i class="bi bi-building-fill"></i> Daftar Klub Tenis Meja se-Sumatera Barat</h3>
-                <div class="filter-group">
-                    <select id="filterKabKota" class="form-select">
-                        <option value="">Semua Kab/Kota</option>
-                        <option value="Padang">Padang</option>
-                        <option value="Bukittinggi">Bukittinggi</option>
-                        <option value="Payakumbuh">Payakumbuh</option>
-                        <option value="Solok">Solok</option>
-                        <option value="Padang Panjang">Padang Panjang</option>
-                    </select>
-                    <input type="text" id="searchKlub" class="form-control" placeholder="Cari klub...">
+        <!-- Daftar Klub Section -->
+        <div id="daftar-klub" class="card-modern">
+            <h2 class="section-title-modern">
+                <i class="bi bi-building-fill"></i> Daftar Klub Tenis Meja se-Sumatera Barat
+            </h2>
+
+            <!-- Filter Section -->
+            <div class="filter-section">
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <select id="filterKabKota" class="form-select">
+                            <option value="">Semua Kab/Kota</option>
+                            <option value="Padang">Padang</option>
+                            <option value="Bukittinggi">Bukittinggi</option>
+                            <option value="Payakumbuh">Payakumbuh</option>
+                            <option value="Solok">Solok</option>
+                        </select>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="text" id="searchKlub" class="form-control" placeholder="🔍 Cari nama klub...">
+                    </div>
                 </div>
             </div>
 
             <?php if (!empty($klub)): ?>
-                <div class="klub-grid">
+                <div class="grid-modern">
                     <?php foreach ($klub as $k): ?>
                         <div class="klub-card">
                             <div class="klub-header">
                                 <div class="klub-icon">
                                     <i class="bi bi-building"></i>
                                 </div>
-                                <div class="klub-title">
+                                <div class="klub-title flex-grow-1">
                                     <h4><?= esc($k['nama']) ?></h4>
                                     <span class="klub-badge">
                                         <?= esc($k['nama_organisasi'] ?? 'PTMSI Sumbar') ?>
@@ -581,325 +318,281 @@
 
                             <div class="klub-info">
                                 <i class="bi bi-geo-alt-fill"></i>
-                                <?= esc($k['alamat'] ?? 'Alamat belum tersedia') ?>
+                                <span><?= esc($k['alamat'] ?? 'Alamat belum tersedia') ?></span>
                             </div>
 
                             <?php if (!empty($k['penanggung_jawab'])): ?>
                                 <div class="klub-info">
                                     <i class="bi bi-person-fill"></i>
-                                    PJ: <?= esc($k['penanggung_jawab']) ?>
+                                    <span><strong>PJ:</strong> <?= esc($k['penanggung_jawab']) ?></span>
                                 </div>
                             <?php endif; ?>
 
                             <?php if (!empty($k['telepon'])): ?>
                                 <div class="klub-info">
                                     <i class="bi bi-telephone-fill"></i>
-                                    <?= esc($k['telepon']) ?>
+                                    <span><?= esc($k['telepon']) ?></span>
                                 </div>
                             <?php endif; ?>
 
                             <?php if (!empty($k['tanggal_berdiri'])): ?>
                                 <div class="klub-info">
                                     <i class="bi bi-calendar-check"></i>
-                                    Berdiri: <?= date('d M Y', strtotime($k['tanggal_berdiri'])) ?>
+                                    <span><strong>Berdiri:</strong> <?= date('d M Y', strtotime($k['tanggal_berdiri'])) ?></span>
                                 </div>
                             <?php endif; ?>
 
                             <div class="klub-info">
                                 <i class="bi bi-check-circle-fill"></i>
-                                Status: <strong><?= esc(ucfirst($k['status'] ?? 'aktif')) ?></strong>
+                                <span><strong>Status:</strong> <?= esc(ucfirst($k['status'] ?? 'aktif')) ?></span>
                             </div>
                         </div>
                     <?php endforeach; ?>
                 </div>
             <?php else: ?>
-                <div class="empty-state">
-                    <i class="bi bi-building-x"></i>
-                    <h5>Belum ada data klub</h5>
-                    <p>Data klub akan ditampilkan di sini</p>
+                <div class="text-center py-5">
+                    <i class="bi bi-building-x" style="font-size: 4rem; color: #1E90FF; opacity: 0.5;"></i>
+                    <h5 class="mt-3 fw-bold">Belum ada data klub</h5>
+                    <p class="text-muted">Data klub akan ditampilkan di sini</p>
                 </div>
             <?php endif; ?>
         </div>
 
-        <!-- Kontak Klub -->
-        <div id="kontak-klub" class="section-card">
-            <div class="section-header">
-                <h3><i class="bi bi-telephone-fill"></i> Kontak Klub</h3>
-            </div>
+        <!-- Kontak Klub Section -->
+        <div id="kontak-klub" class="card-modern mt-5">
+            <h2 class="section-title-modern">
+                <i class="bi bi-telephone-fill"></i> Kontak Klub
+            </h2>
 
-            <div class="row mb-4">
-                <div class="col-md-12">
-                    <div class="alert alert-info d-flex align-items-center" role="alert">
-                        <i class="bi bi-info-circle-fill me-3" style="font-size: 1.5rem;"></i>
-                        <div>
-                            Berikut adalah informasi kontak lengkap klub-klub tenis meja di Sumatera Barat. Untuk informasi lebih lanjut, silakan hubungi langsung klub yang bersangkutan.
-                        </div>
-                    </div>
+            <div class="alert alert-info d-flex align-items-center mb-4" role="alert" style="border-radius: 20px; border-left: 5px solid #0dcaf0;">
+                <i class="bi bi-info-circle-fill me-3" style="font-size: 2rem;"></i>
+                <div>
+                    Berikut adalah informasi kontak lengkap klub-klub tenis meja di Sumatera Barat. Untuk informasi lebih lanjut, silakan hubungi langsung klub yang bersangkutan.
                 </div>
             </div>
 
             <?php if (!empty($klub)): ?>
-                <div class="row g-3">
+                <div class="grid-modern-2">
                     <?php foreach ($klub as $k): ?>
-                        <div class="col-md-6">
-                            <div class="kontak-card">
-                                <div class="kontak-header">
-                                    <div class="kontak-icon">
-                                        <i class="bi bi-building"></i>
-                                    </div>
-                                    <div class="kontak-title"><?= esc($k['nama']) ?></div>
+                        <div class="item-card-modern">
+                            <div class="d-flex align-items-center gap-3 mb-3">
+                                <div style="width: 60px; height: 60px; border-radius: 15px; background: linear-gradient(135deg, #1E90FF, #00BFFF); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                    <i class="bi bi-building" style="font-size: 1.8rem; color: #fff;"></i>
                                 </div>
-                                <div class="kontak-info">
-                                    <i class="bi bi-geo-alt"></i>
-                                    <?= esc($k['alamat'] ?? 'Alamat belum tersedia') ?>
-                                </div>
-                                <?php if (!empty($k['penanggung_jawab'])): ?>
-                                    <div class="kontak-info">
-                                        <i class="bi bi-person"></i>
-                                        PJ: <?= esc($k['penanggung_jawab']) ?>
-                                    </div>
-                                <?php endif; ?>
-                                <?php if (!empty($k['telepon'])): ?>
-                                    <div class="kontak-info">
-                                        <i class="bi bi-telephone"></i>
-                                        <a href="tel:<?= esc($k['telepon']) ?>" style="color: #1E90FF; text-decoration: none;">
-                                            <?= esc($k['telepon']) ?>
-                                        </a>
-                                    </div>
-                                <?php endif; ?>
+                                <h5 class="fw-bold text-primary mb-0"><?= esc($k['nama']) ?></h5>
                             </div>
+                            <div class="klub-info">
+                                <i class="bi bi-geo-alt"></i>
+                                <span><?= esc($k['alamat'] ?? 'Alamat belum tersedia') ?></span>
+                            </div>
+                            <?php if (!empty($k['penanggung_jawab'])): ?>
+                                <div class="klub-info">
+                                    <i class="bi bi-person"></i>
+                                    <span><strong>PJ:</strong> <?= esc($k['penanggung_jawab']) ?></span>
+                                </div>
+                            <?php endif; ?>
+                            <?php if (!empty($k['telepon'])): ?>
+                                <div class="klub-info">
+                                    <i class="bi bi-telephone"></i>
+                                    <a href="tel:<?= esc($k['telepon']) ?>" style="color: #1E90FF; text-decoration: none; font-weight: 600;">
+                                        <?= esc($k['telepon']) ?>
+                                    </a>
+                                </div>
+                            <?php endif; ?>
                         </div>
                     <?php endforeach; ?>
                 </div>
             <?php else: ?>
-                <div class="empty-state">
-                    <i class="bi bi-telephone-x"></i>
-                    <h5>Belum ada data kontak klub</h5>
-                    <p>Informasi kontak klub akan ditampilkan di sini</p>
+                <div class="text-center py-5">
+                    <i class="bi bi-telephone-x" style="font-size: 4rem; color: #1E90FF; opacity: 0.5;"></i>
+                    <h5 class="mt-3 fw-bold">Belum ada data kontak klub</h5>
+                    <p class="text-muted">Informasi kontak klub akan ditampilkan di sini</p>
                 </div>
             <?php endif; ?>
         </div>
 
-        <!-- Syarat Pendirian Klub Baru -->
-        <div id="syarat-pendirian" class="section-card">
-            <div class="section-header">
-                <h3><i class="bi bi-clipboard-check-fill"></i> Syarat Pendirian Klub Baru</h3>
-            </div>
+        <!-- Syarat Pendirian Section -->
+        <div id="syarat-pendirian" class="card-modern mt-5">
+            <h2 class="section-title-modern">
+                <i class="bi bi-clipboard-check-fill"></i> Syarat Pendirian Klub Baru
+            </h2>
 
-            <div class="row mb-4">
-                <div class="col-md-12">
-                    <p style="color: #555; font-size: 1rem; line-height: 1.8;">
-                        Untuk mendirikan klub tenis meja baru yang terdaftar di PTMSI Sumatera Barat, berikut adalah persyaratan dan prosedur yang harus dipenuhi:
-                    </p>
+            <p class="lead mb-4" style="color: #555; line-height: 1.8;">
+                Untuk mendirikan klub tenis meja baru yang terdaftar di PTMSI Sumatera Barat, berikut adalah persyaratan dan prosedur yang harus dipenuhi:
+            </p>
+
+            <div class="syarat-card">
+                <div class="syarat-number">1</div>
+                <div>
+                    <h6 class="fw-bold text-primary mb-2">Surat Permohonan Pendirian Klub</h6>
+                    <p class="text-muted mb-0">Mengajukan surat permohonan pendirian klub yang ditujukan kepada Ketua Umum PTMSI Sumatera Barat dengan melampirkan proposal kegiatan klub.</p>
                 </div>
             </div>
 
-            <div class="syarat-list">
-                <div class="syarat-item">
-                    <div class="syarat-number">1</div>
-                    <div class="syarat-content">
-                        <strong>Surat Permohonan Pendirian Klub</strong><br>
-                        Mengajukan surat permohonan pendirian klub yang ditujukan kepada Ketua Umum PTMSI Sumatera Barat dengan melampirkan proposal kegiatan klub.
-                    </div>
-                </div>
-
-                <div class="syarat-item">
-                    <div class="syarat-number">2</div>
-                    <div class="syarat-content">
-                        <strong>Akta Pendirian Klub</strong><br>
-                        Memiliki akta pendirian klub yang telah disahkan oleh notaris dan terdaftar di instansi terkait.
-                    </div>
-                </div>
-
-                <div class="syarat-item">
-                    <div class="syarat-number">3</div>
-                    <div class="syarat-content">
-                        <strong>Struktur Kepengurusan</strong><br>
-                        Memiliki struktur kepengurusan yang jelas minimal terdiri dari Ketua, Sekretaris, dan Bendahara dengan melampirkan fotokopi KTP pengurus.
-                    </div>
-                </div>
-
-                <div class="syarat-item">
-                    <div class="syarat-number">4</div>
-                    <div class="syarat-content">
-                        <strong>Anggota Minimal</strong><br>
-                        Memiliki minimal 10 (sepuluh) orang anggota aktif dengan melampirkan daftar nama, alamat, dan fotokopi KTP anggota.
-                    </div>
-                </div>
-
-                <div class="syarat-item">
-                    <div class="syarat-number">5</div>
-                    <div class="syarat-content">
-                        <strong>Sarana dan Prasarana</strong><br>
-                        Memiliki atau memiliki akses ke sarana latihan berupa meja tenis meja standar minimal 2 (dua) meja beserta perlengkapannya.
-                    </div>
-                </div>
-
-                <div class="syarat-item">
-                    <div class="syarat-number">6</div>
-                    <div class="syarat-content">
-                        <strong>Program Kerja</strong><br>
-                        Menyusun program kerja klub untuk jangka waktu minimal 1 (satu) tahun yang mencakup kegiatan latihan rutin dan target prestasi.
-                    </div>
-                </div>
-
-                <div class="syarat-item">
-                    <div class="syarat-number">7</div>
-                    <div class="syarat-content">
-                        <strong>Rekomendasi</strong><br>
-                        Mendapatkan rekomendasi dari PTMSI Kabupaten/Kota setempat (jika ada) atau langsung dari PTMSI Provinsi Sumatera Barat.
-                    </div>
-                </div>
-
-                <div class="syarat-item">
-                    <div class="syarat-number">8</div>
-                    <div class="syarat-content">
-                        <strong>Biaya Administrasi</strong><br>
-                        Membayar biaya administrasi pendaftaran klub sesuai dengan ketentuan yang berlaku di PTMSI Sumatera Barat.
-                    </div>
+            <div class="syarat-card">
+                <div class="syarat-number">2</div>
+                <div>
+                    <h6 class="fw-bold text-primary mb-2">Akta Pendirian Klub</h6>
+                    <p class="text-muted mb-0">Memiliki akta pendirian klub yang telah disahkan oleh notaris dan terdaftar di instansi terkait.</p>
                 </div>
             </div>
 
-            <div class="mt-4">
-                <div class="alert alert-warning d-flex align-items-center" role="alert">
-                    <i class="bi bi-exclamation-triangle-fill me-3" style="font-size: 1.5rem;"></i>
-                    <div>
-                        <strong>Informasi Lebih Lanjut:</strong> Untuk konsultasi dan pengajuan pendirian klub baru, silakan hubungi Sekretariat PTMSI Sumbar di <strong>0812-3456-7890</strong> atau email ke <strong>sekretariat@ptmsisumbar.or.id</strong>
-                    </div>
+            <div class="syarat-card">
+                <div class="syarat-number">3</div>
+                <div>
+                    <h6 class="fw-bold text-primary mb-2">Struktur Kepengurusan</h6>
+                    <p class="text-muted mb-0">Memiliki struktur kepengurusan yang jelas minimal terdiri dari Ketua, Sekretaris, dan Bendahara dengan melampirkan fotokopi KTP pengurus.</p>
+                </div>
+            </div>
+
+            <div class="syarat-card">
+                <div class="syarat-number">4</div>
+                <div>
+                    <h6 class="fw-bold text-primary mb-2">Anggota Minimal</h6>
+                    <p class="text-muted mb-0">Memiliki minimal 10 (sepuluh) orang anggota aktif dengan melampirkan daftar nama, alamat, dan fotokopi KTP anggota.</p>
+                </div>
+            </div>
+
+            <div class="syarat-card">
+                <div class="syarat-number">5</div>
+                <div>
+                    <h6 class="fw-bold text-primary mb-2">Sarana dan Prasarana</h6>
+                    <p class="text-muted mb-0">Memiliki atau memiliki akses ke sarana latihan berupa meja tenis meja standar minimal 2 (dua) meja beserta perlengkapannya.</p>
+                </div>
+            </div>
+
+            <div class="syarat-card">
+                <div class="syarat-number">6</div>
+                <div>
+                    <h6 class="fw-bold text-primary mb-2">Program Kerja</h6>
+                    <p class="text-muted mb-0">Menyusun program kerja klub untuk jangka waktu minimal 1 (satu) tahun yang mencakup kegiatan latihan rutin dan target prestasi.</p>
+                </div>
+            </div>
+
+            <div class="syarat-card">
+                <div class="syarat-number">7</div>
+                <div>
+                    <h6 class="fw-bold text-primary mb-2">Rekomendasi</h6>
+                    <p class="text-muted mb-0">Mendapatkan rekomendasi dari PTMSI Kabupaten/Kota setempat (jika ada) atau langsung dari PTMSI Provinsi Sumatera Barat.</p>
+                </div>
+            </div>
+
+            <div class="syarat-card">
+                <div class="syarat-number">8</div>
+                <div>
+                    <h6 class="fw-bold text-primary mb-2">Biaya Administrasi</h6>
+                    <p class="text-muted mb-0">Membayar biaya administrasi pendaftaran klub sesuai dengan ketentuan yang berlaku di PTMSI Sumatera Barat.</p>
+                </div>
+            </div>
+
+            <div class="alert alert-warning d-flex align-items-center mt-4" role="alert" style="border-radius: 20px; border-left: 5px solid #ffc107;">
+                <i class="bi bi-exclamation-triangle-fill me-3" style="font-size: 2rem;"></i>
+                <div>
+                    <strong>Informasi Lebih Lanjut:</strong> Untuk konsultasi dan pengajuan pendirian klub baru, silakan hubungi Sekretariat PTMSI Sumbar di <strong>0812-3456-7890</strong> atau email ke <strong>sekretariat@ptmsisumbar.or.id</strong>
                 </div>
             </div>
         </div>
 
-        <!-- Database Wasit & Ofisial Pertandingan -->
-        <div id="database-wasit" class="section-card">
-            <div class="section-header">
-                <h3><i class="bi bi-flag-fill"></i> Database Wasit & Ofisial Pertandingan</h3>
-            </div>
+        <!-- Database Wasit Section -->
+        <div id="database-wasit" class="card-modern mt-5">
+            <h2 class="section-title-modern">
+                <i class="bi bi-flag-fill"></i> Database Wasit & Ofisial Pertandingan
+            </h2>
 
-            <div class="row mb-4">
-                <div class="col-md-12">
-                    <div class="alert alert-success d-flex align-items-center" role="alert">
-                        <i class="bi bi-check-circle-fill me-3" style="font-size: 1.5rem;"></i>
-                        <div>
-                            Database wasit dan ofisial pertandingan tenis meja yang terdaftar dan bersertifikat di PTMSI Sumatera Barat.
-                        </div>
-                    </div>
+            <div class="alert alert-success d-flex align-items-center mb-4" role="alert" style="border-radius: 20px; border-left: 5px solid #28a745;">
+                <i class="bi bi-check-circle-fill me-3" style="font-size: 2rem;"></i>
+                <div>
+                    Database wasit dan ofisial pertandingan tenis meja yang terdaftar dan bersertifikat di PTMSI Sumatera Barat.
                 </div>
             </div>
 
-            <div class="table-responsive">
-                <?php if (!empty($wasit)): ?>
-                    <table class="wasit-table">
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>Nama</th>
-                                <th>Jenis</th>
-                                <th>Lisensi</th>
-                                <th>Kab/Kota</th>
-                                <th>Kontak</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php $no = 1;
-                            foreach ($wasit as $w): ?>
-                                <tr>
-                                    <td><?= $no++ ?></td>
-                                    <td>
-                                        <div class="avatar-cell">
-                                            <img src="<?= base_url('assets/img/orang.jpg') ?>"
-                                                alt="<?= esc($w['nama']) ?>">
-                                            <div class="name-info">
-                                                <span class="name"><?= esc($w['nama']) ?></span>
-                                                <span class="sub-info"><?= esc($w['jenis']) ?></span>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <?php if ($w['jenis'] == 'Wasit'): ?>
-                                            <i class="bi bi-flag-fill text-primary"></i> Wasit
-                                        <?php else: ?>
-                                            <i class="bi bi-person-badge text-success"></i> Ofisial
-                                        <?php endif; ?>
-                                    </td>
-                                    <td>
-                                        <span class="badge-lisensi">
-                                            <?= esc($w['lisensi']) ?>
-                                        </span>
-                                    </td>
-                                    <td><?= esc($w['kab_kota']) ?></td>
-                                    <td>
-                                        <?php if (!empty($w['telepon'])): ?>
-                                            <i class="bi bi-telephone"></i> <?= esc($w['telepon']) ?>
-                                        <?php else: ?>
-                                            <span class="text-muted">-</span>
-                                        <?php endif; ?>
-                                    </td>
-                                    <td>
-                                        <span class="badge bg-success">Aktif</span>
-                                    </td>
-                                </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
-                <?php else: ?>
-                    <div class="empty-state">
-                        <i class="bi bi-flag"></i>
-                        <h5>Belum ada data wasit & ofisial</h5>
-                        <p>Database wasit dan ofisial akan ditampilkan di sini</p>
-                    </div>
-                <?php endif; ?>
-            </div>
-
-            <div class="mt-4">
-                <div class="row g-4">
-                    <div class="col-md-6">
-                        <div class="card border-0 shadow-sm h-100">
-                            <div class="card-body">
-                                <h5 class="text-primary mb-3">
-                                    <i class="bi bi-flag-fill"></i> Menjadi Wasit
-                                </h5>
-                                <p class="text-muted">
-                                    Untuk menjadi wasit tenis meja bersertifikat, Anda harus mengikuti pelatihan dan ujian sertifikasi yang diselenggarakan oleh PTMSI.
-                                </p>
-                                <ul class="list-unstyled mt-3">
-                                    <li class="mb-2"><i class="bi bi-check-circle text-success me-2"></i> Mengikuti Pelatihan Wasit</li>
-                                    <li class="mb-2"><i class="bi bi-check-circle text-success me-2"></i> Lulus Ujian Teori & Praktik</li>
-                                    <li class="mb-2"><i class="bi bi-check-circle text-success me-2"></i> Mendapat Sertifikat Lisensi</li>
-                                </ul>
+            <?php if (!empty($wasit)): ?>
+                <div class="grid-modern-4">
+                    <?php foreach ($wasit as $w): ?>
+                        <div class="item-card-modern">
+                            <div class="text-center mb-3">
+                                <img src="<?= base_url('assets/img/orang.jpg') ?>" alt="<?= esc($w['nama']) ?>"
+                                    style="width: 80px; height: 80px; border-radius: 50%; border: 4px solid #1E90FF; object-fit: cover;">
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="card border-0 shadow-sm h-100">
-                            <div class="card-body">
-                                <h5 class="text-success mb-3">
-                                    <i class="bi bi-person-badge-fill"></i> Menjadi Ofisial
-                                </h5>
-                                <p class="text-muted">
-                                    Ofisial pertandingan bertugas membantu kelancaran jalannya pertandingan seperti pencatat skor, pengatur jadwal, dan koordinator teknis.
-                                </p>
-                                <ul class="list-unstyled mt-3">
-                                    <li class="mb-2"><i class="bi bi-check-circle text-success me-2"></i> Mengikuti Pelatihan Ofisial</li>
-                                    <li class="mb-2"><i class="bi bi-check-circle text-success me-2"></i> Memahami Sistem Pertandingan</li>
-                                    <li class="mb-2"><i class="bi bi-check-circle text-success me-2"></i> Mendapat Sertifikat</li>
-                                </ul>
+                            <h6 class="fw-bold text-primary text-center mb-2"><?= esc($w['nama']) ?></h6>
+                            <div class="text-center mb-3">
+                                <?php if ($w['jenis'] == 'Wasit'): ?>
+                                    <span class="badge" style="background: linear-gradient(135deg, #1E90FF, #00BFFF); padding: 6px 14px; border-radius: 20px;">
+                                        <i class="bi bi-flag-fill"></i> Wasit
+                                    </span>
+                                <?php else: ?>
+                                    <span class="badge" style="background: linear-gradient(135deg, #28a745, #20c997); padding: 6px 14px; border-radius: 20px;">
+                                        <i class="bi bi-person-badge"></i> Ofisial
+                                    </span>
+                                <?php endif; ?>
                             </div>
+                            <div class="klub-info">
+                                <i class="bi bi-award"></i>
+                                <span><strong>Lisensi:</strong> <?= esc($w['lisensi']) ?></span>
+                            </div>
+                            <div class="klub-info">
+                                <i class="bi bi-geo-alt"></i>
+                                <span><?= esc($w['kab_kota']) ?></span>
+                            </div>
+                            <?php if (!empty($w['telepon'])): ?>
+                                <div class="klub-info">
+                                    <i class="bi bi-telephone"></i>
+                                    <span><?= esc($w['telepon']) ?></span>
+                                </div>
+                            <?php endif; ?>
                         </div>
+                    <?php endforeach; ?>
+                </div>
+            <?php else: ?>
+                <div class="text-center py-5">
+                    <i class="bi bi-flag" style="font-size: 4rem; color: #1E90FF; opacity: 0.5;"></i>
+                    <h5 class="mt-3 fw-bold">Belum ada data wasit & ofisial</h5>
+                    <p class="text-muted">Database wasit dan ofisial akan ditampilkan di sini</p>
+                </div>
+            <?php endif; ?>
+
+            <div class="row g-4 mt-4">
+                <div class="col-md-6">
+                    <div class="item-card-modern h-100">
+                        <h5 class="text-primary mb-3">
+                            <i class="bi bi-flag-fill"></i> Menjadi Wasit
+                        </h5>
+                        <p class="text-muted">
+                            Untuk menjadi wasit tenis meja bersertifikat, Anda harus mengikuti pelatihan dan ujian sertifikasi yang diselenggarakan oleh PTMSI.
+                        </p>
+                        <ul class="list-unstyled mt-3">
+                            <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Mengikuti Pelatihan Wasit</li>
+                            <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Lulus Ujian Teori & Praktik</li>
+                            <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Mendapat Sertifikat Lisensi</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="item-card-modern h-100">
+                        <h5 class="text-success mb-3">
+                            <i class="bi bi-person-badge-fill"></i> Menjadi Ofisial
+                        </h5>
+                        <p class="text-muted">
+                            Ofisial pertandingan bertugas membantu kelancaran jalannya pertandingan seperti pencatat skor, pengatur jadwal, dan koordinator teknis.
+                        </p>
+                        <ul class="list-unstyled mt-3">
+                            <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Mengikuti Pelatihan Ofisial</li>
+                            <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Memahami Sistem Pertandingan</li>
+                            <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Mendapat Sertifikat</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</section>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
+    <?= $this->include('layouts/footer') ?>
+
+    <script>
         // Smooth scroll untuk navigasi
-        document.querySelectorAll('.submenu-item').forEach(item => {
-            item.addEventListener('click', function(e) {
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
@@ -938,7 +631,7 @@
                 card.style.display = matchKabKota && matchSearch ? 'block' : 'none';
             });
         }
-    });
-</script>
+    </script>
+</body>
 
-<?= $this->include('layouts/footer') ?>
+</html>

@@ -29,6 +29,18 @@
 
     <!-- Page CSS -->
     <?= $this->renderSection('styles') ?>
+    <style>
+        .admin-center-content {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .admin-center-content>.admin-content-inner {
+            width: 100%;
+            max-width: 1100px;
+        }
+    </style>
 
     <!-- Helpers -->
     <script src="<?= base_url('assets/vendor/js/helpers.js') ?>"></script>
@@ -55,8 +67,10 @@
                 <div class="content-wrapper">
 
                     <!-- Content -->
-                    <div class="container-xxl flex-grow-1 container-p-y">
-                        <?= $this->renderSection('content') ?>
+                    <div class="container-xxl -grow-1 container-p-y admin-center-content">
+                        <div class="admin-content-inner">
+                            <?= $this->renderSection('content') ?>
+                        </div>
                     </div>
                     <!-- / Content -->
 

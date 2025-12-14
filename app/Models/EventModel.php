@@ -10,6 +10,17 @@ class EventModel extends Model
     protected $primaryKey = 'id_event';
     protected $allowedFields = [
         'judul',
+        'nama_event',
+        'deskripsi',
+        'kategori_usia',
+        'kategori_gender',
+        'kuota_peserta',
+        'biaya_pendaftaran',
+        'syarat_khusus',
+        'tingkat',
+        'id_organisasi',
+        'dibuat_oleh',
+        'dibuat_pada',
         'id_turnamen',
         'id_klub_penyelenggara',
         'tanggal_mulai',

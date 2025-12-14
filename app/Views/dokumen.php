@@ -137,63 +137,105 @@
     .submenu-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        gap: 16px;
+        gap: 20px;
     }
 
-    .submenu-item {
-        background: linear-gradient(135deg, #E8F2FF 0%, #fff 100%);
-        border-radius: 12px;
-        padding: 16px 20px;
+    .nav-menu-card {
+        background: #fff;
+        border-radius: 25px;
+        padding: 20px;
         text-decoration: none;
         color: #003366;
-        border: 2px solid transparent;
-        transition: all 0.3s;
+        border: 2px solid #E8F2FF;
+        transition: all 0.4s ease;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        text-align: center;
+        position: relative;
+        z-index: 1;
+    }
+
+    .nav-menu-card:hover {
+        background: linear-gradient(135deg, #003366 0%, #1E90FF 50%, #00BFFF 100%);
+        color: #fff;
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(30, 144, 255, 0.4);
+        border-color: transparent;
+    }
+
+    .nav-icon-circle {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #003366 0%, #1E90FF 50%, #00BFFF 100%);
         display: flex;
         align-items: center;
-        gap: 12px;
+        justify-content: center;
+        transition: all 0.4s ease;
     }
 
-    .submenu-item:hover {
-        background: linear-gradient(135deg, #1E90FF 0%, #003366 100%);
+    .nav-menu-card:hover .nav-icon-circle {
+        background: #fff;
+        transform: rotate(360deg);
+    }
+
+    .nav-icon-circle i {
+        font-size: 2rem;
         color: #fff;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 16px rgba(30, 144, 255, 0.3);
-        border-color: #1E90FF;
+        transition: all 0.4s ease;
     }
 
-    .submenu-item i {
-        font-size: 1.5rem;
+    .nav-menu-card:hover .nav-icon-circle i {
+        color: #1E90FF;
     }
 
-    .submenu-item span {
-        font-weight: 600;
+    .nav-menu-card span {
+        font-weight: 700;
+        font-size: 1rem;
     }
 
     .section-card {
         background: #fff;
-        border-radius: 20px;
-        box-shadow: 0 4px 24px rgba(30, 144, 255, 0.1);
-        padding: 32px;
-        margin-bottom: 32px;
+        border-radius: 25px;
+        box-shadow: 0 8px 30px rgba(30, 144, 255, 0.12);
+        padding: 35px;
+        margin-bottom: 35px;
+        border: 2px solid #E8F2FF;
+        transition: all 0.3s ease;
+    }
+
+    .section-card:hover {
+        box-shadow: 0 12px 40px rgba(30, 144, 255, 0.18);
+        transform: translateY(-2px);
     }
 
     .section-header {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        margin-bottom: 24px;
-        padding-bottom: 16px;
-        border-bottom: 3px solid #E8F2FF;
+        margin-bottom: 28px;
+        padding-bottom: 20px;
+        border-bottom: 4px solid transparent;
+        background: linear-gradient(to right, #E8F2FF 0%, transparent 100%);
+        border-radius: 15px;
+        padding: 20px;
     }
 
     .section-header h3 {
         color: #003366;
-        font-weight: bold;
-        font-size: 1.8rem;
+        font-weight: 900;
+        font-size: 1.9rem;
         margin: 0;
         display: flex;
         align-items: center;
-        gap: 12px;
+        gap: 15px;
+    }
+
+    .section-header h3 i {
+        color: #1E90FF;
+        font-size: 2rem;
     }
 
     .dokumen-list {
@@ -203,34 +245,58 @@
     }
 
     .dokumen-item {
-        background: #F8F9FA;
-        border-radius: 12px;
-        padding: 20px;
-        border-left: 4px solid #1E90FF;
-        transition: all 0.3s;
+        background: linear-gradient(135deg, #fff 0%, #F8F9FA 100%);
+        border-radius: 25px;
+        padding: 25px;
+        border: 2px solid #E8F2FF;
+        transition: all 0.4s ease;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 16px;
+        gap: 20px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .dokumen-item::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 5px;
+        background: linear-gradient(135deg, #003366 0%, #1E90FF 50%, #00BFFF 100%);
+        transition: all 0.4s ease;
     }
 
     .dokumen-item:hover {
-        background: #E8F2FF;
-        transform: translateX(4px);
-        box-shadow: 0 2px 12px rgba(30, 144, 255, 0.1);
+        background: linear-gradient(135deg, #E8F2FF 0%, #fff 100%);
+        transform: translateX(8px);
+        box-shadow: 0 8px 30px rgba(30, 144, 255, 0.2);
+        border-color: #1E90FF;
+    }
+
+    .dokumen-item:hover::before {
+        width: 8px;
     }
 
     .dokumen-icon {
-        background: linear-gradient(135deg, #1E90FF 0%, #003366 100%);
+        background: linear-gradient(135deg, #003366 0%, #1E90FF 50%, #00BFFF 100%);
         color: #fff;
-        width: 56px;
-        height: 56px;
-        border-radius: 12px;
+        width: 65px;
+        height: 65px;
+        border-radius: 20px;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 1.5rem;
+        font-size: 1.8rem;
         flex-shrink: 0;
+        box-shadow: 0 4px 15px rgba(30, 144, 255, 0.3);
+        transition: all 0.4s ease;
+    }
+
+    .dokumen-item:hover .dokumen-icon {
+        transform: scale(1.1) rotate(5deg);
     }
 
     .dokumen-content {
@@ -239,40 +305,54 @@
 
     .dokumen-title {
         color: #003366;
-        font-weight: bold;
-        font-size: 1.1rem;
-        margin-bottom: 6px;
+        font-weight: 900;
+        font-size: 1.15rem;
+        margin-bottom: 8px;
+        transition: all 0.3s ease;
+    }
+
+    .dokumen-item:hover .dokumen-title {
+        color: #1E90FF;
     }
 
     .dokumen-meta {
-        font-size: 0.9rem;
+        font-size: 0.95rem;
         color: #666;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        flex-wrap: wrap;
     }
 
     .dokumen-meta i {
         color: #1E90FF;
-        margin-right: 6px;
+        margin-right: 5px;
     }
 
     .btn-download {
         background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
         color: #fff;
         border: none;
-        padding: 10px 20px;
+        padding: 12px 24px;
         border-radius: 20px;
-        font-weight: 600;
+        font-weight: 700;
         text-decoration: none;
         display: flex;
         align-items: center;
-        gap: 8px;
-        transition: all 0.3s;
+        gap: 10px;
+        transition: all 0.4s ease;
         white-space: nowrap;
+        box-shadow: 0 4px 15px rgba(40, 167, 69, 0.2);
     }
 
     .btn-download:hover {
         color: #fff;
-        transform: scale(1.05);
-        box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+        transform: translateY(-3px) scale(1.05);
+        box-shadow: 0 8px 25px rgba(40, 167, 69, 0.4);
+    }
+
+    .btn-download i {
+        font-size: 1.1rem;
     }
 
     .empty-state {
@@ -332,24 +412,34 @@
         <div class="submenu-nav">
             <h4><i class="bi bi-list-ul"></i> Kategori Dokumen</h4>
             <div class="submenu-grid">
-                <a href="#ad-art" class="submenu-item">
-                    <i class="bi bi-book-fill"></i>
+                <a href="#ad-art" class="nav-menu-card">
+                    <div class="nav-icon-circle">
+                        <i class="bi bi-book-fill"></i>
+                    </div>
                     <span>AD/ART PTMSI</span>
                 </a>
-                <a href="#peraturan" class="submenu-item">
-                    <i class="bi bi-shield-fill-check"></i>
+                <a href="#peraturan" class="nav-menu-card">
+                    <div class="nav-icon-circle">
+                        <i class="bi bi-shield-fill-check"></i>
+                    </div>
                     <span>Peraturan Pertandingan</span>
                 </a>
-                <a href="#panduan" class="submenu-item">
-                    <i class="bi bi-journal-text"></i>
+                <a href="#panduan" class="nav-menu-card">
+                    <div class="nav-icon-circle">
+                        <i class="bi bi-journal-text"></i>
+                    </div>
                     <span>Panduan Klub</span>
                 </a>
-                <a href="#sop" class="submenu-item">
-                    <i class="bi bi-clipboard-check-fill"></i>
+                <a href="#sop" class="nav-menu-card">
+                    <div class="nav-icon-circle">
+                        <i class="bi bi-clipboard-check-fill"></i>
+                    </div>
                     <span>SOP Kejuaraan</span>
                 </a>
-                <a href="#formulir" class="submenu-item">
-                    <i class="bi bi-file-earmark-arrow-down-fill"></i>
+                <a href="#formulir" class="nav-menu-card">
+                    <div class="nav-icon-circle">
+                        <i class="bi bi-file-earmark-arrow-down-fill"></i>
+                    </div>
                     <span>Formulir Download</span>
                 </a>
             </div>

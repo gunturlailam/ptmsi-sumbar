@@ -136,6 +136,11 @@
                         <div data-i18n="Klub">Klub</div>
                     </a>
                 </li>
+                <li class="menu-item <?= url_is('admin/pendaftaran/pelatih*') ? 'active' : '' ?>">
+                    <a href="<?= base_url('admin/pendaftaran/pelatih') ?>" class="menu-link">
+                        <div data-i18n="Pelatih">Pelatih/Wasit</div>
+                    </a>
+                </li>
                 <li class="menu-item <?= url_is('admin/pendaftaran/event*') ? 'active' : '' ?>">
                     <a href="<?= base_url('admin/pendaftaran/event') ?>" class="menu-link">
                         <div data-i18n="Event">Event</div>

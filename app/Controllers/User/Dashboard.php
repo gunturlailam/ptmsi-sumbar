@@ -33,29 +33,37 @@ class Dashboard extends BaseController
         $userId = session()->get('user_id');
         $userRole = session()->get('role');
 
-        // Get user data
-        $user = $this->userModel->find($userId);
-
-        $data = [
-            'title' => 'Dashboard Saya',
-            'user' => $user,
-            'role' => $userRole
-        ];
-
-        // Add role-specific data
+        // Redirect ke dashboard khusus berdasarkan role
         switch ($userRole) {
             case 'atlet':
-                $data['atlet_data'] = $this->getAtletData($userId);
-                break;
-            case 'pelatih':
-                $data['pelatih_data'] = $this->getPelatihData($userId);
-                break;
-            case 'ofisial':
-                $data['ofisial_data'] = $this->getOfisialData($userId);
-                break;
-        }
+                return redirect()->to('user/atlet/dashboard');
+            case 'admin_klub':
+            case 'klub':
+                return redirect()->to('user/klub/dashboard');
+            case 'admin':
+                return redirect()->to('admin/dashboard');
+            default:
+                // Dashboard umum untuk role lainnya (pelatih, ofisial, dll)
+                $user = $this->userModel->find($userId);
 
-        return view('user/dashboard', $data);
+                $data = [
+                    'title' => 'Dashboard Saya',
+                    'user' => $user,
+                    'role' => $userRole
+                ];
+
+                // Add role-specific data
+                switch ($userRole) {
+                    case 'pelatih':
+                        $data['pelatih_data'] = $this->getPelatihData($userId);
+                        break;
+                    case 'ofisial':
+                        $data['ofisial_data'] = $this->getOfisialData($userId);
+                        break;
+                }
+
+                return view('user/dashboard', $data);
+        }
     }
 
     private function getAtletData($userId)

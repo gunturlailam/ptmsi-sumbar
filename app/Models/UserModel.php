@@ -35,9 +35,9 @@ class UserModel extends Model
     protected $validationRules = [
         'username' => 'required|min_length[3]|max_length[50]|is_unique[user.username,id_user,{id_user}]',
         'email' => 'required|valid_email|is_unique[user.email,id_user,{id_user}]',
-        'password_hash' => 'permit_empty|min_length[8]',
+        'password_hash' => 'permit_empty',
         'nama_lengkap' => 'required|min_length[3]|max_length[100]',
-        'peran' => 'permit_empty|in_list[admin,user,atlet,pelatih,pengurus]'
+        'peran' => 'permit_empty|in_list[admin,user,atlet,pelatih,pengurus,admin_klub,ofisial,pengunjung]'
     ];
 
     protected $validationMessages = [

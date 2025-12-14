@@ -8,35 +8,55 @@ class KlubModel extends Model
 {
     protected $table = 'klub';
     protected $primaryKey = 'id_klub';
-    protected $useAutoIncrement = false;
+    protected $useAutoIncrement = true;
     protected $returnType = 'array';
     protected $useSoftDeletes = false;
     protected $protectFields = true;
     protected $allowedFields = [
         'id_klub',
+        'id_user',
         'id_organisasi',
         'nama',
         'alamat',
         'penanggung_jawab',
         'telepon',
         'tanggal_berdiri',
-        'status'
+        'status',
+        'sk_klub_path',
+        'identitas_pengurus_path',
+        'catatan_verifikasi',
+        'tanggal_verifikasi',
+        'diverifikasi_oleh',
+        'dibuat_pada',
+        'diperbarui_pada'
     ];
 
-    protected $useTimestamps = false;
+    protected $useTimestamps = true;
     protected $dateFormat = 'datetime';
     protected $createdField = 'dibuat_pada';
     protected $updatedField = 'diperbarui_pada';
 
     protected $validationRules = [
+        'id_user' => 'permit_empty|max_length[36]',
+        'id_organisasi' => 'required|integer',
         'nama' => 'required|min_length[3]|max_length[100]',
         'alamat' => 'permit_empty|min_length[10]',
         'penanggung_jawab' => 'permit_empty|min_length[3]',
         'telepon' => 'permit_empty|min_length[10]',
-        'tanggal_berdiri' => 'permit_empty|valid_date'
+        'tanggal_berdiri' => 'permit_empty|valid_date',
+        'status' => 'permit_empty|in_list[pending,aktif,ditolak,nonaktif]',
+        'sk_klub_path' => 'permit_empty|max_length[255]',
+        'identitas_pengurus_path' => 'permit_empty|max_length[255]',
+        'catatan_verifikasi' => 'permit_empty',
+        'tanggal_verifikasi' => 'permit_empty|valid_date',
+        'diverifikasi_oleh' => 'permit_empty|max_length[36]'
     ];
 
     protected $validationMessages = [
+        'id_organisasi' => [
+            'required' => 'Organisasi harus dipilih',
+            'integer' => 'ID organisasi tidak valid'
+        ],
         'nama' => [
             'required' => 'Nama klub harus diisi',
             'min_length' => 'Nama klub minimal 3 karakter',
@@ -53,6 +73,9 @@ class KlubModel extends Model
         ],
         'tanggal_berdiri' => [
             'valid_date' => 'Format tanggal tidak valid'
+        ],
+        'status' => [
+            'in_list' => 'Status tidak valid'
         ]
     ];
 

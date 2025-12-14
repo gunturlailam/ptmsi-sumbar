@@ -27,18 +27,16 @@ class Profil extends BaseController
         // Ambil data organisasi kabupaten/kota
         $organisasiKabupaten = $this->organisasiModel->getOrganisasiKabupaten();
 
-        // Ambil data ofisial (pengurus)
-        $ofisial = $this->ofisialModel->getOfisialWithDetails();
-
-        // Ambil struktur organisasi provinsi (ofisial dengan peran tertentu)
-        $strukturProvinsi = $this->getStrukturProvinsi();
+        // Ambil data pengurus aktif PTMSI Sumbar (organisasi provinsi)
+        $pengurusModel = new \App\Models\PengurusModel();
+        $orgProv = $organisasiProvinsi[0]['id_organisasi'] ?? null;
+        $pengurusProvinsi = $orgProv ? $pengurusModel->where('id_organisasi', $orgProv)->where('status', 'aktif')->orderBy('jabatan', 'ASC')->findAll() : [];
 
         $data = [
             'title' => 'Profil PTMSI Sumbar',
             'organisasiProvinsi' => $organisasiProvinsi,
             'organisasiKabupaten' => $organisasiKabupaten ?: [],
-            'ofisial' => $ofisial ?: [],
-            'strukturProvinsi' => $strukturProvinsi ?: []
+            'pengurusProvinsi' => $pengurusProvinsi ?: [],
         ];
 
         return view('profil', $data);

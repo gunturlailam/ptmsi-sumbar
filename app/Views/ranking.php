@@ -107,11 +107,12 @@
         .submenu-nav {
             background: white;
             border-radius: 30px;
-            padding: 30px;
+            padding: 35px;
             margin-bottom: 40px;
             box-shadow: 0 10px 40px rgba(30, 144, 255, 0.15);
             position: relative;
             overflow: hidden;
+            border: 2px solid #E8F2FF;
         }
 
         .submenu-nav::before {
@@ -127,140 +128,310 @@
         .submenu-nav .nav-link {
             color: var(--primary-blue);
             font-weight: 700;
-            padding: 14px 28px;
+            padding: 16px 32px;
             border-radius: 25px;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            margin: 0 8px;
+            margin: 0 10px;
             position: relative;
             z-index: 1;
+            border: 2px solid transparent;
+            font-size: 1.05rem;
         }
 
-        .submenu-nav .nav-link:hover,
+        .submenu-nav .nav-link:hover {
+            background: linear-gradient(135deg, #E8F2FF 0%, #fff 100%);
+            color: var(--primary-blue);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(30, 144, 255, 0.2);
+            border-color: var(--secondary-blue);
+        }
+
         .submenu-nav .nav-link.active {
-            background: linear-gradient(135deg, var(--secondary-blue) 0%, var(--light-blue) 100%);
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 50%, var(--light-blue) 100%);
             color: white;
             transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(30, 144, 255, 0.3);
-            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(30, 144, 255, 0.4);
+        }
+
+        .submenu-nav .nav-link i {
+            font-size: 1.2rem;
+            margin-right: 8px;
         }
 
         .section-card {
             background: white;
-            border-radius: 15px;
-            padding: 30px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 25px;
+            padding: 35px;
+            margin-bottom: 35px;
+            box-shadow: 0 8px 30px rgba(30, 144, 255, 0.12);
+            border: 2px solid #E8F2FF;
+            transition: all 0.3s ease;
+        }
+
+        .section-card:hover {
+            box-shadow: 0 12px 40px rgba(30, 144, 255, 0.18);
+            transform: translateY(-2px);
         }
 
         .section-title {
             color: var(--primary-blue);
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 3px solid var(--secondary-blue);
+            font-size: 1.9rem;
+            font-weight: 900;
+            margin-bottom: 25px;
+            padding: 20px;
+            background: linear-gradient(to right, #E8F2FF 0%, transparent 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-title i {
+            color: var(--secondary-blue);
+            font-size: 2rem;
         }
 
         .filter-section {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 25px;
+            background: linear-gradient(135deg, #E8F2FF 0%, #F8F9FA 100%);
+            padding: 25px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            border: 2px solid #E8F2FF;
+            box-shadow: 0 4px 15px rgba(30, 144, 255, 0.08);
+        }
+
+        .filter-section label {
+            color: var(--primary-blue);
+            font-weight: 700;
+            font-size: 1.05rem;
+            margin-bottom: 10px;
+        }
+
+        .filter-section .form-select {
+            border-radius: 15px;
+            border: 2px solid #E8F2FF;
+            padding: 12px 20px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .filter-section .form-select:focus {
+            border-color: var(--secondary-blue);
+            box-shadow: 0 0 0 0.2rem rgba(30, 144, 255, 0.25);
+        }
+
+        .filter-section .btn-primary {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 50%, var(--light-blue) 100%);
+            border: none;
+            border-radius: 15px;
+            padding: 12px 24px;
+            font-weight: 700;
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 15px rgba(30, 144, 255, 0.3);
+        }
+
+        .filter-section .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(30, 144, 255, 0.4);
         }
 
         .table-gradient {
-            border-radius: 10px;
+            border-radius: 20px;
             overflow: hidden;
+            box-shadow: 0 4px 20px rgba(30, 144, 255, 0.1);
         }
 
         .table-gradient thead {
-            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 50%, var(--light-blue) 100%);
             color: white;
         }
 
         .table-gradient thead th {
-            padding: 15px;
-            font-weight: 600;
+            padding: 18px 20px;
+            font-weight: 700;
             border: none;
+            font-size: 1.05rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .table-gradient tbody tr {
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
+            border-bottom: 1px solid #E8F2FF;
         }
 
         .table-gradient tbody tr:hover {
-            background-color: #f8f9fa;
-            transform: scale(1.01);
+            background: linear-gradient(135deg, #E8F2FF 0%, #F8F9FA 100%);
+            transform: translateX(5px);
+            box-shadow: 0 4px 15px rgba(30, 144, 255, 0.1);
         }
 
         .table-gradient tbody td {
-            padding: 12px 15px;
+            padding: 16px 20px;
             vertical-align: middle;
+            font-weight: 500;
+        }
+
+        .table-gradient tbody td strong {
+            font-weight: 700;
+            color: var(--primary-blue);
         }
 
         .badge-posisi {
-            padding: 8px 15px;
+            padding: 10px 18px;
             border-radius: 20px;
-            font-weight: 600;
-            font-size: 0.9rem;
+            font-weight: 700;
+            font-size: 1rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
         }
 
         .badge-emas {
             background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
             color: #000;
+            border: 2px solid #FFD700;
+        }
+
+        .badge-emas:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
         }
 
         .badge-perak {
             background: linear-gradient(135deg, #C0C0C0 0%, #808080 100%);
             color: #000;
+            border: 2px solid #C0C0C0;
+        }
+
+        .badge-perak:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(192, 192, 192, 0.4);
         }
 
         .badge-perunggu {
             background: linear-gradient(135deg, #CD7F32 0%, #8B4513 100%);
             color: white;
+            border: 2px solid #CD7F32;
+        }
+
+        .badge-perunggu:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(205, 127, 50, 0.4);
         }
 
         .badge-default {
             background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
             color: white;
+            border: 2px solid var(--secondary-blue);
+        }
+
+        .badge-default:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(30, 144, 255, 0.4);
         }
 
         .stat-card {
-            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 50%, var(--light-blue) 100%);
             color: white;
-            border-radius: 15px;
-            padding: 25px;
-            margin-bottom: 20px;
-            transition: all 0.3s ease;
+            border-radius: 25px;
+            padding: 30px;
+            margin-bottom: 25px;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 25px rgba(30, 144, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
         }
 
         .stat-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 12px 35px rgba(30, 144, 255, 0.4);
         }
 
         .stat-card h3 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 5px;
+            font-size: 2.8rem;
+            font-weight: 900;
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 1;
         }
 
         .stat-card p {
-            font-size: 1rem;
-            opacity: 0.9;
+            font-size: 1.1rem;
+            opacity: 0.95;
             margin: 0;
+            font-weight: 600;
+            position: relative;
+            z-index: 1;
         }
 
         .empty-state {
             text-align: center;
-            padding: 60px 20px;
+            padding: 80px 20px;
             color: #6c757d;
+            background: linear-gradient(135deg, #F8F9FA 0%, #E8F2FF 100%);
+            border-radius: 20px;
+            border: 2px dashed #E8F2FF;
         }
 
         .empty-state i {
-            font-size: 4rem;
-            margin-bottom: 20px;
-            opacity: 0.5;
+            font-size: 5rem;
+            margin-bottom: 25px;
+            opacity: 0.4;
+            color: var(--secondary-blue);
+        }
+
+        .empty-state h4 {
+            color: var(--primary-blue);
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .empty-state p {
+            color: #6c757d;
+            font-size: 1.05rem;
+        }
+
+        .alert {
+            border-radius: 20px;
+            border: 2px solid;
+            padding: 20px;
+            font-weight: 500;
+        }
+
+        .alert-info {
+            background: linear-gradient(135deg, #E8F2FF 0%, #F0F8FF 100%);
+            border-color: var(--secondary-blue);
+            color: var(--primary-blue);
+        }
+
+        .alert-warning {
+            background: linear-gradient(135deg, #FFF8E1 0%, #FFECB3 100%);
+            border-color: #FFA726;
+            color: #E65100;
+        }
+
+        .alert-success {
+            background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+            border-color: #66BB6A;
+            color: #2E7D32;
+        }
+
+        .badge.bg-primary {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%) !important;
+            padding: 8px 16px;
+            border-radius: 15px;
+            font-weight: 700;
+            font-size: 0.95rem;
         }
 
         @media (max-width: 768px) {
@@ -271,6 +442,16 @@
             .submenu-nav .nav-link {
                 margin: 5px 0;
                 display: block;
+            }
+
+            .section-card {
+                padding: 20px;
+            }
+
+            .table-gradient thead th,
+            .table-gradient tbody td {
+                padding: 12px 10px;
+                font-size: 0.9rem;
             }
         }
     </style>
@@ -323,10 +504,9 @@
                                 <div class="col-md-8">
                                     <label class="form-label fw-bold">Filter Kategori Usia:</label>
                                     <select name="kategori" class="form-select" onchange="this.form.submit()">
-                                        <option value="all" <?= $selectedKategori === 'all' ? 'selected' : '' ?>>Semua Kategori</option>
-                                        <?php foreach ($allKategori as $kat): ?>
-                                            <option value="<?= esc($kat) ?>" <?= $selectedKategori === $kat ? 'selected' : '' ?>>
-                                                <?= esc($kat) ?>
+                                        <?php foreach ($allKategori as $key => $label): ?>
+                                            <option value="<?= esc($key) ?>" <?= $selectedKategori === $key ? 'selected' : '' ?>>
+                                                <?= esc($label) ?>
                                             </option>
                                         <?php endforeach; ?>
                                     </select>
@@ -379,7 +559,7 @@
                                                     <i class="bi bi-gender-female text-danger"></i> Putri
                                                 <?php endif; ?>
                                             </td>
-                                            <td><strong><?= number_format($rank['poin']) ?></strong></td>
+                                            <td><strong><?= number_format($rank['poin'] ?? 0) ?></strong></td>
                                             <td><?= date('d M Y', strtotime($rank['tanggal_berlaku'])) ?></td>
                                         </tr>
                                     <?php endforeach; ?>

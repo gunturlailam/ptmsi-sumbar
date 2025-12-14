@@ -100,11 +100,11 @@ class Auth extends BaseController
 
         // Set session data
         $sessionData = [
-            'user_id' => $user['id'],
+            'user_id' => $user['id_user'] ?? $user['id'],
             'username' => $user['username'],
             'email' => $user['email'],
             'nama_lengkap' => $user['nama_lengkap'],
-            'role' => $user['role'],
+            'role' => $user['peran'],
             'logged_in' => true
         ];
 

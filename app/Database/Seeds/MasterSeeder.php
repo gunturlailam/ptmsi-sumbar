@@ -318,7 +318,7 @@ class MasterSeeder extends Seeder
                 'tanggal_selesai' => '2025-11-20',
                 'lokasi' => 'GOR Haji Agus Salim, Padang',
                 'batas_pendaftaran' => '2025-11-01',
-                'status' => 'dibuka',
+                'status' => 'aktif',
             ],
             [
                 'judul' => 'Open Tournament Padang 2025 - Senior',
@@ -329,6 +329,16 @@ class MasterSeeder extends Seeder
                 'lokasi' => 'GOR Universitas Negeri Padang',
                 'batas_pendaftaran' => '2025-09-30',
                 'status' => 'selesai',
+            ],
+            [
+                'judul' => 'Kejuaraan Nasional Junior 2025 - Kategori U-15',
+                'id_turnamen' => 3,
+                'id_klub_penyelenggara' => 3,
+                'tanggal_mulai' => '2025-12-20',
+                'tanggal_selesai' => '2025-12-25',
+                'lokasi' => 'GOR Bukittinggi Sport Center',
+                'batas_pendaftaran' => '2025-12-10',
+                'status' => 'draft',
             ],
         ];
         $this->db->table('event')->insertBatch($eventData);

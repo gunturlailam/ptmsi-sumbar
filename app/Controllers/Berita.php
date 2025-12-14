@@ -25,9 +25,9 @@ class Berita extends BaseController
             'title' => 'Berita - PTMSI Sumbar',
             'berita' => $this->beritaModel->getPublishedBerita(),
             'beritaKejuaraan' => $this->beritaModel->getBeritaByKategori('kejuaraan'),
-            'beritaAtlet' => $this->beritaModel->getBeritaByKategori('atlet_berprestasi'),
+            'beritaAtlet' => $this->beritaModel->getBeritaByKategori('atlet'),
             'pengumuman' => $this->beritaModel->getBeritaByKategori('pengumuman'),
-            'artikel' => $this->beritaModel->getBeritaByKategori('artikel_pembinaan'),
+            'artikel' => $this->beritaModel->getBeritaByKategori('artikel'),
             'popular' => $this->beritaModel->getPopularBerita(5)
         ];
 

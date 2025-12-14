@@ -29,6 +29,18 @@ class CreateBeritaTable extends Migration
                 'type'       => 'TEXT',
                 'null'       => false,
             ],
+            'foto' => [
+                'type'       => 'VARCHAR',
+                'constraint' => 255,
+                'null'       => true,
+                'comment'    => 'Path to news image file',
+            ],
+            'kategori' => [
+                'type'       => 'VARCHAR',
+                'constraint' => 50,
+                'null'       => true,
+                'comment'    => 'News category: kejuaraan, atlet, pengumuman, artikel',
+            ],
             'id_penulis' => [
                 'type'       => 'CHAR',
                 'constraint' => 36,

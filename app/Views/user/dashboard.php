@@ -292,6 +292,43 @@
                         <div class="stats-label">Prestasi Atlet</div>
                     </div>
                 </div>
+            <?php elseif ($role === 'klub' || $role === 'admin_klub'): ?>
+                <div class="col-md-3 mb-4">
+                    <div class="stats-card">
+                        <div class="stats-icon" style="background: linear-gradient(135deg, #28a745 0%, #20c997 100%);">
+                            <i class="bi bi-people"></i>
+                        </div>
+                        <div class="stats-number">0</div>
+                        <div class="stats-label">Total Atlet</div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="stats-card">
+                        <div class="stats-icon" style="background: linear-gradient(135deg, #ffc107 0%, #fd7e14 100%);">
+                            <i class="bi bi-person-workspace"></i>
+                        </div>
+                        <div class="stats-number">0</div>
+                        <div class="stats-label">Pelatih/Wasit</div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="stats-card">
+                        <div class="stats-icon" style="background: linear-gradient(135deg, #dc3545 0%, #e83e8c 100%);">
+                            <i class="bi bi-clock"></i>
+                        </div>
+                        <div class="stats-number">0</div>
+                        <div class="stats-label">Pendaftaran Pending</div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="stats-card">
+                        <div class="stats-icon" style="background: linear-gradient(135deg, #6f42c1 0%, #6610f2 100%);">
+                            <i class="bi bi-trophy"></i>
+                        </div>
+                        <div class="stats-number">0</div>
+                        <div class="stats-label">Event Diikuti</div>
+                    </div>
+                </div>
             <?php else: ?>
                 <div class="col-md-3 mb-4">
                     <div class="stats-card">
@@ -381,6 +418,27 @@
                             <div class="col-md-6 mb-3">
                                 <a href="<?= base_url('pembinaan') ?>" class="action-btn w-100 text-center">
                                     <i class="bi bi-mortarboard"></i> Program Pembinaan
+                                </a>
+                            </div>
+                        <?php elseif ($role === 'klub' || $role === 'admin_klub'): ?>
+                            <div class="col-md-6 mb-3">
+                                <a href="<?= base_url('user/profile') ?>" class="action-btn w-100 text-center">
+                                    <i class="bi bi-building-gear"></i> Update Profil Klub
+                                </a>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <a href="<?= base_url('registration/atlet-register') ?>" class="action-btn w-100 text-center">
+                                    <i class="bi bi-person-plus"></i> Daftar Atlet Baru
+                                </a>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <a href="<?= base_url('registration/pelatih-register') ?>" class="action-btn w-100 text-center">
+                                    <i class="bi bi-person-workspace"></i> Daftar Pelatih/Wasit
+                                </a>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <a href="<?= base_url('layanan-online') ?>" class="action-btn w-100 text-center">
+                                    <i class="bi bi-trophy"></i> Daftar Turnamen
                                 </a>
                             </div>
                         <?php else: ?>

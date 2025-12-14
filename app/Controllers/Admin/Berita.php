@@ -27,12 +27,33 @@ class Berita extends BaseController
 
     public function index()
     {
+        $search = $this->request->getGet('search');
+        $kategori = $this->request->getGet('kategori');
+
+        $builder = $this->beritaModel->select('berita.*, user.nama_lengkap as nama_penulis')
+            ->join('user', 'user.id_user = berita.id_penulis', 'left');
+
+        if ($search) {
+            $builder->groupStart()
+                ->like('berita.judul', $search)
+                ->orLike('berita.konten', $search)
+                ->groupEnd();
+        }
+
+        if ($kategori) {
+            $builder->where('berita.kategori', $kategori);
+        }
+
+        $berita = $builder->orderBy('berita.tanggal_publikasi', 'DESC')->findAll();
+
         $data = [
             'title' => 'Manajemen Berita',
-            'berita' => $this->beritaModel->orderBy('tanggal_publikasi', 'DESC')->findAll()
+            'berita' => $berita,
+            'search' => $search,
+            'kategori' => $kategori
         ];
 
-        return view('admin/berita/index', $data);
+        return view('admin/berita', $data);
     }
 
     public function create()
@@ -50,8 +71,9 @@ class Berita extends BaseController
             'judul' => 'required|min_length[5]|max_length[200]',
             'slug' => 'required|is_unique[berita.slug]',
             'konten' => 'required',
-            'kategori' => 'required',
-            'status' => 'required|in_list[draft,published]'
+            'kategori' => 'required|in_list[kejuaraan,atlet,pengumuman,artikel]',
+            'status' => 'required|in_list[draft,published]',
+            'foto' => 'permit_empty|uploaded[foto]|max_size[foto,2048]|is_image[foto]'
         ];
 
         if (!$this->validate($rules)) {
@@ -65,16 +87,15 @@ class Berita extends BaseController
             'kategori' => $this->request->getPost('kategori'),
             'status' => $this->request->getPost('status'),
             'tanggal_publikasi' => $this->request->getPost('tanggal_publikasi') ?: date('Y-m-d H:i:s'),
-            'penulis_id' => session()->get('user_id'),
-            'created_at' => date('Y-m-d H:i:s')
+            'id_penulis' => session()->get('id_user')
         ];
 
         // Handle image upload
-        $gambar = $this->request->getFile('gambar');
-        if ($gambar && $gambar->isValid() && !$gambar->hasMoved()) {
-            $newName = $gambar->getRandomName();
-            $gambar->move(ROOTPATH . 'public/assets/img/berita', $newName);
-            $data['gambar'] = 'assets/img/berita/' . $newName;
+        $foto = $this->request->getFile('foto');
+        if ($foto && $foto->isValid() && !$foto->hasMoved()) {
+            $newName = $foto->getRandomName();
+            $foto->move(ROOTPATH . 'public/uploads/berita', $newName);
+            $data['foto'] = 'uploads/berita/' . $newName;
         }
 
         if ($this->beritaModel->insert($data)) {
@@ -86,7 +107,10 @@ class Berita extends BaseController
 
     public function edit($id)
     {
-        $berita = $this->beritaModel->find($id);
+        $berita = $this->beritaModel->select('berita.*, user.nama_lengkap as nama_penulis')
+            ->join('user', 'user.id_user = berita.id_penulis', 'left')
+            ->where('berita.id_berita', $id)
+            ->first();
 
         if (!$berita) {
             return redirect()->to('admin/berita')->with('error', 'Berita tidak ditemukan');
@@ -102,7 +126,7 @@ class Berita extends BaseController
 
     public function update($id)
     {
-        $berita = $this->beritaModel->find($id);
+        $berita = $this->beritaModel->where('id_berita', $id)->first();
 
         if (!$berita) {
             return redirect()->to('admin/berita')->with('error', 'Berita tidak ditemukan');
@@ -110,10 +134,11 @@ class Berita extends BaseController
 
         $rules = [
             'judul' => 'required|min_length[5]|max_length[200]',
-            'slug' => "required|is_unique[berita.slug,id,{$id}]",
+            'slug' => "required|is_unique[berita.slug,id_berita,{$id}]",
             'konten' => 'required',
-            'kategori' => 'required',
-            'status' => 'required|in_list[draft,published]'
+            'kategori' => 'required|in_list[kejuaraan,atlet,pengumuman,artikel]',
+            'status' => 'required|in_list[draft,published]',
+            'foto' => 'permit_empty|uploaded[foto]|max_size[foto,2048]|is_image[foto]'
         ];
 
         if (!$this->validate($rules)) {
@@ -126,21 +151,20 @@ class Berita extends BaseController
             'konten' => $this->request->getPost('konten'),
             'kategori' => $this->request->getPost('kategori'),
             'status' => $this->request->getPost('status'),
-            'tanggal_publikasi' => $this->request->getPost('tanggal_publikasi'),
-            'updated_at' => date('Y-m-d H:i:s')
+            'tanggal_publikasi' => $this->request->getPost('tanggal_publikasi')
         ];
 
         // Handle image upload
-        $gambar = $this->request->getFile('gambar');
-        if ($gambar && $gambar->isValid() && !$gambar->hasMoved()) {
+        $foto = $this->request->getFile('foto');
+        if ($foto && $foto->isValid() && !$foto->hasMoved()) {
             // Delete old image
-            if ($berita['gambar'] && file_exists(ROOTPATH . 'public/' . $berita['gambar'])) {
-                unlink(ROOTPATH . 'public/' . $berita['gambar']);
+            if (!empty($berita['foto']) && file_exists(ROOTPATH . 'public/' . $berita['foto'])) {
+                unlink(ROOTPATH . 'public/' . $berita['foto']);
             }
 
-            $newName = $gambar->getRandomName();
-            $gambar->move(ROOTPATH . 'public/assets/img/berita', $newName);
-            $data['gambar'] = 'assets/img/berita/' . $newName;
+            $newName = $foto->getRandomName();
+            $foto->move(ROOTPATH . 'public/uploads/berita', $newName);
+            $data['foto'] = 'uploads/berita/' . $newName;
         }
 
         if ($this->beritaModel->update($id, $data)) {
@@ -152,18 +176,18 @@ class Berita extends BaseController
 
     public function delete($id)
     {
-        $berita = $this->beritaModel->find($id);
+        $berita = $this->beritaModel->where('id_berita', $id)->first();
 
         if (!$berita) {
             return redirect()->to('admin/berita')->with('error', 'Berita tidak ditemukan');
         }
 
         // Delete image
-        if ($berita['gambar'] && file_exists(ROOTPATH . 'public/' . $berita['gambar'])) {
-            unlink(ROOTPATH . 'public/' . $berita['gambar']);
+        if (!empty($berita['foto']) && file_exists(ROOTPATH . 'public/' . $berita['foto'])) {
+            unlink(ROOTPATH . 'public/' . $berita['foto']);
         }
 
-        if ($this->beritaModel->delete($id)) {
+        if ($this->beritaModel->where('id_berita', $id)->delete()) {
             return redirect()->to('admin/berita')->with('success', 'Berita berhasil dihapus');
         }
 

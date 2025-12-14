@@ -27,14 +27,33 @@ class Event extends BaseController
 
     public function index()
     {
-        // Ambil semua event dengan detail turnamen
-        $events = $this->eventModel->getEventWithDetails();
-        $turnamen = $this->turnamenModel->findAll();
+        // Ambil semua event dengan detail turnamen (hanya tingkat provinsi dan open)
+        $events = $this->eventModel->select('event.*, turnamen.nama as nama_turnamen, turnamen.tingkat, turnamen.tahun_musim, klub.nama as nama_klub_penyelenggara')
+            ->join('turnamen', 'turnamen.id_turnamen = event.id_turnamen', 'left')
+            ->join('klub', 'klub.id_klub = event.id_klub_penyelenggara', 'left')
+            ->whereIn('event.tingkat', ['provinsi', 'open'])
+            ->orderBy('event.tanggal_mulai', 'ASC')
+            ->findAll();
+
+        // Ambil hasil pertandingan terbaru (hanya final matches untuk juara)
+        $hasilPertandingan = $this->hasilModel->select('hasil.*, event.judul as nama_event, event.tanggal_mulai as tanggal, 
+                                                        pertandingan.babak as kategori,
+                                                        user_pemenang.nama_lengkap as juara_1,
+                                                        "TBA" as juara_2, 
+                                                        "TBA" as juara_3')
+            ->join('pertandingan', 'pertandingan.id_pertandingan = hasil.id_pertandingan')
+            ->join('event', 'event.id_event = pertandingan.id_event')
+            ->join('atlet atlet_pemenang', 'atlet_pemenang.id_atlet = hasil.id_pemenang_atlet', 'left')
+            ->join('user user_pemenang', 'user_pemenang.id_user = atlet_pemenang.id_user', 'left')
+            ->where('pertandingan.babak', 'Final')
+            ->orderBy('event.tanggal_mulai', 'DESC')
+            ->limit(5)
+            ->findAll();
 
         $data = [
             'title' => 'Kejuaraan & Event - PTMSI Sumbar',
             'events' => $events,
-            'turnamen' => $turnamen
+            'hasilPertandingan' => $hasilPertandingan
         ];
 
         return view('event', $data);
@@ -161,5 +180,45 @@ class Event extends BaseController
         ];
 
         return view('event/hasil', $data);
+    }
+
+    public function bracket($id_event)
+    {
+        // Ambil detail event
+        $event = $this->eventModel->select('event.*, turnamen.nama as nama_turnamen, turnamen.tingkat')
+            ->join('turnamen', 'turnamen.id_turnamen = event.id_turnamen', 'left')
+            ->where('event.id_event', $id_event)
+            ->first();
+
+        if (!$event) {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        }
+
+        // Ambil semua pertandingan untuk event ini
+        $pertandingan = $this->pertandinganModel->select('pertandingan.*, 
+                                                          user1.nama_lengkap as nama_atlet1,
+                                                          user2.nama_lengkap as nama_atlet2,
+                                                          hasil.skor as skor_atlet1,
+                                                          "" as skor_atlet2,
+                                                          hasil.id_pemenang_atlet,
+                                                          "terjadwal" as status,
+                                                          ROW_NUMBER() OVER (PARTITION BY pertandingan.babak ORDER BY pertandingan.id_pertandingan) as urutan_pertandingan')
+            ->join('atlet atlet1', 'atlet1.id_atlet = pertandingan.id_atlet1', 'left')
+            ->join('user user1', 'user1.id_user = atlet1.id_user', 'left')
+            ->join('atlet atlet2', 'atlet2.id_atlet = pertandingan.id_atlet2', 'left')
+            ->join('user user2', 'user2.id_user = atlet2.id_user', 'left')
+            ->join('hasil', 'hasil.id_pertandingan = pertandingan.id_pertandingan', 'left')
+            ->where('pertandingan.id_event', $id_event)
+            ->orderBy('pertandingan.babak', 'ASC')
+            ->orderBy('pertandingan.id_pertandingan', 'ASC')
+            ->findAll();
+
+        $data = [
+            'title' => 'Bracket Pertandingan - ' . $event['judul'],
+            'event' => $event,
+            'pertandingan' => $pertandingan
+        ];
+
+        return view('event/bracket', $data);
     }
 }

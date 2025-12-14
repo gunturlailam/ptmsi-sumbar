@@ -12,6 +12,8 @@ class BeritaModel extends Model
         'judul',
         'slug',
         'konten',
+        'foto',
+        'kategori',
         'id_penulis',
         'tanggal_publikasi',
         'status'
@@ -31,13 +33,13 @@ class BeritaModel extends Model
     }
 
     /**
-     * Get berita by kategori (dummy - karena tidak ada field kategori)
-     * Untuk sementara return semua berita
+     * Get berita by kategori
      */
     public function getBeritaByKategori($kategori)
     {
         return $this->select('berita.*, user.nama_lengkap as nama_penulis')
             ->join('user', 'user.id_user = berita.id_penulis', 'left')
+            ->where('berita.kategori', $kategori)
             ->where('berita.status', 'published')
             ->orderBy('berita.tanggal_publikasi', 'DESC')
             ->findAll();
