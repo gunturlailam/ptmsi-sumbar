@@ -376,7 +376,7 @@ class Registration extends BaseController
             'jenis_kelamin' => 'required|in_list[L,P]',
             'alamat' => 'required|min_length[10]',
             'no_hp' => 'required|min_length[10]|max_length[15]',
-            'email' => 'required|valid_email|is_unique[pelatih.email]',
+            'email' => 'required|valid_email|is_unique[pendaftaran_pelatih.email]',
             'jenis_pelatih' => 'required|in_list[pelatih,wasit]',
             'sertifikat' => 'uploaded[sertifikat]|max_size[sertifikat,5120]|ext_in[sertifikat,pdf,jpg,jpeg,png]',
             'foto_pelatih' => 'uploaded[foto_pelatih]|max_size[foto_pelatih,2048]|ext_in[foto_pelatih,jpg,jpeg,png]'

@@ -10,7 +10,7 @@
                     <div class="row align-items-center">
                         <div class="col-md-8">
                             <h1 class="mb-2" style="font-weight: 900; color: #003366;">
-                                <i class="fas fa-chart-line me-3"></i>Kelola Ranking Atlet
+                                <i class="bx bx-line-chart me-3"></i>Kelola Ranking Atlet
                             </h1>
                             <p class="mb-0" style="font-weight: 500; color: #666;">
                                 Sistem ranking otomatis berdasarkan hasil pertandingan
@@ -21,7 +21,7 @@
                                 <?= csrf_field() ?>
                                 <button type="submit" class="btn btn-lg px-4 py-2"
                                     style="background: linear-gradient(45deg, #28a745, #20c997); color: white; border: none; border-radius: 20px; font-weight: 700;">
-                                    <i class="fas fa-sync-alt me-2"></i>Update Ranking
+                                    <i class="bx bx-refresh me-2"></i>Update Ranking
                                 </button>
                             </form>
                         </div>
@@ -37,7 +37,7 @@
             <div class="card border-0 shadow-lg" style="border-radius: 25px; background: rgba(255,255,255,0.95);">
                 <div class="card-header border-0" style="background: linear-gradient(45deg, #1E90FF, #00BFFF); border-radius: 25px 25px 0 0;">
                     <h5 class="mb-0 text-white" style="font-weight: 700;">
-                        <i class="fas fa-trophy me-2"></i>Ranking Bulan <?= date('F Y') ?>
+                        <i class="bx bx-trophy me-2"></i>Ranking Bulan <?= date('F Y') ?>
                     </h5>
                 </div>
                 <div class="card-body p-4">
@@ -71,7 +71,7 @@
                                                     $medal_color = $medals[$ranking['peringkat']];
                                                     ?>
                                                     <div class="d-flex align-items-center justify-content-center">
-                                                        <i class="fas fa-medal" style="color: <?= $medal_color ?>; font-size: 1.5rem; margin-right: 8px;"></i>
+                                                        <i class="bx bx-medal" style="color: <?= $medal_color ?>; font-size: 1.5rem; margin-right: 8px;"></i>
                                                         <span style="font-weight: 900; font-size: 1.2rem; color: #003366;">
                                                             <?= $ranking['peringkat'] ?>
                                                         </span>
@@ -130,14 +130,14 @@
                         </div>
                     <?php else: ?>
                         <div class="text-center py-5">
-                            <i class="fas fa-chart-line" style="font-size: 4rem; color: #e0e0e0; margin-bottom: 1rem;"></i>
+                            <i class="bx bx-line-chart" style="font-size: 4rem; color: #e0e0e0; margin-bottom: 1rem;"></i>
                             <h4 style="font-weight: 700; color: #666;">Belum Ada Data Ranking</h4>
                             <p class="text-muted">Ranking akan muncul setelah ada hasil pertandingan bulan ini</p>
                             <form action="<?= base_url('admin/update-ranking-otomatis') ?>" method="post" class="d-inline">
                                 <?= csrf_field() ?>
                                 <button type="submit" class="btn btn-lg px-4 py-2"
                                     style="background: linear-gradient(45deg, #1E90FF, #00BFFF); color: white; border: none; border-radius: 20px; font-weight: 700;">
-                                    <i class="fas fa-sync-alt me-2"></i>Generate Ranking
+                                    <i class="bx bx-refresh me-2"></i>Generate Ranking
                                 </button>
                             </form>
                         </div>
@@ -153,7 +153,7 @@
         <div class="card border-0 shadow-lg" style="border-radius: 25px; background: rgba(255,255,255,0.95);">
             <div class="card-header border-0" style="background: linear-gradient(45deg, #28a745, #20c997); border-radius: 25px 25px 0 0;">
                 <h5 class="mb-0 text-white" style="font-weight: 700;">
-                    <i class="fas fa-calculator me-2"></i>Sistem Poin
+                    <i class="bx bx-calculator me-2"></i>Sistem Poin
                 </h5>
             </div>
             <div class="card-body p-4">
@@ -183,7 +183,7 @@
         <div class="card border-0 shadow-lg" style="border-radius: 25px; background: rgba(255,255,255,0.95);">
             <div class="card-header border-0" style="background: linear-gradient(45deg, #dc3545, #c82333); border-radius: 25px 25px 0 0;">
                 <h5 class="mb-0 text-white" style="font-weight: 700;">
-                    <i class="fas fa-info-circle me-2"></i>Cara Kerja Ranking
+                    <i class="bx bx-info-circle me-2"></i>Cara Kerja Ranking
                 </h5>
             </div>
             <div class="card-body p-4">

@@ -87,7 +87,7 @@ class Berita extends BaseController
             'kategori' => $this->request->getPost('kategori'),
             'status' => $this->request->getPost('status'),
             'tanggal_publikasi' => $this->request->getPost('tanggal_publikasi') ?: date('Y-m-d H:i:s'),
-            'id_penulis' => session()->get('id_user')
+            'id_penulis' => session()->get('user_id')
         ];
 
         // Handle image upload

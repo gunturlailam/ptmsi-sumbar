@@ -108,7 +108,7 @@ class PendaftaranPelatihModel extends Model
     {
         return $this->select('pendaftaran_pelatih.*, klub.nama as nama_klub')
             ->join('klub', 'klub.id_klub = pendaftaran_pelatih.id_klub', 'left')
-            ->where('pendaftaran_pelatih.status', 'menunggu_verifikasi_provinsi')
+            ->where('pendaftaran_pelatih.status', 'menunggu_verifikasi_admin')
             ->orderBy('pendaftaran_pelatih.tanggal_daftar', 'ASC')
             ->findAll();
     }

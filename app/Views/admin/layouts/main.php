@@ -30,15 +30,62 @@
     <!-- Page CSS -->
     <?= $this->renderSection('styles') ?>
     <style>
-        .admin-center-content {
-            display: flex;
-            justify-content: center;
+        .admin-full-width {
+            width: 100%;
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+        }
+
+        .admin-content-inner {
+            width: 100%;
+            max-width: none;
+        }
+
+        /* Override default container constraints */
+        .container-xxl {
+            max-width: none !important;
+        }
+
+        /* Ensure content uses full available width */
+        .content-wrapper {
             width: 100%;
         }
 
-        .admin-center-content>.admin-content-inner {
+        .layout-page {
             width: 100%;
-            max-width: 1100px;
+        }
+
+        /* Remove any centering constraints */
+        .admin-content-inner .row {
+            margin-left: -0.75rem;
+            margin-right: -0.75rem;
+        }
+
+        .admin-content-inner .col-12,
+        .admin-content-inner .col-lg-4,
+        .admin-content-inner .col-lg-6,
+        .admin-content-inner .col-xl-3,
+        .admin-content-inner .col-md-6 {
+            padding-left: 0.75rem;
+            padding-right: 0.75rem;
+        }
+
+        /* Ensure cards use full available space */
+        .admin-content-inner .card {
+            width: 100%;
+        }
+
+        /* Override any max-width constraints from theme */
+        .layout-page .container-fluid {
+            max-width: none !important;
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+        }
+
+        /* Full width for admin content */
+        .admin-full-width {
+            margin-left: 0 !important;
+            margin-right: 0 !important;
         }
     </style>
 
@@ -67,7 +114,7 @@
                 <div class="content-wrapper">
 
                     <!-- Content -->
-                    <div class="container-xxl -grow-1 container-p-y admin-center-content">
+                    <div class="flex-grow-1 admin-full-width">
                         <div class="admin-content-inner">
                             <?= $this->renderSection('content') ?>
                         </div>

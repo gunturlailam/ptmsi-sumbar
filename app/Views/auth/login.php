@@ -78,45 +78,45 @@
             position: relative;
             z-index: 1;
             width: 100%;
-            max-width: 450px;
+            max-width: 370px;
             animation: fadeInUp 0.8s ease-out;
         }
 
         .login-card {
-            background: rgba(255, 255, 255, 0.98);
-            border-radius: 30px;
-            padding: 50px 40px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
+            background: #fff;
+            border-radius: 18px;
+            padding: 28px 22px 22px 22px;
+            box-shadow: 0 4px 24px rgba(30, 144, 255, 0.10);
+            border: 1px solid #e8f2ff;
         }
 
         .logo-container {
             text-align: center;
-            margin-bottom: 35px;
-            animation: float 3s ease-in-out infinite;
+            margin-bottom: 18px;
         }
 
         .logo-container img {
-            width: 100px;
-            height: 100px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
-            border: 4px solid #1E90FF;
+            border: 2px solid #1E90FF;
             background: #fff;
-            padding: 10px;
-            box-shadow: 0 8px 25px rgba(30, 144, 255, 0.3);
-            margin-bottom: 20px;
+            padding: 4px;
+            box-shadow: 0 2px 8px rgba(30, 144, 255, 0.10);
+            margin-bottom: 10px;
         }
 
         .logo-container h2 {
             color: #003366;
-            font-weight: 900;
-            font-size: 2rem;
-            margin-bottom: 8px;
+            font-weight: 700;
+            font-size: 1.25rem;
+            margin-bottom: 4px;
+            letter-spacing: 1px;
         }
 
         .logo-container p {
-            color: #666;
-            font-size: 1rem;
+            color: #888;
+            font-size: 0.98rem;
             margin: 0;
         }
 
@@ -127,17 +127,17 @@
 
         .form-group label {
             color: #003366;
-            font-weight: 700;
-            margin-bottom: 10px;
+            font-weight: 600;
+            margin-bottom: 7px;
             display: block;
-            font-size: 0.95rem;
+            font-size: 0.97rem;
         }
 
         .form-control-modern {
             width: 100%;
-            padding: 15px 20px 15px 50px;
-            border: 2px solid #E8F2FF;
-            border-radius: 15px;
+            padding: 12px 16px 12px 40px;
+            border: 1.5px solid #E8F2FF;
+            border-radius: 10px;
             font-size: 1rem;
             transition: all 0.3s ease;
             background: #F8F9FA;
@@ -152,21 +152,21 @@
 
         .input-icon {
             position: absolute;
-            left: 18px;
+            left: 12px;
             top: 50%;
             transform: translateY(-50%);
             color: #1E90FF;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
         }
 
         .password-toggle {
             position: absolute;
-            right: 18px;
+            right: 12px;
             top: 50%;
             transform: translateY(-50%);
-            color: #666;
+            color: #bbb;
             cursor: pointer;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             transition: color 0.3s ease;
         }
 
@@ -199,43 +199,21 @@
 
         .btn-login {
             width: 100%;
-            padding: 16px;
-            background: linear-gradient(135deg, #1E90FF 0%, #00BFFF 100%);
+            padding: 12px;
+            background: linear-gradient(90deg, #1E90FF 0%, #00BFFF 100%);
             color: #fff;
             border: none;
-            border-radius: 15px;
-            font-size: 1.1rem;
-            font-weight: 700;
+            border-radius: 10px;
+            font-size: 1.05rem;
+            font-weight: 600;
             cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 8px 25px rgba(30, 144, 255, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-login::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #00BFFF 0%, #1E90FF 100%);
-            transition: left 0.3s ease;
-        }
-
-        .btn-login:hover::before {
-            left: 0;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 2px 8px rgba(30, 144, 255, 0.10);
         }
 
         .btn-login:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 35px rgba(30, 144, 255, 0.4);
-        }
-
-        .btn-login span {
-            position: relative;
-            z-index: 1;
+            background: linear-gradient(90deg, #00BFFF 0%, #1E90FF 100%);
+            box-shadow: 0 4px 16px rgba(30, 144, 255, 0.13);
         }
 
         .divider {
@@ -320,28 +298,29 @@
         }
 
         .back-home {
-            text-align: center;
-            margin-top: 25px;
+            text-align: left;
+            margin-bottom: 18px;
+            margin-left: 2px;
         }
 
         .back-home a {
-            color: #fff;
+            color: #1E90FF;
             text-decoration: none;
             font-weight: 600;
             font-size: 0.95rem;
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 10px 20px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 25px;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
+            padding: 6px 14px;
+            background: #f4faff;
+            border-radius: 18px;
+            border: 1px solid #e8f2ff;
+            transition: all 0.2s ease;
         }
 
         .back-home a:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-2px);
+            background: #e8f2ff;
+            color: #003366;
         }
 
         @media (max-width: 576px) {
@@ -364,6 +343,11 @@
 
 <body>
     <div class="login-container">
+        <div class="back-home" style="text-align: left; margin-bottom: 20px; margin-left: 5px;">
+            <a href="<?= base_url('/') ?>">
+                <i class="bi bi-arrow-left"></i> Kembali ke Beranda
+            </a>
+        </div>
         <div class="login-card">
             <div class="logo-container">
                 <img src="<?= base_url('assets/img/gambar-ptmsi.png') ?>" alt="PTMSI Sumbar">
@@ -429,21 +413,9 @@
                     <span><i class="bi bi-box-arrow-in-right"></i> Masuk</span>
                 </button>
             </form>
-
-            <div class="divider">
-                <span>atau</span>
-            </div>
-
-            <div class="register-link">
-                Belum punya akun? <a href="<?= base_url('auth/register') ?>">Daftar Sekarang</a>
-            </div>
         </div>
 
-        <div class="back-home">
-            <a href="<?= base_url('/') ?>">
-                <i class="bi bi-arrow-left"></i> Kembali ke Beranda
-            </a>
-        </div>
+        <!-- back-home dipindahkan ke atas -->
     </div>
 
     <script>

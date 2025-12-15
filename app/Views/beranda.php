@@ -600,9 +600,11 @@
             </div>
 
             <div class="article-card">
-                <div class="article-image">
-                    <img src="<?= base_url('assets/img/pembinaan.jpg') ?>" alt="Pembinaan Atlet"
-                        onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #00BFFF, #1E90FF)'; this.parentElement.innerHTML+='<div style=\'position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;color:white;\'><i class=\'bi bi-people\' style=\'font-size:3rem;margin-bottom:10px;\'></i><h5>Pembinaan</h5></div>'">
+                <div class="article-image" style="background:linear-gradient(135deg, #00BFFF, #1E90FF);position:relative;min-height:180px;display:flex;align-items:center;justify-content:center;">
+                    <div style="text-align:center;color:white;">
+                        <i class="bi bi-people" style="font-size:3rem;margin-bottom:10px;"></i>
+                        <h5>Pembinaan</h5>
+                    </div>
                 </div>
                 <div class="article-content">
                     <div class="article-category">PEMBINAAN</div>

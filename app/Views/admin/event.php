@@ -5,7 +5,9 @@
     <div class="w-100" style="max-width: 1100px;">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h3 class="mb-0">Daftar Event & Kejuaraan</h3>
-            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalTambahEvent"><i class="bi bi-plus-circle"></i> Tambah Event</button>
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalTambahEvent" title="Tambah Event">
+                <i class="bx bx-plus"></i>
+            </button>
         </div>
         <?php if (!empty($events)): ?>
             <div class="table-responsive">
@@ -31,8 +33,17 @@
                                 <td><span class="badge bg-info"><?= esc($item['status']) ?></span></td>
                                 <td><?= date('d/m/Y', strtotime($item['tanggal_mulai'])) ?></td>
                                 <td class="text-center">
-                                    <button class="btn btn-warning btn-sm me-1" data-bs-toggle="modal" data-bs-target="#modalEditEvent<?= $item['id_event'] ?>"><i class="bi bi-pencil-square"></i></button>
-                                    <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modalHapusEvent<?= $item['id_event'] ?>"><i class="bi bi-trash"></i></button>
+                                    <div class="btn-group" role="group">
+                                        <button class="btn btn-outline-info btn-sm" onclick="previewEvent('<?= esc($item['judul']) ?>', '<?= esc($item['nama_turnamen']) ?>', '<?= esc($item['nama_klub']) ?>', '<?= date('d/m/Y', strtotime($item['tanggal_mulai'])) ?>')" title="Lihat Detail">
+                                            <i class="bx bx-show"></i>
+                                        </button>
+                                        <button class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalEditEvent<?= $item['id_event'] ?>" title="Edit Event">
+                                            <i class="bx bx-edit"></i>
+                                        </button>
+                                        <button class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modalHapusEvent<?= $item['id_event'] ?>" title="Hapus Event">
+                                            <i class="bx bx-trash"></i>
+                                        </button>
+                                    </div>
                                 </td>
                             </tr>
                             <!-- Modal Edit Event -->
@@ -71,8 +82,12 @@
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                                                <button type="submit" class="btn btn-primary">Update</button>
+                                                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" title="Batal">
+                                                    <i class="bx bx-x"></i>
+                                                </button>
+                                                <button type="submit" class="btn btn-primary" title="Update Event">
+                                                    <i class="bx bx-save"></i>
+                                                </button>
                                             </div>
                                         </form>
                                     </div>
@@ -92,8 +107,12 @@
                                                 <p>Yakin ingin menghapus event <strong><?= esc($item['judul']) ?></strong>?</p>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                                                <button type="submit" class="btn btn-danger">Hapus</button>
+                                                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" title="Batal">
+                                                    <i class="bx bx-x"></i>
+                                                </button>
+                                                <button type="submit" class="btn btn-danger" title="Hapus Event">
+                                                    <i class="bx bx-trash"></i>
+                                                </button>
                                             </div>
                                         </form>
                                     </div>
@@ -143,10 +162,53 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                            <button type="submit" class="btn btn-success">Simpan</button>
+                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" title="Batal">
+                                <i class="bx bx-x"></i>
+                            </button>
+                            <button type="submit" class="btn btn-primary" title="Simpan Event">
+                                <i class="bx bx-save"></i>
+                            </button>
                         </div>
                     </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Preview Event -->
+        <div class="modal fade" id="modalPreviewEvent" tabindex="-1" aria-labelledby="modalPreviewEventLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalPreviewEventLabel">Detail Event</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="previewEventContent">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h6 class="text-muted">Judul Event</h6>
+                                    <p id="previewEventJudul" class="fw-bold"></p>
+                                </div>
+                                <div class="col-md-6">
+                                    <h6 class="text-muted">Turnamen</h6>
+                                    <p id="previewEventTurnamen"></p>
+                                </div>
+                                <div class="col-md-6">
+                                    <h6 class="text-muted">Penyelenggara</h6>
+                                    <p id="previewEventPenyelenggara"></p>
+                                </div>
+                                <div class="col-md-6">
+                                    <h6 class="text-muted">Tanggal Mulai</h6>
+                                    <p id="previewEventTanggal"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" title="Tutup">
+                            <i class="bx bx-x"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -167,6 +229,17 @@
                         }, false)
                     })
             })()
+
+            // Preview event function
+            function previewEvent(judul, turnamen, penyelenggara, tanggal) {
+                document.getElementById('previewEventJudul').textContent = judul;
+                document.getElementById('previewEventTurnamen').textContent = turnamen || '-';
+                document.getElementById('previewEventPenyelenggara').textContent = penyelenggara || '-';
+                document.getElementById('previewEventTanggal').textContent = tanggal;
+
+                const modal = new bootstrap.Modal(document.getElementById('modalPreviewEvent'));
+                modal.show();
+            }
         </script>
     </div>
 </div>

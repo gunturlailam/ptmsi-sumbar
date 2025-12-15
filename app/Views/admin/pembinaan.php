@@ -6,7 +6,7 @@
         <div class="col-lg-8">
             <div class="card shadow-lg border-0" style="border-radius: 25px;">
                 <div class="card-header bg-primary text-white" style="border-radius: 25px 25px 0 0;">
-                    <h4 class="mb-0"><i class="fas fa-chalkboard-teacher me-2"></i> Update Program Pembinaan</h4>
+                    <h4 class="mb-0"><i class="bx bx-chalkboard me-2"></i> Update Program Pembinaan</h4>
                 </div>
                 <div class="card-body p-4">
                     <?php if (session()->getFlashdata('success')): ?>
@@ -36,15 +36,15 @@
                             <input class="form-control" type="file" id="file_pembinaan" name="file_pembinaan" accept=".pdf,.doc,.docx">
                             <?php if (!empty($pembinaan['file'])): ?>
                                 <div class="mt-2">
-                                    <a href="<?= base_url($pembinaan['file']) ?>" target="_blank" class="btn btn-outline-info btn-sm">
-                                        <i class="fas fa-file-download"></i> Lihat File Sebelumnya
+                                    <a href="<?= base_url($pembinaan['file']) ?>" target="_blank" class="btn btn-outline-info btn-sm" title="Lihat File Sebelumnya">
+                                        <i class="bx bx-show"></i> Lihat File Sebelumnya
                                     </a>
                                 </div>
                             <?php endif; ?>
                         </div>
                         <div class="d-flex justify-content-end">
-                            <button type="submit" class="btn btn-primary px-4">
-                                <i class="fas fa-save me-2"></i> Simpan Pembinaan
+                            <button type="submit" class="btn btn-primary px-4" title="Simpan Pembinaan">
+                                <i class="bx bx-save me-2"></i> Simpan Pembinaan
                             </button>
                         </div>
                     </form>

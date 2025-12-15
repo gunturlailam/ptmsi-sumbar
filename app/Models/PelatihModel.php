@@ -8,23 +8,15 @@ class PelatihModel extends Model
 {
     protected $table = 'pelatih';
     protected $primaryKey = 'id_pelatih';
-    protected $useAutoIncrement = false;
+    protected $useAutoIncrement = true;
     protected $returnType = 'array';
     protected $useSoftDeletes = false;
     protected $protectFields = true;
     protected $allowedFields = [
-        'id_pelatih',
         'id_user',
         'id_klub',
-        'nomor_lisensi',
-        'level_sertifikasi',
-        'tanggal_sertifikasi',
-        'masa_berlaku_sertifikasi',
-        'spesialisasi',
-        'pengalaman_tahun',
-        'foto_sertifikat',
-        'dibuat_pada',
-        'diperbarui_pada'
+        'tingkat_sertifikasi',
+        'tanggal_sertifikasi'
     ];
 
     protected $useTimestamps = false;
@@ -34,24 +26,23 @@ class PelatihModel extends Model
 
     protected $validationRules = [
         'id_user' => 'required',
-        'nomor_lisensi' => 'permit_empty|is_unique[pelatih.nomor_lisensi,id_pelatih,{id_pelatih}]',
-        'level_sertifikasi' => 'permit_empty|in_list[Dasar,Menengah,Lanjut,Nasional,Internasional]',
-        'pengalaman_tahun' => 'permit_empty|integer|greater_than_equal_to[0]'
+        'id_klub' => 'permit_empty|integer',
+        'tingkat_sertifikasi' => 'permit_empty|in_list[Dasar,Menengah,Lanjut,Nasional,Internasional]',
+        'tanggal_sertifikasi' => 'permit_empty|valid_date'
     ];
 
     protected $validationMessages = [
         'id_user' => [
             'required' => 'User harus dipilih'
         ],
-        'nomor_lisensi' => [
-            'is_unique' => 'Nomor lisensi sudah digunakan'
+        'id_klub' => [
+            'integer' => 'ID Klub harus berupa angka'
         ],
-        'level_sertifikasi' => [
-            'in_list' => 'Level sertifikasi tidak valid'
+        'tingkat_sertifikasi' => [
+            'in_list' => 'Tingkat sertifikasi tidak valid'
         ],
-        'pengalaman_tahun' => [
-            'integer' => 'Pengalaman harus berupa angka',
-            'greater_than_equal_to' => 'Pengalaman tidak boleh negatif'
+        'tanggal_sertifikasi' => [
+            'valid_date' => 'Tanggal sertifikasi tidak valid'
         ]
     ];
 
@@ -92,5 +83,20 @@ class PelatihModel extends Model
         }
 
         return $pelatih;
+    }
+
+    /**
+     * Insert pelatih tanpa validation untuk proses aktivasi
+     */
+    public function insertWithoutValidation($data)
+    {
+        $db = \Config\Database::connect();
+        $result = $db->table($this->table)->insert($data);
+
+        if ($result) {
+            return $db->insertID();
+        }
+
+        return false;
     }
 }

@@ -153,6 +153,7 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Admin'], function ($rou
     $routes->get('berita/edit/(:num)', 'Berita::edit/$1');
     $routes->post('berita/update/(:num)', 'Berita::update/$1');
     $routes->get('berita/delete/(:num)', 'Berita::delete/$1');
+    $routes->post('berita/delete/(:num)', 'Berita::delete/$1');
 
     // Event
     $routes->get('event', 'Event::index');
@@ -210,15 +211,18 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Admin'], function ($rou
     $routes->get('galeri', 'Galeri::index');
     $routes->get('galeri/create', 'Galeri::create');
     $routes->post('galeri/store', 'Galeri::store');
-    $routes->get('galeri/delete/(:num)', 'Galeri::delete/$1');
+    $routes->get('galeri/edit/(:num)', 'Galeri::edit/$1');
+    $routes->post('galeri/update/(:num)', 'Galeri::update/$1');
+    $routes->post('galeri/delete/(:num)', 'Galeri::delete/$1');
 
     // Dokumen
     $routes->get('dokumen', 'Dokumen::index');
     $routes->get('dokumen/create', 'Dokumen::create');
     $routes->post('dokumen/store', 'Dokumen::store');
+    $routes->get('dokumen/get/(:num)', 'Dokumen::get/$1');
     $routes->get('dokumen/edit/(:num)', 'Dokumen::edit/$1');
     $routes->post('dokumen/update/(:num)', 'Dokumen::update/$1');
-    $routes->get('dokumen/delete/(:num)', 'Dokumen::delete/$1');
+    $routes->post('dokumen/delete/(:num)', 'Dokumen::delete/$1');
 
     // Pendaftaran - New URL Structure
     $routes->get('pendaftaran/atlet', 'PendaftaranAtlet::index');

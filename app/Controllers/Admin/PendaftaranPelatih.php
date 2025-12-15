@@ -66,7 +66,7 @@ class PendaftaranPelatih extends BaseController
             'jenis'       => $jenis,
         ];
 
-        return view('admin/pendaftaran/pelatih', $data);
+        return view('admin/pendaftaran/pelatih/index', $data);
     }
 
     public function pending()
@@ -143,6 +143,8 @@ class PendaftaranPelatih extends BaseController
         $db->transStart();
 
         try {
+            log_message('info', 'Starting pelatih activation for: ' . $pendaftaran['nama_lengkap']);
+
             // 1. Buat user account untuk pelatih
             $username = strtolower(str_replace(' ', '', $pendaftaran['nama_lengkap'])) . rand(100, 999);
             $password = bin2hex(random_bytes(4)); // Generate random password
@@ -160,32 +162,37 @@ class PendaftaranPelatih extends BaseController
                 'diperbarui_pada' => date('Y-m-d H:i:s')
             ];
 
-            $this->userModel->insert($userData);
+            // Insert user menggunakan query builder langsung untuk menghindari validation
+            log_message('info', 'Inserting user data: ' . json_encode($userData));
+            $userInserted = $db->table('user')->insert($userData);
 
-            // 2. Buat profil pelatih
+            if (!$userInserted) {
+                log_message('error', 'Failed to create user');
+                throw new \Exception('Gagal membuat user account');
+            }
+
+            log_message('info', 'User created successfully with ID: ' . $userId);
+
+            // 2. Buat profil pelatih menggunakan query builder langsung
             $pelatihData = [
                 'id_user' => $userId,
                 'id_klub' => $pendaftaran['id_klub'],
-                'nama_lengkap' => $pendaftaran['nama_lengkap'],
-                'nik' => $pendaftaran['nik'],
-                'tempat_lahir' => $pendaftaran['tempat_lahir'],
-                'tanggal_lahir' => $pendaftaran['tanggal_lahir'],
-                'jenis_kelamin' => $pendaftaran['jenis_kelamin'],
-                'alamat' => $pendaftaran['alamat'],
-                'no_hp' => $pendaftaran['no_hp'],
-                'email' => $pendaftaran['email'],
-                'jenis_pelatih' => $pendaftaran['jenis_pelatih'],
-                'foto_path' => $pendaftaran['foto_path'],
-                'sertifikat_path' => $pendaftaran['sertifikat_path'],
-                'status' => 'aktif',
-                'dibuat_pada' => date('Y-m-d H:i:s'),
+                'tingkat_sertifikasi' => 'Dasar', // Default level
+                'tanggal_sertifikasi' => date('Y-m-d'),
             ];
 
-            $idPelatih = $this->pelatihModel->insert($pelatihData);
+            // Insert langsung menggunakan query builder untuk menghindari validation
+            log_message('info', 'Inserting pelatih data: ' . json_encode($pelatihData));
+            $insertResult = $db->table('pelatih')->insert($pelatihData);
 
-            if (!$idPelatih) {
+            if (!$insertResult) {
+                log_message('error', 'Failed to insert pelatih data');
                 throw new \Exception('Gagal membuat profil pelatih');
             }
+
+            // Get the inserted ID
+            $idPelatih = $db->insertID();
+            log_message('info', 'Pelatih created successfully with ID: ' . $idPelatih);
 
             // 3. Update pendaftaran
             $this->pendaftaranPelatihModel->aktivasiPelatih($pendaftaran['id_pendaftaran_pelatih'], $idPelatih);

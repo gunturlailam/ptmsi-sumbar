@@ -113,18 +113,13 @@
                                 <?php endif; ?>
                             </td>
                             <td>
-                                <div class="dropdown">
-                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                                        <i class="bx bx-dots-vertical-rounded"></i>
+                                <div class="btn-group" role="group">
+                                    <button type="button" class="btn btn-outline-primary btn-sm" onclick="editPelatih(<?= $item['id_pelatih'] ?>)" title="Edit Pelatih">
+                                        <i class="bx bx-edit"></i>
                                     </button>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="#" onclick="editPelatih(<?= $item['id_pelatih'] ?>)">
-                                            <i class="bx bx-edit-alt me-1"></i> Edit
-                                        </a>
-                                        <a class="dropdown-item" href="#" onclick="deletePelatih(<?= $item['id_pelatih'] ?>)">
-                                            <i class="bx bx-trash me-1"></i> Hapus
-                                        </a>
-                                    </div>
+                                    <button type="button" class="btn btn-outline-danger btn-sm" onclick="deletePelatih(<?= $item['id_pelatih'] ?>)" title="Hapus Pelatih">
+                                        <i class="bx bx-trash"></i>
+                                    </button>
                                 </div>
                             </td>
                         </tr>

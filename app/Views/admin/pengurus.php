@@ -105,18 +105,13 @@
                                 <?php endif; ?>
                             </td>
                             <td>
-                                <div class="dropdown">
-                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                                        <i class="bx bx-dots-vertical-rounded"></i>
+                                <div class="btn-group" role="group">
+                                    <button type="button" class="btn btn-outline-primary btn-sm" onclick="editPengurus(<?= $item['id_pengurus'] ?>)" title="Edit Pengurus">
+                                        <i class="bx bx-edit"></i>
                                     </button>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="#" onclick="editPengurus(<?= $item['id_pengurus'] ?>)">
-                                            <i class="bx bx-edit-alt me-1"></i> Edit
-                                        </a>
-                                        <a class="dropdown-item" href="#" onclick="deletePengurus(<?= $item['id_pengurus'] ?>)">
-                                            <i class="bx bx-trash me-1"></i> Hapus
-                                        </a>
-                                    </div>
+                                    <button type="button" class="btn btn-outline-danger btn-sm" onclick="deletePengurus(<?= $item['id_pengurus'] ?>)" title="Hapus Pengurus">
+                                        <i class="bx bx-trash"></i>
+                                    </button>
                                 </div>
                             </td>
                         </tr>

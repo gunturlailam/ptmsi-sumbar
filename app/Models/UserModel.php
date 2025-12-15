@@ -33,8 +33,8 @@ class UserModel extends Model
 
     // Validation
     protected $validationRules = [
-        'username' => 'required|min_length[3]|max_length[50]|is_unique[user.username,id_user,{id_user}]',
-        'email' => 'required|valid_email|is_unique[user.email,id_user,{id_user}]',
+        'username' => 'required|min_length[3]|max_length[50]',
+        'email' => 'required|valid_email',
         'password_hash' => 'permit_empty',
         'nama_lengkap' => 'required|min_length[3]|max_length[100]',
         'peran' => 'permit_empty|in_list[admin,user,atlet,pelatih,pengurus,admin_klub,ofisial,pengunjung]'
@@ -162,5 +162,20 @@ class UserModel extends Model
             $builder->where('id_user !=', $excludeId);
         }
         return $builder->countAllResults() > 0;
+    }
+
+    /**
+     * Insert user without validation for system processes
+     */
+    public function insertWithoutValidation($data)
+    {
+        $db = \Config\Database::connect();
+        $result = $db->table($this->table)->insert($data);
+
+        if ($result) {
+            return true;
+        }
+
+        return false;
     }
 }

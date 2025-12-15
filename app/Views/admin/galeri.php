@@ -5,21 +5,27 @@
     <div class="w-100" style="max-width: 1100px;">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h3 class="mb-0">Daftar Galeri</h3>
-            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalTambahGaleri"><i class="bi bi-plus-circle"></i> Tambah Galeri</button>
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalTambahGaleri"><i class="bx bx-plus"></i> Tambah Galeri</button>
         </div>
         <?php if (!empty($galeri)): ?>
             <div class="row g-3">
                 <?php foreach ($galeri as $item): ?>
                     <div class="col-md-4">
                         <div class="card h-100">
-                            <img src="<?= base_url($item['file'] ?? 'assets/img/no-image.png') ?>" class="card-img-top" alt="<?= esc($item['judul']) ?>">
+                            <img src="<?= base_url($item['url'] ?? 'assets/img/no-image.png') ?>" class="card-img-top" alt="<?= esc($item['judul']) ?>">
                             <div class="card-body">
                                 <h5 class="card-title mb-2"><?= esc($item['judul']) ?></h5>
-                                <span class="badge bg-primary mb-2"><?= esc($item['jenis_media']) ?></span>
+                                <span class="badge bg-primary mb-2"><?= esc($item['jenis_media'] === 'gambar' ? 'Foto' : ucfirst($item['jenis_media'])) ?></span>
                                 <p class="mb-0"><small><?= esc($item['nama_event'] ?? '-') ?></small></p>
                                 <div class="d-flex justify-content-end mt-2">
-                                    <button class="btn btn-warning btn-sm me-1" data-bs-toggle="modal" data-bs-target="#modalEditGaleri<?= $item['id_galeri'] ?>"><i class="bi bi-pencil-square"></i></button>
-                                    <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modalHapusGaleri<?= $item['id_galeri'] ?>"><i class="bi bi-trash"></i></button>
+                                    <div class="btn-group" role="group">
+                                        <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalEditGaleri<?= $item['id_galeri'] ?>" title="Edit Galeri">
+                                            <i class="bx bx-edit"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modalHapusGaleri<?= $item['id_galeri'] ?>" title="Hapus Galeri">
+                                            <i class="bx bx-trash"></i>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -44,7 +50,7 @@
                                             <label for="jenis_media<?= $item['id_galeri'] ?>" class="form-label">Jenis Media</label>
                                             <select class="form-select" id="jenis_media<?= $item['id_galeri'] ?>" name="jenis_media" required>
                                                 <option value="">Pilih Jenis</option>
-                                                <option value="foto" <?= $item['jenis_media'] === 'foto' ? 'selected' : '' ?>>Foto</option>
+                                                <option value="foto" <?= $item['jenis_media'] === 'gambar' ? 'selected' : '' ?>>Foto</option>
                                                 <option value="video" <?= $item['jenis_media'] === 'video' ? 'selected' : '' ?>>Video</option>
                                             </select>
                                             <div class="invalid-feedback">Jenis media wajib dipilih.</div>
@@ -52,9 +58,9 @@
                                         <div class="mb-3">
                                             <label for="file<?= $item['id_galeri'] ?>" class="form-label">Ganti File (opsional)</label>
                                             <input class="form-control" type="file" id="file<?= $item['id_galeri'] ?>" name="file">
-                                            <?php if (!empty($item['file'])): ?>
+                                            <?php if (!empty($item['url'])): ?>
                                                 <div class="mt-2">
-                                                    <img src="<?= base_url($item['file']) ?>" alt="File Galeri" class="img-thumbnail" style="max-width: 200px;">
+                                                    <img src="<?= base_url($item['url']) ?>" alt="File Galeri" class="img-thumbnail" style="max-width: 200px;">
                                                 </div>
                                             <?php endif; ?>
                                         </div>
@@ -64,8 +70,12 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                                        <button type="submit" class="btn btn-primary">Update</button>
+                                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" title="Batal">
+                                            <i class="bx bx-x"></i> Batal
+                                        </button>
+                                        <button type="submit" class="btn btn-primary" title="Update Galeri">
+                                            <i class="bx bx-save"></i> Update
+                                        </button>
                                     </div>
                                 </form>
                             </div>
@@ -85,8 +95,12 @@
                                         <p>Yakin ingin menghapus galeri <strong><?= esc($item['judul']) ?></strong>?</p>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                                        <button type="submit" class="btn btn-danger">Hapus</button>
+                                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" title="Batal">
+                                            <i class="bx bx-x"></i> Batal
+                                        </button>
+                                        <button type="submit" class="btn btn-danger" title="Hapus Galeri">
+                                            <i class="bx bx-trash"></i> Hapus
+                                        </button>
                                     </div>
                                 </form>
                             </div>
@@ -134,8 +148,12 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                            <button type="submit" class="btn btn-success">Simpan</button>
+                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" title="Batal">
+                                <i class="bx bx-x"></i> Batal
+                            </button>
+                            <button type="submit" class="btn btn-primary" title="Simpan Galeri">
+                                <i class="bx bx-save"></i> Simpan
+                            </button>
                         </div>
                     </form>
                 </div>

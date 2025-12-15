@@ -130,7 +130,7 @@
         }
     }
 </style>
-<nav class="navbar navbar-expand-lg navbar-ptmsi sticky-top">
+<nav class="navbar navbar-expand-lg navbar-ptmsi sticky-top" style="z-index: 1055; position: relative;">
     <div class="container">
         <a class="navbar-brand" href="<?= base_url('/') ?>">
             <img src="<?= base_url('assets/img/gambar-ptmsi.png') ?>" alt="Logo PTMSI">

@@ -73,7 +73,7 @@ class Galeri extends BaseController
     {
         $rules = [
             'judul'       => 'required|min_length[3]',
-            'jenis_media' => 'required|in_list[gambar,video]',
+            'jenis_media' => 'required|in_list[foto,gambar,video]',
             'url'         => 'required',
         ];
 
@@ -83,6 +83,11 @@ class Galeri extends BaseController
 
         $jenisMedia = $this->request->getPost('jenis_media');
         $url = $this->request->getPost('url');
+
+        // Convert foto to gambar for database compatibility
+        if ($jenisMedia === 'foto') {
+            $jenisMedia = 'gambar';
+        }
 
         // Handle file upload for images
         if ($jenisMedia === 'gambar') {
@@ -112,6 +117,63 @@ class Galeri extends BaseController
         }
     }
 
+    public function update($id)
+    {
+        $galeri = $this->galeriModel->find($id);
+        if (!$galeri) {
+            return redirect()->to('admin/galeri')->with('error', 'Galeri tidak ditemukan');
+        }
+
+        $rules = [
+            'judul'       => 'required|min_length[3]',
+            'jenis_media' => 'required|in_list[foto,video]',
+        ];
+
+        if (!$this->validate($rules)) {
+            return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+        }
+
+        // Convert foto to gambar for database compatibility
+        $jenisMedia = $this->request->getPost('jenis_media');
+        if ($jenisMedia === 'foto') {
+            $jenisMedia = 'gambar';
+        }
+
+        $data = [
+            'judul'       => $this->request->getPost('judul'),
+            'jenis_media' => $jenisMedia,
+        ];
+
+        // Handle file upload if new file is provided
+        $file = $this->request->getFile('file');
+        if ($file && $file->isValid()) {
+            if (!in_array($file->getExtension(), ['jpg', 'jpeg', 'png', 'gif', 'mp4', 'avi', 'mov'])) {
+                return redirect()->back()->withInput()->with('error', 'File harus berupa gambar atau video yang valid');
+            }
+
+            // Delete old file if exists
+            if (isset($galeri['url']) && $galeri['url'] && file_exists($galeri['url'])) {
+                unlink($galeri['url']);
+            }
+
+            $fileName = $file->getRandomName();
+            $uploadPath = $jenisMedia === 'gambar' ? 'uploads/galeri/foto' : 'uploads/galeri/video';
+
+            if (!is_dir($uploadPath)) {
+                mkdir($uploadPath, 0755, true);
+            }
+
+            $file->move($uploadPath, $fileName);
+            $data['url'] = $uploadPath . '/' . $fileName;
+        }
+
+        if ($this->galeriModel->update($id, $data)) {
+            return redirect()->to('admin/galeri')->with('success', 'Galeri berhasil diupdate');
+        } else {
+            return redirect()->back()->withInput()->with('error', 'Gagal mengupdate galeri');
+        }
+    }
+
     public function delete($id)
     {
         $galeri = $this->galeriModel->find($id);
@@ -128,7 +190,7 @@ class Galeri extends BaseController
         if ($this->galeriModel->delete($id)) {
             return redirect()->to('admin/galeri')->with('success', 'Galeri berhasil dihapus');
         } else {
-            return redirect()->back()->with('error', 'Gagal menghapus galeri');
+            return redirect()->to('admin/galeri')->with('error', 'Gagal menghapus galeri');
         }
     }
 }

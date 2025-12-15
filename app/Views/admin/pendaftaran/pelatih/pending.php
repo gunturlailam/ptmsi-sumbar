@@ -93,7 +93,12 @@
                                     </span>
                                 </td>
                                 <td><?= esc($item['nama_klub'] ?? '-') ?></td>
-                                <td><?= esc($item['email']) ?></td>
+                                <td>
+                                    <?= esc($item['email']) ?>
+                                    <?php if (function_exists('is_email_registered') ? is_email_registered($item['email']) : false): ?>
+                                        <span class="badge bg-danger ms-1">Sudah terdaftar</span>
+                                    <?php endif; ?>
+                                </td>
                                 <td>
                                     <?= date('d/m/Y H:i', strtotime($item['tanggal_daftar'])) ?>
                                     <br>
@@ -116,10 +121,16 @@
                                             class="btn btn-sm btn-outline-primary" title="Detail">
                                             <i class="bx bx-show"></i>
                                         </a>
-                                        <button type="button" class="btn btn-sm btn-success" title="Terima"
-                                            onclick="showVerificationModal(<?= $item['id_pendaftaran_pelatih'] ?>, 'diterima')">
-                                            <i class="bx bx-check"></i>
-                                        </button>
+                                        <?php if (function_exists('is_email_registered') ? is_email_registered($item['email']) : false): ?>
+                                            <button type="button" class="btn btn-sm btn-success" title="Terima" disabled>
+                                                <i class="bx bx-check"></i>
+                                            </button>
+                                        <?php else: ?>
+                                            <button type="button" class="btn btn-sm btn-success" title="Terima"
+                                                onclick="showVerificationModal(<?= $item['id_pendaftaran_pelatih'] ?>, 'diterima')">
+                                                <i class="bx bx-check"></i>
+                                            </button>
+                                        <?php endif; ?>
                                         <button type="button" class="btn btn-sm btn-danger" title="Tolak"
                                             onclick="showVerificationModal(<?= $item['id_pendaftaran_pelatih'] ?>, 'ditolak')">
                                             <i class="bx bx-x"></i>
