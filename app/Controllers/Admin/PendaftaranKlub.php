@@ -70,7 +70,7 @@ class PendaftaranKlub extends BaseController
             'allOrganisasi' => $allOrganisasi,
         ];
 
-        return view('admin/pendaftaran/klub', $data);
+        return view('admin/pendaftaran/klub/index', $data);
     }
 
     public function pending()

@@ -90,21 +90,21 @@
                                             </td>
                                             <td>
                                                 <div class="btn-group" role="group">
-                                                    <a href="<?= base_url('admin/pendaftaran/atlet/detail/' . $p['id_pendaftaran']) ?>"
+                                                    <a href="<?= base_url('admin/pendaftaran/atlet/detail/' . $p['id_pendaftaran_atlet']) ?>"
                                                         class="btn btn-sm btn-info" title="Detail">
                                                         <i class="fas fa-eye"></i>
                                                     </a>
-                                                    <?php if ($p['status'] === 'pending'): ?>
+                                                    <?php if (strpos($p['status'], 'menunggu') !== false): ?>
                                                         <button type="button" class="btn btn-sm btn-success"
-                                                            onclick="verifikasiAtlet(<?= $p['id_pendaftaran'] ?>, 'verified')" title="Verifikasi">
+                                                            onclick="verifikasiAtlet(<?= $p['id_pendaftaran_atlet'] ?>, 'diterima')" title="Terima">
                                                             <i class="fas fa-check"></i>
                                                         </button>
                                                         <button type="button" class="btn btn-sm btn-danger"
-                                                            onclick="verifikasiAtlet(<?= $p['id_pendaftaran'] ?>, 'rejected')" title="Tolak">
+                                                            onclick="verifikasiAtlet(<?= $p['id_pendaftaran_atlet'] ?>, 'ditolak')" title="Tolak">
                                                             <i class="fas fa-times"></i>
                                                         </button>
                                                     <?php endif; ?>
-                                                    <a href="<?= base_url('admin/pendaftaran/atlet/delete/' . $p['id_pendaftaran']) ?>"
+                                                    <a href="<?= base_url('admin/pendaftaran/atlet/delete/' . $p['id_pendaftaran_atlet']) ?>"
                                                         class="btn btn-sm btn-danger"
                                                         onclick="return confirm('Yakin ingin menghapus pendaftaran ini?')"
                                                         title="Hapus">
@@ -189,30 +189,26 @@
 <?php
 function getStatusColor($status)
 {
-    switch ($status) {
-        case 'verified':
-            return 'success';
-        case 'pending':
-            return 'warning';
-        case 'rejected':
-            return 'danger';
-        default:
-            return 'secondary';
+    if (strpos($status, 'diterima') !== false) {
+        return 'success';
+    } elseif (strpos($status, 'menunggu') !== false) {
+        return 'warning';
+    } elseif (strpos($status, 'ditolak') !== false) {
+        return 'danger';
     }
+    return 'secondary';
 }
 
 function getStatusText($status)
 {
-    switch ($status) {
-        case 'verified':
-            return 'Terverifikasi';
-        case 'pending':
-            return 'Pending';
-        case 'rejected':
-            return 'Ditolak';
-        default:
-            return 'Unknown';
+    if (strpos($status, 'diterima') !== false) {
+        return 'Diterima';
+    } elseif (strpos($status, 'menunggu') !== false) {
+        return 'Menunggu Verifikasi';
+    } elseif (strpos($status, 'ditolak') !== false) {
+        return 'Ditolak';
     }
+    return ucfirst($status);
 }
 ?>
 <?= $this->endSection() ?>

@@ -1,717 +1,672 @@
-<?php $title = isset($title) ? $title : 'Dokumen & Regulasi - PTMSI Sumbar'; ?>
-<?= $this->include('layouts/header') ?>
+<?= $this->extend('layouts/public_main') ?>
 
+<?= $this->section('css') ?>
 <style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
+    /* CSS Variables */
+    :root {
+        --primary: #f59e0b;
+        --secondary: #d97706;
+        --primary-gradient: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+        --secondary-gradient: linear-gradient(135deg, #f59e0b 0%, #f5576c 100%);
+        --success-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        --warning-gradient: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+        --dark-gradient: linear-gradient(135deg, #111827 0%, #0f172a 100%);
+        --text-primary: #e5e7eb;
+        --text-secondary: #9ca3af;
+        --surface: #1e293b;
+        --border-color: rgba(245, 158, 11, 0.1);
+        --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.3);
+        --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+        --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+        --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
     }
 
     body {
-        background: linear-gradient(135deg, #E8F2FF 0%, #F0F8FF 100%);
-        font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
-        overflow-x: hidden;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        background: linear-gradient(135deg, #0f172a 0%, #111827 100%);
+        color: var(--text-primary);
+        line-height: 1.6;
     }
 
-    @keyframes pulse {
-
-        0%,
-        100% {
-            opacity: 0.5;
-        }
-
-        50% {
-            opacity: 0.8;
-        }
-    }
-
-    @keyframes fadeInUp {
-        from {
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    @keyframes bounce {
-
-        0%,
-        100% {
-            transform: translateY(0);
-        }
-
-        50% {
-            transform: translateY(-5px);
-        }
-    }
-
-    .dokumen-section {
-        background: transparent;
-        min-height: 100vh;
-        padding: 0;
-    }
-
-    .page-header {
-        background: linear-gradient(135deg, #003366 0%, #1E90FF 50%, #00BFFF 100%);
-        color: #fff;
-        padding: 60px 0;
-        margin-bottom: 50px;
-        border-radius: 0 0 50px 50px;
-        box-shadow: 0 15px 50px rgba(30, 144, 255, 0.25);
+    /* Hero Section */
+    .hero-section {
+        border-bottom: 1px solid rgba(245, 158, 11, 0.1);
+        background: var(--primary-gradient);
+        color: white;
+        padding: 6rem 0 4rem;
         position: relative;
         overflow: hidden;
     }
 
-    .page-header::before {
+    .hero-section::before {
         content: '';
         position: absolute;
         top: 0;
         left: 0;
         right: 0;
         bottom: 0;
-        background: radial-gradient(circle at 30% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-            radial-gradient(circle at 70% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
-        animation: pulse 8s ease-in-out infinite;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx="50%" cy="50%"><stop offset="0%" stop-color="%23ffffff" stop-opacity="0.1"/><stop offset="100%" stop-color="%23ffffff" stop-opacity="0"/></radialGradient></defs><circle cx="200" cy="200" r="100" fill="url(%23a)"/><circle cx="800" cy="300" r="150" fill="url(%23a)"/><circle cx="400" cy="700" r="120" fill="url(%23a)"/></svg>');
     }
 
-    .page-header h1 {
+    .hero-content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+    }
+
+    .hero-title {
+        font-size: clamp(2.5rem, 5vw, 4rem);
         font-weight: 900;
-        font-size: 2.8rem;
-        margin-bottom: 15px;
-        text-align: center;
-        text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-        position: relative;
-        z-index: 1;
-        animation: fadeInUp 0.8s ease-out;
+        margin-bottom: 1rem;
+        background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
     }
 
-    .page-header p {
-        text-align: center;
-        font-size: 1.2rem;
-        opacity: 0.95;
-        position: relative;
-        z-index: 1;
-        animation: fadeInUp 1s ease-out;
+    .hero-subtitle {
+        font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+        font-weight: 400;
+        margin-bottom: 2rem;
+        color: rgba(255, 255, 255, 0.9);
     }
 
-    .submenu-nav {
-        background: #fff;
-        border-radius: 30px;
-        box-shadow: 0 10px 40px rgba(30, 144, 255, 0.15);
-        padding: 30px;
-        margin-bottom: 40px;
+    /* Document Cards */
+    .document-card {
+        background: white;
+        border-radius: 24px;
+        padding: 2rem;
+        border: 1px solid var(--border-color);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        text-decoration: none;
+        display: block;
         position: relative;
         overflow: hidden;
+        height: 100%;
     }
 
-    .submenu-nav::before {
+    .document-card::before {
         content: '';
         position: absolute;
-        top: -50%;
-        right: -50%;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: var(--primary-gradient);
+    }
+
+    .document-card::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
         width: 100%;
         height: 100%;
-        background: radial-gradient(circle, rgba(30, 144, 255, 0.05) 0%, transparent 70%);
+        background: var(--primary-gradient);
+        transition: left 0.3s ease;
+        z-index: 0;
     }
 
-    .submenu-nav h4 {
-        color: #003366;
-        font-weight: 900;
-        margin-bottom: 25px;
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        position: relative;
-        z-index: 1;
-    }
-
-    .submenu-nav h4 i {
-        animation: bounce 2s ease-in-out infinite;
-    }
-
-    .submenu-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        gap: 20px;
-    }
-
-    .nav-menu-card {
-        background: #fff;
-        border-radius: 25px;
-        padding: 20px;
-        text-decoration: none;
-        color: #003366;
-        border: 2px solid #E8F2FF;
-        transition: all 0.4s ease;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 15px;
-        text-align: center;
-        position: relative;
-        z-index: 1;
-    }
-
-    .nav-menu-card:hover {
-        background: linear-gradient(135deg, #003366 0%, #1E90FF 50%, #00BFFF 100%);
-        color: #fff;
-        transform: translateY(-5px);
-        box-shadow: 0 10px 30px rgba(30, 144, 255, 0.4);
-        border-color: transparent;
-    }
-
-    .nav-icon-circle {
-        width: 70px;
-        height: 70px;
-        border-radius: 50%;
-        background: linear-gradient(135deg, #003366 0%, #1E90FF 50%, #00BFFF 100%);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: all 0.4s ease;
-    }
-
-    .nav-menu-card:hover .nav-icon-circle {
-        background: #fff;
-        transform: rotate(360deg);
-    }
-
-    .nav-icon-circle i {
-        font-size: 2rem;
-        color: #fff;
-        transition: all 0.4s ease;
-    }
-
-    .nav-menu-card:hover .nav-icon-circle i {
-        color: #1E90FF;
-    }
-
-    .nav-menu-card span {
-        font-weight: 700;
-        font-size: 1rem;
-    }
-
-    .section-card {
-        background: #fff;
-        border-radius: 25px;
-        box-shadow: 0 8px 30px rgba(30, 144, 255, 0.12);
-        padding: 35px;
-        margin-bottom: 35px;
-        border: 2px solid #E8F2FF;
-        transition: all 0.3s ease;
-    }
-
-    .section-card:hover {
-        box-shadow: 0 12px 40px rgba(30, 144, 255, 0.18);
-        transform: translateY(-2px);
-    }
-
-    .section-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 28px;
-        padding-bottom: 20px;
-        border-bottom: 4px solid transparent;
-        background: linear-gradient(to right, #E8F2FF 0%, transparent 100%);
-        border-radius: 15px;
-        padding: 20px;
-    }
-
-    .section-header h3 {
-        color: #003366;
-        font-weight: 900;
-        font-size: 1.9rem;
-        margin: 0;
-        display: flex;
-        align-items: center;
-        gap: 15px;
-    }
-
-    .section-header h3 i {
-        color: #1E90FF;
-        font-size: 2rem;
-    }
-
-    .dokumen-list {
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-    }
-
-    .dokumen-item {
-        background: linear-gradient(135deg, #fff 0%, #F8F9FA 100%);
-        border-radius: 25px;
-        padding: 25px;
-        border: 2px solid #E8F2FF;
-        transition: all 0.4s ease;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 20px;
-        position: relative;
-        overflow: hidden;
-    }
-
-    .dokumen-item::before {
-        content: '';
-        position: absolute;
+    .document-card:hover::after {
         left: 0;
-        top: 0;
-        bottom: 0;
-        width: 5px;
-        background: linear-gradient(135deg, #003366 0%, #1E90FF 50%, #00BFFF 100%);
-        transition: all 0.4s ease;
     }
 
-    .dokumen-item:hover {
-        background: linear-gradient(135deg, #E8F2FF 0%, #fff 100%);
-        transform: translateX(8px);
-        box-shadow: 0 8px 30px rgba(30, 144, 255, 0.2);
-        border-color: #1E90FF;
+    .document-card:hover {
+        transform: translateY(-10px);
+        box-shadow: var(--shadow-xl);
+        color: white;
+        text-decoration: none;
     }
 
-    .dokumen-item:hover::before {
-        width: 8px;
+    .document-card>* {
+        position: relative;
+        z-index: 1;
     }
 
-    .dokumen-icon {
-        background: linear-gradient(135deg, #003366 0%, #1E90FF 50%, #00BFFF 100%);
-        color: #fff;
-        width: 65px;
-        height: 65px;
-        border-radius: 20px;
+    .document-card:hover * {
+        color: white !important;
+    }
+
+    .document-icon {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background: var(--primary-gradient);
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 1.8rem;
-        flex-shrink: 0;
-        box-shadow: 0 4px 15px rgba(30, 144, 255, 0.3);
-        transition: all 0.4s ease;
-    }
-
-    .dokumen-item:hover .dokumen-icon {
-        transform: scale(1.1) rotate(5deg);
-    }
-
-    .dokumen-content {
-        flex: 1;
-    }
-
-    .dokumen-title {
-        color: #003366;
-        font-weight: 900;
-        font-size: 1.15rem;
-        margin-bottom: 8px;
+        margin: 0 auto 1.5rem;
         transition: all 0.3s ease;
     }
 
-    .dokumen-item:hover .dokumen-title {
-        color: #1E90FF;
+    .document-card:hover .document-icon {
+        background: white;
+        transform: scale(1.1);
     }
 
-    .dokumen-meta {
-        font-size: 0.95rem;
-        color: #666;
-        display: flex;
-        align-items: center;
-        gap: 15px;
-        flex-wrap: wrap;
+    .document-icon i {
+        font-size: 2rem;
+        color: white;
+        transition: all 0.3s ease;
     }
 
-    .dokumen-meta i {
-        color: #1E90FF;
-        margin-right: 5px;
+    .document-card:hover .document-icon i {
+        color: #667eea;
     }
 
-    .btn-download {
-        background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
-        color: #fff;
-        border: none;
-        padding: 12px 24px;
-        border-radius: 20px;
+    .document-title {
+        font-size: 1.25rem;
         font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+
+    .document-description {
+        color: var(--text-secondary);
+        text-align: center;
+        margin-bottom: 1.5rem;
+        line-height: 1.6;
+    }
+
+    .document-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.875rem;
+        color: var(--text-secondary);
+        margin-bottom: 1rem;
+    }
+
+    .document-actions {
+        display: flex;
+        gap: 0.75rem;
+        margin-top: 1rem;
+    }
+
+    .download-btn,
+    .view-btn {
+        background: var(--primary-gradient);
+        color: white;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        border-radius: 50px;
+        font-weight: 600;
         text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        transition: all 0.3s ease;
+        flex: 1;
+        cursor: pointer;
+    }
+
+    .view-btn {
+        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    }
+
+    .download-btn:hover,
+    .view-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-lg);
+        color: white;
+        text-decoration: none;
+    }
+
+    /* Category Sections */
+    .category-section {
+        margin-bottom: 4rem;
+    }
+
+    .category-header {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+
+    .category-title {
+        font-size: 2rem;
+        font-weight: 800;
+        color: var(--text-primary);
+        margin-bottom: 1rem;
         display: flex;
         align-items: center;
-        gap: 10px;
-        transition: all 0.4s ease;
-        white-space: nowrap;
-        box-shadow: 0 4px 15px rgba(40, 167, 69, 0.2);
+        justify-content: center;
+        gap: 1rem;
     }
 
-    .btn-download:hover {
-        color: #fff;
-        transform: translateY(-3px) scale(1.05);
-        box-shadow: 0 8px 25px rgba(40, 167, 69, 0.4);
-    }
-
-    .btn-download i {
+    .category-subtitle {
         font-size: 1.1rem;
+        color: var(--text-secondary);
+        max-width: 600px;
+        margin: 0 auto;
     }
 
+    /* Search Box */
+    .search-box {
+        background: white;
+        border-radius: 24px;
+        padding: 2rem;
+        box-shadow: var(--shadow-lg);
+        border: 1px solid var(--border-color);
+        margin-bottom: 3rem;
+    }
+
+    .search-input {
+        border: 2px solid var(--border-color);
+        border-radius: 50px;
+        padding: 1rem 1.5rem;
+        font-size: 1rem;
+        width: 100%;
+        transition: all 0.3s ease;
+    }
+
+    .search-input:focus {
+        border-color: #667eea;
+        box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+        outline: none;
+    }
+
+    /* Stats Cards */
+    .stats-card {
+        background: white;
+        border-radius: 20px;
+        padding: 2rem;
+        text-align: center;
+        box-shadow: var(--shadow-md);
+        border: 1px solid var(--border-color);
+        transition: all 0.3s ease;
+    }
+
+    .stats-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-lg);
+    }
+
+    .stats-icon {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        margin: 0 auto 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        color: white;
+    }
+
+    .stats-number {
+        font-size: 2rem;
+        font-weight: 900;
+        color: var(--text-primary);
+        margin-bottom: 0.5rem;
+    }
+
+    .stats-label {
+        color: var(--text-secondary);
+        font-weight: 500;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .hero-section {
+            padding: 4rem 0 2rem;
+        }
+
+        .search-box {
+            padding: 1.5rem;
+        }
+
+        .document-card {
+            padding: 1.5rem;
+        }
+
+        .category-title {
+            font-size: 1.5rem;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+    }
+
+    /* Loading Animation */
+    .fade-in {
+        opacity: 0;
+        transform: translateY(30px);
+        animation: fadeInUp 0.8s ease forwards;
+    }
+
+    @keyframes fadeInUp {
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Empty State */
     .empty-state {
         text-align: center;
-        padding: 60px 20px;
-        color: #666;
+        padding: 4rem 2rem;
+        color: var(--text-secondary);
     }
 
     .empty-state i {
         font-size: 4rem;
-        color: #ccc;
-        margin-bottom: 20px;
+        color: #667eea;
+        opacity: 0.5;
+        margin-bottom: 1rem;
     }
 
-    @media (max-width: 991px) {
-        .page-header h1 {
-            font-size: 2rem;
-        }
-
-        .submenu-grid {
-            grid-template-columns: 1fr;
-        }
-    }
-
-    @media (max-width: 767px) {
-        .page-header h1 {
-            font-size: 1.5rem;
-        }
-
-        .section-card {
-            padding: 20px 16px;
-        }
-
-        .dokumen-item {
-            flex-direction: column;
-            align-items: flex-start;
-        }
-
-        .btn-download {
-            width: 100%;
-            justify-content: center;
-        }
+    .empty-state h5 {
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        color: var(--text-primary);
     }
 </style>
-<se
-    ction class="dokumen-section">
-    <!-- Page Header -->
-    <div class="page-header">
-        <div class="container">
-            <h1><i class="bi bi-file-earmark-text"></i> Dokumen & Regulasi</h1>
-            <p>Dokumen resmi, peraturan, dan formulir PTMSI Sumatera Barat</p>
-        </div>
-    </div>
+<?= $this->endSection() ?>
 
+<?= $this->section('content') ?>
+
+<!-- Hero Section -->
+<section class="hero-section">
     <div class="container">
-        <!-- Sub Menu Navigation -->
-        <div class="submenu-nav">
-            <h4><i class="bi bi-list-ul"></i> Kategori Dokumen</h4>
-            <div class="submenu-grid">
-                <a href="#ad-art" class="nav-menu-card">
-                    <div class="nav-icon-circle">
-                        <i class="bi bi-book-fill"></i>
-                    </div>
-                    <span>AD/ART PTMSI</span>
-                </a>
-                <a href="#peraturan" class="nav-menu-card">
-                    <div class="nav-icon-circle">
-                        <i class="bi bi-shield-fill-check"></i>
-                    </div>
-                    <span>Peraturan Pertandingan</span>
-                </a>
-                <a href="#panduan" class="nav-menu-card">
-                    <div class="nav-icon-circle">
-                        <i class="bi bi-journal-text"></i>
-                    </div>
-                    <span>Panduan Klub</span>
-                </a>
-                <a href="#sop" class="nav-menu-card">
-                    <div class="nav-icon-circle">
-                        <i class="bi bi-clipboard-check-fill"></i>
-                    </div>
-                    <span>SOP Kejuaraan</span>
-                </a>
-                <a href="#formulir" class="nav-menu-card">
-                    <div class="nav-icon-circle">
-                        <i class="bi bi-file-earmark-arrow-down-fill"></i>
-                    </div>
-                    <span>Formulir Download</span>
-                </a>
+        <div class="hero-content fade-in">
+            <h1 class="hero-title">
+                <i class="bx bx-file-blank"></i> Dokumen & Regulasi
+            </h1>
+            <p class="hero-subtitle">Akses mudah ke berbagai dokumen resmi, formulir, dan regulasi PTMSI Sumatera Barat</p>
+        </div>
+    </div>
+</section>
+
+<!-- Main Content -->
+<div class="container py-5">
+    <!-- Search Box -->
+    <div class="search-box fade-in">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <input type="text" class="search-input" placeholder="Cari dokumen..." id="searchInput">
+            </div>
+            <div class="col-lg-4 mt-3 mt-lg-0">
+                <button class="download-btn w-100" onclick="searchDocuments()">
+                    <i class="bx bx-search"></i> Cari Dokumen
+                </button>
             </div>
         </div>
+    </div>
 
-        <!-- AD/ART PTMSI -->
-        <div id="ad-art" class="section-card">
-            <div class="section-header">
-                <h3><i class="bi bi-book-fill"></i> AD/ART PTMSI</h3>
+    <!-- Statistics -->
+    <div class="row g-4 mb-5">
+        <div class="col-lg-3 col-md-6">
+            <div class="stats-card fade-in">
+                <div class="stats-icon" style="background: var(--primary-gradient);">
+                    <i class="bx bx-file"></i>
+                </div>
+                <div class="stats-number">25+</div>
+                <div class="stats-label">Total Dokumen</div>
             </div>
-
-            <div class="row mb-4">
-                <div class="col-md-12">
-                    <div class="alert alert-info d-flex align-items-center" role="alert">
-                        <i class="bi bi-info-circle-fill me-3" style="font-size: 1.5rem;"></i>
-                        <div>
-                            Anggaran Dasar (AD) dan Anggaran Rumah Tangga (ART) PTMSI yang mengatur struktur organisasi, tujuan, dan tata kelola organisasi.
-                        </div>
-                    </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="stats-card fade-in">
+                <div class="stats-icon" style="background: var(--success-gradient);">
+                    <i class="bx bx-download"></i>
                 </div>
+                <div class="stats-number">500+</div>
+                <div class="stats-label">Total Download</div>
             </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="stats-card fade-in">
+                <div class="stats-icon" style="background: var(--warning-gradient);">
+                    <i class="bx bx-category"></i>
+                </div>
+                <div class="stats-number">5</div>
+                <div class="stats-label">Kategori</div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="stats-card fade-in">
+                <div class="stats-icon" style="background: var(--secondary-gradient);">
+                    <i class="bx bx-time"></i>
+                </div>
+                <div class="stats-number">24/7</div>
+                <div class="stats-label">Akses Online</div>
+            </div>
+        </div>
+    </div>
 
-            <?php if (!empty($adArt)): ?>
-                <div class="dokumen-list">
-                    <?php foreach ($adArt as $d): ?>
-                        <div class="dokumen-item">
-                            <div class="dokumen-icon">
-                                <i class="bi bi-file-pdf-fill"></i>
-                            </div>
-                            <div class="dokumen-content">
-                                <div class="dokumen-title"><?= esc($d['judul']) ?></div>
-                                <div class="dokumen-meta">
-                                    <i class="bi bi-calendar"></i>
-                                    <?= date('d M Y', strtotime($d['diunggah_pada'])) ?>
-                                    <span class="ms-3">
-                                        <i class="bi bi-person"></i>
-                                        <?= esc($d['nama_pengunggah'] ?? 'Admin') ?>
-                                    </span>
-                                </div>
-                            </div>
-                            <a href="<?= base_url('dokumen/download/' . $d['id_dokumen']) ?>"
-                                class="btn-download" target="_blank">
-                                <i class="bi bi-download"></i> Download
-                            </a>
-                        </div>
-                    <?php endforeach; ?>
-                </div>
-            <?php else: ?>
-                <div class="empty-state">
-                    <i class="bi bi-file-earmark"></i>
-                    <h5>Belum ada dokumen AD/ART</h5>
-                    <p>Dokumen AD/ART akan ditampilkan di sini</p>
-                </div>
-            <?php endif; ?>
+    <!-- Peraturan & Regulasi -->
+    <div class="category-section">
+        <div class="category-header fade-in">
+            <h2 class="category-title">
+                <i class="bx bx-book"></i> Peraturan & Regulasi
+            </h2>
+            <p class="category-subtitle">Dokumen peraturan resmi dan regulasi tenis meja</p>
         </div>
 
-        <!-- Peraturan Pertandingan ITTF/PTMSI -->
-        <div id="peraturan" class="section-card">
-            <div class="section-header">
-                <h3><i class="bi bi-shield-fill-check"></i> Peraturan Pertandingan ITTF/PTMSI</h3>
-            </div>
-
-            <div class="row mb-4">
-                <div class="col-md-12">
-                    <div class="alert alert-warning d-flex align-items-center" role="alert">
-                        <i class="bi bi-exclamation-triangle-fill me-3" style="font-size: 1.5rem;"></i>
-                        <div>
-                            Peraturan resmi pertandingan tenis meja dari ITTF (International Table Tennis Federation) dan PTMSI yang wajib dipatuhi dalam setiap pertandingan.
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+        <div class="row g-4">
             <?php if (!empty($peraturan)): ?>
-                <div class="dokumen-list">
-                    <?php foreach ($peraturan as $d): ?>
-                        <div class="dokumen-item">
-                            <div class="dokumen-icon">
-                                <i class="bi bi-file-pdf-fill"></i>
+                <?php foreach ($peraturan as $doc): ?>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="document-card fade-in">
+                            <div class="document-icon">
+                                <i class="bx bx-book"></i>
                             </div>
-                            <div class="dokumen-content">
-                                <div class="dokumen-title"><?= esc($d['judul']) ?></div>
-                                <div class="dokumen-meta">
-                                    <i class="bi bi-calendar"></i>
-                                    <?= date('d M Y', strtotime($d['diunggah_pada'])) ?>
-                                    <span class="ms-3">
-                                        <i class="bi bi-person"></i>
-                                        <?= esc($d['nama_pengunggah'] ?? 'Admin') ?>
-                                    </span>
-                                </div>
+                            <h5 class="document-title"><?= esc($doc['judul']) ?></h5>
+                            <p class="document-description"><?= esc($doc['kategori']) ?></p>
+                            <div class="document-meta">
+                                <span><i class="bx bx-file-pdf"></i> PDF</span>
+                                <span><i class="bx bx-download"></i> File</span>
                             </div>
-                            <a href="<?= base_url('dokumen/download/' . $d['id_dokumen']) ?>"
-                                class="btn-download" target="_blank">
-                                <i class="bi bi-download"></i> Download
-                            </a>
-                        </div>
-                    <?php endforeach; ?>
-                </div>
-            <?php else: ?>
-                <div class="empty-state">
-                    <i class="bi bi-shield"></i>
-                    <h5>Belum ada peraturan pertandingan</h5>
-                    <p>Peraturan pertandingan akan ditampilkan di sini</p>
-                </div>
-            <?php endif; ?>
-        </div>
-
-        <!-- Panduan Klub -->
-        <div id="panduan" class="section-card">
-            <div class="section-header">
-                <h3><i class="bi bi-journal-text"></i> Panduan Klub</h3>
-            </div>
-
-            <div class="row mb-4">
-                <div class="col-md-12">
-                    <p style="color: #555; font-size: 1rem; line-height: 1.8;">
-                        Panduan lengkap untuk pengelolaan klub tenis meja, termasuk administrasi, pembinaan atlet, dan penyelenggaraan kegiatan.
-                    </p>
-                </div>
-            </div>
-
-            <?php if (!empty($panduan)): ?>
-                <div class="dokumen-list">
-                    <?php foreach ($panduan as $d): ?>
-                        <div class="dokumen-item">
-                            <div class="dokumen-icon">
-                                <i class="bi bi-file-pdf-fill"></i>
+                            <div class="document-actions">
+                                <a href="<?= base_url('dokumen/download/' . $doc['id_dokumen']) ?>" class="download-btn">
+                                    <i class="bx bx-download"></i> Download
+                                </a>
+                                <a href="<?= base_url($doc['file_url']) ?>" class="view-btn" target="_blank">
+                                    <i class="bx bx-show"></i> Lihat
+                                </a>
                             </div>
-                            <div class="dokumen-content">
-                                <div class="dokumen-title"><?= esc($d['judul']) ?></div>
-                                <div class="dokumen-meta">
-                                    <i class="bi bi-calendar"></i>
-                                    <?= date('d M Y', strtotime($d['diunggah_pada'])) ?>
-                                    <span class="ms-3">
-                                        <i class="bi bi-person"></i>
-                                        <?= esc($d['nama_pengunggah'] ?? 'Admin') ?>
-                                    </span>
-                                </div>
-                            </div>
-                            <a href="<?= base_url('dokumen/download/' . $d['id_dokumen']) ?>"
-                                class="btn-download" target="_blank">
-                                <i class="bi bi-download"></i> Download
-                            </a>
-                        </div>
-                    <?php endforeach; ?>
-                </div>
-            <?php else: ?>
-                <div class="empty-state">
-                    <i class="bi bi-journal"></i>
-                    <h5>Belum ada panduan klub</h5>
-                    <p>Panduan klub akan ditampilkan di sini</p>
-                </div>
-            <?php endif; ?>
-        </div>
-
-        <!-- SOP Kejuaraan -->
-        <div id="sop" class="section-card">
-            <div class="section-header">
-                <h3><i class="bi bi-clipboard-check-fill"></i> SOP Kejuaraan</h3>
-            </div>
-
-            <div class="row mb-4">
-                <div class="col-md-12">
-                    <p style="color: #555; font-size: 1rem; line-height: 1.8;">
-                        Standard Operating Procedure (SOP) untuk penyelenggaraan kejuaraan tenis meja yang mencakup persiapan, pelaksanaan, dan evaluasi event.
-                    </p>
-                </div>
-            </div>
-
-            <?php if (!empty($sop)): ?>
-                <div class="dokumen-list">
-                    <?php foreach ($sop as $d): ?>
-                        <div class="dokumen-item">
-                            <div class="dokumen-icon">
-                                <i class="bi bi-file-pdf-fill"></i>
-                            </div>
-                            <div class="dokumen-content">
-                                <div class="dokumen-title"><?= esc($d['judul']) ?></div>
-                                <div class="dokumen-meta">
-                                    <i class="bi bi-calendar"></i>
-                                    <?= date('d M Y', strtotime($d['diunggah_pada'])) ?>
-                                    <span class="ms-3">
-                                        <i class="bi bi-person"></i>
-                                        <?= esc($d['nama_pengunggah'] ?? 'Admin') ?>
-                                    </span>
-                                </div>
-                            </div>
-                            <a href="<?= base_url('dokumen/download/' . $d['id_dokumen']) ?>"
-                                class="btn-download" target="_blank">
-                                <i class="bi bi-download"></i> Download
-                            </a>
-                        </div>
-                    <?php endforeach; ?>
-                </div>
-            <?php else: ?>
-                <div class="empty-state">
-                    <i class="bi bi-clipboard"></i>
-                    <h5>Belum ada SOP kejuaraan</h5>
-                    <p>SOP kejuaraan akan ditampilkan di sini</p>
-                </div>
-            <?php endif; ?>
-        </div>
-
-        <!-- Formulir Download -->
-        <div id="formulir" class="section-card">
-            <div class="section-header">
-                <h3><i class="bi bi-file-earmark-arrow-down-fill"></i> Formulir Download</h3>
-            </div>
-
-            <div class="row mb-4">
-                <div class="col-md-12">
-                    <div class="alert alert-success d-flex align-items-center" role="alert">
-                        <i class="bi bi-check-circle-fill me-3" style="font-size: 1.5rem;"></i>
-                        <div>
-                            Berbagai formulir yang dapat diunduh untuk keperluan pendaftaran atlet, klub, event, dan administrasi lainnya.
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <?php if (!empty($formulir)): ?>
-                <div class="dokumen-list">
-                    <?php foreach ($formulir as $d): ?>
-                        <div class="dokumen-item">
-                            <div class="dokumen-icon">
-                                <i class="bi bi-file-earmark-fill"></i>
-                            </div>
-                            <div class="dokumen-content">
-                                <div class="dokumen-title"><?= esc($d['judul']) ?></div>
-                                <div class="dokumen-meta">
-                                    <i class="bi bi-calendar"></i>
-                                    <?= date('d M Y', strtotime($d['diunggah_pada'])) ?>
-                                    <span class="ms-3">
-                                        <i class="bi bi-person"></i>
-                                        <?= esc($d['nama_pengunggah'] ?? 'Admin') ?>
-                                    </span>
-                                </div>
-                            </div>
-                            <a href="<?= base_url('dokumen/download/' . $d['id_dokumen']) ?>"
-                                class="btn-download" target="_blank">
-                                <i class="bi bi-download"></i> Download
-                            </a>
-                        </div>
-                    <?php endforeach; ?>
-                </div>
+                <?php endforeach; ?>
             <?php else: ?>
-                <div class="empty-state">
-                    <i class="bi bi-file-earmark-arrow-down"></i>
-                    <h5>Belum ada formulir</h5>
-                    <p>Formulir download akan ditampilkan di sini</p>
+                <div class="col-12">
+                    <div class="empty-state">
+                        <i class="bx bx-file"></i>
+                        <h5>Tidak ada dokumen</h5>
+                        <p>Belum ada dokumen peraturan yang tersedia</p>
+                    </div>
                 </div>
             <?php endif; ?>
         </div>
     </div>
-    </section>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Smooth scroll untuk navigasi
-            document.querySelectorAll('.submenu-item').forEach(item => {
-                item.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                });
+    <!-- Formulir Pendaftaran -->
+    <div class="category-section">
+        <div class="category-header fade-in">
+            <h2 class="category-title">
+                <i class="bx bx-clipboard"></i> Formulir Pendaftaran
+            </h2>
+            <p class="category-subtitle">Formulir untuk pendaftaran atlet, pelatih, dan klub</p>
+        </div>
+
+        <div class="row g-4">
+            <?php if (!empty($formulir)): ?>
+                <?php foreach ($formulir as $doc): ?>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="document-card fade-in">
+                            <div class="document-icon">
+                                <i class="bx bx-clipboard"></i>
+                            </div>
+                            <h5 class="document-title"><?= esc($doc['judul']) ?></h5>
+                            <p class="document-description"><?= esc($doc['kategori']) ?></p>
+                            <div class="document-meta">
+                                <span><i class="bx bx-file-pdf"></i> PDF</span>
+                                <span><i class="bx bx-download"></i> File</span>
+                            </div>
+                            <div class="document-actions">
+                                <a href="<?= base_url('dokumen/download/' . $doc['id_dokumen']) ?>" class="download-btn">
+                                    <i class="bx bx-download"></i> Download
+                                </a>
+                                <a href="<?= base_url($doc['file_url']) ?>" class="view-btn" target="_blank">
+                                    <i class="bx bx-show"></i> Lihat
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <div class="col-12">
+                    <div class="empty-state">
+                        <i class="bx bx-file"></i>
+                        <h5>Tidak ada dokumen</h5>
+                        <p>Belum ada formulir yang tersedia</p>
+                    </div>
+                </div>
+            <?php endif; ?>
+        </div>
+    </div>
+
+    <!-- Panduan & Tutorial -->
+    <div class="category-section">
+        <div class="category-header fade-in">
+            <h2 class="category-title">
+                <i class="bx bx-book-open"></i> Panduan & Tutorial
+            </h2>
+            <p class="category-subtitle">Panduan lengkap dan tutorial untuk berbagai keperluan</p>
+        </div>
+
+        <div class="row g-4">
+            <?php if (!empty($panduan)): ?>
+                <?php foreach ($panduan as $doc): ?>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="document-card fade-in">
+                            <div class="document-icon">
+                                <i class="bx bx-book-open"></i>
+                            </div>
+                            <h5 class="document-title"><?= esc($doc['judul']) ?></h5>
+                            <p class="document-description"><?= esc($doc['kategori']) ?></p>
+                            <div class="document-meta">
+                                <span><i class="bx bx-file-pdf"></i> PDF</span>
+                                <span><i class="bx bx-download"></i> File</span>
+                            </div>
+                            <div class="document-actions">
+                                <a href="<?= base_url('dokumen/download/' . $doc['id_dokumen']) ?>" class="download-btn">
+                                    <i class="bx bx-download"></i> Download
+                                </a>
+                                <a href="<?= base_url($doc['file_url']) ?>" class="view-btn" target="_blank">
+                                    <i class="bx bx-show"></i> Lihat
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <div class="col-12">
+                    <div class="empty-state">
+                        <i class="bx bx-file"></i>
+                        <h5>Tidak ada dokumen</h5>
+                        <p>Belum ada panduan yang tersedia</p>
+                    </div>
+                </div>
+            <?php endif; ?>
+        </div>
+    </div>
+
+    <!-- Laporan -->
+    <div class="category-section">
+        <div class="category-header fade-in">
+            <h2 class="category-title">
+                <i class="bx bx-file-blank"></i> Laporan
+            </h2>
+            <p class="category-subtitle">Laporan kegiatan dan keuangan PTMSI Sumbar</p>
+        </div>
+
+        <div class="row g-4">
+            <?php if (!empty($laporan)): ?>
+                <?php foreach ($laporan as $doc): ?>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="document-card fade-in">
+                            <div class="document-icon">
+                                <i class="bx bx-file-blank"></i>
+                            </div>
+                            <h5 class="document-title"><?= esc($doc['judul']) ?></h5>
+                            <p class="document-description"><?= esc($doc['kategori']) ?></p>
+                            <div class="document-meta">
+                                <span><i class="bx bx-file-pdf"></i> PDF</span>
+                                <span><i class="bx bx-download"></i> File</span>
+                            </div>
+                            <div class="document-actions">
+                                <a href="<?= base_url('dokumen/download/' . $doc['id_dokumen']) ?>" class="download-btn">
+                                    <i class="bx bx-download"></i> Download
+                                </a>
+                                <a href="<?= base_url($doc['file_url']) ?>" class="view-btn" target="_blank">
+                                    <i class="bx bx-show"></i> Lihat
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <div class="col-12">
+                    <div class="empty-state">
+                        <i class="bx bx-file"></i>
+                        <h5>Tidak ada dokumen</h5>
+                        <p>Belum ada laporan yang tersedia</p>
+                    </div>
+                </div>
+            <?php endif; ?>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Search functionality
+        const searchInput = document.getElementById('searchInput');
+        const documentCards = document.querySelectorAll('.document-card');
+
+        function searchDocuments() {
+            const searchTerm = searchInput.value.toLowerCase();
+
+            documentCards.forEach(card => {
+                const title = card.querySelector('.document-title').textContent.toLowerCase();
+                const description = card.querySelector('.document-description').textContent.toLowerCase();
+
+                if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = searchTerm === '' ? 'block' : 'none';
+                }
             });
-        });
-    </script>
+        }
 
-    <?= $this->include('layouts/footer') ?>
+        // Search on input
+        searchInput.addEventListener('input', searchDocuments);
+
+        // Search on button click
+        window.searchDocuments = searchDocuments;
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationDelay = `${Math.random() * 0.3}s`;
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all elements with fade-in class
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+    });
+</script>
+
+<?= $this->endSection() ?>

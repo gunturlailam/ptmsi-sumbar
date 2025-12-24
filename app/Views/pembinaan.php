@@ -1,541 +1,491 @@
-<!DOCTYPE html>
-<html lang="id">
+<?= $this->extend('layouts/public_main') ?>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Program Pembinaan - PTMSI Sumbar</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="<?= base_url('assets/css/ptmsi-style.css') ?>">
-    <style>
-        .nav-menu-card {
-            background: linear-gradient(135deg, #fff 0%, #E8F2FF 100%);
-            border-radius: 20px;
-            padding: 30px 20px;
-            text-align: center;
-            text-decoration: none;
-            display: block;
-            border: 2px solid #E8F2FF;
-            transition: all 0.4s ease;
-            height: 100%;
+<?= $this->section('css') ?>
+<style>
+    :root {
+        --primary: #f59e0b;
+        --secondary: #d97706;
+        --primary-gradient: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+        --secondary-gradient: linear-gradient(135deg, #f59e0b 0%, #f5576c 100%);
+        --success-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        --dark-gradient: linear-gradient(135deg, #111827 0%, #0f172a 100%);
+        --text-primary: #e5e7eb;
+        --text-secondary: #9ca3af;
+        --border-color: rgba(245, 158, 11, 0.1);
+        --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+        --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+    }
+
+    body {
+        font-family: 'Inter', sans-serif;
+        background: linear-gradient(135deg, #0f172a 0%, #111827 100%);
+    }
+
+    .hero-section {
+        background: var(--primary-gradient);
+        color: white;
+        padding: 6rem 0 4rem;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        border-bottom: 1px solid rgba(245, 158, 11, 0.1);
+    }
+
+    .hero-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><circle cx="200" cy="200" r="100" fill="rgba(255,255,255,0.1)"/><circle cx="800" cy="300" r="150" fill="rgba(255,255,255,0.1)"/></svg>');
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 2;
+    }
+
+    .hero-title {
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        font-weight: 900;
+        margin-bottom: 1rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.25rem;
+        color: rgba(255, 255, 255, 0.9);
+    }
+
+    .nav-card {
+        background: white;
+        border-radius: 20px;
+        padding: 2rem;
+        text-align: center;
+        text-decoration: none;
+        display: block;
+        border: 2px solid var(--border-color);
+        transition: all 0.3s ease;
+        height: 100%;
+    }
+
+    .nav-card:hover {
+        background: var(--primary-gradient);
+        transform: translateY(-10px);
+        box-shadow: var(--shadow-xl);
+        border-color: transparent;
+    }
+
+    .nav-card:hover .nav-icon {
+        background: white;
+    }
+
+    .nav-card:hover .nav-icon i {
+        color: #667eea;
+    }
+
+    .nav-card:hover h6,
+    .nav-card:hover p {
+        color: white;
+    }
+
+    .nav-icon {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        background: var(--primary-gradient);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1rem;
+    }
+
+    .nav-icon i {
+        font-size: 2rem;
+        color: white;
+    }
+
+    .nav-card h6 {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 0.5rem;
+    }
+
+    .nav-card p {
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+        margin: 0;
+    }
+
+    .section-card {
+        background: white;
+        border-radius: 24px;
+        padding: 2.5rem;
+        box-shadow: var(--shadow-lg);
+        margin-bottom: 2rem;
+    }
+
+    .section-title {
+        font-size: 1.75rem;
+        font-weight: 800;
+        color: var(--text-primary);
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    .section-title i {
+        color: #667eea;
+        font-size: 2rem;
+    }
+
+    .program-card {
+        background: white;
+        border-radius: 24px;
+        padding: 2rem;
+        box-shadow: var(--shadow-lg);
+        border-left: 4px solid #667eea;
+        height: 100%;
+    }
+
+    .program-icon {
+        width: 80px;
+        height: 80px;
+        border-radius: 20px;
+        background: var(--primary-gradient);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1.5rem;
+    }
+
+    .program-icon i {
+        font-size: 2.5rem;
+        color: white;
+    }
+
+    .program-title {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 1rem;
+    }
+
+    .program-info {
+        display: flex;
+        align-items: center;
+        margin-bottom: 0.75rem;
+        color: var(--text-secondary);
+    }
+
+    .program-info i {
+        color: #667eea;
+        margin-right: 0.75rem;
+    }
+
+    .activity-card {
+        background: white;
+        border-radius: 20px;
+        padding: 1.5rem;
+        border: 2px solid var(--border-color);
+        margin-bottom: 1rem;
+        transition: all 0.3s ease;
+    }
+
+    .activity-card:hover {
+        border-color: #667eea;
+        transform: translateX(5px);
+    }
+
+    .activity-icon {
+        width: 60px;
+        height: 60px;
+        border-radius: 15px;
+        background: var(--primary-gradient);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    .activity-icon i {
+        font-size: 1.5rem;
+        color: white;
+    }
+
+    .badge-status {
+        padding: 6px 14px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        background: var(--success-gradient);
+        color: white;
+    }
+
+    .info-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+        margin-top: 2rem;
+    }
+
+    .info-box {
+        background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        border-radius: 20px;
+        padding: 2rem;
+        text-align: center;
+        border: 2px solid var(--border-color);
+        transition: all 0.3s ease;
+    }
+
+    .info-box:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-lg);
+        border-color: #667eea;
+    }
+
+    .info-box i {
+        font-size: 3rem;
+        color: #667eea;
+        margin-bottom: 1rem;
+        display: block;
+    }
+
+    .info-box h5 {
+        color: var(--text-primary);
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+    }
+
+    .alert-modern {
+        background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+        border: none;
+        border-radius: 15px;
+        padding: 1.25rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .alert-modern i {
+        font-size: 1.5rem;
+        color: #0284c7;
+    }
+
+    .list-modern {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .list-modern li {
+        padding: 0.75rem 0;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .list-modern li:last-child {
+        border-bottom: none;
+    }
+
+    .list-modern li i {
+        color: #10b981;
+        font-size: 1.25rem;
+    }
+
+    .fade-in {
+        opacity: 0;
+        transform: translateY(30px);
+        animation: fadeInUp 0.8s ease forwards;
+    }
+
+    @keyframes fadeInUp {
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @media (max-width: 768px) {
+        .hero-section {
+            padding: 4rem 0 2rem;
         }
 
-        .nav-menu-card:hover {
-            background: linear-gradient(135deg, #1E90FF 0%, #003366 100%);
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(30, 144, 255, 0.3);
-            border-color: #1E90FF;
+        .section-card {
+            padding: 1.5rem;
         }
+    }
+</style>
+<?= $this->endSection() ?>
 
-        .nav-menu-card .nav-icon-wrapper {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #1E90FF, #00BFFF);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 15px;
-            transition: all 0.4s ease;
-        }
-
-        .nav-menu-card:hover .nav-icon-wrapper {
-            background: #fff;
-            transform: scale(1.1) rotate(5deg);
-        }
-
-        .nav-menu-card .nav-icon-wrapper i {
-            font-size: 2rem;
-            color: #fff;
-            transition: all 0.4s ease;
-        }
-
-        .nav-menu-card:hover .nav-icon-wrapper i {
-            color: #1E90FF;
-        }
-
-        .nav-menu-card h6 {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: #003366;
-            margin-bottom: 8px;
-            transition: all 0.4s ease;
-        }
-
-        .nav-menu-card:hover h6 {
-            color: #fff;
-        }
-
-        .nav-menu-card p {
-            font-size: 0.85rem;
-            color: #666;
-            margin: 0;
-            transition: all 0.4s ease;
-        }
-
-        .nav-menu-card:hover p {
-            color: rgba(255, 255, 255, 0.9);
-        }
-
-        .program-card {
-            background: linear-gradient(135deg, #fff 0%, #F8F9FA 100%);
-            border-radius: 25px;
-            padding: 30px;
-            border: 2px solid #E8F2FF;
-            transition: all 0.4s ease;
-            height: 100%;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .program-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 6px;
-            height: 100%;
-            background: linear-gradient(180deg, #1E90FF 0%, #00BFFF 100%);
-        }
-
-        .program-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 50px rgba(30, 144, 255, 0.25);
-            border-color: #1E90FF;
-        }
-
-        .program-icon {
-            width: 80px;
-            height: 80px;
-            border-radius: 20px;
-            background: linear-gradient(135deg, #1E90FF, #00BFFF);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-            box-shadow: 0 8px 25px rgba(30, 144, 255, 0.3);
-        }
-
-        .program-icon i {
-            font-size: 2.5rem;
-            color: #fff;
-        }
-
-        .program-title {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: #003366;
-            margin-bottom: 15px;
-        }
-
-        .program-info {
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
-            font-size: 0.95rem;
-            color: #555;
-        }
-
-        .program-info i {
-            color: #1E90FF;
-            margin-right: 10px;
-            font-size: 1.1rem;
-        }
-
-        .kegiatan-card {
-            background: #fff;
-            border-radius: 20px;
-            padding: 25px;
-            margin-bottom: 20px;
-            border: 2px solid #E8F2FF;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .kegiatan-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 6px;
-            height: 100%;
-            background: linear-gradient(180deg, #1E90FF 0%, #00BFFF 100%);
-        }
-
-        .kegiatan-card:hover {
-            transform: translateX(10px);
-            box-shadow: 0 10px 40px rgba(30, 144, 255, 0.2);
-            border-color: #1E90FF;
-        }
-
-        .kegiatan-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 15px;
-            background: linear-gradient(135deg, #1E90FF, #00BFFF);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-
-        .kegiatan-icon i {
-            font-size: 1.8rem;
-            color: #fff;
-        }
-
-        .badge-status {
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            background: linear-gradient(135deg, #28a745, #20c997);
-            color: #fff;
-        }
-
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
-        }
-
-        .info-box {
-            background: linear-gradient(135deg, #E8F2FF 0%, #fff 100%);
-            border-radius: 20px;
-            padding: 30px;
-            text-align: center;
-            border: 2px solid #E8F2FF;
-            transition: all 0.3s ease;
-        }
-
-        .info-box:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(30, 144, 255, 0.2);
-            border-color: #1E90FF;
-        }
-
-        .info-box i {
-            font-size: 3rem;
-            color: #1E90FF;
-            margin-bottom: 15px;
-        }
-
-        .info-box h5 {
-            color: #003366;
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-    </style>
-</head>
-
-<body>
-    <?= $this->include('layouts/navbar') ?>
-
-    <!-- Hero Section -->
-    <div class="hero-modern">
-        <div class="container">
-            <div class="hero-content text-center">
-                <h1 class="hero-title">
-                    <i class="bi bi-mortarboard-fill"></i> Program Pembinaan
-                </h1>
-                <p class="hero-subtitle">Membangun Atlet Berprestasi Melalui Pembinaan Berkelanjutan</p>
-            </div>
-        </div>
-    </div>
-
+<?= $this->section('content') ?>
+<section class="hero-section">
     <div class="container">
-        <!-- Sub Menu Navigation -->
-        <div class="row g-3 mb-5">
-            <div class="col-md-3 col-6">
-                <a href="#puslatda" class="nav-menu-card">
-                    <div class="nav-icon-wrapper">
-                        <i class="bi bi-building-fill"></i>
-                    </div>
-                    <h6>Puslatda</h6>
-                    <p>Pemusatan latihan</p>
-                </a>
-            </div>
-            <div class="col-md-3 col-6">
-                <a href="#pembinaan-usia-dini" class="nav-menu-card">
-                    <div class="nav-icon-wrapper">
-                        <i class="bi bi-people-fill"></i>
-                    </div>
-                    <h6>Usia Dini</h6>
-                    <p>Pembinaan U-12</p>
-                </a>
-            </div>
-            <div class="col-md-3 col-6">
-                <a href="#talent-scouting" class="nav-menu-card">
-                    <div class="nav-icon-wrapper">
-                        <i class="bi bi-star-fill"></i>
-                    </div>
-                    <h6>Talent Scouting</h6>
-                    <p>Pencarian bakat</p>
-                </a>
-            </div>
-            <div class="col-md-3 col-6">
-                <a href="#coaching-clinic" class="nav-menu-card">
-                    <div class="nav-icon-wrapper">
-                        <i class="bi bi-award-fill"></i>
-                    </div>
-                    <h6>Coaching Clinic</h6>
-                    <p>Pelatihan pelatih</p>
-                </a>
-            </div>
+        <div class="hero-content fade-in">
+            <h1 class="hero-title"><i class="bx bx-target-lock"></i> Program Pembinaan</h1>
+            <p class="hero-subtitle">Membangun Atlet Tenis Meja Berprestasi dari Sumatera Barat</p>
         </div>
+    </div>
+</section>
 
-        <!-- Puslatda Section -->
-        <div id="puslatda" class="card-modern">
-            <h2 class="section-title-modern">
-                <i class="bi bi-building-fill"></i> Pemusatan Latihan Daerah (Puslatda)
-            </h2>
-
-            <div class="alert alert-info d-flex align-items-center mb-4" role="alert" style="border-radius: 20px; border-left: 5px solid #0dcaf0;">
-                <i class="bi bi-info-circle-fill me-3" style="font-size: 2rem;"></i>
-                <div>
-                    <strong>Puslatda</strong> adalah program pemusatan latihan untuk atlet-atlet terpilih yang bertujuan meningkatkan kemampuan teknis dan mental bertanding.
-                </div>
-            </div>
-
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="program-card">
-                        <div class="program-icon">
-                            <i class="bi bi-calendar-range-fill"></i>
-                        </div>
-                        <h4 class="program-title">Puslatda Reguler</h4>
-                        <div class="program-info">
-                            <i class="bi bi-clock-fill"></i>
-                            <span>Senin - Jumat, 16:00 - 19:00</span>
-                        </div>
-                        <div class="program-info">
-                            <i class="bi bi-geo-alt-fill"></i>
-                            <span>GOR Haji Agus Salim</span>
-                        </div>
-                        <div class="program-info">
-                            <i class="bi bi-people-fill"></i>
-                            <span>25 Atlet Terpilih</span>
-                        </div>
-                        <p class="text-muted mt-3">Program latihan rutin untuk atlet binaan PTMSI Sumbar dengan fokus peningkatan teknik dasar.</p>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="program-card">
-                        <div class="program-icon">
-                            <i class="bi bi-trophy-fill"></i>
-                        </div>
-                        <h4 class="program-title">Puslatda Pra-Kejuaraan</h4>
-                        <div class="program-info">
-                            <i class="bi bi-clock-fill"></i>
-                            <span>Intensif 2 Minggu</span>
-                        </div>
-                        <div class="program-info">
-                            <i class="bi bi-geo-alt-fill"></i>
-                            <span>Lokasi Disesuaikan</span>
-                        </div>
-                        <div class="program-info">
-                            <i class="bi bi-people-fill"></i>
-                            <span>15-20 Atlet</span>
-                        </div>
-                        <p class="text-muted mt-3">Pemusatan latihan intensif sebagai persiapan menghadapi kejuaraan provinsi dan nasional.</p>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="program-card">
-                        <div class="program-icon">
-                            <i class="bi bi-star-fill"></i>
-                        </div>
-                        <h4 class="program-title">Puslatda Atlet Muda</h4>
-                        <div class="program-info">
-                            <i class="bi bi-clock-fill"></i>
-                            <span>Sabtu - Minggu, 08:00 - 12:00</span>
-                        </div>
-                        <div class="program-info">
-                            <i class="bi bi-geo-alt-fill"></i>
-                            <span>GOR Haji Agus Salim</span>
-                        </div>
-                        <div class="program-info">
-                            <i class="bi bi-people-fill"></i>
-                            <span>30 Atlet U-12 & U-15</span>
-                        </div>
-                        <p class="text-muted mt-3">Program pembinaan khusus untuk atlet muda dengan fokus pengembangan bakat dan karakter.</p>
-                    </div>
-                </div>
-            </div>
+<div class="container py-5">
+    <div class="row g-3 mb-5 fade-in">
+        <div class="col-md-3 col-6">
+            <a href="#puslatda" class="nav-card">
+                <div class="nav-icon"><i class="bx bx-buildings"></i></div>
+                <h6>Puslatda</h6>
+                <p>Pemusatan latihan</p>
+            </a>
         </div>
-
-        <!-- Pembinaan Usia Dini Section -->
-        <div id="pembinaan-usia-dini" class="card-modern mt-5">
-            <h2 class="section-title-modern">
-                <i class="bi bi-people-fill"></i> Program Pembinaan Usia Dini
-            </h2>
-
-            <p class="lead mb-4" style="color: #555; line-height: 1.8;">Program pembinaan usia dini bertujuan mengenalkan olahraga tenis meja sejak dini dan mengembangkan minat serta bakat anak-anak usia 6-12 tahun.</p>
-
-            <div class="kegiatan-card">
-                <div class="d-flex align-items-start gap-3">
-                    <div class="kegiatan-icon">
-                        <i class="bi bi-controller"></i>
-                    </div>
-                    <div class="flex-grow-1">
-                        <h5 class="fw-bold text-primary mb-2">Program Mini Tenis Meja</h5>
-                        <div class="mb-3">
-                            <span class="badge-status me-2">Berlangsung</span>
-                            <span class="text-muted">
-                                <i class="bi bi-calendar"></i> Setiap Sabtu |
-                                <i class="bi bi-clock"></i> 09:00 - 11:00 WIB |
-                                <i class="bi bi-people"></i> Usia 6-9 tahun
-                            </span>
-                        </div>
-                        <p class="text-muted mb-0">Pengenalan dasar tenis meja dengan peralatan mini dan metode bermain sambil belajar untuk anak usia dini.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="kegiatan-card">
-                <div class="d-flex align-items-start gap-3">
-                    <div class="kegiatan-icon">
-                        <i class="bi bi-trophy"></i>
-                    </div>
-                    <div class="flex-grow-1">
-                        <h5 class="fw-bold text-primary mb-2">Kelas Teknik Dasar U-12</h5>
-                        <div class="mb-3">
-                            <span class="badge-status me-2">Berlangsung</span>
-                            <span class="text-muted">
-                                <i class="bi bi-calendar"></i> Senin & Rabu |
-                                <i class="bi bi-clock"></i> 15:00 - 17:00 WIB |
-                                <i class="bi bi-people"></i> Usia 10-12 tahun
-                            </span>
-                        </div>
-                        <p class="text-muted mb-0">Pembelajaran teknik dasar seperti forehand, backhand, servis, dan footwork untuk kategori U-12.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="kegiatan-card">
-                <div class="d-flex align-items-start gap-3">
-                    <div class="kegiatan-icon">
-                        <i class="bi bi-heart"></i>
-                    </div>
-                    <div class="flex-grow-1">
-                        <h5 class="fw-bold text-primary mb-2">Program Sekolah Tenis Meja</h5>
-                        <div class="mb-3">
-                            <span class="badge-status me-2">Berlangsung</span>
-                            <span class="text-muted">
-                                <i class="bi bi-calendar"></i> Selasa & Kamis |
-                                <i class="bi bi-clock"></i> 14:00 - 16:00 WIB |
-                                <i class="bi bi-people"></i> SD/MI
-                            </span>
-                        </div>
-                        <p class="text-muted mb-0">Kerjasama dengan sekolah-sekolah untuk memperkenalkan tenis meja sebagai ekstrakurikuler dan mencari bibit atlet.</p>
-                    </div>
-                </div>
-            </div>
+        <div class="col-md-3 col-6">
+            <a href="#usia-dini" class="nav-card">
+                <div class="nav-icon"><i class="bx bx-group"></i></div>
+                <h6>Usia Dini</h6>
+                <p>Pembinaan U-12</p>
+            </a>
         </div>
-
-        <!-- Talent Scouting Section -->
-        <div id="talent-scouting" class="card-modern mt-5">
-            <h2 class="section-title-modern">
-                <i class="bi bi-star-fill"></i> Talent Scouting
-            </h2>
-
-            <div class="alert alert-success d-flex align-items-center mb-4" role="alert" style="border-radius: 20px; border-left: 5px solid #28a745;">
-                <i class="bi bi-check-circle-fill me-3" style="font-size: 2rem;"></i>
-                <div>
-                    <strong>Program pencarian dan pengembangan bakat</strong> atlet muda berbakat melalui seleksi, tes kemampuan, dan pembinaan berkelanjutan.
-                </div>
-            </div>
-
-            <div class="info-grid">
-                <div class="info-box">
-                    <i class="bi bi-search"></i>
-                    <h5>Seleksi Terbuka</h5>
-                    <p class="text-muted">Seleksi terbuka untuk atlet muda berbakat dari seluruh Sumbar</p>
-                </div>
-                <div class="info-box">
-                    <i class="bi bi-clipboard-check"></i>
-                    <h5>Tes Kemampuan</h5>
-                    <p class="text-muted">Tes fisik, teknik, dan mental untuk menilai potensi atlet</p>
-                </div>
-                <div class="info-box">
-                    <i class="bi bi-graph-up-arrow"></i>
-                    <h5>Pembinaan Lanjutan</h5>
-                    <p class="text-muted">Program pembinaan khusus untuk atlet terpilih</p>
-                </div>
-            </div>
+        <div class="col-md-3 col-6">
+            <a href="#talent" class="nav-card">
+                <div class="nav-icon"><i class="bx bx-star"></i></div>
+                <h6>Talent Scouting</h6>
+                <p>Pencarian bakat</p>
+            </a>
         </div>
+        <div class="col-md-3 col-6">
+            <a href="#coaching" class="nav-card">
+                <div class="nav-icon"><i class="bx bx-book-reader"></i></div>
+                <h6>Coaching Clinic</h6>
+                <p>Pelatihan pelatih</p>
+            </a>
+        </div>
+    </div>
 
-        <!-- Coaching Clinic Section -->
-        <div id="coaching-clinic" class="card-modern mt-5">
-            <h2 class="section-title-modern">
-                <i class="bi bi-award-fill"></i> Coaching Clinic & Pelatihan Wasit
-            </h2>
-
-            <div class="row g-4">
-                <div class="col-md-6">
-                    <div class="program-card">
-                        <div class="program-icon">
-                            <i class="bi bi-mortarboard-fill"></i>
-                        </div>
-                        <h4 class="program-title">Coaching Clinic</h4>
-                        <p class="text-muted mb-3">Program pelatihan dan peningkatan kompetensi pelatih tenis meja melalui workshop dan seminar.</p>
-                        <ul class="list-unstyled">
-                            <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Pelatihan Teknik Modern</li>
-                            <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Strategi Coaching</li>
-                            <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Sport Psychology</li>
-                            <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Sertifikasi Pelatih</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="col-md-6">
-                    <div class="program-card">
-                        <div class="program-icon">
-                            <i class="bi bi-flag-fill"></i>
-                        </div>
-                        <h4 class="program-title">Pelatihan Wasit</h4>
-                        <p class="text-muted mb-3">Program pelatihan dan sertifikasi wasit tenis meja untuk memenuhi kebutuhan wasit berkualitas.</p>
-                        <ul class="list-unstyled">
-                            <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Peraturan Pertandingan</li>
-                            <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Teknik Perwasitan</li>
-                            <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Praktik Lapangan</li>
-                            <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Sertifikasi Wasit</li>
-                        </ul>
-                    </div>
+    <div id="puslatda" class="section-card fade-in">
+        <h2 class="section-title"><i class="bx bx-buildings"></i> Puslatda</h2>
+        <div class="alert-modern">
+            <i class="bx bx-info-circle"></i>
+            <div><strong>Puslatda</strong> adalah program pemusatan latihan untuk atlet-atlet terbaik Sumatera Barat.</div>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="program-card">
+                    <div class="program-icon"><i class="bx bx-calendar"></i></div>
+                    <h4 class="program-title">Puslatda Reguler</h4>
+                    <div class="program-info"><i class="bx bx-time"></i><span>Senin - Jumat, 16:00 - 19:00</span></div>
+                    <div class="program-info"><i class="bx bx-map"></i><span>GOR Haji Agus Salim</span></div>
+                    <div class="program-info"><i class="bx bx-group"></i><span>25 Atlet Terpilih</span></div>
                 </div>
             </div>
-
-            <div class="alert alert-warning d-flex align-items-center mt-4" role="alert" style="border-radius: 20px; border-left: 5px solid #ffc107;">
-                <i class="bi bi-exclamation-triangle-fill me-3" style="font-size: 2rem;"></i>
-                <div>
-                    <strong>Informasi Pendaftaran:</strong> Untuk mendaftar coaching clinic atau pelatihan wasit, silakan hubungi sekretariat PTMSI Sumbar di <strong>0812-3456-7890</strong>
+            <div class="col-md-4">
+                <div class="program-card">
+                    <div class="program-icon" style="background: var(--secondary-gradient);"><i class="bx bx-trophy"></i></div>
+                    <h4 class="program-title">Puslatda Intensif</h4>
+                    <div class="program-info"><i class="bx bx-time"></i><span>2 Bulan Sebelum Event</span></div>
+                    <div class="program-info"><i class="bx bx-map"></i><span>Lokasi Disesuaikan</span></div>
+                    <div class="program-info"><i class="bx bx-group"></i><span>15-20 Atlet</span></div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="program-card">
+                    <div class="program-icon" style="background: var(--success-gradient);"><i class="bx bx-run"></i></div>
+                    <h4 class="program-title">Puslatda Junior</h4>
+                    <div class="program-info"><i class="bx bx-time"></i><span>Sabtu - Minggu, 08:00 - 12:00</span></div>
+                    <div class="program-info"><i class="bx bx-map"></i><span>GOR Haji Agus Salim</span></div>
+                    <div class="program-info"><i class="bx bx-group"></i><span>30 Atlet U-12 & U-15</span></div>
                 </div>
             </div>
         </div>
     </div>
 
-    <?= $this->include('layouts/footer') ?>
+    <div id="usia-dini" class="section-card fade-in">
+        <h2 class="section-title"><i class="bx bx-group"></i> Pembinaan Usia Dini</h2>
+        <div class="activity-card">
+            <div class="d-flex align-items-start gap-3">
+                <div class="activity-icon"><i class="bx bx-joystick"></i></div>
+                <div class="flex-grow-1">
+                    <h5 class="fw-bold text-primary mb-2">Kelas Fun Table Tennis</h5>
+                    <span class="badge-status me-2">Aktif</span>
+                    <span class="text-muted">Setiap Sabtu | 09:00 - 11:00 WIB | Usia 6-9 tahun</span>
+                </div>
+            </div>
+        </div>
+        <div class="activity-card">
+            <div class="d-flex align-items-start gap-3">
+                <div class="activity-icon" style="background: var(--secondary-gradient);"><i class="bx bx-trophy"></i></div>
+                <div class="flex-grow-1">
+                    <h5 class="fw-bold text-primary mb-2">Kelas Teknik Dasar U-12</h5>
+                    <span class="badge-status me-2">Berlangsung</span>
+                    <span class="text-muted">Senin, Rabu, Jumat | 15:00 - 17:00 WIB</span>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <script>
-        // Smooth scroll untuk navigasi
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
+    <div id="talent" class="section-card fade-in">
+        <h2 class="section-title"><i class="bx bx-star"></i> Talent Scouting</h2>
+        <div class="info-grid">
+            <div class="info-box">
+                <i class="bx bx-search-alt"></i>
+                <h5>Seleksi Terbuka</h5>
+                <p>Seleksi untuk atlet muda berbakat dari seluruh Sumbar</p>
+            </div>
+            <div class="info-box">
+                <i class="bx bx-clipboard"></i>
+                <h5>Tes Kemampuan</h5>
+                <p>Tes fisik, teknik, dan mental untuk menilai potensi</p>
+            </div>
+            <div class="info-box">
+                <i class="bx bx-trending-up"></i>
+                <h5>Pembinaan Lanjut</h5>
+                <p>Program pembinaan khusus untuk atlet terpilih</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="coaching" class="section-card fade-in">
+        <h2 class="section-title"><i class="bx bx-award"></i> Coaching Clinic</h2>
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="program-card">
+                    <div class="program-icon"><i class="bx bx-book-reader"></i></div>
+                    <h4 class="program-title">Pelatihan Pelatih</h4>
+                    <ul class="list-modern">
+                        <li><i class="bx bx-check-circle"></i> Pelatihan Teknik Modern</li>
+                        <li><i class="bx bx-check-circle"></i> Strategic Coaching</li>
+                        <li><i class="bx bx-check-circle"></i> Sport Psychology</li>
+                        <li><i class="bx bx-check-circle"></i> Sertifikasi Pelatih</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="program-card">
+                    <div class="program-icon" style="background: var(--dark-gradient);"><i class="bx bx-flag"></i></div>
+                    <h4 class="program-title">Pelatihan Wasit</h4>
+                    <ul class="list-modern">
+                        <li><i class="bx bx-check-circle"></i> Peraturan Pertandingan</li>
+                        <li><i class="bx bx-check-circle"></i> Teknik Perwasitan</li>
+                        <li><i class="bx bx-check-circle"></i> Praktik Lapangan</li>
+                        <li><i class="bx bx-check-circle"></i> Sertifikasi Wasit</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', e => {
+            e.preventDefault();
+            document.querySelector(a.getAttribute('href'))?.scrollIntoView({
+                behavior: 'smooth'
             });
         });
-    </script>
-</body>
-
-</html>
+    });
+</script>
+<?= $this->endSection() ?>

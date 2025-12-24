@@ -8,6 +8,10 @@ class HasilModel extends Model
 {
     protected $table = 'hasil';
     protected $primaryKey = 'id_hasil';
+    protected $useAutoIncrement = true;
+    protected $returnType = 'array';
+    protected $useSoftDeletes = false;
+    protected $protectFields = true;
     protected $allowedFields = [
         'id_pertandingan',
         'id_pemenang_atlet',
@@ -15,50 +19,70 @@ class HasilModel extends Model
         'id_pelapor',
         'dicatat_pada'
     ];
+
     protected $useTimestamps = false;
 
     /**
-     * Get hasil with pertandingan details
+     * Get hasil dengan detail pertandingan dan atlet
      */
     public function getHasilWithDetails()
     {
         return $this->select('hasil.*, 
-                pertandingan.babak, pertandingan.jadwal, pertandingan.venue,
-                event.judul as nama_event,
-                u1.nama_lengkap as atlet1_nama, u2.nama_lengkap as atlet2_nama,
-                upemenang.nama_lengkap as pemenang_nama,
-                k1.nama as klub1_nama, k2.nama as klub2_nama')
-            ->join('pertandingan', 'pertandingan.id_pertandingan = hasil.id_pertandingan')
-            ->join('event', 'event.id_event = pertandingan.id_event')
-            ->join('atlet a1', 'a1.id_atlet = pertandingan.id_atlet1')
-            ->join('atlet a2', 'a2.id_atlet = pertandingan.id_atlet2')
-            ->join('user u1', 'u1.id_user = a1.id_user')
-            ->join('user u2', 'u2.id_user = a2.id_user')
-            ->join('atlet pemenang', 'pemenang.id_atlet = hasil.id_pemenang_atlet', 'left')
-            ->join('user upemenang', 'upemenang.id_user = pemenang.id_user', 'left')
-            ->join('klub k1', 'k1.id_klub = a1.id_klub', 'left')
-            ->join('klub k2', 'k2.id_klub = a2.id_klub', 'left')
+                             pertandingan.id_atlet1, pertandingan.id_atlet2, pertandingan.jadwal,
+                             user1.nama_lengkap as nama_atlet1,
+                             user2.nama_lengkap as nama_atlet2,
+                             pemenang.nama_lengkap as nama_pemenang,
+                             event.nama_event')
+            ->join('pertandingan', 'pertandingan.id_pertandingan = hasil.id_pertandingan', 'left')
+            ->join('atlet as atlet1', 'atlet1.id_atlet = pertandingan.id_atlet1', 'left')
+            ->join('user as user1', 'user1.id_user = atlet1.id_user', 'left')
+            ->join('atlet as atlet2', 'atlet2.id_atlet = pertandingan.id_atlet2', 'left')
+            ->join('user as user2', 'user2.id_user = atlet2.id_user', 'left')
+            ->join('atlet as atlet_pemenang', 'atlet_pemenang.id_atlet = hasil.id_pemenang_atlet', 'left')
+            ->join('user as pemenang', 'pemenang.id_user = atlet_pemenang.id_user', 'left')
+            ->join('event', 'event.id_event = pertandingan.id_event', 'left')
             ->orderBy('hasil.dicatat_pada', 'DESC')
             ->findAll();
     }
 
     /**
-     * Get hasil by event
+     * Get hasil by date
      */
-    public function getHasilByEvent($idEvent)
+    public function getHasilByDate($date)
     {
         return $this->select('hasil.*, 
-                pertandingan.babak,
-                u1.nama_lengkap as atlet1_nama, u2.nama_lengkap as atlet2_nama,
-                upemenang.nama_lengkap as pemenang_nama')
-            ->join('pertandingan', 'pertandingan.id_pertandingan = hasil.id_pertandingan')
-            ->join('atlet a1', 'a1.id_atlet = pertandingan.id_atlet1')
-            ->join('atlet a2', 'a2.id_atlet = pertandingan.id_atlet2')
-            ->join('user u1', 'u1.id_user = a1.id_user')
-            ->join('user u2', 'u2.id_user = a2.id_user')
-            ->join('atlet pemenang', 'pemenang.id_atlet = hasil.id_pemenang_atlet', 'left')
-            ->join('user upemenang', 'upemenang.id_user = pemenang.id_user', 'left')
-            ->where('pertandingan.id_event', $idEvent)
+                             pertandingan.id_atlet1, pertandingan.id_atlet2,
+                             user1.nama_lengkap as nama_atlet1,
+                             user2.nama_lengkap as nama_atlet2,
+                             pemenang.nama_lengkap as nama_pemenang')
+            ->join('pertandingan', 'pertandingan.id_pertandingan = hasil.id_pertandingan', 'left')
+            ->join('atlet as atlet1', 'atlet1.id_atlet = pertandingan.id_atlet1', 'left')
+            ->join('user as user1', 'user1.id_user = atlet1.id_user', 'left')
+            ->join('atlet as atlet2', 'atlet2.id_atlet = pertandingan.id_atlet2', 'left')
+            ->join('user as user2', 'user2.id_user = atlet2.id_user', 'left')
+            ->join('atlet as atlet_pemenang', 'atlet_pemenang.id_atlet = hasil.id_pemenang_atlet', 'left')
+            ->join('user as pemenang', 'pemenang.id_user = atlet_pemenang.id_user', 'left')
+            ->where('DATE(hasil.dicatat_pada)', $date)
+            ->orderBy('hasil.dicatat_pada', 'DESC')
+            ->findAll();
+    }
+
+    /**
+     * Get hasil by atlet
+     */
+    public function getHasilByAtlet($idAtlet)
+    {
+        return $this->select('hasil.*, 
+                             pertandingan.id_atlet1, pertandingan.id_atlet2,
+                             user1.nama_lengkap as nama_atlet1,
+                             user2.nama_lengkap as nama_atlet2')
+            ->join('pertandingan', 'pertandingan.id_pertandingan = hasil.id_pertandingan', 'left')
+            ->join('atlet as atlet1', 'atlet1.id_atlet = pertandingan.id_atlet1', 'left')
+            ->join('user as user1', 'user1.id_user = atlet1.id_user', 'left')
+            ->join('atlet as atlet2', 'atlet2.id_atlet = pertandingan.id_atlet2', 'left')
+            ->join('user as user2', 'user2.id_user = atlet2.id_user', 'left')
+            ->where('pertandingan.id_atlet1', $idAtlet)
+            ->orWhere('pertandingan.id_atlet2', $idAtlet)
             ->orderBy('hasil.dicatat_pada', 'DESC')
             ->findAll();
     }
@@ -68,15 +92,14 @@ class HasilModel extends Model
      */
     public function getRekapMedaliByKlub()
     {
-        return $this->select('klub.nama as nama_klub,
-                COUNT(CASE WHEN pertandingan.babak = "Final" THEN 1 END) as emas,
-                COUNT(CASE WHEN pertandingan.babak = "Semi Final" THEN 1 END) as perak,
-                COUNT(CASE WHEN pertandingan.babak = "Perempat Final" THEN 1 END) as perunggu')
-            ->join('pertandingan', 'pertandingan.id_pertandingan = hasil.id_pertandingan')
-            ->join('atlet', 'atlet.id_atlet = hasil.id_pemenang_atlet')
-            ->join('klub', 'klub.id_klub = atlet.id_klub')
+        return $this->select('klub.nama, 
+                             COUNT(hasil.id_hasil) as total_kemenangan')
+            ->join('pertandingan', 'pertandingan.id_pertandingan = hasil.id_pertandingan', 'left')
+            ->join('atlet', 'atlet.id_atlet = hasil.id_pemenang_atlet', 'left')
+            ->join('klub', 'klub.id_klub = atlet.id_klub', 'left')
             ->groupBy('klub.id_klub')
-            ->orderBy('emas', 'DESC')
+            ->orderBy('total_kemenangan', 'DESC')
+            ->limit(10)
             ->findAll();
     }
 
@@ -85,16 +108,14 @@ class HasilModel extends Model
      */
     public function getRekapMedaliByAtlet()
     {
-        return $this->select('user.nama_lengkap, klub.nama as nama_klub,
-                COUNT(CASE WHEN pertandingan.babak = "Final" THEN 1 END) as emas,
-                COUNT(CASE WHEN pertandingan.babak = "Semi Final" THEN 1 END) as perak,
-                COUNT(CASE WHEN pertandingan.babak = "Perempat Final" THEN 1 END) as perunggu')
-            ->join('pertandingan', 'pertandingan.id_pertandingan = hasil.id_pertandingan')
-            ->join('atlet', 'atlet.id_atlet = hasil.id_pemenang_atlet')
-            ->join('user', 'user.id_user = atlet.id_user')
-            ->join('klub', 'klub.id_klub = atlet.id_klub', 'left')
-            ->groupBy('atlet.id_atlet')
-            ->orderBy('emas', 'DESC')
+        return $this->select('user.nama_lengkap, 
+                             COUNT(hasil.id_hasil) as total_kemenangan')
+            ->join('pertandingan', 'pertandingan.id_pertandingan = hasil.id_pertandingan', 'left')
+            ->join('atlet', 'atlet.id_atlet = hasil.id_pemenang_atlet', 'left')
+            ->join('user', 'user.id_user = atlet.id_user', 'left')
+            ->groupBy('hasil.id_pemenang_atlet')
+            ->orderBy('total_kemenangan', 'DESC')
+            ->limit(10)
             ->findAll();
     }
 }

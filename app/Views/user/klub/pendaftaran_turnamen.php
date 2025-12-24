@@ -1,19 +1,21 @@
-<?= $this->extend('layouts/main') ?>
+<?= $this->extend('user/layouts/main') ?>
 
 <?= $this->section('content') ?>
-<div class="container-fluid py-4" style="background: linear-gradient(135deg, #003366 0%, #1E90FF 50%, #00BFFF 100%); min-height: 100vh;">
+<div class="container-fluid py-4">
     <!-- Header -->
     <div class="row mb-4">
         <div class="col-12">
-            <div class="card border-0 shadow-lg" style="border-radius: 20px;">
+            <div class="card border-0 shadow-lg">
                 <div class="card-body p-4">
                     <div class="d-flex align-items-center">
-                        <div class="icon-box bg-primary text-white rounded-circle me-3" style="width: 60px; height: 60px; display: flex; align-items: center; justify-content: center;">
-                            <i class="fas fa-trophy fa-2x"></i>
+                        <div class="icon-box bg-primary text-white rounded-circle me-3"
+                            style="width: 60px; height: 60px; display: flex; align-items: center; justify-content: center;">
+                            <i class="bx bx-trophy bx-lg"></i>
                         </div>
                         <div>
                             <h2 class="mb-1 fw-bold text-primary">Pendaftaran Turnamen</h2>
-                            <p class="mb-0 text-muted">Kelola pendaftaran turnamen untuk klub <?= esc($klub['nama']) ?></p>
+                            <p class="mb-0 text-muted">Kelola pendaftaran turnamen untuk klub <?= esc($klub['nama']) ?>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -24,7 +26,7 @@
     <!-- Alert Messages -->
     <?php if (session()->getFlashdata('success')): ?>
         <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <i class="fas fa-check-circle me-2"></i>
+            <i class="bx bx-check-circle me-2"></i>
             <?= session()->getFlashdata('success') ?>
             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         </div>
@@ -32,7 +34,7 @@
 
     <?php if (session()->getFlashdata('error')): ?>
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <i class="fas fa-exclamation-circle me-2"></i>
+            <i class="bx bx-exclamation-circle me-2"></i>
             <?= session()->getFlashdata('error') ?>
             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         </div>
@@ -45,13 +47,15 @@
                 <div class="card-body p-0">
                     <ul class="nav nav-pills nav-fill" id="tournamentTabs" role="tablist">
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link active rounded-0" id="available-tab" data-bs-toggle="pill" data-bs-target="#available" type="button" role="tab">
-                                <i class="fas fa-calendar-plus me-2"></i>Turnamen Tersedia
+                            <button class="nav-link active rounded-0" id="available-tab" data-bs-toggle="pill"
+                                data-bs-target="#available" type="button" role="tab">
+                                <i class="bx bx-calendar-plus me-2"></i>Turnamen Tersedia
                             </button>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link rounded-0" id="history-tab" data-bs-toggle="pill" data-bs-target="#history" type="button" role="tab">
-                                <i class="fas fa-history me-2"></i>Riwayat Pendaftaran
+                            <button class="nav-link rounded-0" id="history-tab" data-bs-toggle="pill"
+                                data-bs-target="#history" type="button" role="tab">
+                                <i class="bx bx-history me-2"></i>Riwayat Pendaftaran
                             </button>
                         </li>
                     </ul>
@@ -84,32 +88,52 @@
                                             </div>
                                             <div class="col-6">
                                                 <small class="text-muted d-block">Gender</small>
-                                                <span class="badge bg-secondary"><?= ucfirst($turnamen['kategori_gender']) ?></span>
+                                                <span
+                                                    class="badge bg-secondary"><?= ucfirst($turnamen['kategori_gender']) ?></span>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div class="mb-3">
+                                    <?php
+                                    $tmDate = date('Y-m-d', strtotime($turnamen['tanggal_mulai'] . ' -1 day'));
+                                    $tmDateTime = $tmDate . ' 19:00:00';
+                                    ?>
+                                    <div class="mb-2">
                                         <small class="text-muted d-block">Tanggal Turnamen</small>
                                         <p class="mb-1 fw-semibold">
-                                            <i class="fas fa-calendar me-1"></i>
+                                            <i class="bx bx-calendar me-1"></i>
                                             <?= date('d M Y', strtotime($turnamen['tanggal_mulai'])) ?> -
                                             <?= date('d M Y', strtotime($turnamen['tanggal_selesai'])) ?>
                                         </p>
                                     </div>
 
-                                    <div class="mb-3">
+                                    <div class="mb-1">
                                         <small class="text-muted d-block">Batas Pendaftaran</small>
                                         <p class="mb-1 fw-semibold text-danger">
-                                            <i class="fas fa-clock me-1"></i>
-                                            <?= date('d M Y', strtotime($turnamen['batas_pendaftaran'])) ?>
+                                            <i class="bx bx-time-five me-1"></i>
+                                            <?= date('d M Y H:i', strtotime($turnamen['batas_pendaftaran'])) ?>
                                         </p>
                                     </div>
+
+                                    <div class="mb-2">
+                                        <small class="text-muted d-block">Technical Meeting</small>
+                                        <p class="mb-1 fw-semibold text-primary">
+                                            <i class="bx bx-group me-1"></i>
+                                            <?= date('d M Y H:i', strtotime($tmDateTime)) ?>
+                                        </p>
+                                    </div>
+
+                                    <span class="badge bg-secondary countdown-badge mb-2"
+                                        data-deadline="<?= esc($turnamen['batas_pendaftaran']) ?>"
+                                        data-tm="<?= esc($tmDateTime) ?>"
+                                        data-start="<?= esc($turnamen['tanggal_mulai']) . ' 00:00:00' ?>">
+                                        Menghitung...
+                                    </span>
 
                                     <div class="mb-3">
                                         <small class="text-muted d-block">Lokasi</small>
                                         <p class="mb-1">
-                                            <i class="fas fa-map-marker-alt me-1"></i>
+                                            <i class="bx bx-map-marker-alt me-1"></i>
                                             <?= esc($turnamen['lokasi']) ?>
                                         </p>
                                     </div>
@@ -136,7 +160,7 @@
                                         <div class="mb-3">
                                             <small class="text-muted d-block">Biaya Pendaftaran</small>
                                             <p class="mb-1 fw-bold text-success">
-                                                <i class="fas fa-money-bill-wave me-1"></i>
+                                                <i class="bx bx-money-bill-wave me-1"></i>
                                                 Rp <?= number_format($turnamen['biaya_pendaftaran'], 0, ',', '.') ?>
                                             </p>
                                         </div>
@@ -153,7 +177,7 @@
                                     <div class="d-grid gap-2">
                                         <a href="<?= base_url('tournament/detail/' . $turnamen['id_event']) ?>"
                                             class="btn btn-primary btn-lg">
-                                            <i class="fas fa-eye me-2"></i>Lihat Detail
+                                            <i class="bx bx-eye me-2"></i>Lihat Detail
                                         </a>
                                     </div>
                                 </div>
@@ -165,10 +189,11 @@
                         <div class="card border-0 shadow-sm" style="border-radius: 15px;">
                             <div class="card-body text-center py-5">
                                 <div class="mb-4">
-                                    <i class="fas fa-calendar-times fa-4x text-muted"></i>
+                                    <i class="bx bx-calendar-times fa-4x text-muted"></i>
                                 </div>
                                 <h4 class="text-muted mb-2">Tidak Ada Turnamen Tersedia</h4>
-                                <p class="text-muted">Saat ini belum ada turnamen yang bisa didaftari. Silakan cek kembali nanti.</p>
+                                <p class="text-muted">Saat ini belum ada turnamen yang bisa didaftari. Silakan cek kembali
+                                    nanti.</p>
                             </div>
                         </div>
                     </div>
@@ -181,7 +206,7 @@
             <div class="card border-0 shadow-sm" style="border-radius: 15px;">
                 <div class="card-header bg-light border-0" style="border-radius: 15px 15px 0 0;">
                     <h5 class="mb-0 fw-bold text-primary">
-                        <i class="fas fa-history me-2"></i>Riwayat Pendaftaran Turnamen
+                        <i class="bx bx-history me-2"></i>Riwayat Pendaftaran Turnamen
                     </h5>
                 </div>
                 <div class="card-body p-0">
@@ -212,7 +237,8 @@
                                             <td class="px-4 py-3">
                                                 <div class="fw-semibold"><?= esc($pendaftaran['nama_atlet']) ?></div>
                                                 <?php if ($pendaftaran['nama_atlet2']): ?>
-                                                    <small class="text-muted">Partner: <?= esc($pendaftaran['nama_atlet2']) ?></small>
+                                                    <small class="text-muted">Partner:
+                                                        <?= esc($pendaftaran['nama_atlet2']) ?></small>
                                                 <?php endif; ?>
                                             </td>
                                             <td class="px-4 py-3">
@@ -275,13 +301,13 @@
                                                     ): ?>
                                                         <a href="<?= base_url('tournament/upload-bukti/' . $pendaftaran['id_pendaftaran']) ?>"
                                                             class="btn btn-outline-primary btn-sm">
-                                                            <i class="fas fa-upload me-1"></i>Upload Bukti
+                                                            <i class="bx bx-upload me-1"></i>Upload Bukti
                                                         </a>
                                                     <?php endif; ?>
 
                                                     <button type="button" class="btn btn-outline-info btn-sm"
                                                         onclick="showDetailPendaftaran(<?= $pendaftaran['id_pendaftaran'] ?>)">
-                                                        <i class="fas fa-eye me-1"></i>Detail
+                                                        <i class="bx bx-eye me-1"></i>Detail
                                                     </button>
                                                 </div>
                                             </td>
@@ -293,7 +319,7 @@
                     <?php else: ?>
                         <div class="text-center py-5">
                             <div class="mb-4">
-                                <i class="fas fa-clipboard-list fa-4x text-muted"></i>
+                                <i class="bx bx-clipboard-list fa-4x text-muted"></i>
                             </div>
                             <h5 class="text-muted mb-2">Belum Ada Riwayat Pendaftaran</h5>
                             <p class="text-muted">Klub belum pernah mendaftarkan atlet ke turnamen manapun.</p>
@@ -399,7 +425,7 @@
                 } else {
                     content.innerHTML = `
                     <div class="alert alert-danger">
-                        <i class="fas fa-exclamation-triangle me-2"></i>
+                        <i class="bx bx-exclamation-triangle me-2"></i>
                         ${data.message || 'Gagal memuat detail pendaftaran'}
                     </div>
                 `;
@@ -408,7 +434,7 @@
             .catch(error => {
                 content.innerHTML = `
                 <div class="alert alert-danger">
-                    <i class="fas fa-exclamation-triangle me-2"></i>
+                    <i class="bx bx-exclamation-triangle me-2"></i>
                     Terjadi kesalahan saat memuat data
                 </div>
             `;
@@ -473,5 +499,79 @@
             location.reload();
         }
     }, 30000);
+
+    // Hitung mundur untuk klub - pendaftaran turnamen
+    document.addEventListener('DOMContentLoaded', function() {
+        const badges = document.querySelectorAll('.countdown-badge');
+
+        function formatDuration(ms) {
+            if (ms <= 0) return null;
+            const totalSeconds = Math.floor(ms / 1000);
+            const days = Math.floor(totalSeconds / (24 * 3600));
+            const hours = Math.floor((totalSeconds % (24 * 3600)) / 3600);
+            const minutes = Math.floor((totalSeconds % 3600) / 60);
+            const seconds = totalSeconds % 60;
+
+            const parts = [];
+            if (days > 0) parts.push(days + 'h');
+            if (hours > 0 || days > 0) parts.push(hours + 'j');
+            if (minutes > 0 || hours > 0 || days > 0) parts.push(minutes + 'm');
+            parts.push(seconds + 'd');
+
+            return parts.join(' ');
+        }
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+
+            badges.forEach(badge => {
+                const deadlineStr = badge.getAttribute('data-deadline');
+                const tmStr = badge.getAttribute('data-tm');
+                const startStr = badge.getAttribute('data-start');
+
+                const deadlineTime = deadlineStr ? new Date(deadlineStr.replace(' ', 'T')).getTime() : null;
+                const tmTime = tmStr ? new Date(tmStr.replace(' ', 'T')).getTime() : null;
+                const startTime = startStr ? new Date(startStr.replace(' ', 'T')).getTime() : null;
+
+                let label = '';
+                let diff = null;
+                let badgeClass = 'bg-secondary';
+
+                if (deadlineTime && now < deadlineTime) {
+                    diff = deadlineTime - now;
+                    label = 'Daftar tutup dalam: ';
+                    badgeClass = 'bg-info text-dark';
+                } else if (tmTime && now < tmTime) {
+                    diff = tmTime - now;
+                    label = 'TM dalam: ';
+                    badgeClass = 'bg-warning text-dark';
+                } else if (startTime && now < startTime) {
+                    diff = startTime - now;
+                    label = 'Laga mulai dalam: ';
+                    badgeClass = 'bg-primary';
+                } else if (startTime && now >= startTime) {
+                    label = 'Event berlangsung / selesai';
+                    badgeClass = 'bg-success';
+                } else {
+                    label = 'Jadwal belum lengkap';
+                    badgeClass = 'bg-secondary';
+                }
+
+                badge.className = 'badge countdown-badge mb-2 ' + badgeClass;
+
+                if (diff !== null) {
+                    const durationText = formatDuration(diff);
+                    badge.textContent = label + (durationText || 'sebentar lagi');
+                } else {
+                    badge.textContent = label;
+                }
+            });
+        }
+
+        if (badges.length) {
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+        }
+    });
 </script>
 <?= $this->endSection() ?>

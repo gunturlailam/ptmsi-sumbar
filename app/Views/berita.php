@@ -1,839 +1,530 @@
-<!DOCTYPE html>
-<html lang="id">
+<?= $this->extend('layouts/public_main') ?>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Berita - PTMSI Sumbar</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="<?= base_url('assets/css/ptmsi-style.css') ?>">
-    <style>
-        .nav-menu-card {
-            background: linear-gradient(135deg, #fff 0%, #E8F2FF 100%);
-            border-radius: 20px;
-            padding: 30px 20px;
-            text-align: center;
-            text-decoration: none;
-            display: block;
-            border: 2px solid #E8F2FF;
-            transition: all 0.4s ease;
-            height: 100%;
-        }
+<?= $this->section('css') ?>
+<style>
+    /* CSS Variables */
+    :root {
+        --primary: #f59e0b;
+        --secondary: #d97706;
+        --primary-gradient: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+        --secondary-gradient: linear-gradient(135deg, #f59e0b 0%, #f5576c 100%);
+        --success-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        --dark-gradient: linear-gradient(135deg, #111827 0%, #0f172a 100%);
+        --text-primary: #e5e7eb;
+        --text-secondary: #9ca3af;
+        --surface: #1e293b;
+        --border-color: rgba(245, 158, 11, 0.1);
+        --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.3);
+        --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+        --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+        --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+    }
 
-        .nav-menu-card:hover {
-            background: linear-gradient(135deg, #1E90FF 0%, #003366 100%);
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(30, 144, 255, 0.3);
-            border-color: #1E90FF;
-        }
+    body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        background: linear-gradient(135deg, #0f172a 0%, #111827 100%);
+        color: var(--text-primary);
+        line-height: 1.6;
+    }
 
-        .nav-menu-card .nav-icon-wrapper {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #1E90FF, #00BFFF);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 15px;
-            transition: all 0.4s ease;
-        }
+    /* Hero Section */
+    .hero-section {
+        background: var(--primary-gradient);
+        border-bottom: 1px solid rgba(245, 158, 11, 0.1);
+        color: white;
+        padding: 6rem 0 4rem;
+        position: relative;
+        overflow: hidden;
+    }
 
-        .nav-menu-card:hover .nav-icon-wrapper {
-            background: #fff;
-            transform: scale(1.1) rotate(5deg);
-        }
+    .hero-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx="50%" cy="50%"><stop offset="0%" stop-color="%23ffffff" stop-opacity="0.1"/><stop offset="100%" stop-color="%23ffffff" stop-opacity="0"/></radialGradient></defs><circle cx="200" cy="200" r="100" fill="url(%23a)"/><circle cx="800" cy="300" r="150" fill="url(%23a)"/><circle cx="400" cy="700" r="120" fill="url(%23a)"/></svg>');
+    }
 
-        .nav-menu-card .nav-icon-wrapper i {
-            font-size: 2rem;
-            color: #fff;
-            transition: all 0.4s ease;
-        }
+    .hero-content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+    }
 
-        .nav-menu-card:hover .nav-icon-wrapper i {
-            color: #1E90FF;
-        }
+    .hero-title {
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        font-weight: 900;
+        margin-bottom: 1rem;
+        background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
 
-        .nav-menu-card h6 {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: #003366;
-            margin-bottom: 8px;
-            transition: all 0.4s ease;
-        }
+    .hero-subtitle {
+        font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+        font-weight: 400;
+        margin-bottom: 2rem;
+        color: rgba(255, 255, 255, 0.9);
+    }
 
-        .nav-menu-card:hover h6 {
-            color: #fff;
-        }
+    /* News Cards */
+    .news-card {
+        background: white;
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow: var(--shadow-lg);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        border: 1px solid var(--border-color);
+        position: relative;
+        height: 100%;
+    }
 
-        .nav-menu-card p {
-            font-size: 0.85rem;
-            color: #666;
-            margin: 0;
-            transition: all 0.4s ease;
-        }
+    .news-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: var(--primary-gradient);
+    }
 
-        .nav-menu-card:hover p {
-            color: rgba(255, 255, 255, 0.9);
-        }
+    .news-card:hover {
+        transform: translateY(-10px);
+        box-shadow: var(--shadow-xl);
+    }
 
-        .berita-card {
-            background: #fff;
-            border-radius: 25px;
-            overflow: hidden;
-            box-shadow: 0 8px 30px rgba(30, 144, 255, 0.12);
-            transition: all 0.4s ease;
-            border: 2px solid #E8F2FF;
-            height: 100%;
-        }
+    .news-image {
+        height: 250px;
+        background: var(--primary-gradient);
+        position: relative;
+        overflow: hidden;
+    }
 
-        .berita-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 50px rgba(30, 144, 255, 0.25);
-            border-color: #1E90FF;
-        }
+    .news-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
 
-        .berita-image {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            transition: transform 0.4s ease;
-        }
+    .news-card:hover .news-image img {
+        transform: scale(1.05);
+    }
 
-        .berita-card:hover .berita-image {
-            transform: scale(1.1);
-        }
+    .news-badge {
+        position: absolute;
+        top: 1rem;
+        left: 1rem;
+        background: rgba(255, 255, 255, 0.9);
+        color: #667eea;
+        padding: 0.5rem 1rem;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 0.875rem;
+    }
 
-        .berita-content {
-            padding: 25px;
-        }
+    .news-content {
+        padding: 2rem;
+    }
 
-        .berita-kategori {
-            display: inline-block;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 12px;
-        }
+    .news-title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 1rem;
+        line-height: 1.3;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
 
-        .kategori-kejuaraan {
-            background: linear-gradient(135deg, #1E90FF, #003366);
-            color: #fff;
-        }
+    .news-excerpt {
+        color: var(--text-secondary);
+        margin-bottom: 1.5rem;
+        line-height: 1.6;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
 
-        .kategori-atlet {
-            background: linear-gradient(135deg, #FFD700, #FFA500);
-            color: #fff;
-        }
+    .news-meta {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        color: var(--text-secondary);
+        font-size: 0.875rem;
+        margin-bottom: 1.5rem;
+    }
 
-        .kategori-pengumuman {
-            background: linear-gradient(135deg, #dc3545, #c82333);
-            color: #fff;
-        }
+    .news-meta i {
+        color: #667eea;
+    }
 
-        .kategori-artikel {
-            background: linear-gradient(135deg, #28a745, #20c997);
-            color: #fff;
-        }
+    .btn-read-more {
+        background: var(--primary-gradient);
+        color: white;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        border-radius: 50px;
+        font-weight: 600;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: all 0.3s ease;
+    }
 
-        .berita-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: #003366;
-            margin-bottom: 12px;
-            line-height: 1.4;
-        }
+    .btn-read-more:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-lg);
+        color: white;
+        text-decoration: none;
+    }
 
-        .berita-title a {
-            color: #003366;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
+    /* Featured News */
+    .featured-news {
+        background: white;
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow: var(--shadow-xl);
+        border: 1px solid var(--border-color);
+        position: relative;
+    }
 
-        .berita-title a:hover {
-            color: #1E90FF;
-        }
+    .featured-news::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 6px;
+        background: var(--primary-gradient);
+    }
 
-        .berita-ringkasan {
-            color: #666;
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
+    .featured-image {
+        height: 400px;
+        background: var(--primary-gradient);
+        position: relative;
+        overflow: hidden;
+    }
 
-        .berita-meta {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            font-size: 0.9rem;
-            color: #999;
-            padding-top: 15px;
-            border-top: 2px solid #E8F2FF;
-        }
+    .featured-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
 
-        .berita-meta i {
-            color: #1E90FF;
-        }
+    .featured-badge {
+        position: absolute;
+        top: 2rem;
+        left: 2rem;
+        background: var(--primary-gradient);
+        color: white;
+        padding: 0.75rem 1.5rem;
+        border-radius: 50px;
+        font-weight: 700;
+        font-size: 1rem;
+    }
 
-        /* Featured Article Styles */
-        .featured-article-card {
-            background: #fff;
-            border-radius: 25px;
-            overflow: hidden;
-            box-shadow: 0 10px 40px rgba(30, 144, 255, 0.15);
-            border: 2px solid #E8F2FF;
-            transition: all 0.4s ease;
-        }
+    .featured-content {
+        padding: 3rem;
+    }
 
-        .featured-article-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 60px rgba(30, 144, 255, 0.25);
-            border-color: #1E90FF;
-        }
+    .featured-title {
+        font-size: 2rem;
+        font-weight: 800;
+        color: var(--text-primary);
+        margin-bottom: 1.5rem;
+        line-height: 1.2;
+    }
 
-        .featured-image-wrapper {
-            position: relative;
-            height: 350px;
-            overflow: hidden;
+    .featured-excerpt {
+        font-size: 1.1rem;
+        color: var(--text-secondary);
+        margin-bottom: 2rem;
+        line-height: 1.6;
+    }
+
+    /* Category Filter */
+    .category-filter {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        margin-bottom: 3rem;
+        justify-content: center;
+    }
+
+    .category-btn {
+        padding: 0.75rem 1.5rem;
+        border-radius: 50px;
+        border: 2px solid #667eea;
+        background: white;
+        color: #667eea;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+    }
+
+    .category-btn:hover,
+    .category-btn.active {
+        background: var(--primary-gradient);
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-lg);
+        text-decoration: none;
+    }
+
+    /* Section Headers */
+    .section-header {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+
+    .section-title {
+        font-size: clamp(2rem, 4vw, 3rem);
+        font-weight: 800;
+        color: var(--text-primary);
+        margin-bottom: 1rem;
+    }
+
+    .section-subtitle {
+        font-size: 1.25rem;
+        color: var(--text-secondary);
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .hero-section {
+            padding: 4rem 0 2rem;
         }
 
         .featured-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.4s ease;
-        }
-
-        .featured-article-card:hover .featured-image {
-            transform: scale(1.05);
-        }
-
-        .featured-overlay {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-        }
-
-        .featured-kategori {
-            background: linear-gradient(135deg, #1E90FF, #003366);
-            color: #fff;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 600;
+            height: 250px;
         }
 
         .featured-content {
-            padding: 30px;
+            padding: 2rem;
         }
 
         .featured-title {
-            font-size: 1.8rem;
-            font-weight: 900;
-            color: #003366;
-            margin-bottom: 15px;
-            line-height: 1.3;
-        }
-
-        .featured-title a {
-            color: #003366;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .featured-title a:hover {
-            color: #1E90FF;
-        }
-
-        .featured-excerpt {
-            color: #666;
-            font-size: 1.1rem;
-            line-height: 1.7;
-            margin-bottom: 20px;
-        }
-
-        .featured-meta {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            font-size: 1rem;
-            color: #999;
-            padding-top: 20px;
-            border-top: 2px solid #E8F2FF;
-        }
-
-        .featured-meta i {
-            color: #1E90FF;
-        }
-
-        /* Section Subtitle */
-        .section-subtitle {
             font-size: 1.5rem;
-            font-weight: 700;
-            color: #003366;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid #1E90FF;
         }
 
-        /* Small News Cards */
-        .news-card-small {
-            background: #fff;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(30, 144, 255, 0.1);
-            border: 2px solid #E8F2FF;
-            transition: all 0.4s ease;
-            height: 100%;
+        .category-filter {
+            justify-content: flex-start;
+            overflow-x: auto;
+            padding-bottom: 0.5rem;
         }
 
-        .news-card-small:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(30, 144, 255, 0.2);
-            border-color: #1E90FF;
-        }
-
-        .news-image-small {
-            height: 150px;
-            overflow: hidden;
-        }
-
-        .news-image-small img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.4s ease;
-        }
-
-        .news-card-small:hover .news-image-small img {
-            transform: scale(1.1);
-        }
-
-        .news-content-small {
-            padding: 20px;
-        }
-
-        .news-kategori-small {
-            display: inline-block;
-            background: linear-gradient(135deg, #1E90FF, #003366);
-            color: #fff;
-            padding: 4px 10px;
-            border-radius: 15px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-
-        .news-title-small {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: #003366;
-            margin-bottom: 10px;
-            line-height: 1.4;
-        }
-
-        .news-title-small a {
-            color: #003366;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .news-title-small a:hover {
-            color: #1E90FF;
-        }
-
-        .news-meta-small {
-            font-size: 0.85rem;
-            color: #999;
-        }
-
-        .news-meta-small i {
-            color: #1E90FF;
-        }
-
-        /* Sidebar Styles */
-        .news-sidebar {
-            position: sticky;
-            top: 100px;
-        }
-
-        .sidebar-section {
-            background: #fff;
-            border-radius: 25px;
-            padding: 25px;
-            box-shadow: 0 8px 30px rgba(30, 144, 255, 0.12);
-            border: 2px solid #E8F2FF;
-        }
-
-        .sidebar-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: #003366;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #E8F2FF;
-        }
-
-        .sidebar-title i {
-            color: #1E90FF;
-            margin-right: 8px;
-        }
-
-        /* Popular News List */
-        .sidebar-news-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 15px;
-            padding: 15px 0;
-            border-bottom: 1px solid #E8F2FF;
-        }
-
-        .sidebar-news-item:last-child {
-            border-bottom: none;
-        }
-
-        .sidebar-news-number {
-            width: 30px;
-            height: 30px;
-            background: linear-gradient(135deg, #1E90FF, #003366);
-            color: #fff;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 0.9rem;
+        .category-btn {
             flex-shrink: 0;
         }
+    }
 
-        .sidebar-news-title {
-            font-size: 1rem;
-            font-weight: 600;
-            color: #003366;
-            margin-bottom: 5px;
-            line-height: 1.4;
+    /* Loading Animation */
+    .fade-in {
+        opacity: 0;
+        transform: translateY(30px);
+        animation: fadeInUp 0.8s ease forwards;
+    }
+
+    @keyframes fadeInUp {
+        to {
+            opacity: 1;
+            transform: translateY(0);
         }
+    }
 
-        .sidebar-news-title a {
-            color: #003366;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
+    /* Empty State */
+    .empty-state {
+        text-align: center;
+        padding: 4rem 2rem;
+        color: var(--text-secondary);
+    }
 
-        .sidebar-news-title a:hover {
-            color: #1E90FF;
-        }
+    .empty-state i {
+        font-size: 4rem;
+        color: #667eea;
+        opacity: 0.5;
+        margin-bottom: 1rem;
+    }
 
-        .sidebar-news-meta {
-            font-size: 0.8rem;
-            color: #999;
-        }
+    .empty-state h5 {
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        color: var(--text-primary);
+    }
+</style>
+<?= $this->endSection() ?>
 
-        .sidebar-news-meta i {
-            color: #1E90FF;
-        }
+<?= $this->section('content') ?>
 
-        /* Category List */
-        .category-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 12px 15px;
-            border-radius: 15px;
-            text-decoration: none;
-            color: #666;
-            transition: all 0.3s ease;
-            margin-bottom: 8px;
-            border: 2px solid transparent;
-        }
-
-        .category-item:hover {
-            background: linear-gradient(135deg, #1E90FF, #003366);
-            color: #fff;
-            transform: translateX(5px);
-            border-color: #1E90FF;
-        }
-
-        .category-item i {
-            color: #1E90FF;
-            transition: color 0.3s;
-        }
-
-        .category-item:hover i {
-            color: #fff;
-        }
-
-        .category-count {
-            margin-left: auto;
-            background: #E8F2FF;
-            color: #1E90FF;
-            padding: 4px 8px;
-            border-radius: 10px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            transition: all 0.3s;
-        }
-
-        .category-item:hover .category-count {
-            background: rgba(255, 255, 255, 0.2);
-            color: #fff;
-        }
-
-        /* Recent News List */
-        .recent-news-item {
-            display: flex;
-            gap: 12px;
-            padding: 12px 0;
-            border-bottom: 1px solid #E8F2FF;
-        }
-
-        .recent-news-item:last-child {
-            border-bottom: none;
-        }
-
-        .recent-news-image {
-            width: 60px;
-            height: 60px;
-            border-radius: 15px;
-            overflow: hidden;
-            flex-shrink: 0;
-        }
-
-        .recent-news-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .recent-news-title {
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: #003366;
-            margin-bottom: 5px;
-            line-height: 1.3;
-        }
-
-        .recent-news-title a {
-            color: #003366;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .recent-news-title a:hover {
-            color: #1E90FF;
-        }
-
-        .recent-news-meta {
-            font-size: 0.8rem;
-            color: #999;
-        }
-
-        .recent-news-meta i {
-            color: #1E90FF;
-        }
-    </style>
-</head>
-
-<body>
-    <?= $this->include('layouts/navbar') ?>
-
-    <!-- Hero Section -->
-    <div class="hero-modern">
-        <div class="container">
-            <div class="hero-content text-center">
-                <h1 class="hero-title">
-                    <i class="bi bi-newspaper"></i> Berita PTMSI Sumbar
-                </h1>
-                <p class="hero-subtitle">Informasi terkini seputar tenis meja Sumatera Barat</p>
-            </div>
-        </div>
-    </div>
-
+<!-- Hero Section -->
+<section class="hero-section">
     <div class="container">
+        <div class="hero-content fade-in">
+            <h1 class="hero-title">
+                <i class="bx bx-news"></i> Berita & Informasi
+            </h1>
+            <p class="hero-subtitle">Update terbaru seputar kegiatan dan prestasi PTMSI Sumatera Barat</p>
+        </div>
+    </div>
+</section>
 
-        <!-- Main Content Layout -->
+<!-- Main Content -->
+<div class="container py-5">
+    <!-- Category Filter -->
+    <div class="category-filter fade-in">
+        <a href="#" class="category-btn active" data-category="all">
+            <i class="bx bx-grid-alt"></i> Semua Berita
+        </a>
+        <a href="#" class="category-btn" data-category="prestasi">
+            <i class="bx bx-trophy"></i> Prestasi
+        </a>
+        <a href="#" class="category-btn" data-category="kegiatan">
+            <i class="bx bx-calendar-event"></i> Kegiatan
+        </a>
+        <a href="#" class="category-btn" data-category="pengumuman">
+            <i class="bx bx-megaphone"></i> Pengumuman
+        </a>
+        <a href="#" class="category-btn" data-category="turnamen">
+            <i class="bx bx-medal"></i> Turnamen
+        </a>
+    </div>
+
+    <!-- Featured News -->
+    <?php if (!empty($featuredNews)): ?>
+        <div class="featured-news fade-in mb-5">
+            <div class="row g-0">
+                <div class="col-lg-6">
+                    <div class="featured-image">
+                        <img src="<?= base_url('assets/img/orang.jpg') ?>" alt="<?= esc($featuredNews['judul']) ?>" onerror="this.style.display='none'; this.parentElement.style.background='var(--primary-gradient)'; this.parentElement.innerHTML+='<div style=\'position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;color:white;\'><i class=\'bx bx-news\' style=\'font-size:4rem;margin-bottom:1rem;\'></i><h4>Berita Utama</h4></div>'">
+                        <div class="featured-badge">BERITA UTAMA</div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="featured-content">
+                        <h2 class="featured-title"><?= esc($featuredNews['judul']) ?></h2>
+                        <div class="news-meta mb-3">
+                            <span><i class="bx bx-calendar"></i> <?= date('d M Y', strtotime($featuredNews['tanggal_publikasi'])) ?></span>
+                            <span><i class="bx bx-user"></i> Admin PTMSI</span>
+                        </div>
+                        <p class="featured-excerpt"><?= esc(substr($featuredNews['konten'], 0, 200)) ?>...</p>
+                        <a href="<?= base_url('berita/detail/' . $featuredNews['slug']) ?>" class="btn-read-more">
+                            <i class="bx bx-right-arrow-alt"></i> Baca Selengkapnya
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php endif; ?>
+
+    <!-- News Grid -->
+    <div class="section-header fade-in">
+        <h2 class="section-title">Berita Terbaru</h2>
+        <p class="section-subtitle">Informasi dan update terkini dari PTMSI Sumatera Barat</p>
+    </div>
+
+    <?php if (!empty($berita)): ?>
         <div class="row g-4">
-            <!-- Featured Article Section (Left) -->
-            <div class="col-lg-8">
-                <?php
-                // Get the latest news from all categories for featured article
-                $allBerita = [];
-                if (!empty($beritaKejuaraan)) $allBerita = array_merge($allBerita, $beritaKejuaraan);
-                if (!empty($beritaAtlet)) $allBerita = array_merge($allBerita, $beritaAtlet);
-                if (!empty($pengumuman)) $allBerita = array_merge($allBerita, $pengumuman);
-                if (!empty($artikel)) $allBerita = array_merge($allBerita, $artikel);
+            <?php foreach ($berita as $news): ?>
+                <div class="col-lg-4 col-md-6">
+                    <div class="news-card fade-in" data-category="<?= strtolower($news['kategori'] ?? 'umum') ?>">
+                        <div class="news-image">
+                            <img src="<?= base_url('assets/img/orang.jpg') ?>" alt="<?= esc($news['judul']) ?>" onerror="this.style.display='none'; this.parentElement.style.background='var(--primary-gradient)'; this.parentElement.innerHTML+='<div style=\'position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;color:white;\'><i class=\'bx bx-news\' style=\'font-size:3rem;margin-bottom:1rem;\'></i><h5><?= esc(substr($news['judul'], 0, 30)) ?>...</h5></div>'">
+                            <div class="news-badge"><?= esc($news['kategori'] ?? 'Berita') ?></div>
+                        </div>
+                        <div class="news-content">
+                            <h5 class="news-title"><?= esc($news['judul']) ?></h5>
+                            <div class="news-meta">
+                                <span><i class="bx bx-calendar"></i> <?= date('d M Y', strtotime($news['tanggal_publikasi'])) ?></span>
+                                <span><i class="bx bx-show"></i> <?= $news['views'] ?? '0' ?> views</span>
+                            </div>
+                            <p class="news-excerpt"><?= esc(substr($news['konten'], 0, 150)) ?>...</p>
+                            <a href="<?= base_url('berita/detail/' . $news['slug']) ?>" class="btn-read-more">
+                                <i class="bx bx-right-arrow-alt"></i> Baca Selengkapnya
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
 
-                // Sort by date and get the latest
-                usort($allBerita, function ($a, $b) {
-                    return strtotime($b['tanggal_publikasi']) - strtotime($a['tanggal_publikasi']);
+        <!-- Pagination -->
+        <?php if (isset($pager)): ?>
+            <div class="d-flex justify-content-center mt-5">
+                <?= $pager->links() ?>
+            </div>
+        <?php endif; ?>
+    <?php else: ?>
+        <div class="empty-state fade-in">
+            <i class="bx bx-news"></i>
+            <h5>Belum Ada Berita</h5>
+            <p>Berita dan informasi akan ditampilkan di sini</p>
+        </div>
+    <?php endif; ?>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Category filter functionality
+        const categoryBtns = document.querySelectorAll('.category-btn');
+        const newsCards = document.querySelectorAll('.news-card');
+
+        categoryBtns.forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                // Remove active class from all buttons
+                categoryBtns.forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                this.classList.add('active');
+
+                const category = this.getAttribute('data-category');
+
+                newsCards.forEach(card => {
+                    if (category === 'all') {
+                        card.style.display = 'block';
+                    } else {
+                        const cardCategory = card.getAttribute('data-category');
+                        card.style.display = cardCategory === category ? 'block' : 'none';
+                    }
                 });
-
-                $featuredBerita = !empty($allBerita) ? $allBerita[0] : null;
-                ?>
-
-                <?php if ($featuredBerita): ?>
-                    <!-- Featured Article -->
-                    <div class="featured-article-card">
-                        <div class="featured-image-wrapper">
-                            <img src="<?= !empty($featuredBerita['foto']) ? base_url($featuredBerita['foto']) : base_url('assets/img/berita1.jpg') ?>" alt="<?= esc($featuredBerita['judul']) ?>" class="featured-image">
-                            <div class="featured-overlay">
-                                <span class="featured-kategori">
-                                    <?= esc(ucfirst($featuredBerita['kategori'] ?? 'Berita Utama')) ?>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="featured-content">
-                            <h2 class="featured-title">
-                                <a href="#" class="berita-link" data-bs-toggle="modal" data-bs-target="#beritaModal"
-                                    data-judul="<?= esc($featuredBerita['judul']) ?>"
-                                    data-konten="<?= esc($featuredBerita['konten']) ?>"
-                                    data-tanggal="<?= date('d M Y', strtotime($featuredBerita['tanggal_publikasi'])) ?>"
-                                    data-penulis="<?= esc($featuredBerita['nama_penulis'] ?? 'Admin') ?>"
-                                    data-kategori="<?= esc($featuredBerita['kategori'] ?? 'Berita Utama') ?>">
-                                    <?= esc($featuredBerita['judul']) ?>
-                                </a>
-                            </h2>
-                            <p class="featured-excerpt">
-                                <?= esc(substr(strip_tags($featuredBerita['konten']), 0, 200)) ?>...
-                            </p>
-                            <div class="featured-meta">
-                                <span><i class="bi bi-calendar"></i> <?= date('d M Y', strtotime($featuredBerita['tanggal_publikasi'])) ?></span>
-                                <span><i class="bi bi-person"></i> <?= esc($featuredBerita['nama_penulis'] ?? 'Admin') ?></span>
-                            </div>
-                        </div>
-                    </div>
-                <?php endif; ?>
-
-                <!-- Other News Grid -->
-                <div class="other-news-section mt-4">
-                    <h3 class="section-subtitle">Berita Lainnya</h3>
-                    <div class="row g-3">
-                        <?php
-                        $otherBerita = array_slice($allBerita, 1, 6); // Skip featured article, get next 6
-                        foreach ($otherBerita as $b):
-                        ?>
-                            <div class="col-md-6">
-                                <div class="news-card-small">
-                                    <div class="news-image-small">
-                                        <img src="<?= !empty($b['foto']) ? base_url($b['foto']) : base_url('assets/img/berita2.jpg') ?>" alt="<?= esc($b['judul']) ?>">
-                                    </div>
-                                    <div class="news-content-small">
-                                        <span class="news-kategori-small">
-                                            <?= esc(ucfirst($b['kategori'] ?? 'Berita')) ?>
-                                        </span>
-                                        <h5 class="news-title-small">
-                                            <a href="#" class="berita-link" data-bs-toggle="modal" data-bs-target="#beritaModal"
-                                                data-judul="<?= esc($b['judul']) ?>"
-                                                data-konten="<?= esc($b['konten']) ?>"
-                                                data-tanggal="<?= date('d M Y', strtotime($b['tanggal_publikasi'])) ?>"
-                                                data-penulis="<?= esc($b['nama_penulis'] ?? 'Admin') ?>"
-                                                data-kategori="<?= esc($b['kategori'] ?? 'Berita') ?>">
-                                                <?= esc($b['judul']) ?>
-                                            </a>
-                                        </h5>
-                                        <div class="news-meta-small">
-                                            <span><i class="bi bi-calendar"></i> <?= date('d M Y', strtotime($b['tanggal_publikasi'])) ?></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        <?php endforeach; ?>
-                    </div>
-                </div>
-            </div>
-
-            <!-- News Sidebar (Right) -->
-            <div class="col-lg-4">
-                <div class="news-sidebar">
-                    <!-- Berita Terpopuler -->
-                    <div class="sidebar-section">
-                        <h4 class="sidebar-title">
-                            <i class="bi bi-fire"></i> Berita Terpopuler
-                        </h4>
-                        <div class="sidebar-news-list">
-                            <?php
-                            $popularBerita = array_slice($allBerita, 0, 5);
-                            foreach ($popularBerita as $index => $b):
-                            ?>
-                                <div class="sidebar-news-item">
-                                    <div class="sidebar-news-number"><?= $index + 1 ?></div>
-                                    <div class="sidebar-news-content">
-                                        <h6 class="sidebar-news-title">
-                                            <a href="#" class="berita-link" data-bs-toggle="modal" data-bs-target="#beritaModal"
-                                                data-judul="<?= esc($b['judul']) ?>"
-                                                data-konten="<?= esc($b['konten']) ?>"
-                                                data-tanggal="<?= date('d M Y', strtotime($b['tanggal_publikasi'])) ?>"
-                                                data-penulis="<?= esc($b['nama_penulis'] ?? 'Admin') ?>"
-                                                data-kategori="<?= esc($b['kategori'] ?? 'Berita') ?>">
-                                                <?= esc($b['judul']) ?>
-                                            </a>
-                                        </h6>
-                                        <div class="sidebar-news-meta">
-                                            <span><i class="bi bi-calendar"></i> <?= date('d M Y', strtotime($b['tanggal_publikasi'])) ?></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            <?php endforeach; ?>
-                        </div>
-                    </div>
-
-                    <!-- Kategori Berita -->
-                    <div class="sidebar-section mt-4">
-                        <h4 class="sidebar-title">
-                            <i class="bi bi-tags"></i> Kategori Berita
-                        </h4>
-                        <div class="category-list">
-                            <a href="<?= base_url('berita/kategori/kejuaraan') ?>" class="category-item">
-                                <i class="bi bi-trophy-fill"></i>
-                                <span>Kejuaraan</span>
-                                <span class="category-count"><?= count($beritaKejuaraan ?? []) ?></span>
-                            </a>
-                            <a href="<?= base_url('berita/kategori/atlet') ?>" class="category-item">
-                                <i class="bi bi-star-fill"></i>
-                                <span>Atlet Berprestasi</span>
-                                <span class="category-count"><?= count($beritaAtlet ?? []) ?></span>
-                            </a>
-                            <a href="<?= base_url('berita/kategori/pengumuman') ?>" class="category-item">
-                                <i class="bi bi-megaphone-fill"></i>
-                                <span>Pengumuman</span>
-                                <span class="category-count"><?= count($pengumuman ?? []) ?></span>
-                            </a>
-                            <a href="<?= base_url('berita/kategori/artikel') ?>" class="category-item">
-                                <i class="bi bi-book-fill"></i>
-                                <span>Artikel Pembinaan</span>
-                                <span class="category-count"><?= count($artikel ?? []) ?></span>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Berita Terbaru -->
-                    <div class="sidebar-section mt-4">
-                        <h4 class="sidebar-title">
-                            <i class="bi bi-clock"></i> Berita Terbaru
-                        </h4>
-                        <div class="recent-news-list">
-                            <?php
-                            $recentBerita = array_slice($allBerita, 0, 4);
-                            foreach ($recentBerita as $b):
-                            ?>
-                                <div class="recent-news-item">
-                                    <div class="recent-news-image">
-                                        <img src="<?= !empty($b['foto']) ? base_url($b['foto']) : base_url('assets/img/berita3.jpg') ?>" alt="<?= esc($b['judul']) ?>">
-                                    </div>
-                                    <div class="recent-news-content">
-                                        <h6 class="recent-news-title">
-                                            <a href="#" class="berita-link" data-bs-toggle="modal" data-bs-target="#beritaModal"
-                                                data-judul="<?= esc($b['judul']) ?>"
-                                                data-konten="<?= esc($b['konten']) ?>"
-                                                data-tanggal="<?= date('d M Y', strtotime($b['tanggal_publikasi'])) ?>"
-                                                data-penulis="<?= esc($b['nama_penulis'] ?? 'Admin') ?>"
-                                                data-kategori="<?= esc($b['kategori'] ?? 'Berita') ?>">
-                                                <?= esc(substr($b['judul'], 0, 60)) ?>...
-                                            </a>
-                                        </h6>
-                                        <div class="recent-news-meta">
-                                            <span><i class="bi bi-calendar"></i> <?= date('d M Y', strtotime($b['tanggal_publikasi'])) ?></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            <?php endforeach; ?>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal Detail Berita -->
-    <div class="modal fade" id="beritaModal" tabindex="-1" aria-labelledby="beritaModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content" style="border-radius: 25px; border: 2px solid #1E90FF;">
-                <div class="modal-header" style="background: linear-gradient(135deg, #1E90FF 0%, #003366 100%); color: #fff; border-radius: 23px 23px 0 0;">
-                    <h5 class="modal-title fw-bold" id="beritaModalLabel">
-                        <i class="bi bi-newspaper"></i> Detail Berita
-                    </h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body" style="padding: 30px;">
-                    <div class="mb-3">
-                        <span class="badge" id="modalKategori" style="padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 600;"></span>
-                    </div>
-                    <h3 class="fw-bold text-primary mb-3" id="modalJudul"></h3>
-                    <div class="d-flex gap-3 mb-4 text-muted">
-                        <span><i class="bi bi-calendar text-primary"></i> <span id="modalTanggal"></span></span>
-                        <span><i class="bi bi-person text-primary"></i> <span id="modalPenulis"></span></span>
-                    </div>
-                    <div class="border-top pt-3">
-                        <div id="modalKonten" style="line-height: 1.8; color: #555;"></div>
-                    </div>
-                </div>
-                <div class="modal-footer" style="border-top: 2px solid #E8F2FF;">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="border-radius: 20px; padding: 10px 25px;">
-                        <i class="bi bi-x-circle"></i> Tutup
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <?= $this->include('layouts/footer') ?>
-
-    <script>
-        // Smooth scroll untuk navigasi
-        document.querySelectorAll('a[href^="#"]:not([data-bs-toggle])').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
             });
         });
 
-        // Handle modal berita
-        document.querySelectorAll('.berita-link').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
 
-                const judul = this.getAttribute('data-judul');
-                const konten = this.getAttribute('data-konten');
-                const tanggal = this.getAttribute('data-tanggal');
-                const penulis = this.getAttribute('data-penulis');
-                const kategori = this.getAttribute('data-kategori');
-
-                document.getElementById('modalJudul').textContent = judul;
-                document.getElementById('modalKonten').innerHTML = konten;
-                document.getElementById('modalTanggal').textContent = tanggal;
-                document.getElementById('modalPenulis').textContent = penulis;
-
-                const badgeKategori = document.getElementById('modalKategori');
-                badgeKategori.textContent = kategori;
-
-                // Set badge color based on kategori
-                if (kategori === 'kejuaraan' || kategori === 'Kejuaraan') {
-                    badgeKategori.style.background = 'linear-gradient(135deg, #1E90FF, #003366)';
-                    badgeKategori.style.color = '#fff';
-                } else if (kategori === 'atlet' || kategori === 'Atlet Berprestasi') {
-                    badgeKategori.style.background = 'linear-gradient(135deg, #FFD700, #FFA500)';
-                    badgeKategori.style.color = '#fff';
-                } else if (kategori === 'pengumuman' || kategori === 'Pengumuman') {
-                    badgeKategori.style.background = 'linear-gradient(135deg, #dc3545, #c82333)';
-                    badgeKategori.style.color = '#fff';
-                } else if (kategori === 'artikel' || kategori === 'Artikel Pembinaan') {
-                    badgeKategori.style.background = 'linear-gradient(135deg, #28a745, #20c997)';
-                    badgeKategori.style.color = '#fff';
-                } else {
-                    badgeKategori.style.background = 'linear-gradient(135deg, #6c757d, #495057)';
-                    badgeKategori.style.color = '#fff';
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationDelay = `${Math.random() * 0.3}s`;
+                    entry.target.classList.add('fade-in');
                 }
             });
-        });
-    </script>
-</body>
+        }, observerOptions);
 
-</html>
+        // Observe all elements with fade-in class
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+    });
+</script>
+
+<?= $this->endSection() ?>

@@ -1,60 +1,194 @@
-# CodeIgniter 4 Framework
+# PTMSI Sumatera Barat - Sistem Manajemen Tenis Meja
 
-## What is CodeIgniter?
+Aplikasi web untuk manajemen data atlet, klub, pelatih, turnamen, dan ranking tenis meja di Sumatera Barat.
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](https://codeigniter.com).
+## Teknologi
 
-This repository holds the distributable version of the framework.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+- **Framework**: CodeIgniter 4
+- **Database**: MySQL
+- **PHP**: 8.1+
+- **Frontend**: Bootstrap 5, Boxicons
 
-More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
+## Fitur Utama
 
-You can read the [user guide](https://codeigniter.com/user_guide/)
-corresponding to the latest version of the framework.
+### Public Pages
 
-## Important Change with index.php
+- Beranda dengan informasi singkat
+- Event & Turnamen
+- Ranking Atlet
+- Berita & Informasi
+- Galeri Foto & Video
+- Dokumen
+- Pembinaan
+- Live Scoring
+- Hubungi Kami
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+### User Dashboard
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+- **Atlet**: Profil, Kartu Atlet, Daftar Turnamen, Riwayat Pertandingan, Ranking Pribadi
+- **Pelatih**: Atlet Binaan, Sertifikasi, Profil
+- **Klub**: Data Klub, Kelola Atlet, Kelola Pelatih, Pendaftaran Turnamen, Laporan Kegiatan, Statistik
 
-**Please** read the user guide for a better explanation of how CI4 works!
+### Admin Panel
 
-## Repository Management
+- Manajemen Berita, Event, Atlet, Pelatih, Klub
+- Pendaftaran (Atlet, Pelatih, Klub, Turnamen)
+- Generate Pertandingan & Input Hasil
+- Manajemen Ranking
+- Analytics & Audit Log
+- Manajemen Ofisial
 
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
+## Setup & Installation
 
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
+### 1. Clone Repository
 
-## Contributing
+```bash
+git clone <repository-url>
+cd ptmsi-sumbar
+```
 
-We welcome contributions from the community.
+### 2. Install Dependencies
 
-Please read the [*Contributing to CodeIgniter*](https://github.com/codeigniter4/CodeIgniter4/blob/develop/CONTRIBUTING.md) section in the development repository.
+```bash
+composer install
+```
 
-## Server Requirements
+### 3. Setup Environment
 
-PHP version 8.1 or higher is required, with the following extensions installed:
+```bash
+cp .env.example .env
+```
 
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
+Edit `.env` dan sesuaikan konfigurasi database:
 
-> [!WARNING]
-> - The end of life date for PHP 7.4 was November 28, 2022.
-> - The end of life date for PHP 8.0 was November 26, 2023.
-> - If you are still using PHP 7.4 or 8.0, you should upgrade immediately.
-> - The end of life date for PHP 8.1 will be December 31, 2025.
+```
+database.default.hostname = localhost
+database.default.database = ptmsi_sumbar
+database.default.username = root
+database.default.password =
+```
 
-Additionally, make sure that the following extensions are enabled in your PHP:
+### 4. Generate App Key
 
-- json (enabled by default - don't turn it off)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+```bash
+php spark key:generate
+```
+
+### 5. Run Migrations
+
+```bash
+php spark migrate
+```
+
+### 6. Run Seeders (Optional)
+
+```bash
+php spark db:seed DokumenSeeder
+php spark db:seed RatingSeeder
+php spark db:seed NotificationSeeder
+```
+
+### 7. Start Development Server
+
+```bash
+php spark serve
+```
+
+Akses aplikasi di `http://localhost:8080`
+
+## Default Credentials
+
+- **Admin**: admin@ptmsi.id / admin123
+- **Klub**: klub@ptmsi.id / klub123
+- **Atlet**: atlet@ptmsi.id / atlet123
+- **Pelatih**: pelatih@ptmsi.id / pelatih123
+
+## Struktur Folder
+
+```
+ptmsi-sumbar/
+├── app/
+│   ├── Controllers/       # Controller aplikasi
+│   ├── Models/           # Model database
+│   ├── Views/            # Template view
+│   ├── Database/         # Migrations & Seeds
+│   ├── Filters/          # Authentication filters
+│   ├── Helpers/          # Helper functions
+│   └── Config/           # Konfigurasi
+├── public/               # Public assets (CSS, JS, images)
+├── system/               # CodeIgniter system files
+├── writable/             # Writable directory (logs, cache)
+├── composer.json         # Dependencies
+└── spark                 # CLI tool
+```
+
+## Database Schema
+
+Aplikasi menggunakan tabel-tabel berikut:
+
+- `user` - Data pengguna
+- `atlet` - Data atlet
+- `pelatih` - Data pelatih
+- `klub` - Data klub
+- `event` - Data event/turnamen
+- `ranking` - Data ranking atlet
+- `hasil` - Hasil pertandingan
+- `pendaftaran_atlet` - Pendaftaran atlet
+- `pendaftaran_pelatih` - Pendaftaran pelatih
+- `pendaftaran_event` - Pendaftaran event
+- Dan tabel-tabel pendukung lainnya
+
+## Fitur Keamanan
+
+- Password hashing dengan bcrypt
+- CSRF protection
+- SQL injection prevention
+- XSS protection
+- Role-based access control (RBAC)
+- Session management
+
+## API Endpoints
+
+Aplikasi menyediakan API endpoints untuk:
+
+- Statistik atlet
+- Data pertandingan event
+- Standings/Klasemen
+- Search atlet & event
+- Ranking by kategori
+- Top rated athletes
+
+## Troubleshooting
+
+### Server Crash
+
+Jika server crash saat startup, pastikan:
+
+1. Database sudah dibuat dan dikonfigurasi di `.env`
+2. Semua migrations sudah dijalankan
+3. Folder `writable/` memiliki permission 755
+
+### Database Error
+
+Jika ada error "Table doesn't exist":
+
+1. Jalankan `php spark migrate` untuk membuat tabel
+2. Jalankan `php spark db:seed` untuk data awal
+
+### Permission Denied
+
+Pastikan folder `writable/` dan `public/uploads/` memiliki permission write:
+
+```bash
+chmod -R 755 writable/
+chmod -R 755 public/uploads/
+```
+
+## Support
+
+Untuk pertanyaan atau masalah, hubungi tim development atau buka issue di repository.
+
+---
+
+**Versi**: 1.0.0  
+**Last Updated**: December 24, 2025

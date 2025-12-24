@@ -1,685 +1,372 @@
-<!DOCTYPE html>
-<html lang="id">
+<?= $this->extend('layouts/public_main') ?>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beranda - PTMSI Sumbar</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="<?= base_url('assets/css/ptmsi-style.css') ?>">
-    <style>
-        body {
-            background: linear-gradient(120deg, #E8F2FF 0%, #F0F8FF 100%);
-            font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
-        }
+<?= $this->section('css') ?>
+<style>
+    :root {
+        --primary: #f59e0b;
+        --secondary: #d97706;
+        --text-primary: #e5e7eb;
+        --text-secondary: #9ca3af;
+        --surface: #1e293b;
+        --border-color: rgba(245, 158, 11, 0.1);
+    }
 
-        .hero-modern {
-            background: linear-gradient(120deg, #1E90FF 0%, #00BFFF 100%);
-            color: #fff;
-            padding: 60px 0 40px 0;
-            border-radius: 0 0 40px 40px;
-            box-shadow: 0 10px 40px rgba(30, 144, 255, 0.10);
-            margin-bottom: 40px;
-            position: relative;
-            overflow: hidden;
-        }
+    body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        background: linear-gradient(135deg, #0f172a 0%, #111827 100%);
+        color: var(--text-primary);
+    }
 
-        .hero-modern::before {
-            content: '';
-            position: absolute;
-            top: -80px;
-            left: -80px;
-            width: 200px;
-            height: 200px;
-            background: radial-gradient(circle, #fff 0%, transparent 70%);
-            opacity: 0.25;
-            z-index: 0;
-        }
+    /* Hero Section */
+    .hero-section {
+        min-height: 60vh;
+        background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 4rem 2rem;
+        position: relative;
+        overflow: hidden;
+    }
 
-        .hero-modern .hero-content {
-            position: relative;
-            z-index: 1;
-        }
+    .hero-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+    }
 
-        .hero-modern .hero-title {
-            font-size: 3.2rem;
-            font-weight: 900;
-            letter-spacing: 1px;
-            margin-bottom: 10px;
-            color: #fff;
-            text-shadow: 0 4px 24px rgba(0, 0, 0, 0.10);
-        }
+    .hero-content {
+        position: relative;
+        z-index: 2;
+        max-width: 800px;
+    }
 
-        .hero-modern .hero-subtitle {
-            font-size: 1.4rem;
-            color: #e0f2ff;
-            margin-bottom: 30px;
-        }
+    .hero-title {
+        font-size: clamp(2rem, 5vw, 3.5rem);
+        font-weight: 900;
+        margin-bottom: 1rem;
+        color: white;
+        letter-spacing: -1px;
+    }
 
-        .btn-modern-primary {
-            background: linear-gradient(90deg, #1E90FF 60%, #36a2ff 100%);
-            color: #fff;
-            font-weight: 700;
-            padding: 16px 36px;
-            border-radius: 22px;
-            font-size: 1.1rem;
-            border: none;
-            box-shadow: 0 2px 8px rgba(30, 144, 255, 0.10);
-            transition: background 0.2s, color 0.2s, box-shadow 0.2s;
-        }
+    .hero-subtitle {
+        font-size: clamp(1rem, 2vw, 1.3rem);
+        color: rgba(255, 255, 255, 0.95);
+        margin-bottom: 2rem;
+        line-height: 1.6;
+    }
 
-        .btn-modern-primary:hover {
-            background: #1565c0;
-            color: #fff;
-            box-shadow: 0 4px 16px rgba(30, 144, 255, 0.13);
-        }
+    .hero-cta {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
 
-        .btn-secondary-modern {
-            background: #fff;
-            color: #1E90FF;
-            font-weight: 700;
-            padding: 16px 36px;
-            border-radius: 22px;
-            font-size: 1.1rem;
-            border: 2px solid #1E90FF;
-            box-shadow: 0 2px 8px rgba(30, 144, 255, 0.10);
-            transition: background 0.2s, color 0.2s, box-shadow 0.2s;
-        }
+    .btn-modern {
+        padding: 0.9rem 2rem;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 1rem;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
 
-        .btn-secondary-modern:hover {
-            background: #1E90FF;
-            color: #fff;
-            box-shadow: 0 4px 16px rgba(30, 144, 255, 0.13);
-        }
+    .btn-primary {
+        background: white;
+        color: #d97706;
+    }
 
-        @keyframes bounce {
+    .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
 
-            0%,
-            100% {
-                transform: translateY(0);
-            }
+    .btn-secondary {
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+        border: 2px solid white;
+    }
 
-            50% {
-                transform: translateY(-18px);
-            }
-        }
+    .btn-secondary:hover {
+        background: rgba(255, 255, 255, 0.3);
+        transform: translateY(-2px);
+    }
 
-        /* Timeline Section */
-        .timeline-section {
-            background: #fff;
-            border-radius: 30px;
-            padding: 40px;
-            margin: 40px 0;
-            box-shadow: 0 10px 40px rgba(30, 144, 255, 0.1);
-            border: 2px solid #E8F2FF;
-        }
+    /* Quick Stats */
+    .stats-section {
+        padding: 3rem 2rem;
+        background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+        border-top: 1px solid rgba(245, 158, 11, 0.1);
+    }
 
-        .timeline-header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
 
-        .timeline-header h2 {
-            color: #003366;
-            font-weight: 900;
-            font-size: 2.2rem;
-            margin-bottom: 10px;
-        }
+    .stat-card {
+        text-align: center;
+        padding: 1.5rem;
+        background: var(--surface);
+        border-radius: 15px;
+        border: 1px solid var(--border-color);
+        transition: all 0.3s ease;
+    }
 
-        .timeline-slider {
-            display: flex;
-            gap: 20px;
-            overflow-x: auto;
-            padding: 20px 0;
-            scroll-behavior: smooth;
-        }
+    .stat-card:hover {
+        transform: translateY(-5px);
+        border-color: rgba(245, 158, 11, 0.3);
+        box-shadow: 0 10px 25px rgba(245, 158, 11, 0.1);
+    }
 
-        .timeline-card {
-            min-width: 300px;
-            background: #fff;
-            border-radius: 20px;
-            padding: 25px;
-            border: 2px solid #E8F2FF;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
+    .stat-number {
+        font-size: 2.5rem;
+        font-weight: 900;
+        color: #f59e0b;
+        margin-bottom: 0.5rem;
+    }
 
-        .timeline-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(135deg, #003366, #1E90FF, #00BFFF);
-        }
+    .stat-label {
+        font-size: 0.95rem;
+        color: var(--text-secondary);
+        font-weight: 500;
+    }
 
-        .timeline-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(30, 144, 255, 0.2);
-            border-color: #1E90FF;
-        }
+    /* Features Section */
+    .features-section {
+        padding: 3rem 2rem;
+        background: linear-gradient(135deg, #111827 0%, #0f172a 100%);
+        border-top: 1px solid rgba(245, 158, 11, 0.1);
+    }
 
-        .timeline-date {
-            background: linear-gradient(135deg, #003366, #1E90FF);
-            color: white;
-            padding: 8px 16px;
-            border-radius: 15px;
-            font-weight: 700;
-            font-size: 0.9rem;
-            display: inline-block;
-            margin-bottom: 15px;
-        }
+    .section-title {
+        font-size: 2rem;
+        font-weight: 900;
+        color: #f59e0b;
+        text-align: center;
+        margin-bottom: 2rem;
+    }
 
-        .timeline-title {
-            color: #003366;
-            font-weight: 900;
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-            line-height: 1.3;
-        }
+    .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
 
-        .timeline-desc {
-            color: #666;
-            font-size: 0.95rem;
-            line-height: 1.5;
-        }
+    .feature-card {
+        background: var(--surface);
+        border-radius: 15px;
+        padding: 2rem;
+        border: 1px solid var(--border-color);
+        transition: all 0.3s ease;
+        text-align: center;
+    }
 
-        /* Featured Content Grid */
-        .featured-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 30px;
-            margin: 40px 0;
-        }
+    .feature-card:hover {
+        transform: translateY(-5px);
+        border-color: rgba(245, 158, 11, 0.3);
+        box-shadow: 0 10px 25px rgba(245, 158, 11, 0.1);
+    }
 
-        .featured-main {
-            background: #fff;
-            border-radius: 25px;
-            overflow: hidden;
-            box-shadow: 0 10px 40px rgba(30, 144, 255, 0.1);
-            border: 2px solid #E8F2FF;
-            transition: all 0.4s ease;
-        }
+    .feature-icon {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        display: inline-block;
+        background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
 
-        .featured-main:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 60px rgba(30, 144, 255, 0.2);
-        }
+    .feature-title {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 0.75rem;
+    }
 
-        .featured-image {
-            height: 300px;
-            background: linear-gradient(135deg, #003366, #1E90FF, #00BFFF);
-            position: relative;
-            overflow: hidden;
-        }
+    .feature-description {
+        color: var(--text-secondary);
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
 
-        .featured-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+    /* CTA Section */
+    .cta-section {
+        padding: 3rem 2rem;
+        background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+        text-align: center;
+        border-top: 1px solid rgba(245, 158, 11, 0.1);
+    }
 
-        .featured-badge {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            background: rgba(255, 255, 255, 0.95);
-            color: #003366;
-            padding: 8px 16px;
-            border-radius: 15px;
-            font-weight: 700;
-            font-size: 0.9rem;
-        }
+    .cta-title {
+        font-size: 2rem;
+        font-weight: 900;
+        color: white;
+        margin-bottom: 1rem;
+    }
 
-        .featured-content {
-            padding: 30px;
-        }
+    .cta-subtitle {
+        font-size: 1.1rem;
+        color: rgba(255, 255, 255, 0.95);
+        margin-bottom: 2rem;
+    }
 
-        .featured-title {
-            color: #003366;
-            font-weight: 900;
+    .cta-button {
+        background: white;
+        color: #d97706;
+        padding: 1rem 2.5rem;
+        border-radius: 50px;
+        font-weight: 600;
+        text-decoration: none;
+        display: inline-block;
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
+    }
+
+    .cta-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    @media (max-width: 768px) {
+        .hero-title {
             font-size: 1.8rem;
-            margin-bottom: 15px;
-            line-height: 1.3;
         }
 
-        .featured-desc {
-            color: #666;
-            font-size: 1.1rem;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-
-        .featured-meta {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            color: #1E90FF;
-            font-weight: 600;
-        }
-
-        /* Sidebar */
-        .sidebar-section {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .sidebar-card {
-            background: #fff;
-            border-radius: 20px;
-            padding: 25px;
-            border: 2px solid #E8F2FF;
-            transition: all 0.4s ease;
-        }
-
-        .sidebar-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(30, 144, 255, 0.15);
-            border-color: #1E90FF;
-        }
-
-        .sidebar-title {
-            color: #003366;
-            font-weight: 900;
-            font-size: 1.3rem;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .sidebar-item {
-            padding: 15px 0;
-            border-bottom: 1px solid #E8F2FF;
-            transition: all 0.3s ease;
-        }
-
-        .sidebar-item:last-child {
-            border-bottom: none;
-        }
-
-        .sidebar-item:hover {
-            padding-left: 10px;
-            background: linear-gradient(135deg, #E8F2FF, transparent);
-            border-radius: 10px;
-        }
-
-        .sidebar-item-title {
-            color: #003366;
-            font-weight: 700;
-            font-size: 1rem;
-            margin-bottom: 5px;
-        }
-
-        .sidebar-item-meta {
-            color: #666;
-            font-size: 0.9rem;
-        }
-
-        /* Article Grid */
-        .article-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            margin: 40px 0;
-        }
-
-        .article-card {
-            background: #fff;
-            border-radius: 25px;
-            overflow: hidden;
-            border: 2px solid #E8F2FF;
-            transition: all 0.4s ease;
-        }
-
-        .article-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(30, 144, 255, 0.2);
-            border-color: #1E90FF;
-        }
-
-        .article-image {
-            height: 200px;
-            background: linear-gradient(135deg, #003366, #1E90FF);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .article-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .article-content {
-            padding: 25px;
-        }
-
-        .article-category {
-            background: linear-gradient(135deg, #1E90FF, #00BFFF);
-            color: white;
-            padding: 6px 12px;
-            border-radius: 12px;
-            font-weight: 700;
-            font-size: 0.8rem;
-            display: inline-block;
-            margin-bottom: 15px;
-        }
-
-        .article-title {
-            color: #003366;
-            font-weight: 900;
-            font-size: 1.3rem;
-            margin-bottom: 10px;
-            line-height: 1.3;
-        }
-
-        .article-excerpt {
-            color: #666;
-            font-size: 0.95rem;
-            line-height: 1.5;
-            margin-bottom: 15px;
-        }
-
-        .article-meta {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            color: #1E90FF;
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-
-        /* Social Media Section */
-        .social-section {
-            background: linear-gradient(135deg, #003366, #1E90FF, #00BFFF);
-            color: white;
-            border-radius: 30px;
-            padding: 40px;
-            margin: 40px 0;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .social-section::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
-            animation: pulse 8s ease-in-out infinite;
-        }
-
-        .social-title {
-            font-weight: 900;
-            font-size: 2rem;
-            margin-bottom: 20px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .social-link {
-            width: 60px;
-            height: 60px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
+        .section-title {
             font-size: 1.5rem;
-            transition: all 0.4s ease;
-            text-decoration: none;
         }
 
-        .social-link:hover {
-            background: white;
-            color: #1E90FF;
-            transform: translateY(-5px) scale(1.1);
+        .stats-grid,
+        .features-grid {
+            grid-template-columns: 1fr;
         }
 
-        @media (max-width: 768px) {
-            .featured-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .timeline-card {
-                min-width: 280px;
-            }
-
-            .article-grid {
-                grid-template-columns: 1fr;
-            }
+        .hero-cta {
+            flex-direction: column;
+            align-items: center;
         }
-    </style>
-</head>
 
-<body>
-    <?= $this->include('layouts/navbar') ?>
+        .btn-modern {
+            width: 100%;
+            justify-content: center;
+        }
+    }
+</style>
+<?= $this->endSection() ?>
 
-    <!-- Hero Section -->
-    <div class="hero-modern">
-        <div class="container">
-            <div class="hero-content text-center">
-                <img src="<?= base_url('assets/img/gambar-ptmsi.png') ?>" alt="Logo PTMSI"
-                    style="width:130px; height:130px; border-radius:50%; border:6px solid #fff; background:#fff; margin-bottom:30px; box-shadow: 0 15px 40px rgba(0,0,0,0.18); animation: bounce 2s ease-in-out infinite;">
-                <h1 class="hero-title">PTMSI Sumatera Barat</h1>
-                <p class="hero-subtitle">Membangun Prestasi Tenis Meja Indonesia dari Ranah Minang</p>
-                <div class="d-flex gap-3 justify-content-center flex-wrap mt-4">
-                    <a href="<?= base_url('layanan-online') ?>" class="btn-modern-primary">
-                        <i class="bi bi-person-plus"></i> Daftar Atlet & Pelatih
-                    </a>
-                    <a href="<?= base_url('event') ?>" class="btn-secondary-modern">
-                        <i class="bi bi-calendar-event"></i> Event & Kejuaraan
-                    </a>
-                </div>
-            </div>
+<?= $this->section('content') ?>
+
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="hero-content">
+        <h1 class="hero-title">Selamat Datang di PTMSI Sumbar</h1>
+        <p class="hero-subtitle">Platform Resmi Persatuan Tenis Meja Seluruh Indonesia Sumatera Barat</p>
+        <div class="hero-cta">
+            <a href="<?= base_url('event') ?>" class="btn-modern btn-primary">
+                <i class='bx bx-trophy'></i> Lihat Event
+            </a>
+            <a href="<?= base_url('ranking') ?>" class="btn-modern btn-secondary">
+                <i class='bx bx-chart-line'></i> Ranking
+            </a>
         </div>
     </div>
+</section>
 
-    <div class="container">
-        <!-- Timeline Section -->
-        <div class="timeline-section">
-            <div class="timeline-header">
-                <h2><i class="bi bi-clock-history"></i> Sejarah Hari Ini</h2>
-                <p>Peristiwa penting dalam dunia tenis meja Indonesia</p>
-            </div>
-            <div class="timeline-container">
-                <div class="timeline-slider">
-                    <div class="timeline-card">
-                        <div class="timeline-date">1963</div>
-                        <div class="timeline-title">Berdirinya PTMSI</div>
-                        <div class="timeline-desc">Persatuan Tenis Meja Seluruh Indonesia didirikan sebagai induk organisasi tenis meja nasional</div>
-                    </div>
-                    <div class="timeline-card">
-                        <div class="timeline-date">1972</div>
-                        <div class="timeline-title">Bergabung dengan ITTF</div>
-                        <div class="timeline-desc">Indonesia resmi menjadi anggota International Table Tennis Federation</div>
-                    </div>
-                    <div class="timeline-card">
-                        <div class="timeline-date">1985</div>
-                        <div class="timeline-title">PTMSI Sumbar Berdiri</div>
-                        <div class="timeline-desc">Pengurus Daerah PTMSI Sumatera Barat resmi dibentuk untuk mengembangkan tenis meja di wilayah Sumbar</div>
-                    </div>
-                    <div class="timeline-card">
-                        <div class="timeline-date">2020</div>
-                        <div class="timeline-title">Era Digital</div>
-                        <div class="timeline-desc">Peluncuran sistem digital untuk pendaftaran atlet dan manajemen turnamen modern</div>
-                    </div>
-                </div>
-            </div>
+<!-- Quick Stats -->
+<section class="stats-section">
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-number">150+</div>
+            <div class="stat-label">Atlet Terdaftar</div>
         </div>
-
-        <!-- Featured Content -->
-        <div class="featured-grid">
-            <div class="featured-main">
-                <div class="featured-image">
-                    <img src="<?= base_url('assets/img/orang.jpg') ?>" alt="Pelatihan Wasit PTMSI">
-                    <div class="featured-badge">FEATURED</div>
-                </div>
-                <div class="featured-content">
-                    <div class="featured-title">Pelatihan Wasit & Ofisial Tenis Meja Tingkat Provinsi</div>
-                    <div class="featured-desc">Program pelatihan komprehensif untuk meningkatkan kualitas wasit dan ofisial tenis meja di Sumatera Barat. Kegiatan ini melibatkan instruktur bersertifikat nasional.</div>
-                    <div class="featured-meta">
-                        <span><i class="bi bi-calendar"></i> 15 November 2024</span>
-                        <span><i class="bi bi-geo-alt"></i> Bintan Center</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="sidebar-section">
-                <div class="sidebar-card">
-                    <div class="sidebar-title">
-                        <i class="bi bi-trophy"></i> Prestasi Terbaru
-                    </div>
-                    <div class="sidebar-item">
-                        <div class="sidebar-item-title">Juara 1 Kejurnas Junior</div>
-                        <div class="sidebar-item-meta">Atlet Sumbar meraih emas</div>
-                    </div>
-                    <div class="sidebar-item">
-                        <div class="sidebar-item-title">Best Organizer Award</div>
-                        <div class="sidebar-item-meta">PTMSI Cup 2024</div>
-                    </div>
-                    <div class="sidebar-item">
-                        <div class="sidebar-item-title">Peringkat 3 Nasional</div>
-                        <div class="sidebar-item-meta">Kategori pembinaan atlet</div>
-                    </div>
-                </div>
-
-                <div class="sidebar-card">
-                    <div class="sidebar-title">
-                        <i class="bi bi-graph-up"></i> Statistik
-                    </div>
-                    <div class="sidebar-item">
-                        <div class="sidebar-item-title">150+ Atlet Aktif</div>
-                        <div class="sidebar-item-meta">Terdaftar resmi</div>
-                    </div>
-                    <div class="sidebar-item">
-                        <div class="sidebar-item-title">30+ Klub</div>
-                        <div class="sidebar-item-meta">Se-Sumatera Barat</div>
-                    </div>
-                    <div class="sidebar-item">
-                        <div class="sidebar-item-title">25+ Event/Tahun</div>
-                        <div class="sidebar-item-meta">Turnamen rutin</div>
-                    </div>
-                </div>
-            </div>
+        <div class="stat-card">
+            <div class="stat-number">45+</div>
+            <div class="stat-label">Klub Aktif</div>
         </div>
-
-        <!-- Article Grid -->
-        <div class="article-grid">
-            <div class="article-card">
-                <div class="article-image">
-                    <img src="<?= base_url('assets/img/PTMSI Cup.jpg') ?>" alt="PTMSI Cup"
-                        onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #1E90FF, #00BFFF)'; this.parentElement.innerHTML+='<div style=\'position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;color:white;\'><i class=\'bi bi-trophy\' style=\'font-size:3rem;margin-bottom:10px;\'></i><h5>PTMSI Cup</h5></div>'">
-                </div>
-                <div class="article-content">
-                    <div class="article-category">TURNAMEN</div>
-                    <div class="article-title">PTMSI Cup 2024 Sukses Digelar</div>
-                    <div class="article-excerpt">Turnamen tenis meja terbesar di Sumatera Barat berhasil mempertandingkan 200+ atlet dari berbagai klub...</div>
-                    <div class="article-meta">
-                        <span><i class="bi bi-calendar"></i> 20 Nov 2024</span>
-                        <span><i class="bi bi-eye"></i> 1.2k views</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="article-card">
-                <div class="article-image" style="background:linear-gradient(135deg, #00BFFF, #1E90FF);position:relative;min-height:180px;display:flex;align-items:center;justify-content:center;">
-                    <div style="text-align:center;color:white;">
-                        <i class="bi bi-people" style="font-size:3rem;margin-bottom:10px;"></i>
-                        <h5>Pembinaan</h5>
-                    </div>
-                </div>
-                <div class="article-content">
-                    <div class="article-category">PEMBINAAN</div>
-                    <div class="article-title">Program Talent Scouting Atlet Muda</div>
-                    <div class="article-excerpt">PTMSI Sumbar meluncurkan program pencarian bakat untuk mengidentifikasi atlet muda berbakat...</div>
-                    <div class="article-meta">
-                        <span><i class="bi bi-calendar"></i> 18 Nov 2024</span>
-                        <span><i class="bi bi-eye"></i> 890 views</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="article-card">
-                <div class="article-image">
-                    <img src="<?= base_url('assets/img/pengurus-ptmsi.jpg') ?>" alt="Pengurus PTMSI"
-                        onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #003366, #1E90FF)'; this.parentElement.innerHTML+='<div style=\'position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;color:white;\'><i class=\'bi bi-people-fill\' style=\'font-size:3rem;margin-bottom:10px;\'></i><h5>Pengurus</h5></div>'">
-                </div>
-                <div class="article-content">
-                    <div class="article-category">ORGANISASI</div>
-                    <div class="article-title">Rapat Koordinasi Pengurus Daerah</div>
-                    <div class="article-excerpt">Evaluasi program kerja 2024 dan penyusunan rencana strategis untuk tahun mendatang...</div>
-                    <div class="article-meta">
-                        <span><i class="bi bi-calendar"></i> 15 Nov 2024</span>
-                        <span><i class="bi bi-eye"></i> 650 views</span>
-                    </div>
-                </div>
-            </div>
+        <div class="stat-card">
+            <div class="stat-number">25+</div>
+            <div class="stat-label">Event Tahunan</div>
         </div>
-
-        <!-- Social Media Section -->
-        <div class="social-section">
-            <div class="social-title">
-                <i class="bi bi-share"></i> Ikuti Media Sosial Kami
-            </div>
-            <p style="font-size: 1.1rem; margin-bottom: 30px; position: relative; z-index: 1;">
-                Dapatkan update terbaru tentang kegiatan dan prestasi PTMSI Sumbar
-            </p>
-            <div class="social-links">
-                <a href="#" class="social-link" title="Facebook">
-                    <i class="bi bi-facebook"></i>
-                </a>
-                <a href="#" class="social-link" title="Instagram">
-                    <i class="bi bi-instagram"></i>
-                </a>
-                <a href="#" class="social-link" title="YouTube">
-                    <i class="bi bi-youtube"></i>
-                </a>
-                <a href="#" class="social-link" title="Twitter">
-                    <i class="bi bi-twitter"></i>
-                </a>
-                <a href="#" class="social-link" title="WhatsApp">
-                    <i class="bi bi-whatsapp"></i>
-                </a>
-            </div>
+        <div class="stat-card">
+            <div class="stat-number">12</div>
+            <div class="stat-label">Kabupaten/Kota</div>
         </div>
-
     </div>
+</section>
 
-    <?= $this->include('layouts/footer') ?>
+<!-- Features Section -->
+<section class="features-section">
+    <h2 class="section-title">Fitur Utama</h2>
+    <div class="features-grid">
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class='bx bx-trophy'></i>
+            </div>
+            <h3 class="feature-title">Event & Turnamen</h3>
+            <p class="feature-description">Ikuti berbagai event dan turnamen tenis meja di seluruh Sumatera Barat</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class='bx bx-chart-line'></i>
+            </div>
+            <h3 class="feature-title">Ranking Atlet</h3>
+            <p class="feature-description">Lihat peringkat atlet terbaik dan statistik pertandingan secara real-time</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class='bx bx-news'></i>
+            </div>
+            <h3 class="feature-title">Berita & Update</h3>
+            <p class="feature-description">Dapatkan informasi terbaru tentang perkembangan tenis meja di Sumbar</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class='bx bx-image'></i>
+            </div>
+            <h3 class="feature-title">Galeri Foto</h3>
+            <p class="feature-description">Koleksi foto dan video dari berbagai event dan pertandingan</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class='bx bx-file'></i>
+            </div>
+            <h3 class="feature-title">Dokumen</h3>
+            <p class="feature-description">Akses peraturan, panduan, dan dokumen resmi PTMSI</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class='bx bx-play-circle'></i>
+            </div>
+            <h3 class="feature-title">Live Scoring</h3>
+            <p class="feature-description">Pantau skor pertandingan secara langsung dan real-time</p>
+        </div>
+    </div>
+</section>
 
-    <script>
-        // Smooth scroll untuk link internal
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-    </script>
-</body>
+<!-- CTA Section -->
+<section class="cta-section">
+    <h2 class="cta-title">Bergabunglah dengan Komunitas Kami</h2>
+    <p class="cta-subtitle">Daftarkan diri Anda sebagai atlet, pelatih, atau klub untuk mengikuti event</p>
+    <a href="<?= base_url('auth/login') ?>" class="cta-button">Mulai Sekarang</a>
+</section>
 
-</html>
+<?= $this->endSection() ?>

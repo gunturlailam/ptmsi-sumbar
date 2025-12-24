@@ -153,4 +153,82 @@ class Dashboard extends BaseController
 
         return redirect()->back()->with('error', 'Gagal memperbarui profil');
     }
+
+    public function logAktifitas()
+    {
+        $userId = session()->get('user_id');
+        $logModel = new \App\Models\LogAktifitasModel();
+
+        // Get filter parameters
+        $jenis_entitas = $this->request->getGet('jenis_entitas');
+        $aksi = $this->request->getGet('aksi');
+        $tanggal = $this->request->getGet('tanggal');
+
+        // Build query
+        $query = $logModel->where('id_user', $userId);
+
+        if ($jenis_entitas) {
+            $query = $query->where('jenis_entitas', $jenis_entitas);
+        }
+
+        if ($aksi) {
+            $query = $query->where('aksi', $aksi);
+        }
+
+        if ($tanggal) {
+            $query = $query->where('DATE(dibuat_pada)', $tanggal);
+        }
+
+        // Get paginated results
+        $log_aktifitas = $query->orderBy('dibuat_pada', 'DESC')
+            ->paginate(20);
+
+        $data = [
+            'title' => 'Log Aktivitas',
+            'log_aktifitas' => $log_aktifitas,
+            'pager' => $logModel->pager,
+            'jenis_entitas' => $jenis_entitas,
+            'aksi' => $aksi,
+            'tanggal' => $tanggal
+        ];
+
+        return view('user/log_aktifitas', $data);
+    }
+
+    public function riwayatUnduhan()
+    {
+        $userId = session()->get('user_id');
+        $unduhanModel = new \App\Models\UnduhanDokumenModel();
+
+        // Get filter parameters
+        $kategori = $this->request->getGet('kategori');
+        $tanggal = $this->request->getGet('tanggal');
+
+        // Build query
+        $query = $unduhanModel->select('unduhan_dokumen.*, dokumen.judul as judul_dokumen, dokumen.kategori')
+            ->join('dokumen', 'dokumen.id_dokumen = unduhan_dokumen.id_dokumen', 'left')
+            ->where('unduhan_dokumen.id_user', $userId);
+
+        if ($kategori) {
+            $query = $query->where('dokumen.kategori', $kategori);
+        }
+
+        if ($tanggal) {
+            $query = $query->where('DATE(unduhan_dokumen.diunduh_pada)', $tanggal);
+        }
+
+        // Get paginated results
+        $riwayat_unduhan = $query->orderBy('unduhan_dokumen.diunduh_pada', 'DESC')
+            ->paginate(20);
+
+        $data = [
+            'title' => 'Riwayat Unduhan',
+            'riwayat_unduhan' => $riwayat_unduhan,
+            'pager' => $unduhanModel->pager,
+            'kategori' => $kategori,
+            'tanggal' => $tanggal
+        ];
+
+        return view('user/riwayat_unduhan', $data);
+    }
 }

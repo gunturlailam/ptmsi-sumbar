@@ -35,6 +35,24 @@ class Event extends BaseController
             ->orderBy('event.tanggal_mulai', 'ASC')
             ->findAll();
 
+        // Ambil turnamen yang masih buka pendaftaran (untuk teaser di halaman event)
+        $turnamenTersedia = $this->eventModel
+            ->where('status', 'aktif')
+            ->where('batas_pendaftaran >=', date('Y-m-d'))
+            ->orderBy('tanggal_mulai', 'ASC')
+            ->findAll();
+
+        // Hitung jumlah peserta & sisa kuota untuk setiap turnamen yang tersedia
+        foreach ($turnamenTersedia as &$turnamen) {
+            $jumlahPeserta = $this->pendaftaranEventModel
+                ->where('id_event', $turnamen['id_event'])
+                ->where('status_verifikasi', 'diverifikasi')
+                ->countAllResults();
+
+            $turnamen['jumlah_peserta'] = $jumlahPeserta;
+            $turnamen['sisa_kuota'] = ($turnamen['kuota_peserta'] ?? 0) - $jumlahPeserta;
+        }
+
         // Ambil hasil pertandingan terbaru (hanya final matches untuk juara)
         $hasilPertandingan = $this->hasilModel->select('hasil.*, event.judul as nama_event, event.tanggal_mulai as tanggal, 
                                                         pertandingan.babak as kategori,
@@ -51,9 +69,10 @@ class Event extends BaseController
             ->findAll();
 
         $data = [
-            'title' => 'Kejuaraan & Event - PTMSI Sumbar',
-            'events' => $events,
-            'hasilPertandingan' => $hasilPertandingan
+            'title'              => 'Kejuaraan & Event - PTMSI Sumbar',
+            'events'             => $events,
+            'hasilPertandingan'  => $hasilPertandingan,
+            'turnamen_tersedia'  => $turnamenTersedia,
         ];
 
         return view('event', $data);

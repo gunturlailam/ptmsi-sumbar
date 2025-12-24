@@ -70,59 +70,57 @@
                 </div>
 
                 <!-- Pilihan Atlet (untuk Klub) -->
-                <?php if (session()->get('role') === 'klub' || session()->get('role') === 'admin_klub'): ?>
-                    <div class="card border-0 shadow-lg mb-4" style="border-radius: 25px; background: rgba(255,255,255,0.95);">
-                        <div class="card-header border-0" style="background: linear-gradient(45deg, #28a745, #20c997); border-radius: 25px 25px 0 0;">
-                            <h5 class="mb-0 text-white" style="font-weight: 700;">
-                                <i class="fas fa-users me-2"></i>Pilih Atlet yang Akan Bertanding
-                            </h5>
-                        </div>
-                        <div class="card-body p-4">
-                            <?php if (!empty($atlet_klub)): ?>
-                                <div class="alert alert-info" style="border-radius: 15px;">
-                                    <i class="fas fa-info-circle me-2"></i>
-                                    Pilih atlet dari klub Anda yang akan mengikuti turnamen ini. Pastikan atlet memenuhi kriteria kategori.
-                                </div>
+                <div class="card border-0 shadow-lg mb-4" style="border-radius: 25px; background: rgba(255,255,255,0.95);">
+                    <div class="card-header border-0" style="background: linear-gradient(45deg, #28a745, #20c997); border-radius: 25px 25px 0 0;">
+                        <h5 class="mb-0 text-white" style="font-weight: 700;">
+                            <i class="fas fa-users me-2"></i>Pilih Atlet yang Akan Bertanding
+                        </h5>
+                    </div>
+                    <div class="card-body p-4">
+                        <?php if (!empty($atlet_klub)): ?>
+                            <div class="alert alert-info" style="border-radius: 15px;">
+                                <i class="fas fa-info-circle me-2"></i>
+                                Pilih atlet dari klub Anda yang akan mengikuti turnamen ini. Pastikan atlet memenuhi kriteria kategori.
+                            </div>
 
-                                <div class="row">
-                                    <?php foreach ($atlet_klub as $atlet): ?>
-                                        <div class="col-md-6 mb-3">
-                                            <div class="atlet-card p-3" style="border: 2px solid #e9ecef; border-radius: 15px; transition: all 0.3s;">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" name="atlet_terpilih[]"
-                                                        value="<?= $atlet['id_atlet'] ?>" id="atlet_<?= $atlet['id_atlet'] ?>">
-                                                    <label class="form-check-label w-100" for="atlet_<?= $atlet['id_atlet'] ?>">
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="avatar me-3" style="width: 50px; height: 50px; background: linear-gradient(45deg, #1E90FF, #00BFFF); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                                                                <i class="fas fa-user text-white"></i>
-                                                            </div>
-                                                            <div>
-                                                                <h6 class="mb-1 fw-bold"><?= esc($atlet['nama_lengkap']) ?></h6>
-                                                                <small class="text-muted">
-                                                                    <?= $atlet['jenis_kelamin'] === 'L' ? 'Putra' : 'Putri' ?> •
-                                                                    <?php
-                                                                    $umur = date_diff(date_create($atlet['tanggal_lahir']), date_create('today'))->y;
-                                                                    echo $umur . ' tahun';
-                                                                    ?>
-                                                                </small>
-                                                            </div>
+                            <div class="row">
+                                <?php foreach ($atlet_klub as $atlet): ?>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="atlet-card p-3" style="border: 2px solid #e9ecef; border-radius: 15px; transition: all 0.3s;">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" name="atlet_terpilih[]"
+                                                    value="<?= $atlet['id_atlet'] ?>" id="atlet_<?= $atlet['id_atlet'] ?>">
+                                                <label class="form-check-label w-100" for="atlet_<?= $atlet['id_atlet'] ?>">
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="avatar me-3" style="width: 50px; height: 50px; background: linear-gradient(45deg, #1E90FF, #00BFFF); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                                            <i class="fas fa-user text-white"></i>
                                                         </div>
-                                                    </label>
-                                                </div>
+                                                        <div>
+                                                            <h6 class="mb-1 fw-bold"><?= esc($atlet['nama_lengkap']) ?></h6>
+                                                            <small class="text-muted">
+                                                                <?= $atlet['jenis_kelamin'] === 'L' ? 'Putra' : 'Putri' ?> •
+                                                                <?php
+                                                                $umur = date_diff(date_create($atlet['tanggal_lahir']), date_create('today'))->y;
+                                                                echo $umur . ' tahun';
+                                                                ?>
+                                                            </small>
+                                                        </div>
+                                                    </div>
+                                                </label>
                                             </div>
                                         </div>
-                                    <?php endforeach; ?>
-                                </div>
-                            <?php else: ?>
-                                <div class="alert alert-warning text-center" style="border-radius: 15px;">
-                                    <i class="fas fa-exclamation-triangle" style="font-size: 2rem; margin-bottom: 10px;"></i>
-                                    <h6>Tidak Ada Atlet Terdaftar</h6>
-                                    <p class="mb-0">Klub Anda belum memiliki atlet yang terdaftar. Silakan daftarkan atlet terlebih dahulu.</p>
-                                </div>
-                            <?php endif; ?>
-                        </div>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+                        <?php else: ?>
+                            <div class="alert alert-warning text-center" style="border-radius: 15px;">
+                                <i class="fas fa-exclamation-triangle" style="font-size: 2rem; margin-bottom: 10px;"></i>
+                                <h6>Tidak Ada Atlet Terdaftar</h6>
+                                <p class="mb-0">Klub Anda belum memiliki atlet yang terdaftar. Silakan daftarkan atlet terlebih dahulu.</p>
+                            </div>
+                        <?php endif; ?>
                     </div>
-                <?php endif; ?>
+                </div>
 
                 <!-- Bukti Pembayaran -->
                 <?php if ($turnamen['biaya_pendaftaran'] > 0): ?>

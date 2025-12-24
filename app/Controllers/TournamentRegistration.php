@@ -126,6 +126,17 @@ class TournamentRegistration extends BaseController
             return redirect()->to('auth/login')->with('error', 'Silakan login terlebih dahulu.');
         }
 
+        $role = session()->get('role');
+
+        // Hanya klub yang bisa mendaftar turnamen
+        if ($role === 'atlet') {
+            return redirect()->back()->with('error', 'Hanya klub yang dapat mendaftar turnamen. Silakan hubungi klub Anda untuk mendaftar.');
+        }
+
+        if (!in_array($role, ['klub', 'admin_klub'])) {
+            return redirect()->back()->with('error', 'Anda tidak memiliki akses untuk mendaftar turnamen.');
+        }
+
         $turnamen = $this->eventModel->find($idEvent);
         if (!$turnamen) {
             return redirect()->back()->with('error', 'Turnamen tidak ditemukan.');
@@ -138,19 +149,16 @@ class TournamentRegistration extends BaseController
         }
 
         $userId = session()->get('user_id');
-        $role = session()->get('role');
 
-        // Jika klub, ambil daftar atlet
+        // Ambil daftar atlet klub
         $atletKlub = [];
-        if (in_array($role, ['klub', 'admin_klub'])) {
-            $klub = $this->klubModel->where('id_user', $userId)->first();
-            if ($klub) {
-                $atletKlub = $this->atletModel->select('atlet.*, user.nama_lengkap')
-                    ->join('user', 'user.id_user = atlet.id_user')
-                    ->where('atlet.id_klub', $klub['id_klub'])
-                    ->where('atlet.status', 'aktif')
-                    ->findAll();
-            }
+        $klub = $this->klubModel->where('id_user', $userId)->first();
+        if ($klub) {
+            $atletKlub = $this->atletModel->select('atlet.*, user.nama_lengkap')
+                ->join('user', 'user.id_user = atlet.id_user')
+                ->where('atlet.id_klub', $klub['id_klub'])
+                ->where('atlet.status', 'aktif')
+                ->findAll();
         }
 
         $data = [
@@ -171,6 +179,13 @@ class TournamentRegistration extends BaseController
             return redirect()->to('auth/login')->with('error', 'Silakan login terlebih dahulu.');
         }
 
+        $role = session()->get('role');
+
+        // Hanya klub yang bisa mendaftar
+        if (!in_array($role, ['klub', 'admin_klub'])) {
+            return redirect()->back()->with('error', 'Hanya klub yang dapat mendaftar turnamen.');
+        }
+
         $turnamen = $this->eventModel->find($idEvent);
         if (!$turnamen) {
             return redirect()->back()->with('error', 'Turnamen tidak ditemukan.');
@@ -187,7 +202,8 @@ class TournamentRegistration extends BaseController
             'nomor_telepon' => 'required|min_length[10]|max_length[15]',
             'email_kontak' => 'required|valid_email',
             'setuju_syarat' => 'required',
-            'data_benar' => 'required'
+            'data_benar' => 'required',
+            'atlet_terpilih' => 'required'
         ];
 
         // Jika ada biaya, validasi bukti pembayaran
@@ -200,7 +216,6 @@ class TournamentRegistration extends BaseController
         }
 
         $userId = session()->get('user_id');
-        $role = session()->get('role');
 
         try {
             $db = \Config\Database::connect();
@@ -224,17 +239,11 @@ class TournamentRegistration extends BaseController
                 'tanggal_daftar' => date('Y-m-d H:i:s')
             ];
 
-            if ($role === 'atlet') {
-                $result = $this->daftarAtletLengkap($dataPendaftaran, $userId);
-            } elseif (in_array($role, ['klub', 'admin_klub'])) {
-                $atletTerpilih = $this->request->getPost('atlet_terpilih');
-                if (empty($atletTerpilih)) {
-                    throw new \Exception('Pilih minimal satu atlet untuk didaftarkan.');
-                }
-                $result = $this->daftarKlubLengkap($dataPendaftaran, $userId, $atletTerpilih);
-            } else {
-                throw new \Exception('Role tidak diizinkan untuk mendaftar turnamen.');
+            $atletTerpilih = $this->request->getPost('atlet_terpilih');
+            if (empty($atletTerpilih)) {
+                throw new \Exception('Pilih minimal satu atlet untuk didaftarkan.');
             }
+            $result = $this->daftarKlubLengkap($dataPendaftaran, $userId, $atletTerpilih);
 
             $db->transComplete();
 
@@ -335,45 +344,11 @@ class TournamentRegistration extends BaseController
     }
 
     /**
-     * Validasi khusus untuk atlet
+     * Validasi khusus untuk atlet - TIDAK DIIZINKAN
      */
     private function validasiAtlet($turnamen, $userId)
     {
-        $atlet = $this->atletModel->where('id_user', $userId)->first();
-
-        if (!$atlet) {
-            return ['valid' => false, 'pesan' => 'Data atlet tidak ditemukan.'];
-        }
-
-        // Cek status atlet aktif
-        if ($atlet['status'] !== 'aktif') {
-            return ['valid' => false, 'pesan' => 'Status atlet belum aktif. Silakan hubungi admin.'];
-        }
-
-        // Cek kategori usia
-        if ($turnamen['kategori_usia'] && $atlet['kategori_usia'] !== $turnamen['kategori_usia']) {
-            return ['valid' => false, 'pesan' => 'Kategori usia tidak sesuai dengan turnamen.'];
-        }
-
-        // Cek gender
-        if ($turnamen['kategori_gender'] && $turnamen['kategori_gender'] !== 'campuran') {
-            $genderAtlet = $atlet['jenis_kelamin'] === 'L' ? 'putra' : 'putri';
-            if ($genderAtlet !== $turnamen['kategori_gender']) {
-                return ['valid' => false, 'pesan' => 'Kategori gender tidak sesuai dengan turnamen.'];
-            }
-        }
-
-        // Cek apakah sudah mendaftar
-        $sudahDaftar = $this->pendaftaranEventModel
-            ->where('id_event', $turnamen['id_event'])
-            ->where('id_atlet', $atlet['id_atlet'])
-            ->first();
-
-        if ($sudahDaftar) {
-            return ['valid' => false, 'pesan' => 'Anda sudah mendaftar di turnamen ini.'];
-        }
-
-        return ['valid' => true, 'pesan' => 'Validasi berhasil.'];
+        return ['valid' => false, 'pesan' => 'Hanya klub yang dapat mendaftar turnamen. Silakan hubungi klub Anda.'];
     }
 
     /**

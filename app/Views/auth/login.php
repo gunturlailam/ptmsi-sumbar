@@ -6,8 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - PTMSI Sumbar</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --text-primary: #2d3748;
+            --text-secondary: #718096;
+            --border-color: #e2e8f0;
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -15,422 +24,398 @@
         }
 
         body {
-            background: linear-gradient(135deg, #003366 0%, #1E90FF 50%, #00BFFF 100%);
-            font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 20px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        body::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 30% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 70% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
-            animation: pulse 8s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-
-            0%,
-            100% {
-                opacity: 0.5;
-            }
-
-            50% {
-                opacity: 0.8;
-            }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes float {
-
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-20px);
-            }
         }
 
         .login-container {
-            position: relative;
-            z-index: 1;
             width: 100%;
-            max-width: 370px;
-            animation: fadeInUp 0.8s ease-out;
+            max-width: 420px;
         }
 
         .login-card {
-            background: #fff;
-            border-radius: 18px;
-            padding: 28px 22px 22px 22px;
-            box-shadow: 0 4px 24px rgba(30, 144, 255, 0.10);
-            border: 1px solid #e8f2ff;
+            background: white;
+            border-radius: 20px;
+            padding: 50px 40px;
+            box-shadow: var(--shadow-lg);
         }
 
-        .logo-container {
+        .login-header {
             text-align: center;
-            margin-bottom: 18px;
+            margin-bottom: 40px;
         }
 
-        .logo-container img {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            border: 2px solid #1E90FF;
-            background: #fff;
-            padding: 4px;
-            box-shadow: 0 2px 8px rgba(30, 144, 255, 0.10);
-            margin-bottom: 10px;
+        .logo-box {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 20px;
+            background: var(--primary-gradient);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-lg);
         }
 
-        .logo-container h2 {
-            color: #003366;
-            font-weight: 700;
-            font-size: 1.25rem;
-            margin-bottom: 4px;
-            letter-spacing: 1px;
+        .logo-box img {
+            width: 70%;
+            height: 70%;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
         }
 
-        .logo-container p {
-            color: #888;
-            font-size: 0.98rem;
-            margin: 0;
+        .login-header h1 {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .login-header p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .alert-box {
+            padding: 12px 16px;
+            border-radius: 12px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+        }
+
+        .alert-error {
+            background: #fee;
+            color: #c33;
+            border: 1px solid #fcc;
+        }
+
+        .alert-success {
+            background: #efe;
+            color: #3c3;
+            border: 1px solid #cfc;
         }
 
         .form-group {
-            margin-bottom: 25px;
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            color: var(--text-primary);
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .input-wrapper {
             position: relative;
         }
 
-        .form-group label {
-            color: #003366;
-            font-weight: 600;
-            margin-bottom: 7px;
-            display: block;
-            font-size: 0.97rem;
-        }
-
-        .form-control-modern {
+        .form-input {
             width: 100%;
-            padding: 12px 16px 12px 40px;
-            border: 1.5px solid #E8F2FF;
+            padding: 12px 16px 12px 44px;
+            border: 2px solid var(--border-color);
             border-radius: 10px;
-            font-size: 1rem;
+            font-size: 0.95rem;
+            background: #f8f9fa;
+            color: var(--text-primary);
             transition: all 0.3s ease;
-            background: #F8F9FA;
         }
 
-        .form-control-modern:focus {
+        .form-input:focus {
             outline: none;
-            border-color: #1E90FF;
-            background: #fff;
-            box-shadow: 0 0 0 4px rgba(30, 144, 255, 0.1);
+            border-color: #667eea;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
         }
 
         .input-icon {
             position: absolute;
-            left: 12px;
+            left: 14px;
             top: 50%;
             transform: translateY(-50%);
-            color: #1E90FF;
+            color: #a0aec0;
             font-size: 1.1rem;
         }
 
         .password-toggle {
             position: absolute;
-            right: 12px;
+            right: 14px;
             top: 50%;
             transform: translateY(-50%);
-            color: #bbb;
+            color: #a0aec0;
             cursor: pointer;
             font-size: 1.1rem;
-            transition: color 0.3s ease;
+            background: none;
+            border: none;
+            padding: 4px;
         }
 
         .password-toggle:hover {
-            color: #1E90FF;
+            color: #667eea;
+        }
+
+        .form-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            gap: 10px;
         }
 
         .form-check {
-            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .form-check-input {
-            width: 20px;
-            height: 20px;
-            border: 2px solid #1E90FF;
+            width: 18px;
+            height: 18px;
+            border: 2px solid var(--border-color);
             border-radius: 5px;
             cursor: pointer;
-        }
-
-        .form-check-input:checked {
-            background-color: #1E90FF;
-            border-color: #1E90FF;
+            accent-color: #667eea;
         }
 
         .form-check-label {
-            color: #666;
-            margin-left: 8px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
             cursor: pointer;
+        }
+
+        .forgot-link {
+            color: #667eea;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .forgot-link:hover {
+            text-decoration: underline;
         }
 
         .btn-login {
             width: 100%;
-            padding: 12px;
-            background: linear-gradient(90deg, #1E90FF 0%, #00BFFF 100%);
-            color: #fff;
+            padding: 12px 24px;
+            background: var(--primary-gradient);
+            color: white;
             border: none;
             border-radius: 10px;
-            font-size: 1.05rem;
-            font-weight: 600;
+            font-size: 0.95rem;
+            font-weight: 700;
             cursor: pointer;
-            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 2px 8px rgba(30, 144, 255, 0.10);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
         }
 
         .btn-login:hover {
-            background: linear-gradient(90deg, #00BFFF 0%, #1E90FF 100%);
-            box-shadow: 0 4px 16px rgba(30, 144, 255, 0.13);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
         }
 
         .divider {
-            text-align: center;
-            margin: 30px 0;
-            position: relative;
+            display: flex;
+            align-items: center;
+            margin: 24px 0;
+            gap: 12px;
         }
 
-        .divider::before {
+        .divider::before,
+        .divider::after {
             content: '';
-            position: absolute;
-            top: 50%;
-            left: 0;
-            right: 0;
+            flex: 1;
             height: 1px;
-            background: #E8F2FF;
+            background: var(--border-color);
         }
 
-        .divider span {
-            background: #fff;
-            padding: 0 15px;
-            color: #666;
-            font-size: 0.9rem;
-            position: relative;
-            z-index: 1;
+        .divider-text {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-weight: 600;
         }
 
         .register-link {
             text-align: center;
-            margin-top: 25px;
-            color: #666;
-            font-size: 0.95rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
         }
 
         .register-link a {
-            color: #1E90FF;
-            font-weight: 700;
+            color: #667eea;
             text-decoration: none;
-            transition: color 0.3s ease;
+            font-weight: 700;
         }
 
         .register-link a:hover {
-            color: #003366;
             text-decoration: underline;
         }
 
-        .forgot-password {
-            text-align: right;
-            margin-top: -15px;
-            margin-bottom: 25px;
-        }
-
-        .forgot-password a {
-            color: #1E90FF;
-            font-size: 0.9rem;
-            text-decoration: none;
-            font-weight: 600;
-            transition: color 0.3s ease;
-        }
-
-        .forgot-password a:hover {
-            color: #003366;
-            text-decoration: underline;
-        }
-
-        .alert-modern {
-            padding: 15px 20px;
-            border-radius: 12px;
-            margin-bottom: 25px;
-            border: none;
-            font-size: 0.95rem;
-        }
-
-        .alert-danger {
-            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
-            color: #fff;
-        }
-
-        .alert-success {
-            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
-            color: #fff;
-        }
-
-        .back-home {
-            text-align: left;
-            margin-bottom: 18px;
-            margin-left: 2px;
-        }
-
-        .back-home a {
-            color: #1E90FF;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.95rem;
-            display: inline-flex;
+        .back-btn {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            width: 44px;
+            height: 44px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            display: flex;
             align-items: center;
-            gap: 8px;
-            padding: 6px 14px;
-            background: #f4faff;
-            border-radius: 18px;
-            border: 1px solid #e8f2ff;
-            transition: all 0.2s ease;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
         }
 
-        .back-home a:hover {
-            background: #e8f2ff;
-            color: #003366;
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateX(-4px);
         }
 
         @media (max-width: 576px) {
             .login-card {
-                padding: 40px 30px;
-                border-radius: 25px;
+                padding: 40px 24px;
             }
 
-            .logo-container h2 {
-                font-size: 1.6rem;
+            .login-header h1 {
+                font-size: 1.5rem;
             }
 
-            .logo-container img {
+            .logo-box {
                 width: 80px;
                 height: 80px;
+            }
+
+            .back-btn {
+                top: 20px;
+                left: 20px;
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
             }
         }
     </style>
 </head>
 
 <body>
+    <a href="<?= base_url('/') ?>" class="back-btn" title="Kembali">
+        <i class="bx bx-arrow-back"></i>
+    </a>
+
     <div class="login-container">
-        <div class="back-home" style="text-align: left; margin-bottom: 20px; margin-left: 5px;">
-            <a href="<?= base_url('/') ?>">
-                <i class="bi bi-arrow-left"></i> Kembali ke Beranda
-            </a>
-        </div>
         <div class="login-card">
-            <div class="logo-container">
-                <img src="<?= base_url('assets/img/gambar-ptmsi.png') ?>" alt="PTMSI Sumbar">
-                <h2>PTMSI Sumbar</h2>
-                <p>Masuk ke Akun Anda</p>
+            <!-- Header -->
+            <div class="login-header">
+                <div class="logo-box">
+                    <img src="<?= base_url('assets/img/gambar-ptmsi.png') ?>" alt="PTMSI">
+                </div>
+                <h1>Masuk</h1>
+                <p>Masuk ke akun Anda untuk melanjutkan</p>
             </div>
 
+            <!-- Alerts -->
             <?php if (session()->getFlashdata('error')): ?>
-                <div class="alert-modern alert-danger">
-                    <i class="bi bi-exclamation-circle"></i> <?= session()->getFlashdata('error') ?>
+                <div class="alert-box alert-error">
+                    <i class="bx bx-error-circle"></i>
+                    <span><?= session()->getFlashdata('error') ?></span>
                 </div>
             <?php endif; ?>
 
             <?php if (session()->getFlashdata('success')): ?>
-                <div class="alert-modern alert-success">
-                    <i class="bi bi-check-circle"></i> <?= session()->getFlashdata('success') ?>
+                <div class="alert-box alert-success">
+                    <i class="bx bx-check-circle"></i>
+                    <span><?= session()->getFlashdata('success') ?></span>
                 </div>
             <?php endif; ?>
 
+            <!-- Form -->
             <form action="<?= base_url('auth/login') ?>" method="POST">
                 <?= csrf_field() ?>
 
                 <div class="form-group">
-                    <label for="username">Username atau Email</label>
-                    <div style="position: relative;">
-                        <i class="bi bi-person-fill input-icon"></i>
-                        <input type="text"
-                            id="username"
+                    <label class="form-label">Username atau Email</label>
+                    <div class="input-wrapper">
+                        <input
+                            type="text"
                             name="username"
-                            class="form-control-modern"
+                            class="form-input"
                             placeholder="Masukkan username atau email"
                             value="<?= old('username') ?>"
                             required>
+                        <i class="bx bx-user input-icon"></i>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="password">Password</label>
-                    <div style="position: relative;">
-                        <i class="bi bi-lock-fill input-icon"></i>
-                        <input type="password"
+                    <label class="form-label">Password</label>
+                    <div class="input-wrapper">
+                        <input
+                            type="password"
                             id="password"
                             name="password"
-                            class="form-control-modern"
+                            class="form-input"
                             placeholder="Masukkan password"
                             required>
-                        <i class="bi bi-eye-fill password-toggle" onclick="togglePassword()"></i>
+                        <i class="bx bx-lock-alt input-icon"></i>
+                        <button type="button" class="password-toggle" onclick="togglePassword()">
+                            <i class="bx bx-show"></i>
+                        </button>
                     </div>
                 </div>
 
-                <div class="forgot-password">
-                    <a href="<?= base_url('auth/forgot-password') ?>">Lupa Password?</a>
-                </div>
-
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="remember" name="remember">
-                    <label class="form-check-label" for="remember">
-                        Ingat Saya
+                <div class="form-options">
+                    <label class="form-check">
+                        <input type="checkbox" class="form-check-input" name="remember">
+                        <span class="form-check-label">Ingat Saya</span>
                     </label>
+                    <a href="<?= base_url('auth/forgot-password') ?>" class="forgot-link">Lupa Password?</a>
                 </div>
 
                 <button type="submit" class="btn-login">
-                    <span><i class="bi bi-box-arrow-in-right"></i> Masuk</span>
+                    <i class="bx bx-log-in"></i>
+                    <span>Masuk</span>
                 </button>
             </form>
-        </div>
 
-        <!-- back-home dipindahkan ke atas -->
+            <div class="divider">
+                <span class="divider-text">atau</span>
+            </div>
+
+            <p class="register-link">
+                Belum punya akun? <a href="<?= base_url('layanan-online') ?>">Daftar Sekarang</a>
+            </p>
+        </div>
     </div>
 
     <script>
         function togglePassword() {
-            const passwordInput = document.getElementById('password');
-            const toggleIcon = document.querySelector('.password-toggle');
+            const input = document.getElementById('password');
+            const btn = document.querySelector('.password-toggle');
+            const icon = btn.querySelector('i');
 
-            if (passwordInput.type === 'password') {
-                passwordInput.type = 'text';
-                toggleIcon.classList.remove('bi-eye-fill');
-                toggleIcon.classList.add('bi-eye-slash-fill');
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.remove('bx-show');
+                icon.classList.add('bx-hide');
             } else {
-                passwordInput.type = 'password';
-                toggleIcon.classList.remove('bi-eye-slash-fill');
-                toggleIcon.classList.add('bi-eye-fill');
+                input.type = 'password';
+                icon.classList.remove('bx-hide');
+                icon.classList.add('bx-show');
             }
         }
     </script>

@@ -44,7 +44,15 @@ class Dashboard extends BaseController
 
         $data = [
             'title' => 'Dashboard Admin Provinsi PTMSI Sumbar',
-            'statistik' => $statistik
+            'statistik' => $statistik,
+            // Top 10 Atlet Ranking
+            'top_atlet' => $this->getTopAtlet(10),
+            // Atlet per Klub
+            'atlet_per_klub' => $this->getAtletPerKlub(5),
+            // Statistik Pendaftaran Bulan Ini
+            'statistik_bulan_ini' => $this->getStatistikBulanIni(),
+            // Turnamen Mendatang
+            'turnamen_mendatang' => $this->getTurnamenMendatang(5),
         ];
 
         // Get latest data
@@ -54,8 +62,8 @@ class Dashboard extends BaseController
             ->findAll();
 
         $data['eventMendatang'] = $this->eventModel
-            ->where('tanggal_mulai >=', date('Y-m-d'))
-            ->orderBy('tanggal_mulai', 'ASC')
+            ->where('status', 'aktif')
+            ->orderBy('id_event', 'DESC')
             ->limit(5)
             ->findAll();
 
@@ -74,6 +82,77 @@ class Dashboard extends BaseController
             ->findAll();
 
         return view('admin/dashboard', $data);
+    }
+
+    /**
+     * Get top atlet berdasarkan ranking
+     */
+    private function getTopAtlet($limit = 10)
+    {
+        $rankingModel = new \App\Models\RankingModel();
+        return $rankingModel->select('ranking.*, atlet.nama_lengkap, klub.nama as nama_klub')
+            ->join('atlet', 'atlet.id_atlet = ranking.id_atlet', 'left')
+            ->join('klub', 'klub.id_klub = atlet.id_klub', 'left')
+            ->orderBy('ranking.poin', 'DESC')
+            ->limit($limit)
+            ->findAll();
+    }
+
+    /**
+     * Get atlet per klub (top N)
+     */
+    private function getAtletPerKlub($limit = 5)
+    {
+        $db = \Config\Database::connect();
+        return $db->query(
+            "
+            SELECT k.id_klub, k.nama, COUNT(a.id_atlet) as total_atlet
+            FROM klub k
+            LEFT JOIN atlet a ON a.id_klub = k.id_klub AND a.status = 'aktif'
+            GROUP BY k.id_klub, k.nama
+            ORDER BY total_atlet DESC
+            LIMIT " . (int)$limit
+        )->getResultArray();
+    }
+
+    /**
+     * Get statistik pendaftaran bulan ini
+     */
+    private function getStatistikBulanIni()
+    {
+        $db = \Config\Database::connect();
+        $bulan = date('m');
+        $tahun = date('Y');
+
+        $pendaftaranAtletModel = new \App\Models\PendaftaranAtletModel();
+        $pendaftaranPelatihModel = new \App\Models\PendaftaranPelatihModel();
+
+        return [
+            'atlet_bulan_ini' => $pendaftaranAtletModel
+                ->where("MONTH(dibuat_pada)", $bulan)
+                ->where("YEAR(dibuat_pada)", $tahun)
+                ->countAllResults(),
+            'pelatih_bulan_ini' => $pendaftaranPelatihModel
+                ->where("MONTH(dibuat_pada)", $bulan)
+                ->where("YEAR(dibuat_pada)", $tahun)
+                ->countAllResults(),
+            'klub_bulan_ini' => $this->klubModel
+                ->where("MONTH(dibuat_pada)", $bulan)
+                ->where("YEAR(dibuat_pada)", $tahun)
+                ->countAllResults(),
+        ];
+    }
+
+    /**
+     * Get turnamen mendatang
+     */
+    private function getTurnamenMendatang($limit = 5)
+    {
+        $turnamenModel = new \App\Models\TurnamenModel();
+        return $turnamenModel
+            ->orderBy('id_turnamen', 'DESC')
+            ->limit($limit)
+            ->findAll();
     }
 
     public function kelolaRanking()
@@ -177,20 +256,5 @@ class Dashboard extends BaseController
 
         $poin = $poinBase[$tingkatEvent] ?? 10;
         return $menang ? $poin : ($poin * 0.3); // Kalah dapat 30% poin
-    }
-
-    private function generateUUID()
-    {
-        return sprintf(
-            '%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
-            mt_rand(0, 0xffff),
-            mt_rand(0, 0xffff),
-            mt_rand(0, 0xffff),
-            mt_rand(0, 0x0fff) | 0x4000,
-            mt_rand(0, 0x3fff) | 0x8000,
-            mt_rand(0, 0xffff),
-            mt_rand(0, 0xffff),
-            mt_rand(0, 0xffff)
-        );
     }
 }

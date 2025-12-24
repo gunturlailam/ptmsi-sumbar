@@ -1,25 +1,24 @@
-<?= $this->extend('layouts/main') ?>
+<?= $this->extend('user/layouts/main') ?>
 
 <?= $this->section('content') ?>
-<div class="container-fluid py-4" style="background: linear-gradient(135deg, #003366 0%, #1E90FF 50%, #00BFFF 100%); min-height: 100vh;">
+<div class="container-fluid py-4">
     <!-- Header -->
     <div class="row mb-4">
         <div class="col-12">
-            <div class="card border-0 shadow-lg" style="border-radius: 25px; background: rgba(255,255,255,0.95);">
+            <div class="card border-0 shadow-lg">
                 <div class="card-body p-4">
                     <div class="row align-items-center">
                         <div class="col-md-8">
-                            <h1 class="mb-2" style="font-weight: 900; color: #003366;">
-                                <i class="fas fa-building me-3"></i>Data Klub
+                            <h1 class="mb-2" style="font-weight: 900; color: #2d3748;">
+                                <i class="bx bx-building me-2"></i>Data Klub
                             </h1>
                             <p class="mb-0" style="font-weight: 500; color: #666;">
                                 Informasi lengkap dan data klub <?= esc($klub['nama']) ?>
                             </p>
                         </div>
                         <div class="col-md-4 text-end">
-                            <a href="<?= base_url('user/klub/dashboard') ?>" class="btn btn-outline-secondary px-4 py-2"
-                                style="border-radius: 20px; font-weight: 600;">
-                                <i class="fas fa-arrow-left me-2"></i>Kembali
+                            <a href="<?= base_url('user/klub/dashboard') ?>" class="btn btn-outline-secondary px-4 py-2">
+                                <i class="bx bx-arrow-back me-2"></i>Kembali
                             </a>
                         </div>
                     </div>
@@ -31,10 +30,10 @@
     <div class="row">
         <!-- Informasi Utama Klub -->
         <div class="col-md-8 mb-4">
-            <div class="card border-0 shadow-lg" style="border-radius: 25px; background: rgba(255,255,255,0.95);">
-                <div class="card-header border-0" style="background: linear-gradient(45deg, #1E90FF, #00BFFF); border-radius: 25px 25px 0 0;">
+            <div class="card border-0 shadow-lg">
+                <div class="card-header border-0" style="background: linear-gradient(45deg, #667eea, #764ba2);">
                     <h5 class="mb-0 text-white" style="font-weight: 700;">
-                        <i class="fas fa-info-circle me-2"></i>Informasi Klub
+                        <i class="bx bx-info-circle me-2"></i>Informasi Klub
                     </h5>
                 </div>
                 <div class="card-body p-4">
@@ -108,23 +107,23 @@
 
         <!-- Status dan Aksi -->
         <div class="col-md-4 mb-4">
-            <div class="card border-0 shadow-lg" style="border-radius: 25px; background: rgba(255,255,255,0.95);">
-                <div class="card-header border-0" style="background: linear-gradient(45deg, #28a745, #20c997); border-radius: 25px 25px 0 0;">
+            <div class="card border-0 shadow-lg">
+                <div class="card-header border-0" style="background: linear-gradient(45deg, #28a745, #20c997);">
                     <h5 class="mb-0 text-white" style="font-weight: 700;">
-                        <i class="fas fa-chart-bar me-2"></i>Status Klub
+                        <i class="bx bx-bar-chart me-2"></i>Status Klub
                     </h5>
                 </div>
                 <div class="card-body p-4 text-center">
                     <div class="mb-4">
                         <?php if ($klub['status'] === 'aktif'): ?>
                             <div class="status-badge mx-auto mb-3" style="width: 80px; height: 80px; background: linear-gradient(45deg, #28a745, #20c997); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                                <i class="fas fa-check-circle text-white" style="font-size: 2.5rem;"></i>
+                                <i class="bx bx-check-circle text-white" style="font-size: 2.5rem;"></i>
                             </div>
                             <h4 class="mb-2" style="font-weight: 900; color: #28a745;">AKTIF</h4>
                             <p class="mb-0 text-muted">Klub sudah terverifikasi dan dapat beroperasi penuh</p>
                         <?php else: ?>
                             <div class="status-badge mx-auto mb-3" style="width: 80px; height: 80px; background: linear-gradient(45deg, #ffc107, #e0a800); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                                <i class="fas fa-clock text-white" style="font-size: 2.5rem;"></i>
+                                <i class="bx bx-time text-white" style="font-size: 2.5rem;"></i>
                             </div>
                             <h4 class="mb-2" style="font-weight: 900; color: #ffc107;"><?= strtoupper($klub['status']) ?></h4>
                             <p class="mb-0 text-muted">Menunggu verifikasi dari Admin Provinsi</p>
@@ -149,11 +148,11 @@
 
                     <?php if ($klub['status'] === 'aktif'): ?>
                         <div class="d-grid gap-2">
-                            <a href="<?= base_url('user/klub/kelola-atlet') ?>" class="btn btn-primary" style="border-radius: 15px; font-weight: 600;">
-                                <i class="fas fa-users me-2"></i>Kelola Atlet
+                            <a href="<?= base_url('user/klub/kelola-atlet') ?>" class="btn btn-primary">
+                                <i class="bx bx-users me-2"></i>Kelola Atlet
                             </a>
-                            <a href="<?= base_url('user/klub/pendaftaran-turnamen') ?>" class="btn btn-success" style="border-radius: 15px; font-weight: 600;">
-                                <i class="fas fa-trophy me-2"></i>Daftar Turnamen
+                            <a href="<?= base_url('user/klub/pendaftaran-turnamen') ?>" class="btn btn-success">
+                                <i class="bx bx-trophy me-2"></i>Daftar Turnamen
                             </a>
                         </div>
                     <?php endif; ?>
@@ -165,26 +164,26 @@
     <!-- Dokumen Klub -->
     <div class="row">
         <div class="col-12">
-            <div class="card border-0 shadow-lg" style="border-radius: 25px; background: rgba(255,255,255,0.95);">
-                <div class="card-header border-0" style="background: linear-gradient(45deg, #dc3545, #c82333); border-radius: 25px 25px 0 0;">
+            <div class="card border-0 shadow-lg">
+                <div class="card-header border-0" style="background: linear-gradient(45deg, #dc3545, #c82333);">
                     <h5 class="mb-0 text-white" style="font-weight: 700;">
-                        <i class="fas fa-file-alt me-2"></i>Dokumen Klub
+                        <i class="bx bx-file-alt me-2"></i>Dokumen Klub
                     </h5>
                 </div>
                 <div class="card-body p-4">
                     <div class="row">
                         <?php if (!empty($klub['sk_klub_path'])): ?>
                             <div class="col-md-6 mb-3">
-                                <div class="document-card p-3" style="background: #f8f9fa; border-radius: 15px; border-left: 4px solid #1E90FF;">
+                                <div class="document-card p-3" style="background: #f8f9fa; border-radius: 15px; border-left: 4px solid #667eea;">
                                     <div class="d-flex align-items-center">
                                         <div class="me-3">
-                                            <i class="fas fa-file-pdf" style="font-size: 2rem; color: #dc3545;"></i>
+                                            <i class="bx bx-file-pdf" style="font-size: 2rem; color: #dc3545;"></i>
                                         </div>
                                         <div class="flex-grow-1">
-                                            <h6 class="mb-1" style="font-weight: 700; color: #003366;">SK Klub</h6>
+                                            <h6 class="mb-1" style="font-weight: 700; color: #2d3748;">SK Klub</h6>
                                             <p class="mb-2 small text-muted">Surat Keputusan Pendirian Klub</p>
-                                            <a href="<?= base_url($klub['sk_klub_path']) ?>" target="_blank" class="btn btn-sm btn-outline-primary" style="border-radius: 10px;">
-                                                <i class="fas fa-download me-1"></i>Unduh
+                                            <a href="<?= base_url($klub['sk_klub_path']) ?>" target="_blank" class="btn btn-sm btn-outline-primary">
+                                                <i class="bx bx-download me-1"></i>Unduh
                                             </a>
                                         </div>
                                     </div>
@@ -196,31 +195,32 @@
                             <div class="col-md-6 mb-3">
                                 <div class="document-card p-3" style="background: #f8f9fa; border-radius: 15px; border-left: 4px solid #28a745;">
                                     <div class="d-flex align-items-center">
-                                        <div class="me-3"></div> <i class="fas fa-id-card" style="font-size: 2rem; color: #28a745;"></i>
-                                    </div>
-                                    <div class="flex-grow-1">
-                                        <h6 class="mb-1" style="font-weight: 700; color: #003366;">Identitas Pengurus</h6>
-                                        <p class="mb-2 small text-muted">Dokumen Identitas Pengurus Klub</p>
-                                        <a href="<?= base_url($klub['identitas_pengurus_path']) ?>" target="_blank" class="btn btn-sm btn-outline-success" style="border-radius: 10px;">
-                                            <i class="fas fa-download me-1"></i>Unduh
-                                        </a>
+                                        <div class="me-3">
+                                            <i class="bx bx-id-card" style="font-size: 2rem; color: #28a745;"></i>
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <h6 class="mb-1" style="font-weight: 700; color: #2d3748;">Identitas Pengurus</h6>
+                                            <p class="mb-2 small text-muted">Dokumen Identitas Pengurus Klub</p>
+                                            <a href="<?= base_url($klub['identitas_pengurus_path']) ?>" target="_blank" class="btn btn-sm btn-outline-success">
+                                                <i class="bx bx-download me-1"></i>Unduh
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                        <?php endif; ?>
                     </div>
-                <?php endif; ?>
-                </div>
 
-                <?php if (empty($klub['sk_klub_path']) && empty($klub['identitas_pengurus_path'])): ?>
-                    <div class="text-center py-4">
-                        <i class="fas fa-folder-open" style="font-size: 3rem; color: #e0e0e0; margin-bottom: 1rem;"></i>
-                        <p class="text-muted mb-0">Belum ada dokumen yang diupload</p>
-                    </div>
-                <?php endif; ?>
+                    <?php if (empty($klub['sk_klub_path']) && empty($klub['identitas_pengurus_path'])): ?>
+                        <div class="text-center py-4">
+                            <i class="bx bx-folder-open" style="font-size: 3rem; color: #e0e0e0; margin-bottom: 1rem;"></i>
+                            <p class="text-muted mb-0">Belum ada dokumen yang diupload</p>
+                        </div>
+                    <?php endif; ?>
+                </div>
             </div>
         </div>
     </div>
-</div>
 </div>
 
 <style>

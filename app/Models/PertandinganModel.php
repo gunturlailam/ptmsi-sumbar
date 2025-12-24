@@ -8,6 +8,10 @@ class PertandinganModel extends Model
 {
     protected $table = 'pertandingan';
     protected $primaryKey = 'id_pertandingan';
+    protected $useAutoIncrement = true;
+    protected $returnType = 'array';
+    protected $useSoftDeletes = false;
+    protected $protectFields = true;
     protected $allowedFields = [
         'id_event',
         'babak',
@@ -16,27 +20,56 @@ class PertandinganModel extends Model
         'jadwal',
         'venue'
     ];
+
     protected $useTimestamps = false;
 
+    protected $validationRules = [
+        'id_event' => 'required|integer',
+        'id_atlet1' => 'required|integer',
+        'id_atlet2' => 'required|integer',
+        'jadwal' => 'required|valid_date[Y-m-d H:i:s]'
+    ];
+
+    protected $validationMessages = [
+        'id_event' => [
+            'required' => 'Event harus dipilih',
+            'integer' => 'Event ID harus berupa angka'
+        ],
+        'id_atlet1' => [
+            'required' => 'Atlet 1 harus dipilih',
+            'integer' => 'Atlet 1 ID harus berupa angka'
+        ],
+        'id_atlet2' => [
+            'required' => 'Atlet 2 harus dipilih',
+            'integer' => 'Atlet 2 ID harus berupa angka'
+        ],
+        'jadwal' => [
+            'required' => 'Jadwal harus diisi',
+            'valid_date' => 'Format jadwal tidak valid'
+        ]
+    ];
+
     /**
-     * Get pertandingan with event and atlet info
+     * Get pertandingan dengan detail atlet
      */
-    public function getPertandinganWithDetails()
+    public function getPertandinganWithAtlet($limit = null)
     {
-        return $this->select('pertandingan.*, 
-                event.judul as nama_event, event.tanggal_mulai, event.tanggal_selesai,
-                u1.nama_lengkap as atlet1_nama, a1.jenis_kelamin as atlet1_gender,
-                u2.nama_lengkap as atlet2_nama, a2.jenis_kelamin as atlet2_gender,
-                k1.nama as klub1_nama, k2.nama as klub2_nama')
-            ->join('event', 'event.id_event = pertandingan.id_event')
-            ->join('atlet a1', 'a1.id_atlet = pertandingan.id_atlet1')
-            ->join('atlet a2', 'a2.id_atlet = pertandingan.id_atlet2')
-            ->join('user u1', 'u1.id_user = a1.id_user')
-            ->join('user u2', 'u2.id_user = a2.id_user')
-            ->join('klub k1', 'k1.id_klub = a1.id_klub', 'left')
-            ->join('klub k2', 'k2.id_klub = a2.id_klub', 'left')
-            ->orderBy('pertandingan.jadwal', 'DESC')
-            ->findAll();
+        $builder = $this->select('pertandingan.*, 
+                                 user1.nama_lengkap as nama_atlet1,
+                                 user2.nama_lengkap as nama_atlet2,
+                                 event.nama_event')
+            ->join('atlet as atlet1', 'atlet1.id_atlet = pertandingan.id_atlet1', 'left')
+            ->join('user as user1', 'user1.id_user = atlet1.id_user', 'left')
+            ->join('atlet as atlet2', 'atlet2.id_atlet = pertandingan.id_atlet2', 'left')
+            ->join('user as user2', 'user2.id_user = atlet2.id_user', 'left')
+            ->join('event', 'event.id_event = pertandingan.id_event', 'left')
+            ->orderBy('pertandingan.jadwal', 'ASC');
+
+        if ($limit) {
+            $builder->limit($limit);
+        }
+
+        return $builder->findAll();
     }
 
     /**
@@ -45,15 +78,52 @@ class PertandinganModel extends Model
     public function getPertandinganByEvent($idEvent)
     {
         return $this->select('pertandingan.*, 
-                u1.nama_lengkap as atlet1_nama, u2.nama_lengkap as atlet2_nama,
-                k1.nama as klub1_nama, k2.nama as klub2_nama')
-            ->join('atlet a1', 'a1.id_atlet = pertandingan.id_atlet1')
-            ->join('atlet a2', 'a2.id_atlet = pertandingan.id_atlet2')
-            ->join('user u1', 'u1.id_user = a1.id_user')
-            ->join('user u2', 'u2.id_user = a2.id_user')
-            ->join('klub k1', 'k1.id_klub = a1.id_klub', 'left')
-            ->join('klub k2', 'k2.id_klub = a2.id_klub', 'left')
+                             user1.nama_lengkap as nama_atlet1,
+                             user2.nama_lengkap as nama_atlet2')
+            ->join('atlet as atlet1', 'atlet1.id_atlet = pertandingan.id_atlet1', 'left')
+            ->join('user as user1', 'user1.id_user = atlet1.id_user', 'left')
+            ->join('atlet as atlet2', 'atlet2.id_atlet = pertandingan.id_atlet2', 'left')
+            ->join('user as user2', 'user2.id_user = atlet2.id_user', 'left')
             ->where('pertandingan.id_event', $idEvent)
+            ->orderBy('pertandingan.jadwal', 'ASC')
+            ->findAll();
+    }
+
+    /**
+     * Get pertandingan by date
+     */
+    public function getPertandinganByDate($date)
+    {
+        return $this->select('pertandingan.*, 
+                             user1.nama_lengkap as nama_atlet1,
+                             user2.nama_lengkap as nama_atlet2,
+                             event.nama_event')
+            ->join('atlet as atlet1', 'atlet1.id_atlet = pertandingan.id_atlet1', 'left')
+            ->join('user as user1', 'user1.id_user = atlet1.id_user', 'left')
+            ->join('atlet as atlet2', 'atlet2.id_atlet = pertandingan.id_atlet2', 'left')
+            ->join('user as user2', 'user2.id_user = atlet2.id_user', 'left')
+            ->join('event', 'event.id_event = pertandingan.id_event', 'left')
+            ->where('DATE(pertandingan.jadwal)', $date)
+            ->orderBy('pertandingan.jadwal', 'ASC')
+            ->findAll();
+    }
+
+    /**
+     * Get pertandingan by atlet
+     */
+    public function getPertandinganByAtlet($idAtlet)
+    {
+        return $this->select('pertandingan.*, 
+                             user1.nama_lengkap as nama_atlet1,
+                             user2.nama_lengkap as nama_atlet2,
+                             event.nama_event')
+            ->join('atlet as atlet1', 'atlet1.id_atlet = pertandingan.id_atlet1', 'left')
+            ->join('user as user1', 'user1.id_user = atlet1.id_user', 'left')
+            ->join('atlet as atlet2', 'atlet2.id_atlet = pertandingan.id_atlet2', 'left')
+            ->join('user as user2', 'user2.id_user = atlet2.id_user', 'left')
+            ->join('event', 'event.id_event = pertandingan.id_event', 'left')
+            ->where('pertandingan.id_atlet1', $idAtlet)
+            ->orWhere('pertandingan.id_atlet2', $idAtlet)
             ->orderBy('pertandingan.jadwal', 'ASC')
             ->findAll();
     }
@@ -63,10 +133,9 @@ class PertandinganModel extends Model
      */
     public function getStatistikPertandingan()
     {
-        return $this->select('event.judul as nama_event, 
-                COUNT(pertandingan.id_pertandingan) as total_pertandingan,
-                event.tanggal_mulai, event.tanggal_selesai')
-            ->join('event', 'event.id_event = pertandingan.id_event')
+        return $this->select('event.id_event, event.nama_event, event.tanggal_mulai, event.tanggal_selesai,
+                             COUNT(pertandingan.id_pertandingan) as total_pertandingan')
+            ->join('event', 'event.id_event = pertandingan.id_event', 'left')
             ->groupBy('pertandingan.id_event')
             ->orderBy('event.tanggal_mulai', 'DESC')
             ->findAll();

@@ -1,0 +1,2218 @@
+DEBUG - 2025-12-24 00:27:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-24 00:27:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-24 00:28:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-24 00:28:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-24 00:28:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-24 00:34:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-24 00:34:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-24 00:34:36 --> mysqli_sql_exception: Table 'ptmsi_sumbar.notifikasi' doesn't exist in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\ptmsi-sumbar\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\ptmsi-sumbar\app\Models\NotificationModel.php(74): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\ptmsi-sumbar\app\Controllers\NotificationController.php(25): App\Models\NotificationModel->getUnreadNotifications('550e8400-e29b-4...', 10)
+#8 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\NotificationController->getUnread()
+#9 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\NotificationController))
+#10 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+CRITICAL - 2025-12-24 00:34:36 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'ptmsi_sumbar.notifikasi' doesn't exist
+[Method: GET, Route: notifications/unread]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `notifikasi`
+WHERE `id_user` = :id_user:
+AND `dibaca` = :dibaca:
+ORDER BY `dibuat_pada` DESC
+ LIMIT 10', [...], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\NotificationModel.php(74): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\NotificationController.php(25): App\Models\NotificationModel->getUnreadNotifications('550e8400-e29b-41d4-a716-446655440001', 10)
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\NotificationController->getUnread()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\NotificationController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-24 00:34:36 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'ptmsi_sumbar.notifikasi' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `notifikasi`
+WHERE `id_user` = \'550e8400-e29b-41d4-a716-446655440001\'
+AND `dibaca` = 0
+ORDER BY `dibuat_pada` DESC
+ LIMIT 10')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `notifikasi`
+WHERE `id_user` = \'550e8400-e29b-41d4-a716-446655440001\'
+AND `dibaca` = 0
+ORDER BY `dibuat_pada` DESC
+ LIMIT 10')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `notifikasi`
+WHERE `id_user` = :id_user:
+AND `dibaca` = :dibaca:
+ORDER BY `dibuat_pada` DESC
+ LIMIT 10', [...], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Models\NotificationModel.php(74): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH\Controllers\NotificationController.php(25): App\Models\NotificationModel->getUnreadNotifications('550e8400-e29b-41d4-a716-446655440001', 10)
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\NotificationController->getUnread()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\NotificationController))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-24 00:34:36 --> [Caused by] mysqli_sql_exception: Table 'ptmsi_sumbar.notifikasi' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT *
+FROM `notifikasi`
+WHERE `id_user` = \'550e8400-e29b-41d4-a716-446655440001\'
+AND `dibaca` = 0
+ORDER BY `dibuat_pada` DESC
+ LIMIT 10', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `notifikasi`
+WHERE `id_user` = \'550e8400-e29b-41d4-a716-446655440001\'
+AND `dibaca` = 0
+ORDER BY `dibuat_pada` DESC
+ LIMIT 10')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `notifikasi`
+WHERE `id_user` = \'550e8400-e29b-41d4-a716-446655440001\'
+AND `dibaca` = 0
+ORDER BY `dibuat_pada` DESC
+ LIMIT 10')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `notifikasi`
+WHERE `id_user` = :id_user:
+AND `dibaca` = :dibaca:
+ORDER BY `dibuat_pada` DESC
+ LIMIT 10', [...], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\NotificationModel.php(74): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\NotificationController.php(25): App\Models\NotificationModel->getUnreadNotifications('550e8400-e29b-41d4-a716-446655440001', 10)
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\NotificationController->getUnread()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\NotificationController))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+DEBUG - 2025-12-24 00:34:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-24 00:34:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-24 00:34:43 --> mysqli_sql_exception: Table 'ptmsi_sumbar.notifikasi' doesn't exist in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\ptmsi-sumbar\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\ptmsi-sumbar\app\Models\NotificationModel.php(74): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\ptmsi-sumbar\app\Controllers\NotificationController.php(25): App\Models\NotificationModel->getUnreadNotifications('550e8400-e29b-4...', 10)
+#8 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\NotificationController->getUnread()
+#9 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\NotificationController))
+#10 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+CRITICAL - 2025-12-24 00:34:43 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'ptmsi_sumbar.notifikasi' doesn't exist
+[Method: GET, Route: notifications/unread]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `notifikasi`
+WHERE `id_user` = :id_user:
+AND `dibaca` = :dibaca:
+ORDER BY `dibuat_pada` DESC
+ LIMIT 10', [...], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\NotificationModel.php(74): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\NotificationController.php(25): App\Models\NotificationModel->getUnreadNotifications('550e8400-e29b-41d4-a716-446655440001', 10)
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\NotificationController->getUnread()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\NotificationController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-24 00:34:43 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'ptmsi_sumbar.notifikasi' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `notifikasi`
+WHERE `id_user` = \'550e8400-e29b-41d4-a716-446655440001\'
+AND `dibaca` = 0
+ORDER BY `dibuat_pada` DESC
+ LIMIT 10')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `notifikasi`
+WHERE `id_user` = \'550e8400-e29b-41d4-a716-446655440001\'
+AND `dibaca` = 0
+ORDER BY `dibuat_pada` DESC
+ LIMIT 10')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `notifikasi`
+WHERE `id_user` = :id_user:
+AND `dibaca` = :dibaca:
+ORDER BY `dibuat_pada` DESC
+ LIMIT 10', [...], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Models\NotificationModel.php(74): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH\Controllers\NotificationController.php(25): App\Models\NotificationModel->getUnreadNotifications('550e8400-e29b-41d4-a716-446655440001', 10)
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\NotificationController->getUnread()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\NotificationController))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-24 00:34:43 --> [Caused by] mysqli_sql_exception: Table 'ptmsi_sumbar.notifikasi' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT *
+FROM `notifikasi`
+WHERE `id_user` = \'550e8400-e29b-41d4-a716-446655440001\'
+AND `dibaca` = 0
+ORDER BY `dibuat_pada` DESC
+ LIMIT 10', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `notifikasi`
+WHERE `id_user` = \'550e8400-e29b-41d4-a716-446655440001\'
+AND `dibaca` = 0
+ORDER BY `dibuat_pada` DESC
+ LIMIT 10')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `notifikasi`
+WHERE `id_user` = \'550e8400-e29b-41d4-a716-446655440001\'
+AND `dibaca` = 0
+ORDER BY `dibuat_pada` DESC
+ LIMIT 10')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `notifikasi`
+WHERE `id_user` = :id_user:
+AND `dibaca` = :dibaca:
+ORDER BY `dibuat_pada` DESC
+ LIMIT 10', [...], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\NotificationModel.php(74): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\NotificationController.php(25): App\Models\NotificationModel->getUnreadNotifications('550e8400-e29b-41d4-a716-446655440001', 10)
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\NotificationController->getUnread()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\NotificationController))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-24 00:34:46 --> CodeIgniter\Exceptions\BadMethodCallException: Call to undefined method App\Models\PertandinganModel::getStatistikPertandingan
+[Method: GET, Route: ranking]
+in SYSTEMPATH\Model.php on line 927.
+ 1 APPPATH\Controllers\RankingStatistik.php(37): CodeIgniter\Model->__call('getStatistikPertandingan', [])
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\RankingStatistik->index()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RankingStatistik))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+ERROR - 2025-12-24 00:42:07 --> mysqli_sql_exception: Unknown column 'klub.nama_klub' in 'field list' in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `klub`.`...', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `klub`.`...')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `klub`.`...')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `klub`.`...', Array, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\ptmsi-sumbar\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\ptmsi-sumbar\app\Models\HasilModel.php(105): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\ptmsi-sumbar\app\Controllers\RankingStatistik.php(40): App\Models\HasilModel->getRekapMedaliByKlub()
+#8 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\RankingStatistik->index()
+#9 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RankingStatistik))
+#10 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+CRITICAL - 2025-12-24 00:42:07 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'klub.nama_klub' in 'field list'
+[Method: GET, Route: ranking]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `klub`.`nama_klub`, COUNT(CASE WHEN hasil.id_pemenang_atlet = pertandingan.id_atlet1 THEN 1 END) as medali_emas, COUNT(CASE WHEN hasil.id_pemenang_atlet = pertandingan.id_atlet2 THEN 1 END) as medali_perak
+FROM `hasil`
+LEFT JOIN `pertandingan` ON `pertandingan`.`id_pertandingan` = `hasil`.`id_pertandingan`
+LEFT JOIN `atlet` as `atlet1` ON `atlet1`.`id_atlet` = `pertandingan`.`id_atlet1`
+LEFT JOIN `atlet` as `atlet2` ON `atlet2`.`id_atlet` = `pertandingan`.`id_atlet2`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet1`.`id_klub` OR `klub`.`id_klub` = `atlet2`.`id_klub`
+GROUP BY `klub`.`id_klub`
+ORDER BY `medali_emas` DESC
+ LIMIT 10', [], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\HasilModel.php(105): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\RankingStatistik.php(40): App\Models\HasilModel->getRekapMedaliByKlub()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\RankingStatistik->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RankingStatistik))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-24 00:42:07 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'klub.nama_klub' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `klub`.`nama_klub`, COUNT(CASE WHEN hasil.id_pemenang_atlet = pertandingan.id_atlet1 THEN 1 END) as medali_emas, COUNT(CASE WHEN hasil.id_pemenang_atlet = pertandingan.id_atlet2 THEN 1 END) as medali_perak
+FROM `hasil`
+LEFT JOIN `pertandingan` ON `pertandingan`.`id_pertandingan` = `hasil`.`id_pertandingan`
+LEFT JOIN `atlet` as `atlet1` ON `atlet1`.`id_atlet` = `pertandingan`.`id_atlet1`
+LEFT JOIN `atlet` as `atlet2` ON `atlet2`.`id_atlet` = `pertandingan`.`id_atlet2`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet1`.`id_klub` OR `klub`.`id_klub` = `atlet2`.`id_klub`
+GROUP BY `klub`.`id_klub`
+ORDER BY `medali_emas` DESC
+ LIMIT 10')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `klub`.`nama_klub`, COUNT(CASE WHEN hasil.id_pemenang_atlet = pertandingan.id_atlet1 THEN 1 END) as medali_emas, COUNT(CASE WHEN hasil.id_pemenang_atlet = pertandingan.id_atlet2 THEN 1 END) as medali_perak
+FROM `hasil`
+LEFT JOIN `pertandingan` ON `pertandingan`.`id_pertandingan` = `hasil`.`id_pertandingan`
+LEFT JOIN `atlet` as `atlet1` ON `atlet1`.`id_atlet` = `pertandingan`.`id_atlet1`
+LEFT JOIN `atlet` as `atlet2` ON `atlet2`.`id_atlet` = `pertandingan`.`id_atlet2`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet1`.`id_klub` OR `klub`.`id_klub` = `atlet2`.`id_klub`
+GROUP BY `klub`.`id_klub`
+ORDER BY `medali_emas` DESC
+ LIMIT 10')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `klub`.`nama_klub`, COUNT(CASE WHEN hasil.id_pemenang_atlet = pertandingan.id_atlet1 THEN 1 END) as medali_emas, COUNT(CASE WHEN hasil.id_pemenang_atlet = pertandingan.id_atlet2 THEN 1 END) as medali_perak
+FROM `hasil`
+LEFT JOIN `pertandingan` ON `pertandingan`.`id_pertandingan` = `hasil`.`id_pertandingan`
+LEFT JOIN `atlet` as `atlet1` ON `atlet1`.`id_atlet` = `pertandingan`.`id_atlet1`
+LEFT JOIN `atlet` as `atlet2` ON `atlet2`.`id_atlet` = `pertandingan`.`id_atlet2`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet1`.`id_klub` OR `klub`.`id_klub` = `atlet2`.`id_klub`
+GROUP BY `klub`.`id_klub`
+ORDER BY `medali_emas` DESC
+ LIMIT 10', [], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Models\HasilModel.php(105): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH\Controllers\RankingStatistik.php(40): App\Models\HasilModel->getRekapMedaliByKlub()
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\RankingStatistik->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RankingStatistik))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-24 00:42:07 --> [Caused by] mysqli_sql_exception: Unknown column 'klub.nama_klub' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `klub`.`nama_klub`, COUNT(CASE WHEN hasil.id_pemenang_atlet = pertandingan.id_atlet1 THEN 1 END) as medali_emas, COUNT(CASE WHEN hasil.id_pemenang_atlet = pertandingan.id_atlet2 THEN 1 END) as medali_perak
+FROM `hasil`
+LEFT JOIN `pertandingan` ON `pertandingan`.`id_pertandingan` = `hasil`.`id_pertandingan`
+LEFT JOIN `atlet` as `atlet1` ON `atlet1`.`id_atlet` = `pertandingan`.`id_atlet1`
+LEFT JOIN `atlet` as `atlet2` ON `atlet2`.`id_atlet` = `pertandingan`.`id_atlet2`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet1`.`id_klub` OR `klub`.`id_klub` = `atlet2`.`id_klub`
+GROUP BY `klub`.`id_klub`
+ORDER BY `medali_emas` DESC
+ LIMIT 10', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `klub`.`nama_klub`, COUNT(CASE WHEN hasil.id_pemenang_atlet = pertandingan.id_atlet1 THEN 1 END) as medali_emas, COUNT(CASE WHEN hasil.id_pemenang_atlet = pertandingan.id_atlet2 THEN 1 END) as medali_perak
+FROM `hasil`
+LEFT JOIN `pertandingan` ON `pertandingan`.`id_pertandingan` = `hasil`.`id_pertandingan`
+LEFT JOIN `atlet` as `atlet1` ON `atlet1`.`id_atlet` = `pertandingan`.`id_atlet1`
+LEFT JOIN `atlet` as `atlet2` ON `atlet2`.`id_atlet` = `pertandingan`.`id_atlet2`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet1`.`id_klub` OR `klub`.`id_klub` = `atlet2`.`id_klub`
+GROUP BY `klub`.`id_klub`
+ORDER BY `medali_emas` DESC
+ LIMIT 10')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `klub`.`nama_klub`, COUNT(CASE WHEN hasil.id_pemenang_atlet = pertandingan.id_atlet1 THEN 1 END) as medali_emas, COUNT(CASE WHEN hasil.id_pemenang_atlet = pertandingan.id_atlet2 THEN 1 END) as medali_perak
+FROM `hasil`
+LEFT JOIN `pertandingan` ON `pertandingan`.`id_pertandingan` = `hasil`.`id_pertandingan`
+LEFT JOIN `atlet` as `atlet1` ON `atlet1`.`id_atlet` = `pertandingan`.`id_atlet1`
+LEFT JOIN `atlet` as `atlet2` ON `atlet2`.`id_atlet` = `pertandingan`.`id_atlet2`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet1`.`id_klub` OR `klub`.`id_klub` = `atlet2`.`id_klub`
+GROUP BY `klub`.`id_klub`
+ORDER BY `medali_emas` DESC
+ LIMIT 10')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `klub`.`nama_klub`, COUNT(CASE WHEN hasil.id_pemenang_atlet = pertandingan.id_atlet1 THEN 1 END) as medali_emas, COUNT(CASE WHEN hasil.id_pemenang_atlet = pertandingan.id_atlet2 THEN 1 END) as medali_perak
+FROM `hasil`
+LEFT JOIN `pertandingan` ON `pertandingan`.`id_pertandingan` = `hasil`.`id_pertandingan`
+LEFT JOIN `atlet` as `atlet1` ON `atlet1`.`id_atlet` = `pertandingan`.`id_atlet1`
+LEFT JOIN `atlet` as `atlet2` ON `atlet2`.`id_atlet` = `pertandingan`.`id_atlet2`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet1`.`id_klub` OR `klub`.`id_klub` = `atlet2`.`id_klub`
+GROUP BY `klub`.`id_klub`
+ORDER BY `medali_emas` DESC
+ LIMIT 10', [], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\HasilModel.php(105): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\RankingStatistik.php(40): App\Models\HasilModel->getRekapMedaliByKlub()
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\RankingStatistik->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RankingStatistik))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+ERROR - 2025-12-24 00:43:45 --> mysqli_sql_exception: Unknown column 'klub.nama_klub' in 'field list' in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `klub`.`...', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `klub`.`...')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `klub`.`...')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `klub`.`...', Array, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\ptmsi-sumbar\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\ptmsi-sumbar\app\Models\HasilModel.php(103): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\ptmsi-sumbar\app\Controllers\RankingStatistik.php(40): App\Models\HasilModel->getRekapMedaliByKlub()
+#8 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\RankingStatistik->index()
+#9 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RankingStatistik))
+#10 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+CRITICAL - 2025-12-24 00:43:45 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'klub.nama_klub' in 'field list'
+[Method: GET, Route: ranking]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `klub`.`nama_klub`, COUNT(hasil.id_hasil) as total_kemenangan
+FROM `hasil`
+LEFT JOIN `pertandingan` ON `pertandingan`.`id_pertandingan` = `hasil`.`id_pertandingan`
+LEFT JOIN `atlet` ON `atlet`.`id_atlet` = `hasil`.`id_pemenang_atlet`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`
+GROUP BY `klub`.`id_klub`
+ORDER BY `total_kemenangan` DESC
+ LIMIT 10', [], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\HasilModel.php(103): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\RankingStatistik.php(40): App\Models\HasilModel->getRekapMedaliByKlub()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\RankingStatistik->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RankingStatistik))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-24 00:43:45 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'klub.nama_klub' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `klub`.`nama_klub`, COUNT(hasil.id_hasil) as total_kemenangan
+FROM `hasil`
+LEFT JOIN `pertandingan` ON `pertandingan`.`id_pertandingan` = `hasil`.`id_pertandingan`
+LEFT JOIN `atlet` ON `atlet`.`id_atlet` = `hasil`.`id_pemenang_atlet`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`
+GROUP BY `klub`.`id_klub`
+ORDER BY `total_kemenangan` DESC
+ LIMIT 10')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `klub`.`nama_klub`, COUNT(hasil.id_hasil) as total_kemenangan
+FROM `hasil`
+LEFT JOIN `pertandingan` ON `pertandingan`.`id_pertandingan` = `hasil`.`id_pertandingan`
+LEFT JOIN `atlet` ON `atlet`.`id_atlet` = `hasil`.`id_pemenang_atlet`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`
+GROUP BY `klub`.`id_klub`
+ORDER BY `total_kemenangan` DESC
+ LIMIT 10')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `klub`.`nama_klub`, COUNT(hasil.id_hasil) as total_kemenangan
+FROM `hasil`
+LEFT JOIN `pertandingan` ON `pertandingan`.`id_pertandingan` = `hasil`.`id_pertandingan`
+LEFT JOIN `atlet` ON `atlet`.`id_atlet` = `hasil`.`id_pemenang_atlet`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`
+GROUP BY `klub`.`id_klub`
+ORDER BY `total_kemenangan` DESC
+ LIMIT 10', [], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Models\HasilModel.php(103): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH\Controllers\RankingStatistik.php(40): App\Models\HasilModel->getRekapMedaliByKlub()
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\RankingStatistik->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RankingStatistik))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-24 00:43:45 --> [Caused by] mysqli_sql_exception: Unknown column 'klub.nama_klub' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `klub`.`nama_klub`, COUNT(hasil.id_hasil) as total_kemenangan
+FROM `hasil`
+LEFT JOIN `pertandingan` ON `pertandingan`.`id_pertandingan` = `hasil`.`id_pertandingan`
+LEFT JOIN `atlet` ON `atlet`.`id_atlet` = `hasil`.`id_pemenang_atlet`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`
+GROUP BY `klub`.`id_klub`
+ORDER BY `total_kemenangan` DESC
+ LIMIT 10', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `klub`.`nama_klub`, COUNT(hasil.id_hasil) as total_kemenangan
+FROM `hasil`
+LEFT JOIN `pertandingan` ON `pertandingan`.`id_pertandingan` = `hasil`.`id_pertandingan`
+LEFT JOIN `atlet` ON `atlet`.`id_atlet` = `hasil`.`id_pemenang_atlet`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`
+GROUP BY `klub`.`id_klub`
+ORDER BY `total_kemenangan` DESC
+ LIMIT 10')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `klub`.`nama_klub`, COUNT(hasil.id_hasil) as total_kemenangan
+FROM `hasil`
+LEFT JOIN `pertandingan` ON `pertandingan`.`id_pertandingan` = `hasil`.`id_pertandingan`
+LEFT JOIN `atlet` ON `atlet`.`id_atlet` = `hasil`.`id_pemenang_atlet`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`
+GROUP BY `klub`.`id_klub`
+ORDER BY `total_kemenangan` DESC
+ LIMIT 10')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `klub`.`nama_klub`, COUNT(hasil.id_hasil) as total_kemenangan
+FROM `hasil`
+LEFT JOIN `pertandingan` ON `pertandingan`.`id_pertandingan` = `hasil`.`id_pertandingan`
+LEFT JOIN `atlet` ON `atlet`.`id_atlet` = `hasil`.`id_pemenang_atlet`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`
+GROUP BY `klub`.`id_klub`
+ORDER BY `total_kemenangan` DESC
+ LIMIT 10', [], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\HasilModel.php(103): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\RankingStatistik.php(40): App\Models\HasilModel->getRekapMedaliByKlub()
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\RankingStatistik->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RankingStatistik))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+ERROR - 2025-12-24 00:43:49 --> mysqli_sql_exception: Unknown column 'klub.nama_klub' in 'field list' in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `klub`.`...', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `klub`.`...')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `klub`.`...')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `klub`.`...', Array, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\ptmsi-sumbar\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\ptmsi-sumbar\app\Models\HasilModel.php(103): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\ptmsi-sumbar\app\Controllers\RankingStatistik.php(40): App\Models\HasilModel->getRekapMedaliByKlub()
+#8 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\RankingStatistik->index()
+#9 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RankingStatistik))
+#10 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+CRITICAL - 2025-12-24 00:43:49 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'klub.nama_klub' in 'field list'
+[Method: GET, Route: ranking]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `klub`.`nama_klub`, COUNT(hasil.id_hasil) as total_kemenangan
+FROM `hasil`
+LEFT JOIN `pertandingan` ON `pertandingan`.`id_pertandingan` = `hasil`.`id_pertandingan`
+LEFT JOIN `atlet` ON `atlet`.`id_atlet` = `hasil`.`id_pemenang_atlet`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`
+GROUP BY `klub`.`id_klub`
+ORDER BY `total_kemenangan` DESC
+ LIMIT 10', [], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\HasilModel.php(103): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\RankingStatistik.php(40): App\Models\HasilModel->getRekapMedaliByKlub()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\RankingStatistik->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RankingStatistik))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-24 00:43:49 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'klub.nama_klub' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `klub`.`nama_klub`, COUNT(hasil.id_hasil) as total_kemenangan
+FROM `hasil`
+LEFT JOIN `pertandingan` ON `pertandingan`.`id_pertandingan` = `hasil`.`id_pertandingan`
+LEFT JOIN `atlet` ON `atlet`.`id_atlet` = `hasil`.`id_pemenang_atlet`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`
+GROUP BY `klub`.`id_klub`
+ORDER BY `total_kemenangan` DESC
+ LIMIT 10')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `klub`.`nama_klub`, COUNT(hasil.id_hasil) as total_kemenangan
+FROM `hasil`
+LEFT JOIN `pertandingan` ON `pertandingan`.`id_pertandingan` = `hasil`.`id_pertandingan`
+LEFT JOIN `atlet` ON `atlet`.`id_atlet` = `hasil`.`id_pemenang_atlet`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`
+GROUP BY `klub`.`id_klub`
+ORDER BY `total_kemenangan` DESC
+ LIMIT 10')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `klub`.`nama_klub`, COUNT(hasil.id_hasil) as total_kemenangan
+FROM `hasil`
+LEFT JOIN `pertandingan` ON `pertandingan`.`id_pertandingan` = `hasil`.`id_pertandingan`
+LEFT JOIN `atlet` ON `atlet`.`id_atlet` = `hasil`.`id_pemenang_atlet`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`
+GROUP BY `klub`.`id_klub`
+ORDER BY `total_kemenangan` DESC
+ LIMIT 10', [], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Models\HasilModel.php(103): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH\Controllers\RankingStatistik.php(40): App\Models\HasilModel->getRekapMedaliByKlub()
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\RankingStatistik->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RankingStatistik))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-24 00:43:49 --> [Caused by] mysqli_sql_exception: Unknown column 'klub.nama_klub' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `klub`.`nama_klub`, COUNT(hasil.id_hasil) as total_kemenangan
+FROM `hasil`
+LEFT JOIN `pertandingan` ON `pertandingan`.`id_pertandingan` = `hasil`.`id_pertandingan`
+LEFT JOIN `atlet` ON `atlet`.`id_atlet` = `hasil`.`id_pemenang_atlet`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`
+GROUP BY `klub`.`id_klub`
+ORDER BY `total_kemenangan` DESC
+ LIMIT 10', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `klub`.`nama_klub`, COUNT(hasil.id_hasil) as total_kemenangan
+FROM `hasil`
+LEFT JOIN `pertandingan` ON `pertandingan`.`id_pertandingan` = `hasil`.`id_pertandingan`
+LEFT JOIN `atlet` ON `atlet`.`id_atlet` = `hasil`.`id_pemenang_atlet`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`
+GROUP BY `klub`.`id_klub`
+ORDER BY `total_kemenangan` DESC
+ LIMIT 10')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `klub`.`nama_klub`, COUNT(hasil.id_hasil) as total_kemenangan
+FROM `hasil`
+LEFT JOIN `pertandingan` ON `pertandingan`.`id_pertandingan` = `hasil`.`id_pertandingan`
+LEFT JOIN `atlet` ON `atlet`.`id_atlet` = `hasil`.`id_pemenang_atlet`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`
+GROUP BY `klub`.`id_klub`
+ORDER BY `total_kemenangan` DESC
+ LIMIT 10')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `klub`.`nama_klub`, COUNT(hasil.id_hasil) as total_kemenangan
+FROM `hasil`
+LEFT JOIN `pertandingan` ON `pertandingan`.`id_pertandingan` = `hasil`.`id_pertandingan`
+LEFT JOIN `atlet` ON `atlet`.`id_atlet` = `hasil`.`id_pemenang_atlet`
+LEFT JOIN `klub` ON `klub`.`id_klub` = `atlet`.`id_klub`
+GROUP BY `klub`.`id_klub`
+ORDER BY `total_kemenangan` DESC
+ LIMIT 10', [], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\HasilModel.php(103): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\RankingStatistik.php(40): App\Models\HasilModel->getRekapMedaliByKlub()
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\RankingStatistik->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RankingStatistik))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-24 00:45:00 --> ErrorException: Trying to access array offset on int
+[Method: GET, Route: ranking]
+in APPPATH\Views\ranking.php on line 375.
+ 1 APPPATH\Views\ranking.php(375): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to access array offset on int', 'C:\\laragon\\www\\ptmsi-sumbar\\app\\Views\\ranking.php', 375)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\laragon\\www\\ptmsi-sumbar\\app\\Views\\ranking.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('ranking', [], true)
+ 5 APPPATH\Controllers\RankingStatistik.php(53): view('ranking', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\RankingStatistik->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RankingStatistik))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+DEBUG - 2025-12-24 00:51:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-24 00:51:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-24 00:51:05 --> mysqli_sql_exception: Table 'ptmsi_sumbar.notifikasi' doesn't exist in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\ptmsi-sumbar\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\ptmsi-sumbar\app\Models\NotificationModel.php(74): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\ptmsi-sumbar\app\Controllers\NotificationController.php(25): App\Models\NotificationModel->getUnreadNotifications('550e8400-e29b-4...', 10)
+#8 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\NotificationController->getUnread()
+#9 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\NotificationController))
+#10 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+CRITICAL - 2025-12-24 00:51:05 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'ptmsi_sumbar.notifikasi' doesn't exist
+[Method: GET, Route: notifications/unread]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `notifikasi`
+WHERE `id_user` = :id_user:
+AND `dibaca` = :dibaca:
+ORDER BY `dibuat_pada` DESC
+ LIMIT 10', [...], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\NotificationModel.php(74): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\NotificationController.php(25): App\Models\NotificationModel->getUnreadNotifications('550e8400-e29b-41d4-a716-446655440001', 10)
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\NotificationController->getUnread()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\NotificationController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-24 00:51:05 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'ptmsi_sumbar.notifikasi' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `notifikasi`
+WHERE `id_user` = \'550e8400-e29b-41d4-a716-446655440001\'
+AND `dibaca` = 0
+ORDER BY `dibuat_pada` DESC
+ LIMIT 10')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `notifikasi`
+WHERE `id_user` = \'550e8400-e29b-41d4-a716-446655440001\'
+AND `dibaca` = 0
+ORDER BY `dibuat_pada` DESC
+ LIMIT 10')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `notifikasi`
+WHERE `id_user` = :id_user:
+AND `dibaca` = :dibaca:
+ORDER BY `dibuat_pada` DESC
+ LIMIT 10', [...], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Models\NotificationModel.php(74): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH\Controllers\NotificationController.php(25): App\Models\NotificationModel->getUnreadNotifications('550e8400-e29b-41d4-a716-446655440001', 10)
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\NotificationController->getUnread()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\NotificationController))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-24 00:51:05 --> [Caused by] mysqli_sql_exception: Table 'ptmsi_sumbar.notifikasi' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT *
+FROM `notifikasi`
+WHERE `id_user` = \'550e8400-e29b-41d4-a716-446655440001\'
+AND `dibaca` = 0
+ORDER BY `dibuat_pada` DESC
+ LIMIT 10', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `notifikasi`
+WHERE `id_user` = \'550e8400-e29b-41d4-a716-446655440001\'
+AND `dibaca` = 0
+ORDER BY `dibuat_pada` DESC
+ LIMIT 10')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `notifikasi`
+WHERE `id_user` = \'550e8400-e29b-41d4-a716-446655440001\'
+AND `dibaca` = 0
+ORDER BY `dibuat_pada` DESC
+ LIMIT 10')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `notifikasi`
+WHERE `id_user` = :id_user:
+AND `dibaca` = :dibaca:
+ORDER BY `dibuat_pada` DESC
+ LIMIT 10', [...], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\NotificationModel.php(74): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\NotificationController.php(25): App\Models\NotificationModel->getUnreadNotifications('550e8400-e29b-41d4-a716-446655440001', 10)
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\NotificationController->getUnread()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\NotificationController))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+DEBUG - 2025-12-24 00:51:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-24 00:51:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-24 00:51:16 --> mysqli_sql_exception: Table 'ptmsi_sumbar.notifikasi' doesn't exist in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\ptmsi-sumbar\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\ptmsi-sumbar\app\Models\NotificationModel.php(74): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\ptmsi-sumbar\app\Controllers\NotificationController.php(25): App\Models\NotificationModel->getUnreadNotifications('550e8400-e29b-4...', 10)
+#8 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\NotificationController->getUnread()
+#9 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\NotificationController))
+#10 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+CRITICAL - 2025-12-24 00:51:16 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'ptmsi_sumbar.notifikasi' doesn't exist
+[Method: GET, Route: notifications/unread]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `notifikasi`
+WHERE `id_user` = :id_user:
+AND `dibaca` = :dibaca:
+ORDER BY `dibuat_pada` DESC
+ LIMIT 10', [...], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\NotificationModel.php(74): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\NotificationController.php(25): App\Models\NotificationModel->getUnreadNotifications('550e8400-e29b-41d4-a716-446655440001', 10)
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\NotificationController->getUnread()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\NotificationController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-24 00:51:16 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'ptmsi_sumbar.notifikasi' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `notifikasi`
+WHERE `id_user` = \'550e8400-e29b-41d4-a716-446655440001\'
+AND `dibaca` = 0
+ORDER BY `dibuat_pada` DESC
+ LIMIT 10')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `notifikasi`
+WHERE `id_user` = \'550e8400-e29b-41d4-a716-446655440001\'
+AND `dibaca` = 0
+ORDER BY `dibuat_pada` DESC
+ LIMIT 10')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `notifikasi`
+WHERE `id_user` = :id_user:
+AND `dibaca` = :dibaca:
+ORDER BY `dibuat_pada` DESC
+ LIMIT 10', [...], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Models\NotificationModel.php(74): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH\Controllers\NotificationController.php(25): App\Models\NotificationModel->getUnreadNotifications('550e8400-e29b-41d4-a716-446655440001', 10)
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\NotificationController->getUnread()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\NotificationController))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-24 00:51:16 --> [Caused by] mysqli_sql_exception: Table 'ptmsi_sumbar.notifikasi' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT *
+FROM `notifikasi`
+WHERE `id_user` = \'550e8400-e29b-41d4-a716-446655440001\'
+AND `dibaca` = 0
+ORDER BY `dibuat_pada` DESC
+ LIMIT 10', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `notifikasi`
+WHERE `id_user` = \'550e8400-e29b-41d4-a716-446655440001\'
+AND `dibaca` = 0
+ORDER BY `dibuat_pada` DESC
+ LIMIT 10')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `notifikasi`
+WHERE `id_user` = \'550e8400-e29b-41d4-a716-446655440001\'
+AND `dibaca` = 0
+ORDER BY `dibuat_pada` DESC
+ LIMIT 10')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `notifikasi`
+WHERE `id_user` = :id_user:
+AND `dibaca` = :dibaca:
+ORDER BY `dibuat_pada` DESC
+ LIMIT 10', [...], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\NotificationModel.php(74): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\NotificationController.php(25): App\Models\NotificationModel->getUnreadNotifications('550e8400-e29b-41d4-a716-446655440001', 10)
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\NotificationController->getUnread()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\NotificationController))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+DEBUG - 2025-12-24 00:51:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-24 00:51:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-24 00:51:23 --> mysqli_sql_exception: Table 'ptmsi_sumbar.notifikasi' doesn't exist in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\ptmsi-sumbar\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\ptmsi-sumbar\app\Models\NotificationModel.php(74): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\ptmsi-sumbar\app\Controllers\NotificationController.php(25): App\Models\NotificationModel->getUnreadNotifications('550e8400-e29b-4...', 10)
+#8 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\NotificationController->getUnread()
+#9 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\NotificationController))
+#10 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+CRITICAL - 2025-12-24 00:51:23 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'ptmsi_sumbar.notifikasi' doesn't exist
+[Method: GET, Route: notifications/unread]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `notifikasi`
+WHERE `id_user` = :id_user:
+AND `dibaca` = :dibaca:
+ORDER BY `dibuat_pada` DESC
+ LIMIT 10', [...], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\NotificationModel.php(74): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\NotificationController.php(25): App\Models\NotificationModel->getUnreadNotifications('550e8400-e29b-41d4-a716-446655440001', 10)
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\NotificationController->getUnread()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\NotificationController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-24 00:51:23 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'ptmsi_sumbar.notifikasi' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `notifikasi`
+WHERE `id_user` = \'550e8400-e29b-41d4-a716-446655440001\'
+AND `dibaca` = 0
+ORDER BY `dibuat_pada` DESC
+ LIMIT 10')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `notifikasi`
+WHERE `id_user` = \'550e8400-e29b-41d4-a716-446655440001\'
+AND `dibaca` = 0
+ORDER BY `dibuat_pada` DESC
+ LIMIT 10')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `notifikasi`
+WHERE `id_user` = :id_user:
+AND `dibaca` = :dibaca:
+ORDER BY `dibuat_pada` DESC
+ LIMIT 10', [...], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Models\NotificationModel.php(74): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH\Controllers\NotificationController.php(25): App\Models\NotificationModel->getUnreadNotifications('550e8400-e29b-41d4-a716-446655440001', 10)
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\NotificationController->getUnread()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\NotificationController))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-24 00:51:23 --> [Caused by] mysqli_sql_exception: Table 'ptmsi_sumbar.notifikasi' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT *
+FROM `notifikasi`
+WHERE `id_user` = \'550e8400-e29b-41d4-a716-446655440001\'
+AND `dibaca` = 0
+ORDER BY `dibuat_pada` DESC
+ LIMIT 10', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `notifikasi`
+WHERE `id_user` = \'550e8400-e29b-41d4-a716-446655440001\'
+AND `dibaca` = 0
+ORDER BY `dibuat_pada` DESC
+ LIMIT 10')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `notifikasi`
+WHERE `id_user` = \'550e8400-e29b-41d4-a716-446655440001\'
+AND `dibaca` = 0
+ORDER BY `dibuat_pada` DESC
+ LIMIT 10')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `notifikasi`
+WHERE `id_user` = :id_user:
+AND `dibaca` = :dibaca:
+ORDER BY `dibuat_pada` DESC
+ LIMIT 10', [...], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\NotificationModel.php(74): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\NotificationController.php(25): App\Models\NotificationModel->getUnreadNotifications('550e8400-e29b-41d4-a716-446655440001', 10)
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\NotificationController->getUnread()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\NotificationController))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+DEBUG - 2025-12-24 00:51:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-24 00:51:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-24 00:51:36 --> mysqli_sql_exception: Table 'ptmsi_sumbar.notifikasi' doesn't exist in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\ptmsi-sumbar\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\ptmsi-sumbar\app\Models\NotificationModel.php(74): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\ptmsi-sumbar\app\Controllers\NotificationController.php(25): App\Models\NotificationModel->getUnreadNotifications('550e8400-e29b-4...', 10)
+#8 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\NotificationController->getUnread()
+#9 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\NotificationController))
+#10 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+CRITICAL - 2025-12-24 00:51:36 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'ptmsi_sumbar.notifikasi' doesn't exist
+[Method: GET, Route: notifications/unread]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `notifikasi`
+WHERE `id_user` = :id_user:
+AND `dibaca` = :dibaca:
+ORDER BY `dibuat_pada` DESC
+ LIMIT 10', [...], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\NotificationModel.php(74): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\NotificationController.php(25): App\Models\NotificationModel->getUnreadNotifications('550e8400-e29b-41d4-a716-446655440001', 10)
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\NotificationController->getUnread()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\NotificationController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-24 00:51:36 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'ptmsi_sumbar.notifikasi' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `notifikasi`
+WHERE `id_user` = \'550e8400-e29b-41d4-a716-446655440001\'
+AND `dibaca` = 0
+ORDER BY `dibuat_pada` DESC
+ LIMIT 10')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `notifikasi`
+WHERE `id_user` = \'550e8400-e29b-41d4-a716-446655440001\'
+AND `dibaca` = 0
+ORDER BY `dibuat_pada` DESC
+ LIMIT 10')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `notifikasi`
+WHERE `id_user` = :id_user:
+AND `dibaca` = :dibaca:
+ORDER BY `dibuat_pada` DESC
+ LIMIT 10', [...], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Models\NotificationModel.php(74): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH\Controllers\NotificationController.php(25): App\Models\NotificationModel->getUnreadNotifications('550e8400-e29b-41d4-a716-446655440001', 10)
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\NotificationController->getUnread()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\NotificationController))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-24 00:51:36 --> [Caused by] mysqli_sql_exception: Table 'ptmsi_sumbar.notifikasi' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT *
+FROM `notifikasi`
+WHERE `id_user` = \'550e8400-e29b-41d4-a716-446655440001\'
+AND `dibaca` = 0
+ORDER BY `dibuat_pada` DESC
+ LIMIT 10', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `notifikasi`
+WHERE `id_user` = \'550e8400-e29b-41d4-a716-446655440001\'
+AND `dibaca` = 0
+ORDER BY `dibuat_pada` DESC
+ LIMIT 10')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `notifikasi`
+WHERE `id_user` = \'550e8400-e29b-41d4-a716-446655440001\'
+AND `dibaca` = 0
+ORDER BY `dibuat_pada` DESC
+ LIMIT 10')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `notifikasi`
+WHERE `id_user` = :id_user:
+AND `dibaca` = :dibaca:
+ORDER BY `dibuat_pada` DESC
+ LIMIT 10', [...], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\NotificationModel.php(74): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\NotificationController.php(25): App\Models\NotificationModel->getUnreadNotifications('550e8400-e29b-41d4-a716-446655440001', 10)
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\NotificationController->getUnread()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\NotificationController))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+DEBUG - 2025-12-24 00:51:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-24 00:51:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-24 00:51:41 --> mysqli_sql_exception: Table 'ptmsi_sumbar.notifikasi' doesn't exist in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\ptmsi-sumbar\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\ptmsi-sumbar\app\Models\NotificationModel.php(74): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\ptmsi-sumbar\app\Controllers\NotificationController.php(25): App\Models\NotificationModel->getUnreadNotifications('550e8400-e29b-4...', 10)
+#8 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\NotificationController->getUnread()
+#9 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\NotificationController))
+#10 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+CRITICAL - 2025-12-24 00:51:41 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'ptmsi_sumbar.notifikasi' doesn't exist
+[Method: GET, Route: notifications/unread]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `notifikasi`
+WHERE `id_user` = :id_user:
+AND `dibaca` = :dibaca:
+ORDER BY `dibuat_pada` DESC
+ LIMIT 10', [...], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\NotificationModel.php(74): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\NotificationController.php(25): App\Models\NotificationModel->getUnreadNotifications('550e8400-e29b-41d4-a716-446655440001', 10)
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\NotificationController->getUnread()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\NotificationController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-24 00:51:41 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'ptmsi_sumbar.notifikasi' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `notifikasi`
+WHERE `id_user` = \'550e8400-e29b-41d4-a716-446655440001\'
+AND `dibaca` = 0
+ORDER BY `dibuat_pada` DESC
+ LIMIT 10')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `notifikasi`
+WHERE `id_user` = \'550e8400-e29b-41d4-a716-446655440001\'
+AND `dibaca` = 0
+ORDER BY `dibuat_pada` DESC
+ LIMIT 10')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `notifikasi`
+WHERE `id_user` = :id_user:
+AND `dibaca` = :dibaca:
+ORDER BY `dibuat_pada` DESC
+ LIMIT 10', [...], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Models\NotificationModel.php(74): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH\Controllers\NotificationController.php(25): App\Models\NotificationModel->getUnreadNotifications('550e8400-e29b-41d4-a716-446655440001', 10)
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\NotificationController->getUnread()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\NotificationController))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-24 00:51:41 --> [Caused by] mysqli_sql_exception: Table 'ptmsi_sumbar.notifikasi' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT *
+FROM `notifikasi`
+WHERE `id_user` = \'550e8400-e29b-41d4-a716-446655440001\'
+AND `dibaca` = 0
+ORDER BY `dibuat_pada` DESC
+ LIMIT 10', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `notifikasi`
+WHERE `id_user` = \'550e8400-e29b-41d4-a716-446655440001\'
+AND `dibaca` = 0
+ORDER BY `dibuat_pada` DESC
+ LIMIT 10')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `notifikasi`
+WHERE `id_user` = \'550e8400-e29b-41d4-a716-446655440001\'
+AND `dibaca` = 0
+ORDER BY `dibuat_pada` DESC
+ LIMIT 10')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `notifikasi`
+WHERE `id_user` = :id_user:
+AND `dibaca` = :dibaca:
+ORDER BY `dibuat_pada` DESC
+ LIMIT 10', [...], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\NotificationModel.php(74): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\NotificationController.php(25): App\Models\NotificationModel->getUnreadNotifications('550e8400-e29b-41d4-a716-446655440001', 10)
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\NotificationController->getUnread()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\NotificationController))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+DEBUG - 2025-12-24 00:51:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-24 00:51:44 --> mysqli_sql_exception: Table 'ptmsi_sumbar.notifikasi' doesn't exist in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\ptmsi-sumbar\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\ptmsi-sumbar\app\Controllers\NotificationController.php(51): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\NotificationController->getAll()
+#8 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\NotificationController))
+#9 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#14 {main}
+CRITICAL - 2025-12-24 00:51:44 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'ptmsi_sumbar.notifikasi' doesn't exist
+[Method: GET, Route: notifications]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `notifikasi`
+WHERE `id_user` = :id_user:
+ORDER BY `dibuat_pada` DESC
+ LIMIT 20', [...], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Controllers\NotificationController.php(51): CodeIgniter\BaseModel->findAll()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\NotificationController->getAll()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\NotificationController))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-24 00:51:44 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'ptmsi_sumbar.notifikasi' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `notifikasi`
+WHERE `id_user` = \'550e8400-e29b-41d4-a716-446655440001\'
+ORDER BY `dibuat_pada` DESC
+ LIMIT 20')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `notifikasi`
+WHERE `id_user` = \'550e8400-e29b-41d4-a716-446655440001\'
+ORDER BY `dibuat_pada` DESC
+ LIMIT 20')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `notifikasi`
+WHERE `id_user` = :id_user:
+ORDER BY `dibuat_pada` DESC
+ LIMIT 20', [...], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Controllers\NotificationController.php(51): CodeIgniter\BaseModel->findAll()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\NotificationController->getAll()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\NotificationController))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-24 00:51:44 --> [Caused by] mysqli_sql_exception: Table 'ptmsi_sumbar.notifikasi' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT *
+FROM `notifikasi`
+WHERE `id_user` = \'550e8400-e29b-41d4-a716-446655440001\'
+ORDER BY `dibuat_pada` DESC
+ LIMIT 20', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `notifikasi`
+WHERE `id_user` = \'550e8400-e29b-41d4-a716-446655440001\'
+ORDER BY `dibuat_pada` DESC
+ LIMIT 20')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `notifikasi`
+WHERE `id_user` = \'550e8400-e29b-41d4-a716-446655440001\'
+ORDER BY `dibuat_pada` DESC
+ LIMIT 20')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `notifikasi`
+WHERE `id_user` = :id_user:
+ORDER BY `dibuat_pada` DESC
+ LIMIT 20', [...], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Controllers\NotificationController.php(51): CodeIgniter\BaseModel->findAll()
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\NotificationController->getAll()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\NotificationController))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+ERROR - 2025-12-24 00:53:29 --> mysqli_sql_exception: Table 'ofisial_assignment' already exists in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('CREATE TABLE `o...', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('CREATE TABLE `o...')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('CREATE TABLE `o...')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\Forge.php(570): CodeIgniter\Database\BaseConnection->query('CREATE TABLE `o...')
+#4 C:\laragon\www\ptmsi-sumbar\app\Database\Migrations\2025-12-24-000001_CreateOfisialAssignmentTable.php(50): CodeIgniter\Database\Forge->createTable('ofisial_assignm...')
+#5 C:\laragon\www\ptmsi-sumbar\system\Database\MigrationRunner.php(876): App\Database\Migrations\CreateOfisialAssignmentTable->up()
+#6 C:\laragon\www\ptmsi-sumbar\system\Database\MigrationRunner.php(182): CodeIgniter\Database\MigrationRunner->migrate('up', Object(stdClass))
+#7 C:\laragon\www\ptmsi-sumbar\system\Commands\Database\Migrate.php(85): CodeIgniter\Database\MigrationRunner->latest(NULL)
+#8 C:\laragon\www\ptmsi-sumbar\system\CLI\Commands.php(74): CodeIgniter\Commands\Database\Migrate->run(Array)
+#9 C:\laragon\www\ptmsi-sumbar\system\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('migrate', Array)
+#10 C:\laragon\www\ptmsi-sumbar\system\Boot.php(388): CodeIgniter\CLI\Console->run()
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(133): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
+#12 C:\laragon\www\ptmsi-sumbar\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
+#13 {main}
+DEBUG - 2025-12-24 00:53:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-24 00:53:40 --> mysqli_sql_exception: Table 'ptmsi_sumbar.notifikasi' doesn't exist in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\ptmsi-sumbar\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\ptmsi-sumbar\app\Controllers\NotificationController.php(61): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\NotificationController->getAll()
+#8 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\NotificationController))
+#9 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#14 {main}
+DEBUG - 2025-12-24 00:53:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-24 00:53:43 --> mysqli_sql_exception: Table 'ptmsi_sumbar.notifikasi' doesn't exist in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\ptmsi-sumbar\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\ptmsi-sumbar\app\Models\NotificationModel.php(74): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\ptmsi-sumbar\app\Controllers\NotificationController.php(26): App\Models\NotificationModel->getUnreadNotifications('550e8400-e29b-4...', 10)
+#8 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\NotificationController->getUnread()
+#9 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\NotificationController))
+#10 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+DEBUG - 2025-12-24 00:53:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-24 00:53:46 --> mysqli_sql_exception: Table 'ptmsi_sumbar.notifikasi' doesn't exist in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\ptmsi-sumbar\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\ptmsi-sumbar\app\Controllers\NotificationController.php(61): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\NotificationController->getAll()
+#8 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\NotificationController))
+#9 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#14 {main}
+DEBUG - 2025-12-24 00:53:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-24 00:53:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-24 00:53:49 --> mysqli_sql_exception: Table 'ptmsi_sumbar.notifikasi' doesn't exist in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\ptmsi-sumbar\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\ptmsi-sumbar\app\Models\NotificationModel.php(74): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\ptmsi-sumbar\app\Controllers\NotificationController.php(26): App\Models\NotificationModel->getUnreadNotifications('550e8400-e29b-4...', 10)
+#8 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\NotificationController->getUnread()
+#9 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\NotificationController))
+#10 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+DEBUG - 2025-12-24 00:53:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-24 00:53:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-24 00:53:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-24 00:53:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-24 00:53:57 --> mysqli_sql_exception: Table 'ptmsi_sumbar.notifikasi' doesn't exist in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\ptmsi-sumbar\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\ptmsi-sumbar\app\Models\NotificationModel.php(74): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\ptmsi-sumbar\app\Controllers\NotificationController.php(26): App\Models\NotificationModel->getUnreadNotifications('550e8400-e29b-4...', 10)
+#8 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\NotificationController->getUnread()
+#9 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\NotificationController))
+#10 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+DEBUG - 2025-12-24 00:54:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-24 00:54:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-24 00:54:04 --> mysqli_sql_exception: Table 'ptmsi_sumbar.notifikasi' doesn't exist in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\ptmsi-sumbar\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\ptmsi-sumbar\app\Models\NotificationModel.php(74): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\ptmsi-sumbar\app\Controllers\NotificationController.php(26): App\Models\NotificationModel->getUnreadNotifications('550e8400-e29b-4...', 10)
+#8 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\NotificationController->getUnread()
+#9 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\NotificationController))
+#10 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+DEBUG - 2025-12-24 00:54:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-24 00:54:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-24 00:54:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-24 00:54:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-12-24 00:54:17 --> Login method called
+DEBUG - 2025-12-24 00:54:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-12-24 00:54:17 --> Showing login view
+DEBUG - 2025-12-24 00:54:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-24 00:54:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-24 00:54:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-12-24 00:54:38 --> Login method called
+DEBUG - 2025-12-24 00:54:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-12-24 00:54:38 --> Showing login view
+DEBUG - 2025-12-24 08:43:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-24 08:43:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-12-24 08:43:22 --> Login method called
+DEBUG - 2025-12-24 08:43:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-12-24 08:43:22 --> Showing login view
+DEBUG - 2025-12-24 08:43:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-24 08:47:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-24 08:51:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-24 08:52:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-24 08:52:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-24 08:55:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-24 08:56:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-24 08:56:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-24 08:56:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-24 08:57:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-24 08:58:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-24 08:58:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-24 08:59:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-24 08:59:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-24 09:00:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-24 09:00:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-12-24 09:00:26 --> Login method called
+DEBUG - 2025-12-24 09:00:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-12-24 09:00:26 --> Showing login view
+DEBUG - 2025-12-24 09:00:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-24 09:00:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-24 09:00:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-12-24 09:00:53 --> Login method called
+DEBUG - 2025-12-24 09:00:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-12-24 09:00:53 --> Showing login view
+DEBUG - 2025-12-24 09:01:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-24 09:01:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-24 09:01:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-24 09:01:07 --> ParseError: syntax error, unexpected token "public", expecting end of file
+[Method: GET, Route: user/klub/dashboard]
+in APPPATH\Controllers\User\KlubDashboard.php on line 920.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(295): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\laragon\\www\\ptmsi-sumbar\\app\\Controllers\\User\\KlubDashboard.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(271): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\User\\KlubDashboard')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\User\\KlubDashboard')
+ 4 SYSTEMPATH\CodeIgniter.php(885): class_exists('\\App\\Controllers\\User\\KlubDashboard', true)
+ 5 SYSTEMPATH\CodeIgniter.php(494): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+10 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+INFO - 2025-12-24 09:01:21 --> Login method called
+DEBUG - 2025-12-24 09:01:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-12-24 09:01:21 --> User already logged in, redirecting
+DEBUG - 2025-12-24 09:01:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-24 09:01:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-24 09:01:26 --> mysqli_sql_exception: Table 'ptmsi_sumbar.notifikasi' doesn't exist in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\ptmsi-sumbar\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\ptmsi-sumbar\app\Models\NotificationModel.php(74): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\ptmsi-sumbar\app\Controllers\NotificationController.php(26): App\Models\NotificationModel->getUnreadNotifications('a3d6b8f7-2d35-4...', 10)
+#8 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\NotificationController->getUnread()
+#9 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\NotificationController))
+#10 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+DEBUG - 2025-12-24 09:01:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-24 09:01:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-24 09:01:29 --> ParseError: syntax error, unexpected token "public", expecting end of file
+[Method: GET, Route: user/klub/dashboard]
+in APPPATH\Controllers\User\KlubDashboard.php on line 920.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(295): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\laragon\\www\\ptmsi-sumbar\\app\\Controllers\\User\\KlubDashboard.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(271): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\User\\KlubDashboard')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\User\\KlubDashboard')
+ 4 SYSTEMPATH\CodeIgniter.php(885): class_exists('\\App\\Controllers\\User\\KlubDashboard', true)
+ 5 SYSTEMPATH\CodeIgniter.php(494): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+10 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+DEBUG - 2025-12-24 09:02:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-24 09:02:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-24 09:02:31 --> mysqli_sql_exception: Table 'ptmsi_sumbar.notifikasi' doesn't exist in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\ptmsi-sumbar\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\ptmsi-sumbar\app\Models\NotificationModel.php(74): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\ptmsi-sumbar\app\Controllers\NotificationController.php(26): App\Models\NotificationModel->getUnreadNotifications('a3d6b8f7-2d35-4...', 10)
+#8 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\NotificationController->getUnread()
+#9 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\NotificationController))
+#10 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+DEBUG - 2025-12-24 09:02:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-24 09:02:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-24 09:02:36 --> mysqli_sql_exception: Table 'ptmsi_sumbar.notifikasi' doesn't exist in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\ptmsi-sumbar\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\ptmsi-sumbar\app\Models\NotificationModel.php(74): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\ptmsi-sumbar\app\Controllers\NotificationController.php(26): App\Models\NotificationModel->getUnreadNotifications('a3d6b8f7-2d35-4...', 10)
+#8 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\NotificationController->getUnread()
+#9 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\NotificationController))
+#10 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+DEBUG - 2025-12-24 09:02:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-24 09:02:51 --> mysqli_sql_exception: Table 'ptmsi_sumbar.notifikasi' doesn't exist in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\ptmsi-sumbar\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\ptmsi-sumbar\app\Controllers\NotificationController.php(61): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\NotificationController->getAll()
+#8 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\NotificationController))
+#9 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#14 {main}
+DEBUG - 2025-12-24 09:02:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-24 09:02:54 --> mysqli_sql_exception: Table 'ptmsi_sumbar.notifikasi' doesn't exist in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\ptmsi-sumbar\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\ptmsi-sumbar\app\Models\NotificationModel.php(74): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\ptmsi-sumbar\app\Controllers\NotificationController.php(26): App\Models\NotificationModel->getUnreadNotifications('a3d6b8f7-2d35-4...', 10)
+#8 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\NotificationController->getUnread()
+#9 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\NotificationController))
+#10 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+DEBUG - 2025-12-24 09:03:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-24 09:03:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-24 09:03:46 --> mysqli_sql_exception: Table 'ptmsi_sumbar.notifikasi' doesn't exist in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\ptmsi-sumbar\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\ptmsi-sumbar\app\Models\NotificationModel.php(74): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\ptmsi-sumbar\app\Controllers\NotificationController.php(26): App\Models\NotificationModel->getUnreadNotifications('a3d6b8f7-2d35-4...', 10)
+#8 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\NotificationController->getUnread()
+#9 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\NotificationController))
+#10 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+DEBUG - 2025-12-24 09:04:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-24 09:04:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-24 09:04:21 --> mysqli_sql_exception: Table 'ptmsi_sumbar.notifikasi' doesn't exist in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\ptmsi-sumbar\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\ptmsi-sumbar\app\Models\NotificationModel.php(74): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\ptmsi-sumbar\app\Controllers\NotificationController.php(26): App\Models\NotificationModel->getUnreadNotifications('a3d6b8f7-2d35-4...', 10)
+#8 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\NotificationController->getUnread()
+#9 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\NotificationController))
+#10 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+DEBUG - 2025-12-24 09:04:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-24 09:04:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-24 09:04:37 --> mysqli_sql_exception: Table 'ptmsi_sumbar.notifikasi' doesn't exist in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\ptmsi-sumbar\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\ptmsi-sumbar\app\Models\NotificationModel.php(74): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\ptmsi-sumbar\app\Controllers\NotificationController.php(26): App\Models\NotificationModel->getUnreadNotifications('a3d6b8f7-2d35-4...', 10)
+#8 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\NotificationController->getUnread()
+#9 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\NotificationController))
+#10 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+DEBUG - 2025-12-24 09:06:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-24 09:06:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-24 09:06:32 --> mysqli_sql_exception: Table 'ptmsi_sumbar.notifikasi' doesn't exist in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\ptmsi-sumbar\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\ptmsi-sumbar\app\Models\NotificationModel.php(74): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\ptmsi-sumbar\app\Controllers\NotificationController.php(26): App\Models\NotificationModel->getUnreadNotifications('a3d6b8f7-2d35-4...', 10)
+#8 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\NotificationController->getUnread()
+#9 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\NotificationController))
+#10 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+DEBUG - 2025-12-24 09:07:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-24 09:07:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-24 09:07:41 --> mysqli_sql_exception: Table 'ptmsi_sumbar.notifikasi' doesn't exist in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\ptmsi-sumbar\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\ptmsi-sumbar\app\Models\NotificationModel.php(74): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\ptmsi-sumbar\app\Controllers\NotificationController.php(26): App\Models\NotificationModel->getUnreadNotifications('a3d6b8f7-2d35-4...', 10)
+#8 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\NotificationController->getUnread()
+#9 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\NotificationController))
+#10 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+INFO - 2025-12-24 09:07:58 --> Login method called
+DEBUG - 2025-12-24 09:07:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-12-24 09:07:58 --> User already logged in, redirecting
+DEBUG - 2025-12-24 09:08:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-24 09:08:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-24 09:08:03 --> mysqli_sql_exception: Table 'ptmsi_sumbar.notifikasi' doesn't exist in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\ptmsi-sumbar\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\ptmsi-sumbar\app\Models\NotificationModel.php(74): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\ptmsi-sumbar\app\Controllers\NotificationController.php(26): App\Models\NotificationModel->getUnreadNotifications('a3d6b8f7-2d35-4...', 10)
+#8 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\NotificationController->getUnread()
+#9 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\NotificationController))
+#10 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+DEBUG - 2025-12-24 10:23:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-24 10:23:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-24 10:23:38 --> mysqli_sql_exception: Table 'ptmsi_sumbar.notifikasi' doesn't exist in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\ptmsi-sumbar\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\ptmsi-sumbar\app\Models\NotificationModel.php(74): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\ptmsi-sumbar\app\Controllers\NotificationController.php(26): App\Models\NotificationModel->getUnreadNotifications('a3d6b8f7-2d35-4...', 10)
+#8 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\NotificationController->getUnread()
+#9 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\NotificationController))
+#10 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+DEBUG - 2025-12-24 10:57:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-24 10:57:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-24 10:57:41 --> mysqli_sql_exception: Table 'ptmsi_sumbar.notifikasi' doesn't exist in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\ptmsi-sumbar\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\ptmsi-sumbar\app\Models\NotificationModel.php(74): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\ptmsi-sumbar\app\Controllers\NotificationController.php(26): App\Models\NotificationModel->getUnreadNotifications('a3d6b8f7-2d35-4...', 10)
+#8 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\NotificationController->getUnread()
+#9 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\NotificationController))
+#10 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+DEBUG - 2025-12-24 11:31:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-24 11:33:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-24 11:33:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-24 11:33:32 --> ParseError: syntax error, unexpected token "public", expecting end of file
+[Method: GET, Route: user/klub/dashboard]
+in APPPATH\Controllers\User\KlubDashboard.php on line 920.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(295): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\laragon\\www\\ptmsi-sumbar\\app\\Controllers\\User\\KlubDashboard.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(271): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\User\\KlubDashboard')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\User\\KlubDashboard')
+ 4 SYSTEMPATH\CodeIgniter.php(885): class_exists('\\App\\Controllers\\User\\KlubDashboard', true)
+ 5 SYSTEMPATH\CodeIgniter.php(494): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+10 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+DEBUG - 2025-12-24 11:35:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-24 11:35:18 --> mysqli_sql_exception: Unknown column 'ranking.peringkat' in 'field list' in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `atlet`....', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `atlet`....')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `atlet`....')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `atlet`....', Array, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\ptmsi-sumbar\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\ptmsi-sumbar\app\Controllers\User\KlubDashboard.php(580): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\ptmsi-sumbar\app\Controllers\User\KlubDashboard.php(56): App\Controllers\User\KlubDashboard->getStatistikKlub('5')
+#8 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\User\KlubDashboard->index()
+#9 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\User\KlubDashboard))
+#10 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+CRITICAL - 2025-12-24 11:35:18 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'ranking.peringkat' in 'field list'
+[Method: GET, Route: user/klub/dashboard]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `atlet`.*, `ranking`.`poin`, `ranking`.`peringkat`
+FROM `atlet`
+LEFT JOIN `ranking` ON `ranking`.`id_atlet` = `atlet`.`id_atlet`
+WHERE `atlet`.`id_klub` = :atlet.id_klub:
+AND `atlet`.`status` = :atlet.status:
+ORDER BY `ranking`.`poin` DESC
+ LIMIT 5', [...], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Controllers\User\KlubDashboard.php(580): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\User\KlubDashboard.php(56): App\Controllers\User\KlubDashboard->getStatistikKlub('5')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\User\KlubDashboard->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\User\KlubDashboard))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-24 11:35:18 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'ranking.peringkat' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `atlet`.*, `ranking`.`poin`, `ranking`.`peringkat`
+FROM `atlet`
+LEFT JOIN `ranking` ON `ranking`.`id_atlet` = `atlet`.`id_atlet`
+WHERE `atlet`.`id_klub` = \'5\'
+AND `atlet`.`status` = \'aktif\'
+ORDER BY `ranking`.`poin` DESC
+ LIMIT 5')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `atlet`.*, `ranking`.`poin`, `ranking`.`peringkat`
+FROM `atlet`
+LEFT JOIN `ranking` ON `ranking`.`id_atlet` = `atlet`.`id_atlet`
+WHERE `atlet`.`id_klub` = \'5\'
+AND `atlet`.`status` = \'aktif\'
+ORDER BY `ranking`.`poin` DESC
+ LIMIT 5')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `atlet`.*, `ranking`.`poin`, `ranking`.`peringkat`
+FROM `atlet`
+LEFT JOIN `ranking` ON `ranking`.`id_atlet` = `atlet`.`id_atlet`
+WHERE `atlet`.`id_klub` = :atlet.id_klub:
+AND `atlet`.`status` = :atlet.status:
+ORDER BY `ranking`.`poin` DESC
+ LIMIT 5', [...], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Controllers\User\KlubDashboard.php(580): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH\Controllers\User\KlubDashboard.php(56): App\Controllers\User\KlubDashboard->getStatistikKlub('5')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\User\KlubDashboard->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\User\KlubDashboard))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-24 11:35:18 --> [Caused by] mysqli_sql_exception: Unknown column 'ranking.peringkat' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `atlet`.*, `ranking`.`poin`, `ranking`.`peringkat`
+FROM `atlet`
+LEFT JOIN `ranking` ON `ranking`.`id_atlet` = `atlet`.`id_atlet`
+WHERE `atlet`.`id_klub` = \'5\'
+AND `atlet`.`status` = \'aktif\'
+ORDER BY `ranking`.`poin` DESC
+ LIMIT 5', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `atlet`.*, `ranking`.`poin`, `ranking`.`peringkat`
+FROM `atlet`
+LEFT JOIN `ranking` ON `ranking`.`id_atlet` = `atlet`.`id_atlet`
+WHERE `atlet`.`id_klub` = \'5\'
+AND `atlet`.`status` = \'aktif\'
+ORDER BY `ranking`.`poin` DESC
+ LIMIT 5')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `atlet`.*, `ranking`.`poin`, `ranking`.`peringkat`
+FROM `atlet`
+LEFT JOIN `ranking` ON `ranking`.`id_atlet` = `atlet`.`id_atlet`
+WHERE `atlet`.`id_klub` = \'5\'
+AND `atlet`.`status` = \'aktif\'
+ORDER BY `ranking`.`poin` DESC
+ LIMIT 5')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `atlet`.*, `ranking`.`poin`, `ranking`.`peringkat`
+FROM `atlet`
+LEFT JOIN `ranking` ON `ranking`.`id_atlet` = `atlet`.`id_atlet`
+WHERE `atlet`.`id_klub` = :atlet.id_klub:
+AND `atlet`.`status` = :atlet.status:
+ORDER BY `ranking`.`poin` DESC
+ LIMIT 5', [...], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Controllers\User\KlubDashboard.php(580): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\User\KlubDashboard.php(56): App\Controllers\User\KlubDashboard->getStatistikKlub('5')
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\User\KlubDashboard->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\User\KlubDashboard))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+DEBUG - 2025-12-24 11:35:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-24 11:35:23 --> mysqli_sql_exception: Unknown column 'ranking.peringkat' in 'field list' in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `atlet`....', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `atlet`....')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `atlet`....')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `atlet`....', Array, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\ptmsi-sumbar\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\ptmsi-sumbar\app\Controllers\User\KlubDashboard.php(580): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\ptmsi-sumbar\app\Controllers\User\KlubDashboard.php(56): App\Controllers\User\KlubDashboard->getStatistikKlub('5')
+#8 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\User\KlubDashboard->index()
+#9 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\User\KlubDashboard))
+#10 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+CRITICAL - 2025-12-24 11:35:23 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'ranking.peringkat' in 'field list'
+[Method: GET, Route: user/klub/dashboard]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `atlet`.*, `ranking`.`poin`, `ranking`.`peringkat`
+FROM `atlet`
+LEFT JOIN `ranking` ON `ranking`.`id_atlet` = `atlet`.`id_atlet`
+WHERE `atlet`.`id_klub` = :atlet.id_klub:
+AND `atlet`.`status` = :atlet.status:
+ORDER BY `ranking`.`poin` DESC
+ LIMIT 5', [...], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Controllers\User\KlubDashboard.php(580): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\User\KlubDashboard.php(56): App\Controllers\User\KlubDashboard->getStatistikKlub('5')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\User\KlubDashboard->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\User\KlubDashboard))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-24 11:35:23 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'ranking.peringkat' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `atlet`.*, `ranking`.`poin`, `ranking`.`peringkat`
+FROM `atlet`
+LEFT JOIN `ranking` ON `ranking`.`id_atlet` = `atlet`.`id_atlet`
+WHERE `atlet`.`id_klub` = \'5\'
+AND `atlet`.`status` = \'aktif\'
+ORDER BY `ranking`.`poin` DESC
+ LIMIT 5')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `atlet`.*, `ranking`.`poin`, `ranking`.`peringkat`
+FROM `atlet`
+LEFT JOIN `ranking` ON `ranking`.`id_atlet` = `atlet`.`id_atlet`
+WHERE `atlet`.`id_klub` = \'5\'
+AND `atlet`.`status` = \'aktif\'
+ORDER BY `ranking`.`poin` DESC
+ LIMIT 5')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `atlet`.*, `ranking`.`poin`, `ranking`.`peringkat`
+FROM `atlet`
+LEFT JOIN `ranking` ON `ranking`.`id_atlet` = `atlet`.`id_atlet`
+WHERE `atlet`.`id_klub` = :atlet.id_klub:
+AND `atlet`.`status` = :atlet.status:
+ORDER BY `ranking`.`poin` DESC
+ LIMIT 5', [...], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Controllers\User\KlubDashboard.php(580): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH\Controllers\User\KlubDashboard.php(56): App\Controllers\User\KlubDashboard->getStatistikKlub('5')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\User\KlubDashboard->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\User\KlubDashboard))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-24 11:35:23 --> [Caused by] mysqli_sql_exception: Unknown column 'ranking.peringkat' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `atlet`.*, `ranking`.`poin`, `ranking`.`peringkat`
+FROM `atlet`
+LEFT JOIN `ranking` ON `ranking`.`id_atlet` = `atlet`.`id_atlet`
+WHERE `atlet`.`id_klub` = \'5\'
+AND `atlet`.`status` = \'aktif\'
+ORDER BY `ranking`.`poin` DESC
+ LIMIT 5', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `atlet`.*, `ranking`.`poin`, `ranking`.`peringkat`
+FROM `atlet`
+LEFT JOIN `ranking` ON `ranking`.`id_atlet` = `atlet`.`id_atlet`
+WHERE `atlet`.`id_klub` = \'5\'
+AND `atlet`.`status` = \'aktif\'
+ORDER BY `ranking`.`poin` DESC
+ LIMIT 5')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `atlet`.*, `ranking`.`poin`, `ranking`.`peringkat`
+FROM `atlet`
+LEFT JOIN `ranking` ON `ranking`.`id_atlet` = `atlet`.`id_atlet`
+WHERE `atlet`.`id_klub` = \'5\'
+AND `atlet`.`status` = \'aktif\'
+ORDER BY `ranking`.`poin` DESC
+ LIMIT 5')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `atlet`.*, `ranking`.`poin`, `ranking`.`peringkat`
+FROM `atlet`
+LEFT JOIN `ranking` ON `ranking`.`id_atlet` = `atlet`.`id_atlet`
+WHERE `atlet`.`id_klub` = :atlet.id_klub:
+AND `atlet`.`status` = :atlet.status:
+ORDER BY `ranking`.`poin` DESC
+ LIMIT 5', [...], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Controllers\User\KlubDashboard.php(580): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\User\KlubDashboard.php(56): App\Controllers\User\KlubDashboard->getStatistikKlub('5')
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\User\KlubDashboard->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\User\KlubDashboard))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+DEBUG - 2025-12-24 11:35:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-24 11:35:33 --> mysqli_sql_exception: Unknown column 'ranking.peringkat' in 'field list' in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `atlet`....', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `atlet`....')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `atlet`....')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `atlet`....', Array, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\ptmsi-sumbar\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\ptmsi-sumbar\app\Controllers\User\KlubDashboard.php(580): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\ptmsi-sumbar\app\Controllers\User\KlubDashboard.php(56): App\Controllers\User\KlubDashboard->getStatistikKlub('5')
+#8 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\User\KlubDashboard->index()
+#9 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\User\KlubDashboard))
+#10 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+CRITICAL - 2025-12-24 11:35:33 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'ranking.peringkat' in 'field list'
+[Method: GET, Route: user/klub/dashboard]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `atlet`.*, `ranking`.`poin`, `ranking`.`peringkat`
+FROM `atlet`
+LEFT JOIN `ranking` ON `ranking`.`id_atlet` = `atlet`.`id_atlet`
+WHERE `atlet`.`id_klub` = :atlet.id_klub:
+AND `atlet`.`status` = :atlet.status:
+ORDER BY `ranking`.`poin` DESC
+ LIMIT 5', [...], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Controllers\User\KlubDashboard.php(580): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\User\KlubDashboard.php(56): App\Controllers\User\KlubDashboard->getStatistikKlub('5')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\User\KlubDashboard->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\User\KlubDashboard))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-24 11:35:33 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'ranking.peringkat' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `atlet`.*, `ranking`.`poin`, `ranking`.`peringkat`
+FROM `atlet`
+LEFT JOIN `ranking` ON `ranking`.`id_atlet` = `atlet`.`id_atlet`
+WHERE `atlet`.`id_klub` = \'5\'
+AND `atlet`.`status` = \'aktif\'
+ORDER BY `ranking`.`poin` DESC
+ LIMIT 5')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `atlet`.*, `ranking`.`poin`, `ranking`.`peringkat`
+FROM `atlet`
+LEFT JOIN `ranking` ON `ranking`.`id_atlet` = `atlet`.`id_atlet`
+WHERE `atlet`.`id_klub` = \'5\'
+AND `atlet`.`status` = \'aktif\'
+ORDER BY `ranking`.`poin` DESC
+ LIMIT 5')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `atlet`.*, `ranking`.`poin`, `ranking`.`peringkat`
+FROM `atlet`
+LEFT JOIN `ranking` ON `ranking`.`id_atlet` = `atlet`.`id_atlet`
+WHERE `atlet`.`id_klub` = :atlet.id_klub:
+AND `atlet`.`status` = :atlet.status:
+ORDER BY `ranking`.`poin` DESC
+ LIMIT 5', [...], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Controllers\User\KlubDashboard.php(580): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH\Controllers\User\KlubDashboard.php(56): App\Controllers\User\KlubDashboard->getStatistikKlub('5')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\User\KlubDashboard->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\User\KlubDashboard))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-24 11:35:33 --> [Caused by] mysqli_sql_exception: Unknown column 'ranking.peringkat' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `atlet`.*, `ranking`.`poin`, `ranking`.`peringkat`
+FROM `atlet`
+LEFT JOIN `ranking` ON `ranking`.`id_atlet` = `atlet`.`id_atlet`
+WHERE `atlet`.`id_klub` = \'5\'
+AND `atlet`.`status` = \'aktif\'
+ORDER BY `ranking`.`poin` DESC
+ LIMIT 5', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `atlet`.*, `ranking`.`poin`, `ranking`.`peringkat`
+FROM `atlet`
+LEFT JOIN `ranking` ON `ranking`.`id_atlet` = `atlet`.`id_atlet`
+WHERE `atlet`.`id_klub` = \'5\'
+AND `atlet`.`status` = \'aktif\'
+ORDER BY `ranking`.`poin` DESC
+ LIMIT 5')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `atlet`.*, `ranking`.`poin`, `ranking`.`peringkat`
+FROM `atlet`
+LEFT JOIN `ranking` ON `ranking`.`id_atlet` = `atlet`.`id_atlet`
+WHERE `atlet`.`id_klub` = \'5\'
+AND `atlet`.`status` = \'aktif\'
+ORDER BY `ranking`.`poin` DESC
+ LIMIT 5')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `atlet`.*, `ranking`.`poin`, `ranking`.`peringkat`
+FROM `atlet`
+LEFT JOIN `ranking` ON `ranking`.`id_atlet` = `atlet`.`id_atlet`
+WHERE `atlet`.`id_klub` = :atlet.id_klub:
+AND `atlet`.`status` = :atlet.status:
+ORDER BY `ranking`.`poin` DESC
+ LIMIT 5', [...], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Controllers\User\KlubDashboard.php(580): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\User\KlubDashboard.php(56): App\Controllers\User\KlubDashboard->getStatistikKlub('5')
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\User\KlubDashboard->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\User\KlubDashboard))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+DEBUG - 2025-12-24 11:36:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-24 11:36:41 --> mysqli_sql_exception: Unknown column 'id_klub' in 'where clause' in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n             ...', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('\r\n             ...')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n             ...')
+#3 C:\laragon\www\ptmsi-sumbar\app\Controllers\User\KlubDashboard.php(589): CodeIgniter\Database\BaseConnection->query('\r\n             ...', Array)
+#4 C:\laragon\www\ptmsi-sumbar\app\Controllers\User\KlubDashboard.php(56): App\Controllers\User\KlubDashboard->getStatistikKlub('5')
+#5 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\User\KlubDashboard->index()
+#6 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\User\KlubDashboard))
+#7 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#9 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#12 {main}
+DEBUG - 2025-12-24 11:36:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-24 11:36:48 --> mysqli_sql_exception: Unknown column 'id_klub' in 'where clause' in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\ptmsi-sumbar\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\ptmsi-sumbar\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\ptmsi-sumbar\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\ptmsi-sumbar\app\Controllers\User\KlubDashboard.php(931): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\User\KlubDashboard->laporanKegiatan()
+#8 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\User\KlubDashboard))
+#9 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#11 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#14 {main}
+CRITICAL - 2025-12-24 11:36:48 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'id_klub' in 'where clause'
+[Method: GET, Route: user/klub/laporan-kegiatan]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `laporan_kegiatan`
+WHERE `id_klub` = :id_klub:
+ORDER BY `tanggal_laporan` DESC', [...], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Controllers\User\KlubDashboard.php(931): CodeIgniter\BaseModel->findAll()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\User\KlubDashboard->laporanKegiatan()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\User\KlubDashboard))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-24 11:36:48 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'id_klub' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `laporan_kegiatan`
+WHERE `id_klub` = \'5\'
+ORDER BY `tanggal_laporan` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `laporan_kegiatan`
+WHERE `id_klub` = \'5\'
+ORDER BY `tanggal_laporan` DESC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `laporan_kegiatan`
+WHERE `id_klub` = :id_klub:
+ORDER BY `tanggal_laporan` DESC', [...], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Controllers\User\KlubDashboard.php(931): CodeIgniter\BaseModel->findAll()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\User\KlubDashboard->laporanKegiatan()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\User\KlubDashboard))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+CRITICAL - 2025-12-24 11:36:48 --> [Caused by] mysqli_sql_exception: Unknown column 'id_klub' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT *
+FROM `laporan_kegiatan`
+WHERE `id_klub` = \'5\'
+ORDER BY `tanggal_laporan` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `laporan_kegiatan`
+WHERE `id_klub` = \'5\'
+ORDER BY `tanggal_laporan` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `laporan_kegiatan`
+WHERE `id_klub` = \'5\'
+ORDER BY `tanggal_laporan` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `laporan_kegiatan`
+WHERE `id_klub` = :id_klub:
+ORDER BY `tanggal_laporan` DESC', [...], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Controllers\User\KlubDashboard.php(931): CodeIgniter\BaseModel->findAll()
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\User\KlubDashboard->laporanKegiatan()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\User\KlubDashboard))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\ptmsi-sumbar\\public\\index.php')
+DEBUG - 2025-12-24 11:36:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-24 11:36:53 --> mysqli_sql_exception: Unknown column 'id_klub' in 'where clause' in C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\ptmsi-sumbar\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n             ...', 0)
+#1 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('\r\n             ...')
+#2 C:\laragon\www\ptmsi-sumbar\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n             ...')
+#3 C:\laragon\www\ptmsi-sumbar\app\Controllers\User\KlubDashboard.php(589): CodeIgniter\Database\BaseConnection->query('\r\n             ...', Array)
+#4 C:\laragon\www\ptmsi-sumbar\app\Controllers\User\KlubDashboard.php(56): App\Controllers\User\KlubDashboard->getStatistikKlub('5')
+#5 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(933): App\Controllers\User\KlubDashboard->index()
+#6 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\User\KlubDashboard))
+#7 C:\laragon\www\ptmsi-sumbar\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\laragon\www\ptmsi-sumbar\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#9 C:\laragon\www\ptmsi-sumbar\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\laragon\www\ptmsi-sumbar\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 C:\laragon\www\ptmsi-sumbar\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#12 {main}
+DEBUG - 2025-12-24 11:37:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-24 11:37:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-24 11:37:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-24 11:37:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-24 11:38:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-24 11:38:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-24 11:38:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-24 11:40:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-24 11:41:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-24 11:41:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-24 11:41:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-24 11:41:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

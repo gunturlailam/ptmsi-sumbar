@@ -200,11 +200,30 @@
                                 </span>
                             <?php endif; ?>
                         </a>
+                        <a href="<?= base_url('admin/generate-matches') ?>" class="btn btn-outline-danger btn-lg">
+                            <i class='bx bx-dice me-2'></i>Generate Pertandingan
+                        </a>
+                        <a href="<?= base_url('admin/hasil-pertandingan') ?>" class="btn btn-outline-warning btn-lg">
+                            <i class='bx bx-trophy me-2'></i>Input Hasil
+                        </a>
                         <a href="<?= base_url('admin/event') ?>" class="btn btn-outline-info btn-lg">
                             <i class='bx bx-trophy me-2'></i>Kelola Event
                         </a>
                         <a href="<?= base_url('admin/berita') ?>" class="btn btn-outline-warning btn-lg">
                             <i class='bx bx-news me-2'></i>Tulis Berita
+                        </a>
+                        <hr>
+                        <a href="<?= base_url('admin/analytics') ?>" class="btn btn-outline-secondary btn-lg">
+                            <i class='bx bx-bar-chart me-2'></i>Analytics Dashboard
+                        </a>
+                        <a href="<?= base_url('admin/analytics/audit-log') ?>" class="btn btn-outline-secondary btn-lg">
+                            <i class='bx bx-history me-2'></i>Audit Log
+                        </a>
+                        <a href="<?= base_url('admin/analytics/approval-workflow') ?>" class="btn btn-outline-secondary btn-lg">
+                            <i class='bx bx-check-double me-2'></i>Approval Workflow
+                        </a>
+                        <a href="<?= base_url('admin/analytics/backup') ?>" class="btn btn-outline-secondary btn-lg">
+                            <i class='bx bx-save me-2'></i>Backup & Export
                         </a>
                     </div>
                 </div>

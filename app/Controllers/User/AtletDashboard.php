@@ -33,6 +33,11 @@ class AtletDashboard extends BaseController
         // Cari data atlet
         $atlet = $this->atletModel->where('id_user', $userId)->first();
 
+        if (!$atlet) {
+            return redirect()->to('user/atlet/lengkapi-profil')
+                ->with('warning', 'Data atlet tidak ditemukan. Silakan lengkapi profil Anda.');
+        }
+
         // Cek kelengkapan profil
         $profilLengkap = $this->cekKelengkapanProfil($atlet);
 
@@ -75,6 +80,51 @@ class AtletDashboard extends BaseController
         return view('user/atlet/profil', $data);
     }
 
+    public function updateProfil()
+    {
+        if (!session()->get('logged_in') || session()->get('role') !== 'atlet') {
+            return redirect()->to('auth/login');
+        }
+
+        $userId = session()->get('user_id');
+        $atlet = $this->atletModel->where('id_user', $userId)->first();
+
+        if (!$atlet) {
+            return redirect()->back()->with('error', 'Data atlet tidak ditemukan.');
+        }
+
+        // Validasi input
+        $rules = [
+            'nama_lengkap' => 'required|min_length[3]|max_length[100]',
+            'tanggal_lahir' => 'required|valid_date[Y-m-d]',
+            'jenis_kelamin' => 'required|in_list[L,P]',
+            'no_hp' => 'required|min_length[10]|max_length[15]',
+            'alamat' => 'required|min_length[5]',
+            'kategori_usia' => 'permit_empty|in_list[U-12,U-15,U-18,Senior]'
+        ];
+
+        if (!$this->validate($rules)) {
+            return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+        }
+
+        // Update atlet data
+        $this->atletModel->update($atlet['id_atlet'], [
+            'nama_lengkap' => $this->request->getPost('nama_lengkap'),
+            'tanggal_lahir' => $this->request->getPost('tanggal_lahir'),
+            'jenis_kelamin' => $this->request->getPost('jenis_kelamin'),
+            'no_hp' => $this->request->getPost('no_hp'),
+            'alamat' => $this->request->getPost('alamat'),
+            'kategori_usia' => $this->request->getPost('kategori_usia')
+        ]);
+
+        // Update user nama_lengkap only (email tidak bisa diubah)
+        $this->userModel->update($userId, [
+            'nama_lengkap' => $this->request->getPost('nama_lengkap')
+        ]);
+
+        return redirect()->to('user/atlet/profil')->with('success', 'Profil berhasil diperbarui.');
+    }
+
     public function kartuAtlet()
     {
         if (!session()->get('logged_in') || session()->get('role') !== 'atlet') {
@@ -88,9 +138,9 @@ class AtletDashboard extends BaseController
             ->where('atlet.id_user', $userId)
             ->first();
 
-        if (!$atlet || $atlet['status'] !== 'aktif') {
+        if (!$atlet) {
             return redirect()->to('user/atlet/dashboard')
-                ->with('error', 'Kartu atlet hanya tersedia untuk atlet yang sudah diverifikasi.');
+                ->with('error', 'Data atlet tidak ditemukan.');
         }
 
         $data = [
@@ -110,9 +160,9 @@ class AtletDashboard extends BaseController
         $userId = session()->get('user_id');
         $atlet = $this->atletModel->where('id_user', $userId)->first();
 
-        if (!$atlet || $atlet['status'] !== 'aktif') {
+        if (!$atlet) {
             return redirect()->to('user/atlet/dashboard')
-                ->with('error', 'Anda harus diverifikasi terlebih dahulu sebelum dapat mendaftar turnamen.');
+                ->with('error', 'Data atlet tidak ditemukan.');
         }
 
         // Ambil turnamen yang tersedia
@@ -148,14 +198,9 @@ class AtletDashboard extends BaseController
         $userId = session()->get('user_id');
         $atlet = $this->atletModel->where('id_user', $userId)->first();
 
-        // Ambil riwayat pertandingan dari bracket turnamen
-        $bracketModel = new \App\Models\BracketTurnamenModel();
-        $riwayat = $bracketModel->select('bracket_turnamen.*, event.nama_event, event.tanggal_mulai')
-            ->join('event', 'event.id_event = bracket_turnamen.id_event', 'left')
-            ->where('bracket_turnamen.id_atlet_1', $atlet['id_atlet'])
-            ->orWhere('bracket_turnamen.id_atlet_2', $atlet['id_atlet'])
-            ->orderBy('event.tanggal_mulai', 'DESC')
-            ->findAll();
+        // Return empty riwayat for now
+        // Match history will be populated when match tracking system is implemented
+        $riwayat = [];
 
         $data = [
             'title' => 'Riwayat Pertandingan',
@@ -178,8 +223,7 @@ class AtletDashboard extends BaseController
         // Ambil data ranking dari tabel ranking
         $rankingModel = new \App\Models\RankingModel();
         $ranking = $rankingModel->where('id_atlet', $atlet['id_atlet'])
-            ->orderBy('tahun', 'DESC')
-            ->orderBy('bulan', 'DESC')
+            ->orderBy('tanggal_berlaku', 'DESC')
             ->findAll();
 
         $data = [
@@ -235,32 +279,53 @@ class AtletDashboard extends BaseController
 
     private function getStatistikAtlet($idAtlet)
     {
-        // Hitung statistik atlet
-        $totalTurnamen = $this->pendaftaranEventModel->where('id_atlet', $idAtlet)
-            ->where('status', 'diterima')
-            ->countAllResults();
+        $db = \Config\Database::connect();
 
-        $bracketModel = new \App\Models\BracketTurnamenModel();
-        $totalPertandingan = $bracketModel->groupStart()
-            ->where('id_atlet_1', $idAtlet)
-            ->orWhere('id_atlet_2', $idAtlet)
-            ->groupEnd()
-            ->countAllResults();
+        // Get ranking data
+        $rankingModel = new \App\Models\RankingModel();
+        $ranking = $rankingModel->where('id_atlet', $idAtlet)
+            ->orderBy('tanggal_berlaku', 'DESC')
+            ->first();
 
-        $menang = $bracketModel->groupStart()
-            ->where('id_atlet_1', $idAtlet)
-            ->where('pemenang', 1)
-            ->orWhere('id_atlet_2', $idAtlet)
-            ->where('pemenang', 2)
-            ->groupEnd()
-            ->countAllResults();
+        // Get tournament participation
+        $pendaftaranModel = new \App\Models\PendaftaranEventModel();
+        $totalTurnamen = $pendaftaranModel->where('id_atlet', $idAtlet)->countAllResults();
+
+        // Get match statistics (if bracket table exists)
+        $totalPertandingan = 0;
+        $menang = 0;
+        $kalah = 0;
+        $winRate = 0;
+
+        try {
+            $bracketResult = $db->query("
+                SELECT 
+                    COUNT(*) as total,
+                    SUM(CASE WHEN pemenang = 1 THEN 1 ELSE 0 END) as menang,
+                    SUM(CASE WHEN pemenang = 2 THEN 1 ELSE 0 END) as kalah
+                FROM bracket_turnamen
+                WHERE (id_atlet_1 = ? OR id_atlet_2 = ?)
+                AND pemenang IS NOT NULL
+            ", [$idAtlet, $idAtlet])->getRow();
+
+            if ($bracketResult) {
+                $totalPertandingan = $bracketResult->total ?? 0;
+                $menang = $bracketResult->menang ?? 0;
+                $kalah = $bracketResult->kalah ?? 0;
+                $winRate = $totalPertandingan > 0 ? round(($menang / $totalPertandingan) * 100, 2) : 0;
+            }
+        } catch (\Exception $e) {
+            // Table might not exist, use default values
+        }
 
         return [
+            'ranking' => $ranking['posisi'] ?? '-',
+            'poin' => $ranking['poin'] ?? 0,
             'total_turnamen' => $totalTurnamen,
             'total_pertandingan' => $totalPertandingan,
             'menang' => $menang,
-            'kalah' => $totalPertandingan - $menang,
-            'win_rate' => $totalPertandingan > 0 ? round(($menang / $totalPertandingan) * 100, 1) : 0
+            'kalah' => $kalah,
+            'win_rate' => $winRate
         ];
     }
 }

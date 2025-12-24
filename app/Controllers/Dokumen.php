@@ -24,11 +24,10 @@ class Dokumen extends BaseController
         $data = [
             'title' => 'Dokumen & Regulasi - PTMSI Sumbar',
             'dokumen' => $this->dokumenModel->getAllDokumen(),
-            'adArt' => $this->dokumenModel->getDokumenByKategori('AD/ART'),
-            'peraturan' => $this->dokumenModel->getDokumenByKategori('Peraturan Pertandingan'),
-            'panduan' => $this->dokumenModel->getDokumenByKategori('Panduan Klub'),
-            'sop' => $this->dokumenModel->getDokumenByKategori('SOP Kejuaraan'),
+            'peraturan' => $this->dokumenModel->getDokumenByKategori('Peraturan'),
             'formulir' => $this->dokumenModel->getDokumenByKategori('Formulir'),
+            'panduan' => $this->dokumenModel->getDokumenByKategori('Panduan'),
+            'laporan' => $this->dokumenModel->getDokumenByKategori('Laporan'),
             'popular' => $this->unduhanModel->getPopularDokumen(5)
         ];
 

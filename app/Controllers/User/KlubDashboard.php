@@ -139,9 +139,10 @@ class KlubDashboard extends BaseController
                 ->with('error', 'Klub harus aktif untuk mengelola pelatih.');
         }
 
-        // Ambil daftar pelatih (pelatih table doesn't have status column)
-        $pelatihAktif = $this->pelatihModel->select('pelatih.*, user.nama_lengkap, user.email')
+        // Ambil daftar pelatih dengan jenis dari pendaftaran
+        $pelatihAktif = $this->pelatihModel->select('pelatih.*, user.nama_lengkap, user.email, COALESCE(pp.jenis_pelatih, "Pelatih") as jenis_pelatih')
             ->join('user', 'user.id_user = pelatih.id_user', 'left')
+            ->join('pendaftaran_pelatih pp', 'pp.id_pelatih = pelatih.id_pelatih', 'left')
             ->where('pelatih.id_klub', $klub['id_klub'])
             ->findAll();
 
@@ -425,8 +426,9 @@ class KlubDashboard extends BaseController
         $userId = session()->get('user_id');
         $klub = $this->klubModel->where('id_user', $userId)->first();
 
-        $pelatih = $this->pelatihModel->select('pelatih.*, user.nama_lengkap, user.email, user.nohp')
+        $pelatih = $this->pelatihModel->select('pelatih.*, user.nama_lengkap, user.email, COALESCE(pp.jenis_pelatih, "Pelatih") as jenis_pelatih')
             ->join('user', 'user.id_user = pelatih.id_user', 'left')
+            ->join('pendaftaran_pelatih pp', 'pp.id_pelatih = pelatih.id_pelatih', 'left')
             ->where('pelatih.id_pelatih', $pelatihId)
             ->where('pelatih.id_klub', $klub['id_klub'])
             ->first();
@@ -440,11 +442,11 @@ class KlubDashboard extends BaseController
             'id_pelatih' => $pelatih['id_pelatih'],
             'nama_lengkap' => $pelatih['nama_lengkap'],
             'email' => $pelatih['email'],
-            'jenis_pelatih' => $pelatih['tingkat_sertifikasi'] ?? 'Pelatih',
+            'jenis_pelatih' => $pelatih['jenis_pelatih'],
             'no_hp' => $pelatih['nohp'] ?? '',
             'alamat' => '-',
-            'foto' => null, // pelatih table doesn't have foto field
-            'sertifikat' => null // pelatih table doesn't have sertifikat field
+            'foto' => null,
+            'sertifikat' => null
         ];
 
         return $this->response->setJSON(['success' => true, 'pelatih' => $pelatihData]);
@@ -550,6 +552,8 @@ class KlubDashboard extends BaseController
 
     private function getStatistikKlub($idKlub)
     {
+        $db = \Config\Database::connect();
+
         $totalAtlet = $this->atletModel->where('id_klub', $idKlub)
             ->where('status', 'aktif')
             ->countAllResults();
@@ -566,11 +570,39 @@ class KlubDashboard extends BaseController
             ->where('tanggal_mulai >', date('Y-m-d'))
             ->countAllResults();
 
+        // Get top atlet dari klub
+        $topAtlet = $this->atletModel->select('atlet.*, ranking.poin, ranking.posisi')
+            ->join('ranking', 'ranking.id_atlet = atlet.id_atlet', 'left')
+            ->where('atlet.id_klub', $idKlub)
+            ->where('atlet.status', 'aktif')
+            ->orderBy('ranking.poin', 'DESC')
+            ->limit(5)
+            ->findAll();
+
+        // Get tournament participation
+        $pendaftaranTurnamenModel = new \App\Models\PendaftaranEventModel();
+        $turnamenDiikuti = $pendaftaranTurnamenModel->where('id_klub', $idKlub)->countAllResults();
+
+        // Get total medals (if hasil table exists)
+        $totalMedali = 0;
+        try {
+            $medalResult = $db->query("
+                SELECT COUNT(*) as total FROM hasil 
+                WHERE id_klub = ? AND posisi IN (1, 2, 3)
+            ", [$idKlub])->getRow();
+            $totalMedali = $medalResult->total ?? 0;
+        } catch (\Exception $e) {
+            // Table might not exist
+        }
+
         return [
             'total_atlet' => $totalAtlet,
             'total_pelatih' => $totalPelatih,
             'pendaftaran_pending' => $pendaftaranPending,
-            'event_tersedia' => $eventAktif
+            'event_tersedia' => $eventAktif,
+            'turnamen_diikuti' => $turnamenDiikuti,
+            'total_medali' => $totalMedali,
+            'top_atlet' => $topAtlet
         ];
     }
 
@@ -879,5 +911,265 @@ class KlubDashboard extends BaseController
         $atlet['ranking_provinsi'] = $ranking['posisi'] ?? null;
 
         return $this->response->setJSON(['success' => true, 'atlet' => $atlet]);
+    }
+
+    /**
+     * Laporan Kegiatan Klub
+     */
+    public function laporanKegiatan()
+    {
+        if (!session()->get('logged_in') || !in_array(session()->get('role'), ['klub', 'admin_klub'])) {
+            return redirect()->to('auth/login');
+        }
+
+        $userId = session()->get('user_id');
+        $klub = $this->klubModel->where('id_user', $userId)->first();
+
+        $laporanModel = new \App\Models\LaporanModel();
+        $laporan = $laporanModel->where('id_klub', $klub['id_klub'])
+            ->orderBy('tanggal_laporan', 'DESC')
+            ->findAll();
+
+        $data = [
+            'title' => 'Laporan Kegiatan Klub',
+            'klub' => $klub,
+            'laporan' => $laporan
+        ];
+
+        return view('user/klub/laporan_kegiatan_enhanced', $data);
+    }
+
+    /**
+     * Dashboard Statistik Detail Klub
+     */
+    public function statistikDetail()
+    {
+        if (!session()->get('logged_in') || !in_array(session()->get('role'), ['klub', 'admin_klub'])) {
+            return redirect()->to('auth/login');
+        }
+
+        $userId = session()->get('user_id');
+        $klub = $this->klubModel->where('id_user', $userId)->first();
+
+        $db = \Config\Database::connect();
+
+        // Statistik lengkap
+        $totalAtlet = $this->atletModel->where('id_klub', $klub['id_klub'])
+            ->where('status', 'aktif')
+            ->countAllResults();
+
+        $totalPelatih = $this->pelatihModel->where('id_klub', $klub['id_klub'])
+            ->countAllResults();
+
+        // Atlet per kategori usia
+        $atletPerKategori = $db->query("
+            SELECT kategori_usia, COUNT(*) as total
+            FROM atlet
+            WHERE id_klub = ? AND status = 'aktif'
+            GROUP BY kategori_usia
+        ", [$klub['id_klub']])->getResultArray();
+
+        // Atlet per gender
+        $atletPerGender = $db->query("
+            SELECT jenis_kelamin, COUNT(*) as total
+            FROM atlet
+            WHERE id_klub = ? AND status = 'aktif'
+            GROUP BY jenis_kelamin
+        ", [$klub['id_klub']])->getResultArray();
+
+        // Top 10 atlet
+        $topAtlet = $this->atletModel->select('atlet.*, user.nama_lengkap, ranking.poin, ranking.posisi')
+            ->join('user', 'user.id_user = atlet.id_user', 'left')
+            ->join('ranking', 'ranking.id_atlet = atlet.id_atlet', 'left')
+            ->where('atlet.id_klub', $klub['id_klub'])
+            ->where('atlet.status', 'aktif')
+            ->orderBy('ranking.poin', 'DESC')
+            ->limit(10)
+            ->findAll();
+
+        // Turnamen yang diikuti
+        $pendaftaranEventModel = new \App\Models\PendaftaranEventModel();
+        $turnamenDiikuti = $pendaftaranEventModel->select('event.nama_event, COUNT(DISTINCT pendaftaran_event.id_atlet) as jumlah_atlet')
+            ->join('event', 'event.id_event = pendaftaran_event.id_event', 'left')
+            ->join('atlet', 'atlet.id_atlet = pendaftaran_event.id_atlet', 'left')
+            ->where('atlet.id_klub', $klub['id_klub'])
+            ->groupBy('event.nama_event')
+            ->orderBy('jumlah_atlet', 'DESC')
+            ->limit(10)
+            ->findAll();
+
+        // Medali yang diraih
+        $medalResult = $db->query("
+            SELECT 
+                CASE WHEN posisi = 1 THEN 'Emas'
+                     WHEN posisi = 2 THEN 'Perak'
+                     WHEN posisi = 3 THEN 'Perunggu'
+                END as jenis_medali,
+                COUNT(*) as total
+            FROM hasil h
+            JOIN atlet a ON a.id_atlet = h.id_pemenang_atlet
+            WHERE a.id_klub = ? AND h.posisi IN (1, 2, 3)
+            GROUP BY posisi
+        ", [$klub['id_klub']])->getResultArray();
+
+        $data = [
+            'title' => 'Statistik Detail Klub',
+            'klub' => $klub,
+            'total_atlet' => $totalAtlet,
+            'total_pelatih' => $totalPelatih,
+            'atlet_per_kategori' => $atletPerKategori,
+            'atlet_per_gender' => $atletPerGender,
+            'top_atlet' => $topAtlet,
+            'turnamen_diikuti' => $turnamenDiikuti,
+            'medali' => $medalResult
+        ];
+
+        return view('user/klub/statistik_detail', $data);
+    }
+
+    /**
+     * Export Data Atlet ke CSV
+     */
+    public function exportAtletCSV()
+    {
+        if (!session()->get('logged_in') || !in_array(session()->get('role'), ['klub', 'admin_klub'])) {
+            return redirect()->to('auth/login');
+        }
+
+        $userId = session()->get('user_id');
+        $klub = $this->klubModel->where('id_user', $userId)->first();
+
+        $atlet = $this->atletModel->select('atlet.*, user.nama_lengkap, user.email, ranking.poin, ranking.posisi')
+            ->join('user', 'user.id_user = atlet.id_user', 'left')
+            ->join('ranking', 'ranking.id_atlet = atlet.id_atlet', 'left')
+            ->where('atlet.id_klub', $klub['id_klub'])
+            ->findAll();
+
+        // Create CSV
+        $filename = 'data_atlet_' . $klub['id_klub'] . '_' . date('Y-m-d_H-i-s') . '.csv';
+        $filepath = FCPATH . 'uploads/export/' . $filename;
+
+        // Create directory if not exists
+        if (!is_dir(FCPATH . 'uploads/export/')) {
+            mkdir(FCPATH . 'uploads/export/', 0755, true);
+        }
+
+        $file = fopen($filepath, 'w');
+
+        // Header
+        fputcsv($file, ['No', 'Nama Lengkap', 'Email', 'Kategori Usia', 'Jenis Kelamin', 'No HP', 'Alamat', 'Ranking', 'Poin', 'Status']);
+
+        // Data
+        $no = 1;
+        foreach ($atlet as $row) {
+            fputcsv($file, [
+                $no++,
+                $row['nama_lengkap'],
+                $row['email'],
+                $row['kategori_usia'],
+                $row['jenis_kelamin'] === 'L' ? 'Laki-laki' : 'Perempuan',
+                $row['no_hp'],
+                $row['alamat'],
+                $row['posisi'] ?? '-',
+                $row['poin'] ?? 0,
+                $row['status']
+            ]);
+        }
+
+        fclose($file);
+
+        return $this->response->download($filepath, null);
+    }
+
+    /**
+     * Export Data Pelatih ke CSV
+     */
+    public function exportPelatihCSV()
+    {
+        if (!session()->get('logged_in') || !in_array(session()->get('role'), ['klub', 'admin_klub'])) {
+            return redirect()->to('auth/login');
+        }
+
+        $userId = session()->get('user_id');
+        $klub = $this->klubModel->where('id_user', $userId)->first();
+
+        $pelatih = $this->pelatihModel->select('pelatih.*, user.nama_lengkap, user.email, COALESCE(pp.jenis_pelatih, "Pelatih") as jenis_pelatih')
+            ->join('user', 'user.id_user = pelatih.id_user', 'left')
+            ->join('pendaftaran_pelatih pp', 'pp.id_pelatih = pelatih.id_pelatih', 'left')
+            ->where('pelatih.id_klub', $klub['id_klub'])
+            ->findAll();
+
+        // Create CSV
+        $filename = 'data_pelatih_' . $klub['id_klub'] . '_' . date('Y-m-d_H-i-s') . '.csv';
+        $filepath = FCPATH . 'uploads/export/' . $filename;
+
+        // Create directory if not exists
+        if (!is_dir(FCPATH . 'uploads/export/')) {
+            mkdir(FCPATH . 'uploads/export/', 0755, true);
+        }
+
+        $file = fopen($filepath, 'w');
+
+        // Header
+        fputcsv($file, ['No', 'Nama Lengkap', 'Email', 'Jenis Pelatih', 'No HP', 'Spesialisasi', 'Pengalaman (Tahun)']);
+
+        // Data
+        $no = 1;
+        foreach ($pelatih as $row) {
+            $pengalaman = $row['dibuat_pada'] ? (date('Y') - date('Y', strtotime($row['dibuat_pada']))) : 0;
+            fputcsv($file, [
+                $no++,
+                $row['nama_lengkap'],
+                $row['email'],
+                $row['jenis_pelatih'],
+                $row['nohp'] ?? '-',
+                $row['spesialisasi'] ?? '-',
+                $pengalaman
+            ]);
+        }
+
+        fclose($file);
+
+        return $this->response->download($filepath, null);
+    }
+
+    /**
+     * Export Laporan Kegiatan ke PDF
+     */
+    public function exportLaporanPDF()
+    {
+        if (!session()->get('logged_in') || !in_array(session()->get('role'), ['klub', 'admin_klub'])) {
+            return redirect()->to('auth/login');
+        }
+
+        $userId = session()->get('user_id');
+        $klub = $this->klubModel->where('id_user', $userId)->first();
+
+        $laporanModel = new \App\Models\LaporanModel();
+        $laporan = $laporanModel->where('id_klub', $klub['id_klub'])
+            ->orderBy('tanggal_laporan', 'DESC')
+            ->findAll();
+
+        // Simple HTML to PDF (using basic HTML)
+        $html = '<h1>Laporan Kegiatan Klub ' . esc($klub['nama']) . '</h1>';
+        $html .= '<p>Tanggal Cetak: ' . date('d/m/Y H:i:s') . '</p>';
+        $html .= '<table border="1" cellpadding="5" cellspacing="0" width="100%">';
+        $html .= '<tr><th>No</th><th>Tanggal</th><th>Kegiatan</th><th>Deskripsi</th></tr>';
+
+        $no = 1;
+        foreach ($laporan as $row) {
+            $html .= '<tr>';
+            $html .= '<td>' . $no++ . '</td>';
+            $html .= '<td>' . date('d/m/Y', strtotime($row['tanggal_laporan'])) . '</td>';
+            $html .= '<td>' . esc($row['judul_kegiatan']) . '</td>';
+            $html .= '<td>' . esc(substr($row['deskripsi'], 0, 100)) . '...</td>';
+            $html .= '</tr>';
+        }
+
+        $html .= '</table>';
+
+        // Return as downloadable file
+        $filename = 'laporan_kegiatan_' . $klub['id_klub'] . '_' . date('Y-m-d_H-i-s') . '.html';
+        return $this->response->download('data:text/html;base64,' . base64_encode($html), $filename);
     }
 }

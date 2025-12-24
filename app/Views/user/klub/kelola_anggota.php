@@ -1,15 +1,15 @@
-<?= $this->extend('layouts/main') ?>
+<?= $this->extend('user/layouts/main') ?>
 
 <?= $this->section('content') ?>
-<div class="container-fluid py-4" style="background: linear-gradient(135deg, #003366 0%, #1E90FF 50%, #00BFFF 100%); min-height: 100vh;">
+<div class="container-fluid py-4">
     <!-- Header -->
     <div class="row mb-4">
         <div class="col-12">
-            <div class="card border-0 shadow-lg" style="border-radius: 20px;">
+            <div class="card border-0 shadow-lg">
                 <div class="card-body p-4">
                     <div class="d-flex align-items-center">
                         <div class="icon-box bg-primary text-white rounded-circle me-3" style="width: 60px; height: 60px; display: flex; align-items: center; justify-content: center;">
-                            <i class="fas fa-users fa-2x"></i>
+                            <i class="bx bx-users bx-lg"></i>
                         </div>
                         <div>
                             <h2 class="mb-1 fw-bold text-primary">Kelola Anggota Klub</h2>
@@ -24,7 +24,7 @@
     <!-- Alert Messages -->
     <?php if (session()->getFlashdata('success')): ?>
         <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <i class="fas fa-check-circle me-2"></i>
+            <i class="bx bx-check-circle me-2"></i>
             <?= session()->getFlashdata('success') ?>
             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         </div>
@@ -32,7 +32,7 @@
 
     <?php if (session()->getFlashdata('error')): ?>
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <i class="fas fa-exclamation-circle me-2"></i>
+            <i class="bx bx-exclamation-circle me-2"></i>
             <?= session()->getFlashdata('error') ?>
             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         </div>
@@ -43,17 +43,17 @@
         <div class="col-12">
             <div class="card border-0 shadow-sm" style="border-radius: 15px;">
                 <div class="card-body p-0">
-                    <ul class="nav nav-pills nav-fill" id="anggotaTabs" role="tablist"></ul>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link active rounded-0" id="atlet-tab" data-bs-toggle="pill" data-bs-target="#atlet" type="button" role="tab">
-                            <i class="fas fa-running me-2"></i>Atlet (<?= count($anggota_atlet) ?>)
-                        </button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link rounded-0" id="pelatih-tab" data-bs-toggle="pill" data-bs-target="#pelatih" type="button" role="tab">
-                            <i class="fas fa-chalkboard-teacher me-2"></i>Pelatih & Wasit (<?= count($anggota_pelatih) ?>)
-                        </button>
-                    </li>
+                    <ul class="nav nav-pills nav-fill" id="anggotaTabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active rounded-0" id="atlet-tab" data-bs-toggle="pill" data-bs-target="#atlet" type="button" role="tab">
+                                <i class="bx bx-run me-2"></i>Atlet (<?= count($anggota_atlet) ?>)
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link rounded-0" id="pelatih-tab" data-bs-toggle="pill" data-bs-target="#pelatih" type="button" role="tab">
+                                <i class="bx bx-user-voice me-2"></i>Pelatih & Wasit (<?= count($anggota_pelatih) ?>)
+                            </button>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -67,7 +67,7 @@
             <div class="card border-0 shadow-sm" style="border-radius: 15px;">
                 <div class="card-header bg-light border-0" style="border-radius: 15px 15px 0 0;">
                     <h5 class="mb-0 fw-bold text-primary">
-                        <i class="fas fa-running me-2"></i>Daftar Atlet
+                        <i class="bx bx-running me-2"></i>Daftar Atlet
                     </h5>
                 </div>
                 <div class="card-body p-0">
@@ -89,7 +89,7 @@
                                             <td class="px-4 py-3">
                                                 <div class="d-flex align-items-center">
                                                     <div class="avatar-sm bg-primary text-white rounded-circle me-3 d-flex align-items-center justify-content-center">
-                                                        <i class="fas fa-user"></i>
+                                                        <i class="bx bx-user"></i>
                                                     </div>
                                                     <div>
                                                         <div class="fw-semibold"><?= esc($atlet['nama_lengkap']) ?></div>
@@ -109,7 +109,7 @@
                                             <td class="px-4 py-3">
                                                 <button type="button" class="btn btn-outline-info btn-sm"
                                                     onclick="showDetailAtlet(<?= $atlet['id_atlet'] ?>)">
-                                                    <i class="fas fa-eye me-1"></i>Detail
+                                                    <i class="bx bx-eye me-1"></i>Detail
                                                 </button>
                                             </td>
                                         </tr>
@@ -120,7 +120,7 @@
                     <?php else: ?>
                         <div class="text-center py-5">
                             <div class="mb-4">
-                                <i class="fas fa-user-slash fa-4x text-muted"></i>
+                                <i class="bx bx-user-slash fa-4x text-muted"></i>
                             </div>
                             <h5 class="text-muted mb-2">Belum Ada Atlet</h5>
                             <p class="text-muted">Klub belum memiliki atlet yang terdaftar.</p>
@@ -135,7 +135,7 @@
             <div class="card border-0 shadow-sm" style="border-radius: 15px;">
                 <div class="card-header bg-light border-0" style="border-radius: 15px 15px 0 0;">
                     <h5 class="mb-0 fw-bold text-primary">
-                        <i class="fas fa-chalkboard-teacher me-2"></i>Daftar Pelatih & Wasit
+                        <i class="bx bx-chalkboard-teacher me-2"></i>Daftar Pelatih & Wasit
                     </h5>
                 </div>
                 <div class="card-body p-0">
@@ -157,7 +157,7 @@
                                             <td class="px-4 py-3">
                                                 <div class="d-flex align-items-center">
                                                     <div class="avatar-sm bg-success text-white rounded-circle me-3 d-flex align-items-center justify-content-center">
-                                                        <i class="fas fa-chalkboard-teacher"></i>
+                                                        <i class="bx bx-chalkboard-teacher"></i>
                                                     </div>
                                                     <div>
                                                         <div class="fw-semibold"><?= esc($pelatih['nama_lengkap']) ?></div>
@@ -173,7 +173,7 @@
                                             <td class="px-4 py-3">
                                                 <button type="button" class="btn btn-outline-info btn-sm"
                                                     onclick="showDetailPelatih(<?= $pelatih['id_pelatih'] ?>)">
-                                                    <i class="fas fa-eye me-1"></i>Detail
+                                                    <i class="bx bx-eye me-1"></i>Detail
                                                 </button>
                                             </td>
                                         </tr>
@@ -184,7 +184,7 @@
                     <?php else: ?>
                         <div class="text-center py-5">
                             <div class="mb-4">
-                                <i class="fas fa-chalkboard-teacher fa-4x text-muted"></i>
+                                <i class="bx bx-chalkboard-teacher fa-4x text-muted"></i>
                             </div>
                             <h5 class="text-muted mb-2">Belum Ada Pelatih</h5>
                             <p class="text-muted">Klub belum memiliki pelatih yang terdaftar.</p>
@@ -293,7 +293,7 @@
                 } else {
                     content.innerHTML = `
                     <div class="alert alert-danger">
-                        <i class="fas fa-exclamation-triangle me-2"></i>
+                        <i class="bx bx-exclamation-triangle me-2"></i>
                         ${data.message || 'Gagal memuat detail atlet'}
                     </div>
                 `;
@@ -302,7 +302,7 @@
             .catch(error => {
                 content.innerHTML = `
                 <div class="alert alert-danger">
-                    <i class="fas fa-exclamation-triangle me-2"></i>
+                    <i class="bx bx-exclamation-triangle me-2"></i>
                     Terjadi kesalahan saat memuat data
                 </div>
             `;
@@ -333,7 +333,7 @@
                 } else {
                     content.innerHTML = `
                     <div class="alert alert-danger">
-                        <i class="fas fa-exclamation-triangle me-2"></i>
+                        <i class="bx bx-exclamation-triangle me-2"></i>
                         ${data.message || 'Gagal memuat detail pelatih'}
                     </div>
                 `;
@@ -342,7 +342,7 @@
             .catch(error => {
                 content.innerHTML = `
                 <div class="alert alert-danger">
-                    <i class="fas fa-exclamation-triangle me-2"></i>
+                    <i class="bx bx-exclamation-triangle me-2"></i>
                     Terjadi kesalahan saat memuat data
                 </div>
             `;

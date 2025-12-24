@@ -34,7 +34,10 @@ class Pertandingan extends BaseController
     public function index()
     {
         $search = $this->request->getGet('search');
-        $status = $this->request->getGet('status');
+        // Default: tampilkan pertandingan yang berlangsung hari ini.
+        // Admin bisa menampilkan semua pertandingan dengan parameter ?today=0
+        $todayParam = $this->request->getGet('today');
+        $todayOnly  = $todayParam === null ? true : (bool) $todayParam;
 
         $builder = $this->eventModel->select('event.*, turnamen.nama as nama_turnamen, turnamen.tingkat, klub.nama as nama_klub')
             ->join('turnamen', 'turnamen.id_turnamen = event.id_turnamen', 'left')
@@ -49,12 +52,20 @@ class Pertandingan extends BaseController
                 ->groupEnd();
         }
 
+        // Filter pertandingan yang berlangsung pada hari ini (tanggal server)
+        if ($todayOnly) {
+            $today = date('Y-m-d');
+            $builder->where('event.tanggal_mulai <=', $today)
+                ->where('event.tanggal_selesai >=', $today);
+        }
+
         $events = $builder->orderBy('event.tanggal_mulai', 'ASC')->findAll();
 
         $data = [
-            'title' => 'Manajemen Pertandingan',
-            'events' => $events,
-            'search' => $search,
+            'title'      => 'Manajemen Pertandingan',
+            'events'     => $events,
+            'search'     => $search,
+            'today_only' => (bool) $todayOnly,
         ];
 
         return view('admin/pertandingan', $data);

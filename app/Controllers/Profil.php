@@ -21,6 +21,11 @@ class Profil extends BaseController
 
     public function index()
     {
+        // Jika user sudah login, redirect ke user profile
+        if (session()->get('logged_in')) {
+            return redirect()->to('user/profile');
+        }
+
         // Ambil data organisasi provinsi
         $organisasiProvinsi = $this->organisasiModel->getOrganisasiProvinsi();
 

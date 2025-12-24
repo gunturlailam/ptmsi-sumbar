@@ -45,6 +45,28 @@ $routes->post('layanan-online/submit-sertifikasi', 'LayananOnline::submitSertifi
 $routes->get('hubungi-kami', 'HubungiKami::index');
 $routes->post('hubungi-kami/submit', 'HubungiKami::submitPesan');
 
+// Live Scoring Routes (Public)
+$routes->group('live-scoring', ['namespace' => 'App\Controllers\Public'], function ($routes) {
+    $routes->get('/', 'LiveScoring::index');
+    $routes->get('event/(:num)', 'LiveScoring::event/$1');
+    $routes->get('event/(:num)/matches', 'LiveScoring::getMatchData/$1');
+    $routes->get('bracket/(:num)', 'LiveScoring::bracket/$1');
+    $routes->get('standings/(:num)', 'LiveScoring::standings/$1');
+    $routes->get('atlet/(:num)', 'LiveScoring::atletProfile/$1');
+    $routes->post('atlet/rate', 'LiveScoring::rateAtlet');
+    $routes->get('top-rated', 'LiveScoring::topRated');
+});
+
+// Notification Routes - DISABLED TEMPORARILY (table doesn't exist)
+// $routes->group('notifications', function ($routes) {
+//     $routes->get('/', 'NotificationController::getAll');
+//     $routes->get('unread', 'NotificationController::getUnread');
+//     $routes->post('mark-read/(:num)', 'NotificationController::markAsRead/$1');
+//     $routes->post('mark-all-read', 'NotificationController::markAllAsRead');
+//     $routes->post('delete/(:num)', 'NotificationController::delete/$1');
+//     $routes->get('type/(:segment)', 'NotificationController::getByType/$1');
+// });
+
 // Tournament Registration Routes (Public Access)
 $routes->group('tournament', function ($routes) {
     $routes->get('/', 'TournamentRegistration::index');
@@ -95,16 +117,34 @@ $routes->group('user', ['namespace' => 'App\Controllers\User'], function ($route
     $routes->get('dashboard', 'Dashboard::index');
     $routes->get('profile', 'Dashboard::profile');
     $routes->post('profile/update', 'Dashboard::updateProfile');
+    $routes->get('log-aktifitas', 'Dashboard::logAktifitas');
+    $routes->get('riwayat-unduhan', 'Dashboard::riwayatUnduhan');
 
     // Atlet Dashboard Routes
     $routes->group('atlet', function ($routes) {
         $routes->get('dashboard', 'AtletDashboard::index');
         $routes->get('profil', 'AtletDashboard::profil');
-        $routes->get('kartu-atlet', 'AtletDashboard::kartuAtlet');
+        $routes->post('update-profil', 'AtletDashboard::updateProfil');
+        $routes->get('kartu', 'AtletDashboard::kartuAtlet');
         $routes->get('daftar-turnamen', 'AtletDashboard::daftarTurnamen');
         $routes->get('riwayat-pertandingan', 'AtletDashboard::riwayatPertandingan');
         $routes->get('ranking-pribadi', 'AtletDashboard::rankingPribadi');
         $routes->get('lengkapi-profil', 'AtletDashboard::lengkapiProfil');
+    });
+
+    // Pelatih Dashboard Routes
+    $routes->group('pelatih', function ($routes) {
+        $routes->get('dashboard', 'PelatihDashboard::index');
+        $routes->get('profil', 'PelatihDashboard::profil');
+        $routes->get('sertifikasi', 'PelatihDashboard::sertifikasi');
+        $routes->get('atlet-binaan', 'PelatihDashboard::atletBinaan');
+    });
+
+    // Ofisial Dashboard Routes
+    $routes->group('ofisial', function ($routes) {
+        $routes->get('dashboard', 'OfisialDashboard::index');
+        $routes->get('profil', 'OfisialDashboard::profil');
+        $routes->get('riwayat', 'OfisialDashboard::riwayat');
     });
 
     // Klub Dashboard Routes
@@ -133,6 +173,13 @@ $routes->group('user', ['namespace' => 'App\Controllers\User'], function ($route
 
         // Tournament registration detail route
         $routes->get('detail-pendaftaran-turnamen/(:num)', 'KlubDashboard::detailPendaftaranTurnamen/$1');
+
+        // Laporan, Statistik, and Export routes
+        $routes->get('laporan-kegiatan', 'KlubDashboard::laporanKegiatan');
+        $routes->get('statistik-detail', 'KlubDashboard::statistikDetail');
+        $routes->get('export-atlet-csv', 'KlubDashboard::exportAtletCSV');
+        $routes->get('export-pelatih-csv', 'KlubDashboard::exportPelatihCSV');
+        $routes->get('export-laporan-pdf', 'KlubDashboard::exportLaporanPDF');
 
         // Legacy route for backward compatibility
         $routes->post('verifikasi-atlet/(:num)', 'KlubDashboard::verifikasiAtlet/$1');
@@ -280,6 +327,18 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Admin'], function ($rou
     $routes->get('pesan/view/(:num)', 'Pesan::view/$1');
     $routes->get('pesan/delete/(:num)', 'Pesan::delete/$1');
 
+    // Ofisial Management
+    $routes->get('ofisial', 'Ofisial::index');
+    $routes->get('ofisial/create', 'Ofisial::create');
+    $routes->post('ofisial/store', 'Ofisial::store');
+    $routes->get('ofisial/edit/(:num)', 'Ofisial::edit/$1');
+    $routes->post('ofisial/update/(:num)', 'Ofisial::update/$1');
+    $routes->get('ofisial/delete/(:num)', 'Ofisial::delete/$1');
+    $routes->get('ofisial/assignment', 'Ofisial::assignment');
+    $routes->get('ofisial/assign-event', 'Ofisial::assignEvent');
+    $routes->post('ofisial/store-assignment', 'Ofisial::storeAssignment');
+    $routes->get('ofisial/delete-assignment/(:num)', 'Ofisial::deleteAssignment/$1');
+
     // Users
     $routes->get('users', 'Users::index');
     $routes->get('users/create', 'Users::create');
@@ -298,5 +357,37 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Admin'], function ($rou
 
     // Admin Features
     $routes->get('kelola-ranking', 'Dashboard::kelolaRanking');
+
+    // Generate Matches
+    $routes->get('generate-matches', 'GenerateMatches::index');
+    $routes->post('generate-matches/generate-random', 'GenerateMatches::generateRandom');
+    $routes->post('generate-matches/clear-matches', 'GenerateMatches::clearMatches');
+    $routes->get('matches-today', 'GenerateMatches::viewToday');
+
+    // Hasil Pertandingan
+    $routes->get('hasil-pertandingan', 'HasilPertandingan::index');
+    $routes->get('hasil-pertandingan/input/(:num)', 'HasilPertandingan::input/$1');
+    $routes->post('hasil-pertandingan/simpan/(:num)', 'HasilPertandingan::simpan/$1');
+    $routes->get('hasil-pertandingan/lihat-semua', 'HasilPertandingan::lihatSemua');
     $routes->post('update-ranking-otomatis', 'Dashboard::updateRankingOtomatis');
+
+    // Analytics & Reporting
+    $routes->get('analytics', 'Analytics::index');
+    $routes->get('analytics/audit-log', 'Analytics::auditLog');
+    $routes->get('analytics/export-audit-log', 'Analytics::exportAuditLog');
+    $routes->get('analytics/approval-workflow', 'Analytics::approvalWorkflow');
+    $routes->get('analytics/backup', 'Analytics::backup');
+    $routes->get('analytics/export-all-data', 'Analytics::exportAllData');
+});
+
+// API Routes
+$routes->group('api', ['namespace' => 'App\Controllers\Api'], function ($routes) {
+    $routes->get('atlet/(:num)/stats', 'ApiController::getAtletStats/$1');
+    $routes->get('event/(:num)/matches', 'ApiController::getEventMatches/$1');
+    $routes->get('event/(:num)/standings', 'ApiController::getEventStandings/$1');
+    // $routes->get('notifications', 'ApiController::getNotifications'); // DISABLED - notification table doesn't exist
+    $routes->get('search/atletes', 'ApiController::searchAtletes');
+    $routes->get('search/events', 'ApiController::searchEvents');
+    $routes->get('ranking/kategori/(:segment)', 'ApiController::getRankingByCategory/$1');
+    $routes->get('top-rated-athletes', 'ApiController::getTopRatedAthletes');
 });

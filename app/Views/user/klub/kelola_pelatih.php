@@ -1,11 +1,11 @@
-<?= $this->extend('layouts/main') ?>
+<?= $this->extend('user/layouts/main') ?>
 
 <?= $this->section('content') ?>
-<div class="container-fluid py-4" style="background: linear-gradient(135deg, #003366 0%, #1E90FF 50%, #00BFFF 100%); min-height: 100vh;">
+<div class="container-fluid py-4">
     <!-- Header -->
     <div class="row mb-4">
         <div class="col-12">
-            <div class="card border-0 shadow-lg" style="border-radius: 25px; background: rgba(255,255,255,0.95);">
+            <div class="card border-0 shadow-lg">
                 <div class="card-body p-4">
                     <div class="row align-items-center">
                         <div class="col-md-8">
@@ -31,7 +31,7 @@
     <div class="row">
         <!-- Tambah Pelatih/Wasit -->
         <div class="col-12 mb-4">
-            <div class="card border-0 shadow-lg" style="border-radius: 25px; background: rgba(255,255,255,0.95);">
+            <div class="card border-0 shadow-lg">
                 <div class="card-header border-0" style="background: linear-gradient(45deg, #28a745, #20c997); border-radius: 25px 25px 0 0;">
                     <h5 class="mb-0 text-white" style="font-weight: 700;">
                         <i class="fas fa-plus-circle me-2"></i>Tambah Pelatih/Wasit Baru
@@ -53,7 +53,7 @@
 
         <!-- Pendaftaran Pelatih Pending -->
         <div class="col-12 mb-4">
-            <div class="card border-0 shadow-lg" style="border-radius: 25px; background: rgba(255,255,255,0.95);">
+            <div class="card border-0 shadow-lg">
                 <div class="card-header border-0" style="background: linear-gradient(45deg, #ffc107, #e0a800); border-radius: 25px 25px 0 0;">
                     <h5 class="mb-0 text-white" style="font-weight: 700;">
                         <i class="fas fa-clock me-2"></i>Pendaftaran Menunggu Verifikasi (<?= count($pendaftaran_pelatih) ?>)
@@ -136,7 +136,7 @@
 
         <!-- Pelatih/Wasit Aktif -->
         <div class="col-12">
-            <div class="card border-0 shadow-lg" style="border-radius: 25px; background: rgba(255,255,255,0.95);">
+            <div class="card border-0 shadow-lg">
                 <div class="card-header border-0" style="background: linear-gradient(45deg, #007bff, #0056b3); border-radius: 25px 25px 0 0;">
                     <h5 class="mb-0 text-white" style="font-weight: 700;">
                         <i class="fas fa-check-circle me-2"></i>Pelatih & Wasit Aktif (<?= count($pelatih_aktif) ?>)

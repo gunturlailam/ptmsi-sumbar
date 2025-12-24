@@ -6,39 +6,35 @@ use CodeIgniter\Model;
 
 class SertifikasiModel extends Model
 {
-    protected $table = 'sertifikasi';
-    protected $primaryKey = 'id_sertifikasi';
-    protected $allowedFields = [
-        'id_pelatih',
-        'jenis_sertifikasi',
-        'tanggal_dikeluarkan',
-        'tanggal_kadaluarsa',
-        'file_url'
-    ];
+    protected $table            = 'sertifikasi';
+    protected $primaryKey       = 'id_sertifikasi';
+    protected $useAutoIncrement = true;
+    protected $returnType       = 'array';
+    protected $useSoftDeletes   = false;
+    protected $protectFields    = true;
+    protected $allowedFields    = ['id_pelatih', 'jenis_sertifikasi', 'tanggal_dikeluarkan', 'tanggal_kadaluarsa', 'file_url'];
+
+    // Dates
     protected $useTimestamps = false;
+    protected $dateFormat    = 'datetime';
+    protected $createdField  = '';
+    protected $updatedField  = '';
+    protected $deletedField  = '';
 
-    /**
-     * Get sertifikasi with pelatih info
-     */
-    public function getSertifikasiWithPelatih()
-    {
-        return $this->select('sertifikasi.*, 
-                user.nama_lengkap as nama_pelatih,
-                klub.nama as nama_klub')
-            ->join('pelatih', 'pelatih.id_pelatih = sertifikasi.id_pelatih')
-            ->join('user', 'user.id_user = pelatih.id_user')
-            ->join('klub', 'klub.id_klub = pelatih.id_klub', 'left')
-            ->orderBy('sertifikasi.tanggal_dikeluarkan', 'DESC')
-            ->findAll();
-    }
+    // Validation
+    protected $validationRules      = [];
+    protected $validationMessages   = [];
+    protected $skipValidation       = false;
+    protected $cleanValidationRules = true;
 
-    /**
-     * Get sertifikasi by pelatih
-     */
-    public function getSertifikasiByPelatih($idPelatih)
-    {
-        return $this->where('id_pelatih', $idPelatih)
-            ->orderBy('tanggal_dikeluarkan', 'DESC')
-            ->findAll();
-    }
+    // Callbacks
+    protected $allowCallbacks = true;
+    protected $beforeInsert   = [];
+    protected $afterInsert    = [];
+    protected $beforeUpdate   = [];
+    protected $afterUpdate    = [];
+    protected $beforeFind     = [];
+    protected $afterFind      = [];
+    protected $beforeDelete   = [];
+    protected $afterDelete    = [];
 }
